@@ -1,0 +1,85 @@
+<main id="home">
+    <div class="home-background-image">
+        <div class="container py-5">
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="px-2 home-blue-text" style="font-size: 50px;">DaVE</div>
+                <div class="px-2 border-start" style="font-size: 40px;">
+                    A curated 
+                    <span class="home-blue-text">Da</span>tabase of 
+                    <span class="home-blue-text">V</span>isualization 
+                    <span class="home-blue-text">E</span>xamples
+                </div>
+            </div>
+        </div>
+        <div class="container-sm d-flex justify-content-center pt-5" style="padding-bottom: 200px;">
+            <div class="position-relative w-100" style="max-width: 700px">
+                <div id="search_bar" class="form-control shadow-sm w-100" style="border-bottom-right-radius: 0px; border-top-right-radius: 0px;">
+                    <div class="d-flex">
+                        <template v-for="tag in location_search_tags">
+                            <button type="button" class="btn badge text-primary-emphasis bg-primary-subtle border-primary-subtle me-1" style="height: 25px;" v-if="tag.type == 'technique'" @mousedown.left.prevent="on_query_tag_remove(tag)">
+                                {{ tag.name }}
+                            </button><!--Show cross on hover-->
+                            <button type="button" class="btn badge text-success-emphasis bg-success-subtle border-success-subtle me-1" style="height: 25px;" v-if="tag.type == 'example'" @mousedown.left.prevent="on_query_tag_remove(tag)">
+                                {{ tag.name }}
+                            </button><!--Show cross on hover-->
+                        </template>
+                        <input id="search_input" class="flex-fill" style="border: none; outline: none;" type="text" placeholder="Search" @input="on_query_change" @keydown.delete="on_query_delete" @keydown.enter="on_query_search">
+                    </div>
+                </div>
+                <ul id="search_suggestions" class="dropdown-menu shadow-sm position-absolute top-100 w-100" style="inset: 0px 0px auto 0px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-top-width: 0px;">
+                    <template v-for="string in location_search_name_suggestions">
+                        <li>
+                            <button type="button" class="dropdown-item" @click="on_query_suggestion_click(string)"> 
+                                {{string}} 
+                            </button>
+                        </li>
+                    </template>
+                    <template v-if="location_search_name_suggestions.length > 0 && location_search_tag_suggestions.length > 0">
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                    </template>
+                    <li class="d-flex" style="padding-left: 12px; padding-right: 12px;">
+                        <template v-for="tag in location_search_tag_suggestions">
+                            <button type="button" class="btn badge text-primary-emphasis bg-primary-subtle border border-primary-subtle me-1" style="height: 25px;" v-if="tag.type == 'technique'" @mousedown.left.prevent="on_query_tag_add(tag)">
+                                {{ tag.name }}
+                            </button>
+                            <button type="button" class="btn badge text-success-emphasis bg-success-subtle border border-success-subtle me-1" style="height: 25px;" v-if="tag.type == 'example'" @mousedown.left.prevent="on_query_tag_add(tag)">
+                                {{ tag.name }}
+                            </button>
+                        </template>
+                    </li>
+                </ul>
+            </div>
+            <button class="btn btn-primary shadow-sm" type="button" style="border-bottom-left-radius: 0px; border-top-left-radius: 0px;" @click="on_query_search">Search</button>
+        </div>
+    </div>
+    <div class="container-flow py-4 bg-body-tertiary">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                <div class="col">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Wizzard</h5>
+                            <p class="card-text">Use the wizzard to get a siutable visualisation technique and examles by answering some questions. The wizzard can also be used to explore techniques that you might not have known before.</p>
+                        </div>
+                        <div class="p-3">
+                            <a href="/wizzard" class="btn btn-primary float-end">Start</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="clo">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">About</h5>
+                            <p class="card-text">Get more information about the project.</p>
+                        </div>
+                        <div class="p-3">
+                            <a href="/about" class="btn btn-primary float-end">Show</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
