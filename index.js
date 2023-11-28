@@ -3,7 +3,7 @@ const ServerAPI = require("./backend/api.js");
 const express = require("express");
 
 const app = express();
-const port = 80;
+const port = 8080;
 
 const builder = new ServerPageBuilder();
 const api = new ServerAPI();
