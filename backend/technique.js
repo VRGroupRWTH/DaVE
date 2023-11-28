@@ -42,6 +42,11 @@ class Technique
 
         for(const example_path of example_directory)
         {
+            if(example_path[0] == 0)
+            {
+                continue;
+            }
+
             let example = new Example();
             example.load(database_path, technique_path + "examples/" + example_path + "/");
 
