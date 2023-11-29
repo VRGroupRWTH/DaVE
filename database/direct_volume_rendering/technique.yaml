@@ -1,13 +1,15 @@
-name: "Volume"
+name: "Direct Volume Rendering"
 date: 2023-11-29
-tags:
+
+technique_tags:
   - "Scalar"
   - "3D"
+ 
+domain_tags:
+  - "Medicine"
 
 images:
-  - "images/particles1.png"
-  - "images/particles2.png"
-  - "images/particles3.png"
+  - "images/volumerender.png"
 
 resources:
   - type: "Script"
@@ -18,13 +20,15 @@ resources:
     url: "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"
 
 commands:
-  run: "pvpython volumerender_trace.py"
-#  batch:
+  - run: "pvpython volumerender_trace.py"
+# - run: ""
+#   batch: ""
   
 container:
-  url: "kitware/paraview:pv-v5.7.1-osmesa-py3"
   technique: "docker"
+  url: "kitware/paraview:pv-v5.7.1-osmesa-py3"
+# path: ""
   
-data:
+dataset:
   url: "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"
-#  path: ""
+# path: ""

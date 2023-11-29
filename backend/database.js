@@ -68,12 +68,16 @@ class Database
 
     load(database_path)
     {
-        const technique_directory = fs.readdirSync(database_path + "techniques");
+        const technique_directory = fs.readdirSync(database_path);
 
         for(const technique_path of technique_directory)
         {
             let technique = new Technique();
-            technique.load(database_path, "techniques/" + technique_path + "/");
+
+            if(!technique.load(database_path + technique_path + "/"))
+            {
+                continue;
+            }
 
             this.#techniques.push(technique);
         }
@@ -81,11 +85,6 @@ class Database
 
     search_techniques(query, sorting, filter)
     {
-        if(query.length <= 0)
-        {
-            return [];
-        }
-
         let candidates = [];
 
         for(const technique of this.#techniques)
@@ -103,20 +102,6 @@ class Database
             {
                 score = Math.min(score, this.#search_score(query, tag.get_name()));
                 score = Math.min(score, this.#search_score(query, tag.get_type()));
-            }
-
-            for(const example of technique.get_examples())
-            {
-                score = Math.min(score, this.#search_score(query, example.get_name()));
-                score = Math.min(score, this.#search_score(query, example.get_description()));
-                score = Math.min(score, this.#search_score(query, example.get_author()));
-                score = Math.min(score, this.#search_score(query, example.get_date().toString()));
-
-                for(const tag of example.get_tags())
-                {
-                    score = Math.min(score, this.#search_score(query, tag.get_name()));
-                    score = Math.min(score, this.#search_score(query, tag.get_type()));
-                }
             }
 
             const candidate = 
@@ -143,72 +128,13 @@ class Database
         return result;
     }
 
-    search_examples(query, sorting, filter)
-    {
-        if(query.length <= 0)
-        {
-            return [];
-        }
-
-        let candidates = [];
-
-        for(const technique of this.#techniques)
-        {
-            for(const example of this.#techniques)
-            {
-                if(!filter(technique, example))
-                {
-                    continue;
-                }
-
-                let score = this.#search_score(query, example.get_name());
-                score = Math.min(this.#search_score(query, example.get_description()));
-                score = Math.min(this.#search_score(query, example.get_author()));
-                score = Math.min(this.#search_score(query, example.get_date().toString()));
-
-                for(const tag of example.get_tags())
-                {
-                    score = Math.min(this.#search_score(query, tag.get_name()));
-                    score = Math.min(this.#search_score(query, tag.get_type()));
-                }
-
-                const candidate =
-                {
-                    value : example,
-                    score
-                };
-
-                candidates.push(candidate);
-            }
-        }
-
-        candidates.sort((candidate1, candidate2) =>
-        {
-            return sorting(candidate1, candidate2);
-        });
-
-        let result = [];
-
-        for(const candidate of candidates)
-        {
-            result.push(candidate.value);
-        }
-
-        return result;
-    }
-
     search_property(query, query_property, output_properties, filter)
     {
-        if(query.length <= 0)
-        {
-            return [];
-        }
-
         let candidates = [];
 
         for(const technique of this.#techniques)
         {
-            if(filter(technique, null, null) && this.#search_has_properties(technique, query_property, output_properties))
+            if(filter(technique, null) && this.#search_has_properties(technique, query_property, output_properties))
             {
                 const candidate = this.#search_candidate(technique, query, query_property, output_properties);
 
@@ -220,39 +146,13 @@ class Database
 
             for(const tag of technique.get_tags())
             {
-                if(filter(technique, null, tag) && this.#search_has_properties(tag, query_property, output_properties))
+                if(filter(technique, tag) && this.#search_has_properties(tag, query_property, output_properties))
                 {
                     const candidate = this.#search_candidate(tag, query, query_property, output_properties);
 
                     if(candidate.score < 10)
                     {
                         candidates.push(candidate);
-                    }
-                }
-            }
-
-            for(const example of technique.get_examples())
-            {
-                if(filter(technique, example, null) && this.#search_has_properties(example, query_property, output_properties))
-                {
-                    const candidate = this.#search_candidate(example, query, query_property, output_properties);
-                    
-                    if(candidate.score < 10)
-                    {
-                        candidates.push(candidate);
-                    }
-                }
-
-                for(const tag of example.get_tags())
-                {
-                    if(filter(technique, example, tag) && this.#search_has_properties(tag, query_property, output_properties))
-                    {
-                        const candidate = this.#search_candidate(tag, query, query_property, output_properties);
-                    
-                        if(candidate.score < 10)
-                        {
-                            candidates.push(candidate);
-                        }
                     }
                 }
             }
@@ -355,27 +255,6 @@ class Database
             if(technique.get_name() == technique_name)
             {
                 return technique;
-            }
-        }
-
-        return null;
-    }
-
-    get_example(technique_name, example_name)
-    {
-        for(const technique of this.#techniques)
-        {
-            if(technique.get_name() == technique_name)
-            {
-                return technique;
-            }
-
-            for(const example of technique.get_examples())
-            {
-                if(example.get_name() == example_name)
-                {
-                    return example;
-                }
             }
         }
 

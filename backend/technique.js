@@ -1,86 +1,125 @@
 const Tag = require("./tag.js");
-const Example = require("./example.js");
 const fs = require("fs");
+const yaml = require("yaml");
+const showdown = require("showdown");
 
 class Technique
 {
     #name
-    #description
     #date
-    #tags
 
+    #tags
     #images
-    #examples
+    #resources
+
+    #commands
+    #container
+    #dataset
+
+    #description
 
     constructor()
     {
         this.#name = "";
-        this.#description = "";
         this.#date = Date.now();
 
         this.#tags = [];
         this.#images = [];
-        this.#examples = [];
+        this.#resources = [];
+
+        this.#commands = [];
+        this.#container = {};
+        this.#dataset = {};
+
+        this.#description = "";
     }
 
-    load(database_path, technique_path)
+    load(technique_path)
     {
-        let technique = JSON.parse(fs.readFileSync(database_path + technique_path + "description.json"));
+        let technique_file = "";
+
+        try
+        {
+            technique_file = fs.readFileSync(technique_path + "technique.yaml").toString();
+        }
+
+        catch(exception)
+        {
+            console.log("Can't load file '" + technique_path + "technique.yaml" + "'");
+
+            return false;
+        }
+
+        let technique = yaml.parse(technique_file);
 
         this.#name = technique.name;
-        this.#description = technique.description;
         this.#date = technique.date;
-        this.#tags = Tag.load(technique.tags, "technique");
 
-        const image_directory = fs.readdirSync(database_path + technique_path + "images");
-        const example_directory = fs.readdirSync(database_path + technique_path + "examples");
-        
-        for(const image_path of image_directory)
+        if("technique_tags" in technique)
         {
-            this.#images.push(database_path + technique_path + "images/" + image_path);
+            this.#tags = this.#tags.concat(Tag.load(technique.technique_tags, "technique"));
         }
 
-        for(const example_path of example_directory)
+        if("domain_tags" in technique)
         {
-            if(example_path[0] == 0)
+            this.#tags = this.#tags.concat(Tag.load(technique.domain_tags, "domain"));
+        }
+
+        if("images" in technique)
+        {
+            for(const image of technique.images)
             {
-                continue;
+                this.#images.push(technique_path + image);
             }
-
-            let example = new Example();
-            example.load(database_path, technique_path + "examples/" + example_path + "/");
-
-            this.#examples.push(example);
         }
+
+        if("resources" in technique)
+        {
+            for(const resource of technique.resources)
+            {
+                this.#resources.push(technique_path + resource);
+            }
+        }
+
+        this.#commands = technique.commands;
+        this.#container = technique.container;
+        this.#dataset = technique.datset;
+
+        let description_file = "";
+
+        try
+        {
+            description_file = fs.readFileSync(technique_path + "description.md").toString();
+        }
+
+        catch(exception)
+        {
+            console.log("Can't load file '" + technique_path + "description.md" + "'");
+
+            return false;
+        }
+
+        const converter = new showdown.Converter();
+        this.#description = converter.makeHtml(description_file);
+
+        return true;
     }
 
     export()
     {
-        let example_names = [];
-
-        for(const example of this.#examples)
-        {
-            example_names.push(example.get_name());
-        }
-
         return {
             name : this.#name,
-            description : this.#description,
             date : this.#date,
             tags : Tag.export(this.#tags),
             images : this.#images,
-            examples : example_names
+            resources : this.#resources,
+            description : this.#description
         }
     }
 
     get_name()
     {
         return this.#name;
-    }
-
-    get_description()
-    {
-        return this.#description;
     }
 
     get_date()
@@ -93,32 +132,19 @@ class Technique
         return this.#tags;
     }
 
-    get_tags_combined()
-    {
-        let tags = this.#tags;
-
-        for(const example of this.#examples)
-        {
-            for(const tag of example.get_tags())
-            {
-                if(!tags.some(value => value.is_equal(tag)))
-                {
-                    tags.push(tag);
-                }
-            }
-        }
-
-        return tags;
-    }
-
     get_images()
     {
         return this.#images;
     }
 
-    get_examples()
+    get_resources()
     {
-        return this.#examples;
+        return this.#resources;
+    }
+
+    get_description()
+    {
+        return this.#description;
     }
 }
 

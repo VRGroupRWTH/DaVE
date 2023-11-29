@@ -2,20 +2,6 @@ const ServerPageBuilder = require("./backend/builder.js");
 const ServerAPI = require("./backend/api.js");
 const express = require("express");
 
-const yaml = require("yaml");
-const showndown = require("showdown");
-const fs = require("fs");
-
-let converter = new showndown.Converter();
-
-let markdown = fs.readFileSync("./database_new/volume/description.md")
-//console.log(markdown.toString());
-
-let technique = fs.readFileSync("./database_new/volume/technique.yaml")
-
-console.log(yaml.parse(technique.toString()));
-//console.log(converter.makeHtml(markdown.toString()));
-
 const app = express();
 const port = 8080;
 
