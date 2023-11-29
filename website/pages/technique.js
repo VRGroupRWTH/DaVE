@@ -4,10 +4,12 @@ Vue.createApp(
     {
         let location_name = Vue.ref("");
         let location_description = Vue.ref("");
+        let location_tags = Vue.ref([]);
 
         return {
             location_name,
-            location_description
+            location_description,
+            location_tags
         };
     },
 
@@ -42,5 +44,6 @@ Vue.createApp(
 
         this.location_name = technique.name;
         this.location_description = technique.description;
+        this.location_tags = technique.tags;
     }
 }).mount('#technique');

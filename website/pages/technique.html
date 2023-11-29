@@ -1,30 +1,158 @@
-<main id="technique" class="container">
-    <div id="carouselExample" class="carousel slide mb-2">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="w-100 d-flex justify-content-center">
-                    <img src="/techniques/particles/images/particles1.png" class="d-block" style="height: 200px;">
+<main id="technique">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Configure</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-            </div>
-            <div class="carousel-item">
-                <div class="w-100 d-flex justify-content-center">
-                    <img src="/techniques/particles/images/particles1.png" class="d-block" style="height: 200px;">
+                <div class="modal-body">
+                    <div id="carouselModal" class="carousel slide mb-2" style="height: 200px;">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <p>Enter the path to the dataset that should be visualized.</p>
+                                <input type="text" class="form-control" placeholder="Dataset" aria-label="Dataset" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="carousel-item">
+                                <p>Enter the path to the dataset that should be visualized.</p>
+                                <ul class="list-unstyled ms-4 mb-5">
+                                    <li>
+                                        <div class="form-check">
+                                            <input id="option_checkbox" class="form-check-input" type="checkbox" value="">
+                                            <label class="form-check-label" for="option_checkbox">Test</label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <button type="button" class="btn btn-primary" data-bs-target="#carouselModal" data-bs-slide="prev">Back</button>
+                    <button type="button" class="btn btn-primary" data-bs-target="#carouselModal" data-bs-slide="next">Next</button>
                 </div>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" style="color: black; fill: black;" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
     </div>
-    <div class="container">
-        <h5>{{location_name}}</h5>
+    <div class="pt-4 mb-4">
+        <div id="carouselExampleIndicators" class="carousel carousel-dark slide">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="w-100 d-flex justify-content-center">
+                        <img src="/database/techniques/iso_surfaces/images/iso_surface1.png" class="d-block" style="height: 200px;">
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="w-100 d-flex justify-content-center">
+                        <img src="/database/techniques/iso_surfaces/images/iso_surface2.png" class="d-block" style="height: 200px;">
+                    </div>
+                </div>
+                <div style="width: 100%; height: 100%; position: absolute; z-index: 1;">
+                    <div class="container d-flex justify-content-between align-items-center" style="height: 100%;">
+                        <button class="carousel-control-prev" style="position: initial; top: initial; bottom: initial; z-index: inherit; display: initial; align-items: initial; justify-content: initial; width: auto;" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" style="position: initial; top: initial; bottom: initial; z-index: inherit; display: initial; align-items: initial; justify-content: initial; width: auto;" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>                 
+                </div>
+            </div>
+            <div class="carousel-indicators container mt-4" style="position: initial; right: initial; bottom: initial; left: initial; z-index: initial; margin-left: auto; margin-right: auto; margin-bottom: 0px;">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            </div>            
+        </div>
+    </div>
+    <div class="container mb-4">
+        <h1 class="mb-2">{{location_name}}</h1>
+        <div class="d-flex">
+            <template v-for="tag in location_tags">
+                <div class="btn badge text-primary-emphasis bg-primary-subtle border border-primary-subtle d-flex align-items-center me-1" style="height: 25px;" v-if="tag.type == 'technique'">
+                    {{ tag.name }}
+                </div>
+                <div class="btn badge text-success-emphasis bg-success-subtle border border-success-subtle d-flex align-items-center me-1" style="height: 25px;" v-if="tag.type == 'example'">
+                    {{ tag.name }}
+                </div>
+            </template>
+        </div>
+    </div>
+    <div class="container mb-4">
+        <h5>Description</h5>
         <p>
             {{location_description}}
         </p>
+        <h5>Instructions</h5>
+        <p>
+            {{location_description}}
+        </p>
+        <h5>Limitations</h5>
+        <p>
+            {{location_description}}
+        </p>
+<p>Direct volume rendering (DVR) …</p>
+<p>To execute the example just run</p>
+<pre><code>./volumerender_script.sh
+</code></pre>
+<p>If the script is not executible run the following command</p>
+<pre><code>chmod +x volumerender_script.sh
+</code></pre>
+<p>For entering your own data, search for "OWN<em>DATA" comments in the volumerender</em>trace.py file and change the file according to the instructions.</p>
+    </div>
+    <div class="w-100 py-4 bg-body-tertiary">
+        <div class="container">
+            <div class="card shadow-sm mb-4">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <label>Render Script</label>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Create
+                    </button>
+                </div>
+            </div>
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <table class="table align-middle">
+                        <thead>
+                            <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col" class="d-none d-sm-table-cell">Type</th>
+                            <th scope="col" class="d-none d-md-block">Date</th>
+                            <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td scope="row">volumerender_trace.py</td>
+                            <td class="d-none d-sm-table-cell">Script</td>
+                            <td class="d-none d-md-table-cell">17.11.2023</td>
+                            <td>
+                                <button class="btn btn-primary float-end me-3" style="padding-left: 8px; padding-right: 8px; padding-top: 3px; padding-bottom: 3px;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                                        <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                                        <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                                    </svg>
+                                </button>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td scope="row">kitware/paraview:pv-v5.7.1-osmesa-py3</td>
+                            <td class="d-none d-sm-table-cell">Container</td>
+                            <td class="d-none d-md-table-cell">17.11.2023</td>
+                            <td>
+                                <button class="btn btn-primary float-end me-3" style="padding-left: 8px; padding-right: 8px; padding-top: 3px; padding-bottom: 3px;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+                                        <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>
+                                        <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>
+                                    </svg>
+                                </button>
+                            </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
