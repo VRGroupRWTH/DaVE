@@ -1,0 +1,30 @@
+name: "Volume"
+date: 2023-11-29
+tags:
+  - "Scalar"
+  - "3D"
+
+images:
+  - "images/particles1.png"
+  - "images/particles2.png"
+  - "images/particles3.png"
+
+resources:
+  - type: "Script"
+    date: 2023-11-29
+    path: "resources/volumerender_trace.py"
+  - type: "Container"
+    date: 2023-11-29
+    url: "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"
+
+commands:
+  run: "pvpython volumerender_trace.py"
+#  batch:
+  
+container:
+  url: "kitware/paraview:pv-v5.7.1-osmesa-py3"
+  technique: "docker"
+  
+data:
+  url: "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"
+#  path: ""
