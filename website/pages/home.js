@@ -1,4 +1,4 @@
-Vue.createApp(
+const app = Vue.createApp(
 {
     setup()
     {
@@ -167,6 +167,11 @@ Vue.createApp(
             perform_search(query, query_tags);
         }
 
+        function on_test(name, type)
+        {
+            console.log(name + " " + type);
+        }
+
         return {
             location_search_tags,
             location_search_name_suggestions,
@@ -176,7 +181,11 @@ Vue.createApp(
             on_query_tag_add,
             on_query_tag_remove,
             on_query_suggestion_click,
-            on_query_search
+            on_query_search,
+            on_test
         };
     }
-}).mount('#home');
+});
+
+app.component("ctag", ctag);
+app.mount('#home');

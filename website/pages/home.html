@@ -41,12 +41,13 @@
                     </template>
                     <li class="d-flex" style="padding-left: 12px; padding-right: 12px;">
                         <template v-for="tag in location_search_tag_suggestions">
-                            <button type="button" class="btn badge text-primary-emphasis bg-primary-subtle border border-primary-subtle me-1" style="height: 25px;" v-if="tag.type == 'technique'" @mousedown.left.prevent="on_query_tag_add(tag)">
+                            <button type="button" class="btn badge text-primary-emphasis bg-primary-subtle border border-primary-subtle me-1 mb-1" style="height: 25px;" v-if="tag.type == 'technique'" @mousedown.left.prevent="on_query_tag_add(tag)">
                                 {{ tag.name }}
                             </button>
-                            <button type="button" class="btn badge text-success-emphasis bg-success-subtle border border-success-subtle me-1" style="height: 25px;" v-if="tag.type == 'domain'" @mousedown.left.prevent="on_query_tag_add(tag)">
+                            <button type="button" class="btn badge text-success-emphasis bg-success-subtle border border-success-subtle me-1 mb-1" style="height: 25px;" v-if="tag.type == 'domain'" @mousedown.left.prevent="on_query_tag_add(tag)">
                                 {{ tag.name }}
                             </button>
+                            <ctag :name="tag.name" :type="tag.type" add_class="me-1" is_removable="true" @on_tag_click="on_query_tag_add(tag)"></ctag>
                         </template>
                     </li>
                 </ul>

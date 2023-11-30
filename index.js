@@ -12,6 +12,7 @@ app.use(express.json());
 app.use("/styles.css", express.static("website/styles.css"));
 app.use("/images", express.static("website/images/"));
 app.use("/symbols", express.static("website/symbols/"));
+app.use("/components", express.static("website/components/"));
 app.use("/database", express.static("database/"));
 
 builder.setup(app);
