@@ -1,131 +1,49 @@
-<main id="browser">
-    <div class="navbar navbar-dark bg-dark shadow-sm">
-        <div class="d-flex justify-content-between align-items-center w-100">
-            <a href="/" class="navbar-brand semi-bold-font px-4" style="color: white; font-size: 25px;">DaVE</a>
-            <input id="search_input" type="text" class="form-control form-control-dark text-bg-dark my-1 search-bar" style="width: 500px;" placeholder="Search" @input="on_query_input">
-            <div class="dropdown px-4">
-                <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Sorting
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                  <li><a class="dropdown-item" @click="on_sorting_change('relevance')">Relevance</a></li>
-                  <li><a class="dropdown-item" @click="on_sorting_change('date_ascending')">Date Ascending</a></li>
-                  <li><a class="dropdown-item" @click="on_sorting_change('date_descending')">Date Descending</a></li>
-                </ul>
-            </div>         
+<body id="app">
+    <header>
+        <browser-header></browser-header>
+    </header>
+    <main>
+        <div class="d-md-none border-bottom">
+            <browser-filter-bar></browser-filter-bar>
         </div>
-    </div>
-    <div class="d-flex bg-body-tertiary">
-        <div class="flex-shrink-0" style="width: 200px; margin: 12px;">
-            <div class="card shadow-sm mb-3">
-                <button class="btn btn-toggle toggle-arrow rounded border-0 d-inline-flex align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_general" aria-expanded="true" aria-controls="collapse_general">
-                    <div class="h5 m-0">
-                        General
-                    </div>
-                </button>
-                <div class="collapse show" id="collapse_general">
-                    <div class="m-3 mt-1">
-                        <label class="form-label">Author</label>
-                        <input id="general_author_input" type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
-                    </div>
-                </div>
+        <div class="d-flex bg-body-tertiary">
+            <div class="d-none d-md-block p-3" style="width: 200px;">
+                <browser-filter-card type="technique" add_class="mb-3"></browser-filter-card>
+                <browser-filter-card type="domain"></browser-filter-card>
             </div>
-            <div class="card shadow-sm mb-3">
-                <button class="btn btn-toggle toggle-arrow rounded border-0 d-inline-flex align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_tags" aria-expanded="true" aria-controls="collapse_tags">
-                    <div class="h5 m-0">
-                        Tags
-                    </div>
-                </button>
-                <div class="collapse show" id="collapse_tags">
-                    <div class="m-3 mt-1">
-                        <div class="form-control p-0" style="border-bottom-left-radius: 0px; border-bottom-right-radius: 0px; margin: 0px;">
-                            <ul class="list-unstyled m-0 p-2 pb-1">
-                                <template v-for="tag in location_tags">
-                                    <li>
-                                        <button type="button" class="btn badge text-primary-emphasis bg-primary-subtle border border-primary-subtle d-flex align-items-center mb-1" style="height: 25px; width: 120px;" v-if="tag.type == 'technique'">
-                                            <div>
-                                                {{ tag.name }}
-                                            </div>
-                                            <!--<a href="#" style="margin-left: auto; fill: var(--bs-dark);">
-                                                <svg class="ms-1" width="16" height="16"><use xlink:href="#x-circle-fill"/></svg>
-                                            </a>-->
-                                        </button>
-                                    </li>
-                                </template>
-                                <template v-for="tag in location_tags">
-                                    <li>
-                                        <button type="button" class="btn badge text-success-emphasis bg-success-subtle border border-success-subtle d-flex align-items-center mb-1" style="height: 25px; width: 120px; background-color: var(--bs-primary-border-subtle);" v-if="tag.type == 'domain'">
-                                            <div>
-                                                {{ tag.name }}
-                                            </div>
-                                            <!--<a href="#" style="margin-left: auto; fill: var(--bs-dark);">
-                                                <svg class="ms-1" width="16" height="16"><use xlink:href="#x-circle-fill"/></svg>
-                                            </a>-->
-                                        </button>
-                                    </li>
-                                </template>
-                            </ul>
-                        </div>
-                        <div class="dropdown w-100">
-                            <button class="btn btn-primary w-100" style="border-top-left-radius: 0px; border-top-right-radius: 0px;"type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <div style="font-size: 25px; margin: -10px; margin-top: -12px; margin-bottom: -9px;">
-                                    +
-                                </div>
-                            </button>
-                            <div class="dropdown-menu">
-                                <ul class="list-unstyled">
-                                    <template v-for="tag in location_tags">
-                                        <li>
-                                            <button type="button" class="btn badge text-primary-emphasis bg-primary-subtle border border-primary-subtle d-flex align-items-center mb-1" style="height: 25px;" v-if="tag.type == 'technique'">
-                                                <div>
-                                                    {{ tag.name }}
-                                                </div>
-                                            </button>
-                                        </li>
-                                    </template>
-                                    <template v-for="tag in location_tags">
-                                        <li>
-                                            <button type="button" class="btn badge text-success-emphasis bg-success-subtle border border-success-subtle d-flex align-items-center  mb-1" style="height: 25px; background-color: var(--bs-primary-border-subtle);" v-if="tag.type == 'example'">
-                                                <div>
-                                                    {{ tag.name }}
-                                                </div>
-                                            </button>
-                                        </li>
-                                    </template>
-                                </ul>
-                                <input type="text">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="flex-fill">
+                a
             </div>
         </div>
-        <div class="flex-fill" style="margin: 6px;">
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-0">
-                <template v-for="overview in location_technique_overviews">
-                    <div class="col" style="padding: 6px;">
-                        <div class="card shadow-sm" @click="on_technique_click(overview.name)">
-                            <div class="card-body p-0 rounded" :style="{ 'background-image' : 'url(' + overview.preview_image + ')'}" style="height: 200px; background-size: cover; background-position-x: center;">
-                                <div class="p-2 rounded-bottom" style="margin-top: 127px; background: rgb(0,0,0); background-color: rgba(255,255,255,0.85); ">
-                                    <h5 class="card-title" style="color: black;">{{overview.name}}</h5>
-                                    <div class="pt-0">
-                                        <div class="d-flex">
-                                            <template v-for="tag in overview.tags">
-                                                <div class="btn badge text-primary-emphasis bg-primary-subtle border border-primary-subtle d-flex align-items-center me-1" style="height: 25px;" v-if="tag.type == 'technique'">
-                                                    {{ tag.name }}
-                                                </div>
-                                                <div class="btn badge text-success-emphasis bg-success-subtle border border-success-subtle d-flex align-items-center me-1" style="height: 25px;" v-if="tag.type == 'example'">
-                                                    {{ tag.name }}
-                                                </div>
-                                            </template>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </template>
-            </div>
+    </main>
+    <footer>
+        <div class="container py-5">
+            <shared-footer></shared-footer>
         </div>
-    </div>
-</main>
+    </footer>
+</body>
+<script type="module">
+    import { createApp, ref } from "vue"
+    import BrowserHeader from "components/browser_header.js"
+    import BrowserFilterBar from "components/browser_filter_bar.js"
+    import BrowserFilterCard from "components/browser_filter_card.js"
+    import BrowserCard from "components/browser_card.js"
+    import SharedFooter from "components/shared_footer.js"
+
+    let app = createApp(
+    {
+        setup()
+        {
+            return {
+                
+            }
+        }
+    });
+
+    app.component("browser-header", BrowserHeader);
+    app.component("browser-filter-bar", BrowserFilterBar);
+    app.component("browser-filter-card", BrowserFilterCard);
+    app.component("browser-card", BrowserCard);
+    app.component("shared-footer", SharedFooter);
+    app.mount("#app");
+</script>

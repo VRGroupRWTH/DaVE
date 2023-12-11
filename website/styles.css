@@ -6,10 +6,56 @@
     background-position-y: bottom;
 }
 
-.home-blue-text
+.home-logo-large
+{
+    font-size: 50px;
+}
+
+.home-logo-small
+{
+    font-size: 40px;
+}
+
+.home-logo-blue
 {
     color: #176fc1
 }
+
+.footer-table
+{
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.browser-search-bar::placeholder
+{
+    color: white
+}
+
+.browser-filter-toggle-arrow[aria-expanded="true"] > img
+{
+    transform: rotate(0deg);
+}
+
+.browser-filter-toggle-arrow > img
+{
+    transform: rotate(-90deg);
+    transition: transform 0.35s ease;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .toggle-arrow[aria-expanded="true"]::before
 {
