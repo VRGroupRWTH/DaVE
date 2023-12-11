@@ -1,0 +1,24 @@
+<main id="wizzard">
+    <div class="bg-body-tertiary p-4">
+        <div class="container">
+            <div class="card p-5 shadow-sm">
+                <h5 class="mb-4">{{location_question}}</h5>
+                <ul class="list-unstyled ms-4 mb-5">
+                    <template v-for="(option, index) in location_options">
+                        <li>
+                            <div class="form-check">
+                                <input id="option_checkbox" v-model="location_selection[location_question_index][index]" class="form-check-input" type="checkbox" value="">
+                                <label class="form-check-label" for="option_checkbox">{{option}}</label>
+                            </div>
+                        </li>
+                    </template>
+                </ul>
+                <div>
+                    <button class="btn btn-primary float-start" type="button" v-if="!location_question_start" @click="on_previous_question">Previous</button>
+                    <button class="btn btn-primary float-end" type="button" v-if="!location_question_end" @click="on_next_question">Next</button>
+                    <button class="btn btn-primary float-end" type="button" v-if="location_question_end" @click="on_submit">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
