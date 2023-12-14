@@ -1,11 +1,13 @@
 import { ref } from "vue"
 import Tag from "components/tag.js"
+import BrowserFilterDate from "components/browser_filter_date.js"
 
 export default
 {
     components :
     {
-        tag : Tag
+        Tag,
+        BrowserFilterDate
     },
     setup()
     {
@@ -54,6 +56,8 @@ export default
         function on_browser_tag_suggestion_open()
         {
             browser_tag_suggestion_query.value = "";
+
+            fetch_tag_suggestions();
         }
 
         function on_browser_tag_suggestion_query_change()
@@ -93,12 +97,13 @@ export default
         <div id="browser_filter_bar_collapse" class="collapse px-4 pt-2">
             <ul class="list-unstyled">
                 <li>
-                    <label class="form-label" for="customRange2">Date</label>
-                    <input id="customRange2" class="form-range" type="range" min="0" max="5">
+                    <label class="form-label" for="browser_filter_date_range">Date</label>
+                    <input id="browser_filter_date_range" class="form-range" type="range" min="0" max="5">
+                    <browser-filter-date></browser-filter-date>
                 </li>
                 <li>
-                    <label class="form-label" for="customRange2">Tags</label>
-                    <div id="customRange2" class="border rounded d-flex align-items-center p-1">
+                    <label class="form-label" for="browser_filter_tag_widget">Tags</label>
+                    <div id="browser_filter_tag_widget" class="border rounded d-flex align-items-center p-1">
                         <div class="flex-fill me-1 d-flex flex-wrap align-items-center">
                             <tag v-for="tag in browser_filter_tags" :name="tag.name" :type="tag.type" is_removable="true" add_class="me-1"></tag>
                         </div>
@@ -110,8 +115,8 @@ export default
                                 <input class="form-control form-control-sm mb-2" type="text" placeholder="Search" v-model="browser_tag_suggestion_query" @input="on_browser_tag_suggestion_query_change">
                                 <ul class="list-unstyled border rounded overflow-y-scroll" style=" min-height: 50px; max-height: 80px;">
                                     <li v-for="tag in browser_tag_suggestions">
-                                        <tag :name="tag.name" :type="tag.type" add_class="mb-1" @on_tag_click="on_browser_tag_suggestion_select"></tag>
-                                    </li>                                    
+                                        <tag :name="tag.name" :type="tag.type" add_class="mb-1" add_style="width: 100px; text-align: left;" @on_tag_click="on_browser_tag_suggestion_select"></tag>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

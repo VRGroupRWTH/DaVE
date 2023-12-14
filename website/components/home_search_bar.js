@@ -5,7 +5,7 @@ export default
 {
     components :
     {
-        tag : Tag
+        Tag
     },
     emits: ["on_search_bar_search"],
     setup(props, context)

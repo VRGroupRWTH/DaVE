@@ -56,7 +56,6 @@
 
 
 
-
 .toggle-arrow[aria-expanded="true"]::before
 {
     transform: rotate(90deg);
