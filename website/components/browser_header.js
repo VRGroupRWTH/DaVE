@@ -2,8 +2,8 @@ import { ref } from "vue";
 
 export default
 {
-    props: ["browser_query"],
-    emits: ["on_browser_query_change", "on_browser_sorting_change"],
+    props: ["browser_query", "browser_sort_type", "browser_sort_direction"],
+    emits: ["on_browser_query_change", "on_browser_sort_type_change", "on_browser_sort_direction_change"],
     setup(props, context)
     {
         let browser_query = ref(props.browser_query);
