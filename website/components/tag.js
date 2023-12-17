@@ -1,6 +1,6 @@
 export default
 {
-    props: ["name", "type", "add_class", "add_style", "is_removable"],
+    props: ["name", "type", "is_removable"],
     emits: ["on_tag_click", "on_tag_remove"],
     setup(props, context)
     {
@@ -23,23 +23,23 @@ export default
     },
     template:
     `
-        <template v-if="is_removable == 'true'">
-            <button :class="'btn badge text-primary-emphasis bg-primary-subtle border-primary-subtle py-0 d-flex align-items-center ' + add_class" :style="'height: 25px; ' + add_style" v-if="type == 'technique'" @click="on_tag_click_internal">
-                {{ name }}
-                <img class="ms-1" src="symbols/x_circle_fill.svg" @click="on_tag_remove_internal">
-            </button>
-            <button :class="'btn badge text-success-emphasis bg-success-subtle border-success-subtle py-0 d-flex align-items-center ' + add_class" :style="'height: 25px; ' + add_style" v-if="type == 'domain'" @click="on_tag_click_internal">
-                {{ name }}
-                <img class="ms-1" src="symbols/x_circle_fill.svg" @click="on_tag_remove_internal">
-            </button>
-        </template>
-        <template v-if="is_removable != 'true'">
-            <button type="button" :class="'btn badge text-primary-emphasis bg-primary-subtle border-primary-subtle ' + add_class" :style="'height: 25px; ' + add_style" v-if="type == 'technique'" @click="on_tag_click_internal">
-                {{ name }}
-            </button>
-            <button type="button" :class="'btn badge text-success-emphasis bg-success-subtle border-success-subtle ' + add_class" :style="'height: 25px; ' + add_style" v-if="type == 'domain'" @click="on_tag_click_internal">
-                {{ name }}
-            </button>
-        </template>
+    <template v-if="is_removable == 'true'">
+        <button class="btn badge text-primary-emphasis bg-primary-subtle border-primary-subtle py-0 d-flex align-items-center" style="height: 25px;" v-if="type == 'technique'" @click="on_tag_click_internal">
+            {{ name }}
+            <img class="ms-1" src="symbols/x_circle_fill.svg" @click="on_tag_remove_internal">
+        </button>
+        <button :class="'btn badge text-success-emphasis bg-success-subtle border-success-subtle py-0 d-flex align-items-center ' + add_class" :style="'height: 25px; ' + add_style" v-if="type == 'domain'" @click="on_tag_click_internal">
+            {{ name }}
+            <img class="ms-1" src="symbols/x_circle_fill.svg" @click="on_tag_remove_internal">
+        </button>
+    </template>
+    <template v-if="is_removable != 'true'">
+        <button type="button" :class="'btn badge text-primary-emphasis bg-primary-subtle border-primary-subtle ' + add_class" :style="'height: 25px; ' + add_style" v-if="type == 'technique'" @click="on_tag_click_internal">
+            {{ name }}
+        </button>
+        <button type="button" :class="'btn badge text-success-emphasis bg-success-subtle border-success-subtle ' + add_class" :style="'height: 25px; ' + add_style" v-if="type == 'domain'" @click="on_tag_click_internal">
+            {{ name }}
+        </button>
+    </template>
     `
 }

@@ -3,13 +3,12 @@
         <browser-header></browser-header>
     </header>
     <main>
-        <div class="d-md-none border-bottom">
-            <browser-filter-bar></browser-filter-bar>
+        <div class="border-bottom d-md-none">
+            <browser-filter></browser-filter>
         </div>
         <div class="d-flex bg-body-tertiary">
-            <div class="d-none d-md-block p-3" style="width: 200px;">
-                <browser-filter-card type="technique" add_class="mb-3"></browser-filter-card>
-                <browser-filter-card type="domain"></browser-filter-card>
+            <div class="card m-3 d-none d-md-block " style="width: 200px;">
+                <browser-filter></browser-filter>
             </div>
             <div class="flex-fill">
                 a
@@ -23,11 +22,10 @@
     </footer>
 </body>
 <script type="module">
-    import { createApp, ref } from "vue"
+    import { createApp } from "vue"
     import BrowserHeader from "components/browser_header.js"
-    import BrowserFilterBar from "components/browser_filter_bar.js"
-    import BrowserFilterCard from "components/browser_filter_card.js"
-    import BrowserCard from "components/browser_card.js"
+    import BrowserFilter from "components/browser_filter.js"
+    import BrowserItem from "components/browser_item.js"
     import SharedFooter from "components/shared_footer.js"
 
     let app = createApp(
@@ -41,9 +39,8 @@
     });
 
     app.component("browser-header", BrowserHeader);
-    app.component("browser-filter-bar", BrowserFilterBar);
-    app.component("browser-filter-card", BrowserFilterCard);
-    app.component("browser-card", BrowserCard);
+    app.component("browser-filter", BrowserFilter);
+    app.component("browser-item", BrowserItem);
     app.component("shared-footer", SharedFooter);
     app.mount("#app");
 </script>
