@@ -43,6 +43,50 @@
     transition: transform 0.35s ease;
 }
 
+.browser-filter-date-slider-container
+{
+    position: relative;
+    height: 1.5rem;
+}
+
+.browser-filter-date-slider-track-outer,
+.browser-filter-date-slider-track-inner
+{
+    position: absolute;
+    height: 0.5rem;
+    top: calc(50% - 0.25rem);
+    border-radius: 1rem;
+    z-index: 0;
+}
+
+.browser-filter-date-slider-track-outer
+{
+    background-color: var(--bs-secondary-bg);
+}
+
+.browser-filter-date-slider-track-inner
+{
+    background-color: var(--bs-primary-border-subtle);
+}
+
+.browser-filter-date-slider-input
+{
+    position: absolute;
+    pointer-events: none;
+}
+
+.browser-filter-date-slider-input::-moz-range-track,
+.browser-filter-date-slider-input::-webkit-slider-runnable-track
+{
+    visibility: hidden;
+}
+
+.browser-filter-date-slider-input::-moz-range-thumb,
+.browser-filter-date-slider-input::-webkit-slider-thumb
+{
+    pointer-events: all;
+    cursor: pointer;
+}
 
 
 

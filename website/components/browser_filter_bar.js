@@ -99,7 +99,7 @@ export default
                 <li>
                     <label class="form-label" for="browser_filter_date_range">Date</label>
                     <input id="browser_filter_date_range" class="form-range" type="range" min="0" max="5">
-                    <browser-filter-date></browser-filter-date>
+                    <browser-filter-date browser_filter_date_min="01 Jan 2023 00:00:00 GMT" browser_filter_date_max="01 Dec 2023 00:00:00 GMT"></browser-filter-date>
                 </li>
                 <li>
                     <label class="form-label" for="browser_filter_tag_widget">Tags</label>
