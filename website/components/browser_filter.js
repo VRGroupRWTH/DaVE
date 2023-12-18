@@ -1,4 +1,3 @@
-import { ref } from "vue"
 import BrowserFilterDate from "components/browser_filter_date.js"
 import BrowserFilterTag from "components/browser_filter_tag.js"
 
@@ -9,8 +8,8 @@ export default
         BrowserFilterDate,
         BrowserFilterTag
     },
-    props: ["browser_filter_date_begin", "browser_filter_date_end", "browser_filter_tags"],
-    emits: ["on_browser_filter_date_begin_change", "on_browser_filter_date_end_change", "on_browser_filter_tags_change"],
+    props: ["browser_filters"],
+    emits: ["update:browser_filters"],
     template:
     `
     <div>
@@ -22,11 +21,11 @@ export default
             <ul class="list-unstyled">
                 <li>
                     <label class="form-label" for="browser_filter_date">Date</label>
-                    <browser-filter-date id="browser_filter_date" :browser_filter_date_begin="browser_filter_date_begin" :browser_filter_date_end="browser_filter_date_end" @on_browser_filter_date_begin_change="on_browser_filter_date_begin_change" @on_browser_filter_date_end_change="on_browser_filter_date_end_change"></browser-filter-date>
+                    <browser-filter-date id="browser_filter_date" :browser_filters="browser_filters"></browser-filter-date>
                 </li>
                 <li>
                     <label class="form-label" for="browser_filter_tag">Tags</label>
-                    <browser-filter-tag id="browser_filter_tag" :browser_filter_tags="browser_filter_tags" @on_browser_filter_tags_change="on_browser_filter_tags_change"></browser-filter-tag>
+                    <!--<browser-filter-tag id="browser_filter_tag" :browser_filters="browser_filters"></browser-filter-tag>-->
                 </li>
             </ul>
         </div>

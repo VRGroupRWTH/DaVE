@@ -7,8 +7,8 @@ export default
     {
         Tag
     },
-    props: ["browser_filter_tags"],
-    emit: ["on_browser_filter_tags_change"],
+    props: ["browser_filters"],
+    emit: ["update:browser_filters"],
     setup(props, context)
     {
         let browser_tag_suggestion_query = ref("");
@@ -51,14 +51,25 @@ export default
 
         function on_browser_tag_suggestion_open()
         {
-            browser_tag_suggestion_query.value = "";
+            //browser_tag_suggestion_query.value = "";
 
-            fetch_tag_suggestions();
+            let tag = 
+            {
+                name : "test",
+                type: "technique"
+            }
+
+            let filters = props.browser_filters;
+            filters.tags.push(tag);
+
+            context.emit("update:browser_filters", filters);
+
+            //fetch_tag_suggestions();
         }
 
         function on_browser_tag_suggestion_query_change()
         {
-            fetch_tag_suggestions();
+            //fetch_tag_suggestions();
         }
 
         function on_browser_tag_suggestion_select(name, type)
