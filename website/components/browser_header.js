@@ -1,4 +1,4 @@
-import { ref } from "vue";
+import { ref, computed} from "vue";
 
 export default
 {
@@ -6,9 +6,22 @@ export default
     emits: ["on_browser_query_change", "on_browser_sort_type_change", "on_browser_sort_direction_change"],
     setup(props, context)
     {
-        let browser_query = ref(props.browser_query);
-        let browser_sort_type = ref("Relevance");
-        let browser_sort_direction = ref("Descending");
+        let browser_sort_type_name = computed(() =>
+        {
+            switch(props.browser_sort_type)
+            {
+            case "relevance":
+                return "Relevance";
+            case "name":
+                return "Name";
+            case "date":
+                return "Date";
+            default:
+                break;
+            }
+
+            return "";
+        });
 
         function on_browser_sort_type_change(sort_type)
         {

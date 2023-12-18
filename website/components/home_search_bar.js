@@ -170,7 +170,7 @@ export default
         <div class="position-relative w-100" style="max-width: 700px">
             <div class="form-control shadow-sm w-100" :style="'border-bottom-right-radius: 0px; border-top-right-radius: 0px; border-color: var(--bs-border-color-translucent); ' + search_bar_style">
                 <div class="d-flex">                     
-                    <tag v-for="tag in tags" :name="tag.name" :type="tag.type" add_class="me-1" @on_tag_click="on_search_bar_tag_remove"></tag>
+                    <tag v-for="tag in tags" :name="tag.name" :type="tag.type" class="me-1" @on_tag_click="on_search_bar_tag_remove"></tag>
                     <input class="flex-fill" style="border: none; outline: none;" size="1" v-model="query" type="text" placeholder="Query" @input="on_search_bar_query_change" @keydown.delete="on_search_bar_query_delete" @keydown.enter="on_search_bar_search_internal" @keydown.escape="on_search_bar_query_escape">
                 </div>
             </div>
@@ -184,7 +184,7 @@ export default
                     <hr class="dropdown-divider">
                 </li>
                 <li class="d-flex" style="padding-left: 12px; padding-right: 12px;">
-                    <tag v-for="tag in tag_suggestions" :name="tag.name" :type="tag.type" add_class="me-1" @on_tag_click="on_search_bar_tag_suggestion_select"></tag>
+                    <tag v-for="tag in tag_suggestions" :name="tag.name" :type="tag.type" class="me-1" @on_tag_click="on_search_bar_tag_suggestion_select"></tag>
                 </li>
             </ul>
         </div>

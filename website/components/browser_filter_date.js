@@ -1,8 +1,9 @@
-import { ref } from "vue"
+import { ref, computed } from "vue"
 
 export default
 {
-    props: ["browser_filter_date_min", "browser_filter_date_max"],
+    props: ["browser_filter_date_begin", "browser_filter_date_end"],
+    emits: ["on_browser_filter_date_begin_change", "on_browser_filter_date_end_change"],
     setup(props)
     {
         function compute_date_range(date_min, date_max)
@@ -15,14 +16,14 @@ export default
             return Math.max(date_range, 0);
         }
 
-        const browser_filter_date_min = new Date(props.browser_filter_date_min);
-        const browser_filter_date_max = new Date(props.browser_filter_date_max);
+        const browser_filter_date_min = new Date(props.browser_filter_date_begin);
+        const browser_filter_date_max = new Date(props.browser_filter_date_end);
         const browser_filter_date_range = compute_date_range(browser_filter_date_min, browser_filter_date_max);
 
         let browser_filter_date_value_min = ref(0);
         let browser_filter_date_value_max = ref(browser_filter_date_range - 1);
-        let browser_filter_date_value_left = ref(browser_filter_date_value_min.value);
-        let browser_filter_date_value_right = ref(browser_filter_date_value_max.value);
+        let browser_filter_date_value_left = computed(() => compute_date_range(browser_filter_date_value_min.value, props.browser_filter_date_begin));
+        let browser_filter_date_value_right = computed(() => compute_date_range(browser_filter_date_value_min.value, props.browser_filter_date_end));
 
         function on_browser_filter_date_value_left_change()
         {

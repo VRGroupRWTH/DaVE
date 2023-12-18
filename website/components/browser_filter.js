@@ -10,7 +10,7 @@ export default
         BrowserFilterTag
     },
     props: ["browser_filter_date_begin", "browser_filter_date_end", "browser_filter_tags"],
-    emits: ["browser_filter_date_begin_change", "browser_filter_date_end_change", "browser_filter_tags_change"],
+    emits: ["on_browser_filter_date_begin_change", "on_browser_filter_date_end_change", "on_browser_filter_tags_change"],
     template:
     `
     <div>
@@ -22,15 +22,11 @@ export default
             <ul class="list-unstyled">
                 <li>
                     <label class="form-label" for="browser_filter_date">Date</label>
-                    <div id="browser_filter_date">
-                        <!--<browser-filter-date browser_filter_date_begin="browser_filter_date_begin" browser_filter_date_end="browser_filter_date_end"></browser-filter-date>-->
-                    </div>
+                    <browser-filter-date id="browser_filter_date" :browser_filter_date_begin="browser_filter_date_begin" :browser_filter_date_end="browser_filter_date_end" @on_browser_filter_date_begin_change="on_browser_filter_date_begin_change" @on_browser_filter_date_end_change="on_browser_filter_date_end_change"></browser-filter-date>
                 </li>
                 <li>
                     <label class="form-label" for="browser_filter_tag">Tags</label>
-                    <div id="browser_filter_tag">
-                        <browser-filter-tag browser_filter_tags="browser_filter_tags"></browser-filter-tag>
-                    </div>
+                    <browser-filter-tag id="browser_filter_tag" :browser_filter_tags="browser_filter_tags" @on_browser_filter_tags_change="on_browser_filter_tags_change"></browser-filter-tag>
                 </li>
             </ul>
         </div>
