@@ -100,24 +100,13 @@
 
 
 
-.toggle-arrow[aria-expanded="true"]::before
-{
-    transform: rotate(90deg);
-}
 
-.toggle-arrow::before
-{
-    width: 1.25em;
-    line-height: 0;
-    content: url("/symbols/toggle-arrow.svg");
-    transition: transform 0.35s ease;
-    transform-origin: 0.5em 50%;
-}
 
-.search-bar::placeholder
-{
-    color: white
-}
+
+
+
+
+
 
 pre
 {

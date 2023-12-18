@@ -5,9 +5,10 @@
     <main>
         <browser-filter class="border-bottom d-md-none" v-model:browser_filters="browser_filters"></browser-filter>
         <div class="d-flex bg-body-tertiary">
-            <browser-filter class="card m-3 d-none d-md-block " style="width: 200px;" v-model:browser_filters="browser_filters"></browser-filter>
+            <browser-filter class="card m-3 d-none d-md-block " style="width: 300px;" v-model:browser_filters="browser_filters"></browser-filter>
             <div class="flex-fill d-flex flex-wrap">
                 <browser-item v-for="item in browser_items"></browser-item>
+                {{browser_filters.date_begin}}{{browser_filters.date_end}}
             </div>
         </div>
     </main>
@@ -42,6 +43,7 @@
 
             let browser_items = computed(() =>
             {
+                
                 return [];
             });
 

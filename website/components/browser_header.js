@@ -40,12 +40,12 @@ export default
         {
             let direction = "";
 
-            if(props.browser_sort_direction == "ascending")
+            if(props.browser_sorting.direction == "ascending")
             {
                 direction = "descending";
             }
 
-            else if(browser_sort_direction.value == "descending")
+            else if(props.browser_sorting.direction == "descending")
             {
                 direction = "ascending";
             }
