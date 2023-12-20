@@ -6,6 +6,8 @@ export default
     emits: ["update:browser_filters"],
     setup(props, context)
     {
+        const date_month_abbreviations = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "June", "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."];
+
         function compute_date_range(date_min, date_max)
         {
             let date_range = 0;
@@ -59,15 +61,28 @@ export default
             return percentage.toString() + "%";
         });
 
+        let browser_filter_date_name_left = computed(() =>
+        {
+            const date_begin = new Date(props.browser_filters.date_begin);
+
+            return date_month_abbreviations[date_begin.getMonth()] + " " + date_begin.getFullYear();
+        });
+
+        let browser_filter_date_name_right = computed(() =>
+        {
+            const date_begin = new Date(props.browser_filters.date_end);
+
+            return date_month_abbreviations[date_begin.getMonth()] + " " + date_begin.getFullYear();
+        });
+
         function on_browser_filter_date_value_left_change(event)
         {
             let left_value = parseInt(event.target.value);
 
             if(left_value >= browser_filter_date_value_right.value)
             {
-                event.target.value = browser_filter_date_value_right.value - 1;
-
-                return;
+                left_value = browser_filter_date_value_right.value - 1;
+                event.target.value = left_value;
             }
 
             let filters = props.browser_filters;
@@ -82,9 +97,8 @@ export default
 
             if(right_value <= browser_filter_date_value_left.value)
             {
-                event.target.value = browser_filter_date_value_left.value + 1;
-
-                return;
+                right_value = browser_filter_date_value_left.value + 1;
+                event.target.value = right_value;
             }
 
             let filters = props.browser_filters;
@@ -100,6 +114,8 @@ export default
             browser_filter_date_value_right,
             browser_filter_date_percentage_left,
             browser_filter_date_percentage_right,
+            browser_filter_date_name_left,
+            browser_filter_date_name_right,
             on_browser_filter_date_value_left_change,
             on_browser_filter_date_value_right_change
         }
@@ -114,9 +130,9 @@ export default
             <input class="form-range browser-filter-date-slider-input" style="z-index: 1;" type="range" :min="browser_filter_date_value_min" :max="browser_filter_date_value_max" :value="browser_filter_date_value_left" @input="on_browser_filter_date_value_left_change($event)">
             <input class="form-range browser-filter-date-slider-input" style="z-index: 2;" type="range" :min="browser_filter_date_value_min" :max="browser_filter_date_value_max" :value="browser_filter_date_value_right" @input="on_browser_filter_date_value_right_change($event)">
         </div>
-        <div style="display: flex">
-            <div style="position: relative; width: 60px; color: white; background: rgb(33, 37, 41); border-radius: 4px; font-size: calc(1rem * 0.75); text-align: center; padding: 4px; left: calc(25% - 30px); top: calc(25% + 20px);">Jan. 2023</div>
-            <div style="position: relative; width: 60px; color: white; background: rgb(33, 37, 41); border-radius: 4px; font-size: calc(1rem * 0.75); text-align: center; padding: 4px; left: calc(75% - 30px); top: calc(25% + 20px);">Dec. 2023</div>
+        <div class="browser-filter-date-label-container">
+            <div class="rounded text-bg-dark d-flex align-items-center justify-content-center browser-filter-date-label-left" :style="'--label-left: ' + browser_filter_date_percentage_left + '; --label-right: ' + browser_filter_date_percentage_right + ';'">{{ browser_filter_date_name_left }}</div>
+            <div class="rounded text-bg-dark d-flex align-items-center justify-content-center browser-filter-date-label-right" :style="'--label-left: ' + browser_filter_date_percentage_left + '; --label-right: ' + browser_filter_date_percentage_right + ';'">{{ browser_filter_date_name_right }}</div>
         </div>
     </div>
     `

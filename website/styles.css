@@ -43,10 +43,21 @@
     transition: transform 0.35s ease;
 }
 
+.browser-filter-date-slider-container,
+.browser-filter-date-slider-track-outer,
+.browser-filter-date-slider-track-inner,
+.browser-filter-date-label-container,
+.browser-filter-date-label
+{
+    --bs-form-range-thumb-width: 1rem;
+    --bs-form-range-thumb-height: var(--bs-form-range-thumb-width);
+    --bs-form-range-thumb-focus-box-shadow-width: 0.25rem;
+}
+
 .browser-filter-date-slider-container
 {
     position: relative;
-    height: 1.5rem;
+    height: calc(var(--bs-form-range-thumb-height) + var(--bs-form-range-thumb-focus-box-shadow-width) * 2);
 }
 
 .browser-filter-date-slider-track-outer,
@@ -78,18 +89,64 @@
 .browser-filter-date-slider-input::-moz-range-track,
 .browser-filter-date-slider-input::-webkit-slider-runnable-track
 {
+    -webkit-appearance: none;
     visibility: hidden;
 }
 
 .browser-filter-date-slider-input::-moz-range-thumb,
 .browser-filter-date-slider-input::-webkit-slider-thumb
 {
+    -webkit-appearance: none;
     pointer-events: all;
     cursor: pointer;
 }
 
+.browser-filter-date-label-container,
+.browser-filter-date-label
+{
+    --label-width: 70px;
+    --label-height: 28px;
+}
 
+.browser-filter-date-label-container
+{
+    position: relative; 
+    height: var(--label-height);
+    margin-top: 4px;
+    margin-left: calc(var(--bs-form-range-thumb-width) / 2);
+    margin-right: calc(var(--bs-form-range-thumb-width) / 2);
+}
 
+.browser-filter-date-label-left,
+.browser-filter-date-label-right
+{
+    --label-margin: 6px;
+    --label-left: 0%;
+    --label-right: 100%;
+    --label-center-bound-left: calc(0% + var(--label-width) - var(--bs-form-range-thumb-width) / 2);
+    --label-center-bound-right: calc(100% - var(--label-width) + var(--bs-form-range-thumb-width) / 2);
+    --label-center: calc(min(max(var(--label-left) / 2 + var(--label-right) / 2, var(--label-center-bound-left)), var(--label-center-bound-right)));
+
+    position: absolute;
+    width: var(--label-width);
+    height: var(--label-height);
+    left: calc(var(--label-location) - var(--label-width) / 2);
+    font-size: calc(1rem * 0.75);
+}
+
+.browser-filter-date-label-left
+{
+    --label-bound-left: calc(var(--label-width) / 2 - var(--bs-form-range-thumb-width) / 2);
+    --label-bound-right: calc(var(--label-center) - var(--label-margin) / 2 - var(--label-width) / 2);
+    --label-location: calc(min(max(var(--label-left), var(--label-bound-left)), var(--label-bound-right)));
+}
+
+.browser-filter-date-label-right
+{
+    --label-bound-left: calc(var(--label-center) + var(--label-margin) / 2 + var(--label-width) / 2);
+    --label-bound-right: calc(100% - var(--label-width) / 2 + var(--bs-form-range-thumb-width) / 2);
+    --label-location: calc(min(max(var(--label-right), var(--label-bound-left)), var(--label-bound-right)));
+}
 
 
 
