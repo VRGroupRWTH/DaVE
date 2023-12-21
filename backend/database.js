@@ -106,7 +106,7 @@ class Database
 
             const candidate = 
             {
-                value : technique,
+                value: technique,
                 score
             };
 

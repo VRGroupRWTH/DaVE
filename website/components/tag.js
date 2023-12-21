@@ -41,9 +41,9 @@ export default
     },
     template:
     `
-    <button class="btn badge py-0 d-flex align-items-center" :class="tag_class" style="height: 25px;" @click="on_tag_click_internal">
-        {{ name }}
-        <img v-if="is_removable" class="ms-1" src="symbols/x_circle_fill.svg" @click="on_tag_remove_internal">
+    <button class="btn badge d-flex align-items-center px-2 py-1" :class="tag_class" @click="on_tag_click_internal">
+        <span style="line-height: 18px;">{{ name }}</span>
+        <div v-if="is_removable=='true'" class="ms-1 tag-removable-image" @click="on_tag_remove_internal"></div>
     </button>
     `
 }

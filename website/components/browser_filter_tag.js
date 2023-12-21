@@ -1,9 +1,9 @@
-import { ref } from "vue"
+import { ref, watch } from "vue"
 import Tag from "components/tag.js"
 
 export default
 {
-    components :
+    components:
     {
         Tag
     },
@@ -14,7 +14,7 @@ export default
         let browser_tag_suggestion_query = ref("");
         let browser_tag_suggestions = ref([]);
 
-        async function fetch_tag_suggestions()
+        watch([browser_tag_suggestion_query, props.browser_filters], async (old_state, new_state) =>
         {
             const tag_request =
             {
@@ -22,93 +22,96 @@ export default
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(
                 {
-                    query : browser_tag_suggestion_query.value,
-                    query_property : "name",
-                    output_properties : ["name", "type"],
-                    filter_all_techniques : true
+                    query: browser_tag_suggestion_query.value,
+                    query_property: "name",
+                    output_properties: ["name", "type"],
+                    filter_all_techniques: true
                 })
             };
 
             const tag_response = await (await fetch("/api/search_property", tag_request)).json();
+            let tag_suggestions = [];
 
-            browser_tag_suggestions.value = [];
-
-            for(const tag_suggestion of tag_response)
+            for(const tag_candidate of tag_response)
             {
-                if(props.browser_filter_tags.value.some(tag => tag.name == tag_suggestion.name))
+                if(props.browser_filters.tags.some(tag => tag.name == tag_candidate.name))
                 {
                     continue;
                 }
 
-                if(browser_tag_suggestions.value.some(tag => tag.name == tag_suggestion.name))
+                if(tag_suggestions.some(tag => tag.name == tag_candidate.name))
                 {
                     continue;
                 }
 
-                browser_tag_suggestions.value.push(tag_suggestion);
+                tag_suggestions.push(tag_candidate);
             }
+
+            browser_tag_suggestions.value = tag_suggestions;
+        }, { immediate: true });
+
+        function on_browser_tag_remove(name, type)
+        {
+            let filters = props.browser_filters;
+            filters.tags = filters.tags.filter(tag =>
+            {
+                return tag.name != name || tag.type != type; 
+            });
+
+            context.emit("update:browser_filters", filters);
         }
 
         function on_browser_tag_suggestion_open()
         {
-            //browser_tag_suggestion_query.value = "";
+            browser_tag_suggestion_query.value = "";
+        }
 
+        function on_browser_tag_suggestion_select(name, type)
+        {
             let tag = 
             {
-                name : "test",
-                type: "technique"
+                name,
+                type
             }
 
             let filters = props.browser_filters;
             filters.tags.push(tag);
 
             context.emit("update:browser_filters", filters);
-
-            //fetch_tag_suggestions();
-        }
-
-        function on_browser_tag_suggestion_query_change()
-        {
-            //fetch_tag_suggestions();
-        }
-
-        function on_browser_tag_suggestion_select(name, type)
-        {
-            const tag = 
-            {
-                name,
-                type
-            };
-
-            let browser_filter_tags = props.browser_filter_tags;
-            browser_filter_tags.push(tag);
-
-            context.emit("on_browser_filter_tags_change", browser_filter_tags)
         }
 
         return {
             browser_tag_suggestion_query,
             browser_tag_suggestions,
+            on_browser_tag_remove,
             on_browser_tag_suggestion_open,
-            on_browser_tag_suggestion_query_change,
             on_browser_tag_suggestion_select
         }
     },
     template:
     `
-    <div class="border rounded d-flex align-items-center p-1">
-        <div class="flex-fill me-1 d-flex flex-wrap align-items-center">
-            <tag v-for="tag in browser_filter_tags" :name="tag.name" :type="tag.type" is_removable class="me-1"></tag>
+    <div class="border rounded d-flex align-items-center">
+        <div class="flex-fill d-flex flex-wrap m-1">
+            <tag v-for="tag of browser_filters.tags" :name="tag.name" :type="tag.type" is_removable="true" class="m-1" @on_tag_remove="on_browser_tag_remove"></tag>
         </div>
-        <div class="dropdown align-self-end">
-            <button class="btn btn-primary d-flex align-imtems-center justify-content-center p-1" input="button" data-bs-toggle="dropdown" @click="on_browser_tag_suggestion_open">
+        <div class="dropdown dropend-md align-self-end m-2">
+            <button class="btn btn-primary d-flex align-items-center justify-content-center p-0" style="width: 28px; height: 28px;" input="button" data-bs-toggle="dropdown" @click="on_browser_tag_suggestion_open">
                 <img src="symbols/plus.svg" width="20px">
             </button>
-            <div class="dropdown-menu dropdown-menu-end p-2">
-                <input class="form-control form-control-sm mb-2" type="text" placeholder="Search" v-model="browser_tag_suggestion_query" @input="on_browser_tag_suggestion_query_change">
-                <ul class="list-unstyled border rounded overflow-y-scroll" style=" min-height: 50px; max-height: 80px;">
-                    <li v-for="tag in browser_tag_suggestions">
-                        <tag :name="tag.name" :type="tag.type" add_class="mb-1" add_style="width: 100px; text-align: left;" @on_tag_click="on_browser_tag_suggestion_select"></tag>
+            <div class="dropdown-menu p-3">
+                <div class="input-group mb-3" style="width: 200px;">
+                    <span class="input-group-text p-2">
+                        <img src="symbols/search.svg">
+                    </span>
+                    <input class="form-control form-control-sm" type="text" placeholder="Search" v-model="browser_tag_suggestion_query">
+                </div>
+                <ul class="list-unstyled border rounded overflow-y-scroll" style="height: 150px;">
+                    <li v-for="tag of browser_tag_suggestions">
+                        <div class="dropdown-item d-flex align-items-center" @click="on_browser_tag_suggestion_select(tag.name, tag.type)">
+                            <div v-if="tag.type == 'technique'" class="border rounded bg-primary-subtle border-primary-subtle me-2" style="width: 16px; height: 16px"></div>
+                            <div v-if="tag.type == 'domain'" class="border rounded bg-success-subtle border-success-subtle me-2" style="width: 16px; height: 16px"></div>
+                            <span>{{ tag.name }}</span>
+                        </div>
                     </li>
                 </ul>
             </div>

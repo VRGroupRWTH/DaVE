@@ -1,9 +1,9 @@
-import { ref } from "vue"
+import { ref, watch } from "vue"
 import Tag from "components/tag.js"
 
 export default
 {
-    components :
+    components:
     {
         Tag
     },
@@ -21,7 +21,7 @@ export default
         let search_bar_style = ref("");
         let search_dropdown_class = ref("");
 
-        async function fetch_suggestions()
+        watch([query, tags], async (old_state, new_state) =>
         {
             const query_request =
             {
@@ -88,16 +88,11 @@ export default
                 search_bar_style.value = "";
                 search_dropdown_class.value = "";
             }
-        }
+        }, { deep: true });
 
         function on_search_bar_search_internal()
         {
             context.emit("on_search_bar_search", query.value, tags.value);
-        }
-
-        function on_search_bar_query_change()
-        {
-            fetch_suggestions();
         }
 
         function on_search_bar_query_delete(event)
@@ -113,8 +108,6 @@ export default
             }
 
             tags.value.pop();
-
-            fetch_suggestions();
         }
 
         function on_search_bar_query_escape(event)
@@ -126,8 +119,6 @@ export default
         function on_search_bar_tag_remove(name, type)
         {
             tags.value = tags.value.filter(tag => tag.name != name);
-
-            fetch_suggestions();
         }
 
         function on_search_bar_query_suggestion_select(query)
@@ -144,8 +135,6 @@ export default
             };
 
             tags.value.push(tag);
-
-            fetch_suggestions();
         }
 
         return {
@@ -156,7 +145,6 @@ export default
             search_bar_style,
             search_dropdown_class,
             on_search_bar_search_internal,
-            on_search_bar_query_change,
             on_search_bar_query_delete,
             on_search_bar_query_escape,
             on_search_bar_tag_remove,
@@ -169,13 +157,13 @@ export default
     <div class="d-flex justify-content-center">
         <div class="position-relative w-100" style="max-width: 700px">
             <div class="form-control shadow-sm w-100" :style="'border-bottom-right-radius: 0px; border-top-right-radius: 0px; border-color: var(--bs-border-color-translucent); ' + search_bar_style">
-                <div class="d-flex">                     
-                    <tag v-for="tag in tags" :name="tag.name" :type="tag.type" class="me-1" @on_tag_click="on_search_bar_tag_remove"></tag>
-                    <input class="flex-fill" style="border: none; outline: none;" size="1" v-model="query" type="text" placeholder="Query" @input="on_search_bar_query_change" @keydown.delete="on_search_bar_query_delete" @keydown.enter="on_search_bar_search_internal" @keydown.escape="on_search_bar_query_escape">
+                <div class="d-flex" style="height: 28px">                     
+                    <tag v-for="tag of tags" :name="tag.name" :type="tag.type" class="me-1" @on_tag_click="on_search_bar_tag_remove"></tag>
+                    <input class="flex-fill" style="border: none; outline: none;" size="1" v-model="query" type="text" placeholder="Visualisation" @keydown.delete="on_search_bar_query_delete" @keydown.enter="on_search_bar_search_internal" @keydown.escape="on_search_bar_query_escape">
                 </div>
             </div>
             <ul :class="'dropdown-menu shadow-sm position-absolute top-100 w-100 ' + search_dropdown_class" style="inset: 0px 0px auto 0px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-top-width: 0px;">
-                <li v-for="query in query_suggestions">
+                <li v-for="query of query_suggestions">
                     <button class="dropdown-item" type="button" @click="on_search_bar_query_suggestion_select(query)"> 
                         {{query}} 
                     </button>
@@ -184,7 +172,7 @@ export default
                     <hr class="dropdown-divider">
                 </li>
                 <li class="d-flex" style="padding-left: 12px; padding-right: 12px;">
-                    <tag v-for="tag in tag_suggestions" :name="tag.name" :type="tag.type" class="me-1" @on_tag_click="on_search_bar_tag_suggestion_select"></tag>
+                    <tag v-for="tag of tag_suggestions" :name="tag.name" :type="tag.type" class="me-1" @on_tag_click="on_search_bar_tag_suggestion_select"></tag>
                 </li>
             </ul>
         </div>

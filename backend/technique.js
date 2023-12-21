@@ -108,12 +108,12 @@ class Technique
     export()
     {
         return {
-            name : this.#name,
-            date : this.#date,
-            tags : Tag.export(this.#tags),
-            images : this.#images,
-            resources : this.#resources,
-            description : this.#description
+            name: this.#name,
+            date: this.#date,
+            tags: Tag.export(this.#tags),
+            images: this.#images,
+            resources: this.#resources,
+            description: this.#description
         }
     }
 

@@ -3,7 +3,7 @@ import BrowserFilterTag from "components/browser_filter_tag.js"
 
 export default
 {
-    components :
+    components:
     {
         BrowserFilterDate,
         BrowserFilterTag
@@ -17,15 +17,15 @@ export default
             <img src="symbols/caret_down_fill.svg" width="20px">
             <div class="ms-1">Filters</div>
         </button>
-        <div id="browser_filter_bar_collapse" class="collapse px-4 pt-2">
-            <ul class="list-unstyled">
+        <div id="browser_filter_bar_collapse" class="collapse show px-4">
+            <ul class="list-unstyled mt-2">
                 <li>
                     <label class="form-label" for="browser_filter_date">Date</label>
                     <browser-filter-date id="browser_filter_date" :browser_filters="browser_filters"></browser-filter-date>
                 </li>
                 <li>
                     <label class="form-label" for="browser_filter_tag">Tags</label>
-                    <!--<browser-filter-tag id="browser_filter_tag" :browser_filters="browser_filters"></browser-filter-tag>-->
+                    <browser-filter-tag id="browser_filter_tag" :browser_filters="browser_filters"></browser-filter-tag>
                 </li>
             </ul>
         </div>

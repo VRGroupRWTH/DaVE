@@ -39,11 +39,23 @@ class Backend
     {
         const query = request.body.query;
         let sorting = Sorting.score_descending;
+        let filter_date_begin = null;
+        let filter_date_end = null;
         let filter_tags = [];
 
         if("sorting" in request.body)
         {
             sorting = Sorting.import(request.body.sorting);
+        }
+
+        if("filter_date_begin" in request.body)
+        {
+            filter_date_begin = new Date(request.body.filter_date_begin);
+        }
+
+        if("filter_date_end" in request.body)
+        {
+            filter_date_end = new Date(request.body.filter_date_end);
         }
 
         if("filter_tags" in request.body)
@@ -53,6 +65,24 @@ class Backend
 
         const techniques = this.#database.search_techniques(query, sorting, (technique) =>
         {
+            const date = new Date(technique.get_date());
+
+            if(filter_date_begin != null)
+            {
+                if(date < filter_date_begin)
+                {
+                    return false;
+                }
+            }
+
+            if(filter_date_end != null)
+            {
+                if(date > filter_date_end)
+                {
+                    return false;
+                }
+            }
+
             for(const filter_tag of filter_tags)
             {
                 if(!technique.get_tags().some(tag => tag.is_equal(filter_tag)))

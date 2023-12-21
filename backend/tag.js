@@ -55,8 +55,8 @@ class Tag
     export()
     {
         return {
-            name : this.#name,
-            type : this.#type
+            name: this.#name,
+            type: this.#type
         }
     }
 

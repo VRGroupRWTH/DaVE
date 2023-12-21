@@ -7,8 +7,7 @@
         <div class="d-flex bg-body-tertiary">
             <browser-filter class="card m-3 d-none d-md-block " style="width: 300px;" v-model:browser_filters="browser_filters"></browser-filter>
             <div class="flex-fill d-flex flex-wrap">
-                <browser-item v-for="item in browser_items"></browser-item>
-                {{browser_filters.date_begin}}{{browser_filters.date_end}}
+                <browser-item v-for="item of browser_items" :browser_item="item"></browser-item>
             </div>
         </div>
     </main>
@@ -17,7 +16,7 @@
     </footer>
 </body>
 <script type="module">
-    import { createApp, ref, computed } from "vue"
+    import { createApp, ref, watch } from "vue"
     import BrowserHeader from "components/browser_header.js"
     import BrowserFilter from "components/browser_filter.js"
     import BrowserItem from "components/browser_item.js"
@@ -27,31 +26,61 @@
     {
         setup()
         {
+            let browser_items = ref([]);
             let browser_query = ref("");
+
             let browser_sorting = ref(
             {
-                type : "relevance",
+                type: "relevance",
                 direction: "descending"
             });
             
             let browser_filters = ref(
             {
-               date_begin : "01 Jan 2023",
-               date_end : "01 Dec 2023",
-               tags : [] 
+               date_begin: "01 Jan 2023",
+               date_end: "01 Dec 2023",
+               tags: [] 
             });
 
-            let browser_items = computed(() =>
+            watch([browser_query, browser_sorting, browser_filters], async (old_state, new_state) =>
             {
+                const technique_request =
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(
+                    {
+                        query: browser_query.value,
+                        sorting: browser_sorting.value.type + "_" + browser_sorting.value.direction,
+                        filter_date_begin: browser_filters.value.date_begin, 
+                        filter_date_end: browser_filters.value.date_end,
+                        filter_tags: browser_filters.value.tags
+                    })
+                };
+
+                console.log("Test");
                 
-                return [];
-            });
+                let technique_response = await (await fetch("/api/search_techniques", technique_request)).json();
+                browser_items.value = [];
+
+                for(const technique of technique_response)
+                {
+                    const browser_item = 
+                    {
+                        name: technique.name,
+                        tags: technique.tags,
+                        images: technique.images
+                    };
+
+                    browser_items.value.push(browser_item);
+                }
+            }, { immediate: true, deep: true});
 
             return {
+                browser_items,
                 browser_query,
                 browser_sorting,
-                browser_filters,
-                browser_items
+                browser_filters
             }
         }
     });
