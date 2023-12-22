@@ -13,7 +13,7 @@ export default
     template:
     `
     <div>
-        <button class="btn btn-toggle border-0 w-100 d-flex align-items-end browser-filter-toggle-arrow" type="button" data-bs-toggle="collapse" data-bs-target="#browser_filter_bar_collapse">
+        <button class="btn btn-toggle border-0 w-100 d-flex align-items-end browser-filter-toggle-arrow" type="button" data-bs-toggle="collapse" data-bs-target="#browser_filter_bar_collapse" aria-expanded="true">
             <img src="symbols/caret_down_fill.svg" width="20px">
             <div class="ms-1">Filters</div>
         </button>
