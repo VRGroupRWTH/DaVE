@@ -31,7 +31,7 @@ class Backend
 
         else
         {
-            response.send([]);
+            response.sendStatus(404);
         }
     }
 

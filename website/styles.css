@@ -3,11 +3,6 @@
     width: 18px;
     height: 18px;
     background-size: cover;
-    background-image: url("symbols/x.svg");
-}
-
-.tag-removable-image:hover
-{
     background-image: url("symbols/x_circle_fill.svg");
 }
 
@@ -170,23 +165,6 @@
     --label-bound-right: calc(100% - var(--label-width) / 2 + var(--bs-form-range-thumb-width) / 2);
     --label-location: calc(min(max(var(--label-right), var(--label-bound-left)), var(--label-bound-right)));
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 pre
 {

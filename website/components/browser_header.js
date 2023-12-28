@@ -1,5 +1,3 @@
-import { computed } from "vue";
-
 export default
 {
     props: ["browser_query", "browser_sorting"],
@@ -55,7 +53,7 @@ export default
     },
     template:
     `
-    <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="navbar bg-dark shadow-sm">
         <div class="w-100 px-4 py-1" style="display: grid; grid-auto-flow: column; grid-auto-columns: 1fr;">
             <div class="d-flex align-items-center justify-content-start">
                 <a href="/"><img src="symbols/dave_logo_dark.svg" width="38px"></a>

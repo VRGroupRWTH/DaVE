@@ -32,14 +32,14 @@ export default
             return date_offset;
         }
 
-        const browser_filter_date_min = new Date(props.browser_filters.date_begin);
-        const browser_filter_date_max = new Date(props.browser_filters.date_end);
-        const browser_filter_date_range = compute_date_range(browser_filter_date_min, browser_filter_date_max);
+        const browser_filter_date_min = computed(() => new Date(props.browser_filters.date_min));
+        const browser_filter_date_max = computed(() => new Date(props.browser_filters.date_max));
+        const browser_filter_date_range = computed(() => compute_date_range(browser_filter_date_min.value, browser_filter_date_max.value));
 
         let browser_filter_date_value_min = ref(0);
-        let browser_filter_date_value_max = ref(browser_filter_date_range);
-        let browser_filter_date_value_left = computed(() => compute_date_range(browser_filter_date_min, new Date(props.browser_filters.date_begin)));
-        let browser_filter_date_value_right = computed(() => compute_date_range(browser_filter_date_min, new Date(props.browser_filters.date_end)));
+        let browser_filter_date_value_max = computed(() => browser_filter_date_range.value);
+        let browser_filter_date_value_left = computed(() => compute_date_range(browser_filter_date_min.value, new Date(props.browser_filters.date_begin)));
+        let browser_filter_date_value_right = computed(() => compute_date_range(browser_filter_date_min.value, new Date(props.browser_filters.date_end)));
 
         let browser_filter_date_percentage_left = computed(() =>
         {
@@ -86,7 +86,7 @@ export default
             }
 
             let filters = props.browser_filters;
-            filters.date_begin = compute_date_offset(browser_filter_date_min, left_value).toString();
+            filters.date_begin = compute_date_offset(browser_filter_date_min.value, left_value).toString();
 
             context.emit("update:browser_filters", filters);
         }
@@ -102,7 +102,7 @@ export default
             }
 
             let filters = props.browser_filters;
-            filters.date_end = compute_date_offset(browser_filter_date_min, right_value).toString();
+            filters.date_end = compute_date_offset(browser_filter_date_min.value, right_value).toString();
 
             context.emit("update:browser_filters", filters);
         }

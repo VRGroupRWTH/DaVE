@@ -24,6 +24,8 @@ export default
         function on_tag_click_internal(event)
         {
             context.emit("on_tag_click", props.name, props.type);
+
+            event.stopPropagation();
         }
 
         function on_tag_remove_internal(event)

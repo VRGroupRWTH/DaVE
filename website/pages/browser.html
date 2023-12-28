@@ -7,9 +7,13 @@
         <div class="d-flex bg-body-tertiary">
             <browser-filter class="card m-3 align-self-start flex-shrink-0 d-none d-md-block" style="width: 300px;" v-model:browser_filters="browser_filters"></browser-filter>
             <div class="flex-fill my-3 me-3 ms-3 ms-md-0">
-                <div v-if="browser_items.length > 0" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
+                <div v-if="browser_is_loading" class="d-flex align-items-center justify-content-center" style="height: 300px;">
+                    <div class="spinner-border text-body-tertiary" role="status"></div>
+                    <span class="ms-2 text-body-tertiary fw-semibold fs-4">Loading visualizations</span>
+                </div>
+                <div v-else-if="browser_items.length > 0" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
                     <div v-for="item of browser_items" class="col">
-                        <browser-item :browser_item="item"></browser-item>
+                        <browser-item :browser_item="item" @on_browser_item_click="on_browser_item_click(item)" @on_browser_item_tag_click="on_browser_item_tag_click"></browser-item>
                     </div>
                 </div>
                 <div v-else class="d-flex align-items-center justify-content-center" style="height: 300px;">
@@ -30,11 +34,117 @@
     import BrowserItem from "components/browser_item.js"
     import SharedFooter from "components/shared_footer.js"
 
+    function setup_query()
+    {
+        const parameters = new URLSearchParams(window.location.search);
+        let query = "";
+
+        if(parameters.get("query") != null)
+        {
+            query = parameters.get("query");
+        }
+
+        return query;
+    }
+
+    function setup_filter_tags()
+    {
+        const parameters = new URLSearchParams(window.location.search);
+        let tags = [];
+
+        if(parameters.get("tags") != null)
+        {
+            const items = parameters.get("tags").split("+");
+
+            for(let index = 0; index < items.length - 1; index += 2)
+            {
+                let tag = 
+                {
+                    name: items[index],
+                    type: items[index + 1]
+                };
+
+                tags.push(tag);
+            }
+        }
+
+        return tags;
+    }
+
+    async function setup_filter_date()
+    {
+        const technique_request = 
+        {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(
+            {
+                query: ""
+            })
+        }
+
+        let technique_response = await (await fetch("/api/search_techniques", technique_request)).json();
+
+        let begin = "01 Jan 1900";
+        let end = "01 Feb 1900";
+
+        if(technique_response.length > 0)
+        {
+            begin = technique_response[0].date;
+            end = technique_response[0].date;
+
+            for(const technique of technique_response)
+            {
+                const date_begin = new Date(begin);
+                const date_end = new Date(end);
+                const date_technique = new Date(technique.date);
+
+                if(date_technique < date_begin)
+                {
+                    begin = technique.date;
+                }
+
+                if(date_technique > date_end)
+                {
+                    end = technique.date;
+                }
+            }
+
+            let date_begin = new Date(begin);
+            let date_end = new Date(end);
+
+            date_begin.setDate(1);
+            date_begin.setHours(0, 0, 0, 0);
+            date_end.setDate(1);
+            date_end.setHours(0, 0, 0, 0);
+            
+            if(date_end.getMonth() >= 11)
+            {
+                date_end.setMonth(0);
+                date_end.setFullYear(date_end.getFullYear() + 1);
+            }
+
+            else
+            {
+                date_end.setMonth(date_end.getMonth() + 1);
+            }
+
+            begin = date_begin.toString();
+            end = date_end.toString();
+        }
+
+        return {
+            begin,
+            end
+        }
+    }
+
     let app = createApp(
     {
         setup()
         {
             let browser_items = ref([]);
+            let browser_is_loading = ref(true);
             let browser_query = ref("");
 
             let browser_sorting = ref(
@@ -45,13 +155,20 @@
             
             let browser_filters = ref(
             {
-               date_begin: "01 Jan 2023",
-               date_end: "01 Dec 2023",
-               tags: [] 
+                date_min: "01 Jan 1900",
+                date_max: "01 Feb 1900",
+                date_begin: "01 Jan 1900",
+                date_end: "01 Feb 1900",
+                tags: []
             });
 
             watch([browser_query, browser_sorting, browser_filters], async (old_state, new_state) =>
             {
+                const loading_timer = setTimeout(() =>
+                {
+                    browser_is_loading.value = true;    
+                }, 100);
+
                 const technique_request =
                 {
                     method: "POST",
@@ -66,8 +183,6 @@
                     })
                 };
 
-                console.log("Test");
-                
                 let technique_response = await (await fetch("/api/search_techniques", technique_request)).json();
                 browser_items.value = [];
 
@@ -80,19 +195,51 @@
                         images: technique.images
                     };
 
-                    for(let index = 0; index < 10; index++)
-                    {
-                        browser_items.value.push(browser_item);
-                    }
+                    browser_items.value.push(browser_item);
                 }
+
+                clearTimeout(loading_timer);
+                browser_is_loading.value = false;
             }, { immediate: true, deep: true});
+
+            function on_browser_item_click(item)
+            {
+                window.location = "/technique?name=" + encodeURIComponent(item.name);
+            }
+
+            function on_browser_item_tag_click(tag)
+            {
+                if(!browser_filters.value.tags.some(filter_tag => filter_tag.name == tag.name))
+                {
+                    browser_filters.value.tags.push(tag);
+                }
+            }
 
             return {
                 browser_items,
+                browser_is_loading,
                 browser_query,
                 browser_sorting,
-                browser_filters
+                browser_filters,
+                setup_query,
+                setup_filter_date,
+                setup_filter_tags,
+                on_browser_item_click,
+                on_browser_item_tag_click
             }
+        },
+        async mounted()
+        {
+            const query = setup_query();
+            const filter_tags = setup_filter_tags();
+            const filter_date = await setup_filter_date();
+
+            this.browser_query = query;
+            this.browser_filters.date_min = filter_date.begin;
+            this.browser_filters.date_max = filter_date.end;
+            this.browser_filters.date_begin = filter_date.begin;
+            this.browser_filters.date_end = filter_date.end;
+            this.browser_filters.tags = filter_tags;
         }
     });
 

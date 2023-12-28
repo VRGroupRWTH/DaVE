@@ -67,7 +67,7 @@
 
                 if(query.length > 0)
                 {
-                    search_url += "query=" + query;
+                    search_url += "query=" + encodeURIComponent(query);
                 }
 
                 if(query.length > 0 && tags.length > 0)
@@ -77,15 +77,17 @@
 
                 if(tags.length > 0)
                 {
-                    search_url += "tags=" + tags[0].name + "+" + tags[0].type;
+                    let search_tag_url = tags[0].name + "+" + tags[0].type;
 
                     for(let index = 1; index < tags.length; index++)
                     {
                         search_url += "+" + tags[index].name + "+" + tags[index].type;
                     }
+
+                    search_url += "tags=" + encodeURIComponent(search_tag_url);
                 }
 
-                window.location = search_url.replaceAll(" ", "%20");
+                window.location = search_url;
             }
 
             return {

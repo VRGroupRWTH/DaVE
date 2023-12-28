@@ -1,0 +1,114 @@
+<body id="app">
+    <header>
+        <shared-header></shared-header>
+    </header>
+    <main>
+        <technique-preview :technique="technique"></technique-preview>
+        <div ref="display_container" class="container my-5" style="height: 200px;">
+
+        </div>
+        <div class="container mb-4">
+            <h1 class="mb-2">{{ technique.name }}</h1>
+            <div class="d-flex">
+                <tag v-for="tag in technique.tags" :name="tag.name" :type="tag.type" class="me-1" @on_tag_click="on_technique_tag_click(tag)"></tag>
+            </div>
+        </div>
+        <div class="container mb-4" v-html="technique.description"></div>
+        <div class="w-100 py-4 bg-body-tertiary">
+            <div class="container">
+                <technique-wizzard :technique="technique" class="mb-4"></technique-wizzard>
+                <technique-content :technique="technique"></technique-content>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <shared-footer class="container py-5"></shared-footer>
+    </footer>
+</body>
+<script src="https://unpkg.com/vtk.js@29.3.0/vtk.js"></script>
+<script type="module">
+    import { createApp, ref } from "vue"
+    import TechniquePreview from "components/technique_preview.js"
+    import TechniqueContent from "components/technique_content.js"
+    import TechniqueWizzard from "components/technique_wizzard.js"
+    import SharedHeader from "components/shared_header.js"
+    import SharedFooter from "components/shared_footer.js"
+    import Tag from "components/tag.js"
+
+    let app = createApp(
+    {
+        setup()
+        {
+            let technique = ref(
+            {
+                name: "",
+                date: "",
+                tags: [],
+                images: [],
+                resources: [],
+                description: ""
+            });
+
+            let display_container = ref(null);
+
+            function on_technique_tag_click(tag)
+            {
+                console.log(tag);
+            }
+
+            return {
+                technique,
+                display_container,
+                on_technique_tag_click
+            }
+        },
+        async mounted()
+        {
+            const parameters = new URLSearchParams(window.location.search);
+
+            const technique_name = parameters.get("name");
+            const technique_request = 
+            {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(
+                {
+                    technique_name
+                })
+            }
+
+            const response = await fetch("/api/fetch_technique", technique_request);
+
+            if(response.ok)
+            {
+                this.technique = await response.json();    
+            }
+
+            const fullScreenRenderer = vtk.Rendering.Misc.vtkFullScreenRenderWindow.newInstance(
+            {
+                container:  this.display_container
+            });
+            const renderer = fullScreenRenderer.getRenderer();
+            const renderWindow = fullScreenRenderer.getRenderWindow();
+
+            const sceneImporter = vtk.IO.Core.vtkHttpSceneLoader.newInstance(
+            {
+                renderer,
+                fetchGzip: false,
+            });
+            sceneImporter.setUrl("/database/volume");
+            sceneImporter.onReady(() =>
+            {
+                renderWindow.render();
+            });
+        }
+    });
+
+    app.component("technique-preview", TechniquePreview);
+    app.component("technique-content", TechniqueContent);
+    app.component("technique-wizzard", TechniqueWizzard);
+    app.component("shared-header", SharedHeader);
+    app.component("shared-footer", SharedFooter);
+    app.component("tag", Tag);
+    app.mount("#app");
+</script>
