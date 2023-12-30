@@ -1,5 +1,6 @@
 const {Database, Sorting} = require("./database.js");
 const Tag = require("./tag.js");
+const AdmZip = require("adm-zip");
 
 class Backend
 {
@@ -17,6 +18,7 @@ class Backend
         app.post("/api/fetch_technique", async (request, response) => this.#on_fetch_technique_request(request, response));
         app.post("/api/search_techniques", async (request, response) => this.#on_search_technqiues_request(request, response));
         app.post("/api/search_property", async (request, response) => this.#on_search_property_request(request, response));
+        app.get("/api/create_script", async (request, response) => this.#on_create_script(request, response));
     }
 
     async #on_fetch_technique_request(request, response)
@@ -149,6 +151,142 @@ class Backend
         });
 
         response.send(result);
+    }
+
+    #on_create_script(request, response)
+    {
+        const required_parameters = 
+        [
+            "technique_name",
+            "technique_container",
+            
+        ];
+
+        if(!("technique_name" in request.query))
+        {
+            response.sendStatus(400);
+
+            return;
+        }
+
+        if(!("template_index" in request.query))
+        {
+            response.sendStatus(400);
+
+            return;
+        }
+
+        if(!("command_type" in request.query))
+        {
+            response.sendStatus(400);
+
+            return;
+        }
+
+        const technique_name = request.query.technique_name;
+        const technique_container = request.query.technique_container;
+        const template_index = parseInt(request.query.template_index);
+        const command_type = request.query.command_type;
+
+        let dataset_path = "./dataset/";
+        let dataset_included = true;
+
+        if("dataset_path" in request.query)
+        {
+            dataset_path = request.query.dataset_path;
+        }
+
+        if("dataset_included" in request.query)
+        {
+            dataset_included = request.query.dataset_included;
+        }
+
+        const technique = this.#database.get_technique(technique_name);
+        
+        if(technique == null)
+        {
+            response.sendStatus(404);
+
+            return;
+        }
+
+        const templates = technique.get_templates(); 
+
+        if(template_index == NaN)
+        {
+            response.sendStatus(400);
+
+            return;
+        }
+
+        if(template_index < 0 || template_index >= templates.length)
+        {
+            response.sendStatus(404);
+
+            return;
+        }
+
+        const template = templates[template_index];
+        let command = null;
+
+        for(const item of template.commands)
+        {
+            if(item.type == command_type)
+            {
+                command = item;
+
+                break;
+            }
+        }
+
+        if(command == null)
+        {
+            response.sendStatus(404);
+
+            return;
+        }
+
+        let constants = "";
+        constants += "TECHNIQUE=" + technique_container + "\n";
+        constants += "COMMAND_TYPE=" + command.type + "\n";
+        constants += "COMMAND=" + command.run + "\n";
+        constants += "DATASET=" + dataset_path + "\n";
+
+        if("path" in template.container)
+        {
+            constants += "CONTAINER=" + template.container.path + "\n";
+        }
+
+        else if("url" in )
+        {
+            constants += "CONTAINER=" + template.container.path + "\n";
+        }
+
+
+        const trace_file = fs.readFileSync(template.trace).toString();
+        const script_file = fs.readFileSync(template.script).toString();
+
+
+        //TECHNIQUE=
+        //COMMAND_TYPE
+        //COMMAND
+        //CONTAINER
+        //DATASET
+
+
+
+        //TODO: Alter script file and add constants
+        //TODO: Load dataset if included
+
+
+        let archive = new AdmZip();
+        archive.addLocalFile("/home/me/some_picture.png");
+
+
+
+
+
+        response.send(archive.toBuffer());
     }
 }
 

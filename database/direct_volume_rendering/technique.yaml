@@ -12,23 +12,36 @@ images:
   - "images/volumerender.png"
 
 resources:
-  - type: "Script"
+  - name: "volumerender_trace.py"
+    type: "Script"
     date: 2023-11-29
     path: "resources/volumerender_trace.py"
-  - type: "Container"
+  - name: "paraview:pv-v5.7.1-osmesa-py3"
+    type: "Container"
+    date: 2023-11-29
+    url: "kitware/paraview:pv-v5.7.1-osmesa-py3"
+  - name: "ctBones.vti"
+    type: "Dataset"
     date: 2023-11-29
     url: "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"
 
-commands:
-  - run: "pvpython volumerender_trace.py"
-# - run: ""
-#   batch: ""
-  
-container:
-  technique: "docker"
-  url: "kitware/paraview:pv-v5.7.1-osmesa-py3"
-# path: ""
-  
+templates:
+  - techniques:
+      - "docker"
+      - "singularity"
+    commands:
+      - type: "local"
+        run: "pvpython volumerender_trace.py"
+      - type: "mpi"
+        run: "command using mpi"
+      - type: "slurm"
+        run: "command using slurm"
+    trace: "resources/volumerender_trace.py"
+    script: "resources/volumerender_script.sh"
+    container:
+      - url: "kitware/paraview:pv-v5.7.1-osmesa-py3"
+      #- path: ""
+
 dataset:
-  url: "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"
-# path: ""
+  - url: "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"
+  #- path: ""

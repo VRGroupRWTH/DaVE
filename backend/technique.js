@@ -12,8 +12,7 @@ class Technique
     #images
     #resources
 
-    #commands
-    #container
+    #templates
     #dataset
 
     #description
@@ -27,8 +26,7 @@ class Technique
         this.#images = [];
         this.#resources = [];
 
-        this.#commands = [];
-        this.#container = {};
+        this.#templates = [];
         this.#dataset = {};
 
         this.#description = "";
@@ -75,15 +73,43 @@ class Technique
 
         if("resources" in technique)
         {
-            for(const resource of technique.resources)
+            for(const item of technique.resources)
             {
-                this.#resources.push(technique_path + resource);
+                let resource = item;
+                
+                if("path" in resource)
+                {
+                    resource.path = technique_path + resource.path;
+                }
+
+                this.#resources.push(resource);
             }
         }
 
-        this.#commands = technique.commands;
-        this.#container = technique.container;
-        this.#dataset = technique.datset;
+        if("templates" in technique)
+        {
+            for(const item of technique.templates)
+            {
+                let template = item;
+                template.trace = technique_path + template.trace;
+                template.script = technique_path + template.script;
+
+                if("path" in template.container)
+                {
+                    template.container.path = technique_path + template.container;
+                }
+
+                this.#templates.push(template);                
+            }
+        }
+
+        if("dataset" in technique)
+        {
+            if("path" in technique.dataset)
+            {
+                technique.dataset.path = technique_path + technique.dataset.path;
+            }
+        }
 
         let description_file = "";
 
@@ -113,6 +139,8 @@ class Technique
             tags: Tag.export(this.#tags),
             images: this.#images,
             resources: this.#resources,
+            templates: this.#templates,
+            dataset: this.#dataset,
             description: this.#description
         }
     }
@@ -140,6 +168,16 @@ class Technique
     get_resources()
     {
         return this.#resources;
+    }
+
+    get_templates()
+    {
+        return this.#templates;
+    }
+
+    get_dataset()
+    {
+        return this.#dataset;
     }
 
     get_description()
