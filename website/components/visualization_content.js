@@ -1,6 +1,6 @@
 export default
 {
-    props: ["technique"],
+    props: ["visualization"],
     setup()
     {
         function convert_date(date_string)
@@ -33,7 +33,7 @@ export default
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="resource of technique.resources">
+                <tr v-for="resource of visualization.resources">
                     <td scope="row">{{ resource.name }}</td>
                     <td class="d-none d-sm-table-cell">{{ resource.type }}</td>
                     <td class="d-none d-md-table-cell">{{ convert_date(resource.date) }}</td>

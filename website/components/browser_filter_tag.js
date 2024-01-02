@@ -25,7 +25,7 @@ export default
                     query: browser_tag_suggestion_query.value,
                     query_property: "name",
                     output_properties: ["name", "type"],
-                    filter_all_techniques: true
+                    filter_all_visualizations: true
                 })
             };
 

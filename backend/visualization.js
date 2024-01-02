@@ -3,7 +3,7 @@ const fs = require("fs");
 const yaml = require("yaml");
 const showdown = require("showdown");
 
-class Technique
+class Visualization
 {
     #name
     #date
@@ -32,82 +32,84 @@ class Technique
         this.#description = "";
     }
 
-    load(technique_path)
+    load(visualization_path)
     {
-        let technique_file = "";
+        let visualization_file = "";
 
         try
         {
-            technique_file = fs.readFileSync(technique_path + "technique.yaml").toString();
+            visualization_file = fs.readFileSync(visualization_path + "visualization.yaml").toString();
         }
 
         catch(exception)
         {
-            console.log("Can't load file '" + technique_path + "technique.yaml" + "'");
+            console.log("Can't load file '" + visualization_path + "visualization.yaml" + "'");
 
             return false;
         }
 
-        let technique = yaml.parse(technique_file);
+        let visualization = yaml.parse(visualization_file);
 
-        this.#name = technique.name;
-        this.#date = technique.date;
+        this.#name = visualization.name;
+        this.#date = visualization.date;
 
-        if("technique_tags" in technique)
+        if("technique_tags" in visualization)
         {
-            this.#tags = this.#tags.concat(Tag.load(technique.technique_tags, "technique"));
+            this.#tags = this.#tags.concat(Tag.load(visualization.technique_tags, "technique"));
         }
 
-        if("domain_tags" in technique)
+        if("domain_tags" in visualization)
         {
-            this.#tags = this.#tags.concat(Tag.load(technique.domain_tags, "domain"));
+            this.#tags = this.#tags.concat(Tag.load(visualization.domain_tags, "domain"));
         }
 
-        if("images" in technique)
+        if("images" in visualization)
         {
-            for(const image of technique.images)
+            for(const image of visualization.images)
             {
-                this.#images.push(technique_path + image);
+                this.#images.push(visualization_path + image);
             }
         }
 
-        if("resources" in technique)
+        if("resources" in visualization)
         {
-            for(const item of technique.resources)
+            for(const item of visualization.resources)
             {
                 let resource = item;
                 
                 if("path" in resource)
                 {
-                    resource.path = technique_path + resource.path;
+                    resource.path = visualization_path + resource.path;
                 }
 
                 this.#resources.push(resource);
             }
         }
 
-        if("templates" in technique)
+        if("templates" in visualization)
         {
-            for(const item of technique.templates)
+            for(const item of visualization.templates)
             {
                 let template = item;
-                template.trace = technique_path + template.trace;
-                template.script = technique_path + template.script;
+                template.trace = visualization_path + template.trace;
+                template.script = visualization_path + template.script;
 
                 if("path" in template.container)
                 {
-                    template.container.path = technique_path + template.container;
+                    template.container.path = visualization_path + template.container;
                 }
 
                 this.#templates.push(template);                
             }
         }
 
-        if("dataset" in technique)
+        if("dataset" in visualization)
         {
-            if("path" in technique.dataset)
+            this.#dataset = visualization.dataset;
+
+            if("path" in this.#dataset)
             {
-                technique.dataset.path = technique_path + technique.dataset.path;
+                this.#dataset.path = visualization_path + this.#dataset.path;
             }
         }
 
@@ -115,12 +117,12 @@ class Technique
 
         try
         {
-            description_file = fs.readFileSync(technique_path + "description.md").toString();
+            description_file = fs.readFileSync(visualization_path + "description.md").toString();
         }
 
         catch(exception)
         {
-            console.log("Can't load file '" + technique_path + "description.md" + "'");
+            console.log("Can't load file '" + visualization_path + "description.md" + "'");
 
             return false;
         }
@@ -186,4 +188,4 @@ class Technique
     }
 }
 
-module.exports = Technique;
+module.exports = Visualization;

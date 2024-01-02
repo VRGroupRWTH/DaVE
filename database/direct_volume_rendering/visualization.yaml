@@ -39,9 +39,9 @@ templates:
     trace: "resources/volumerender_trace.py"
     script: "resources/volumerender_script.sh"
     container:
-      - url: "kitware/paraview:pv-v5.7.1-osmesa-py3"
-      #- path: ""
+      url: "kitware/paraview:pv-v5.7.1-osmesa-py3"
+      #path: ""
 
 dataset:
-  - url: "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"
-  #- path: ""
+  url: "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"
+  #path: ""

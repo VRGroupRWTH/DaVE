@@ -1,4 +1,4 @@
-const Technique = require("./technique.js");
+const Visualization = require("./visualization.js");
 const fs = require("fs");
 
 class Sorting
@@ -59,46 +59,46 @@ class Sorting
 
 class Database
 {
-    #techniques
+    #visualizations
 
     constructor()
     {
-        this.#techniques = [];
+        this.#visualizations = [];
     }
 
     load(database_path)
     {
-        const technique_directory = fs.readdirSync(database_path);
+        const visualization_directory = fs.readdirSync(database_path);
 
-        for(const technique_path of technique_directory)
+        for(const visualization_path of visualization_directory)
         {
-            let technique = new Technique();
+            let visualization = new Visualization();
 
-            if(!technique.load(database_path + technique_path + "/"))
+            if(!visualization.load(database_path + visualization_path + "/"))
             {
                 continue;
             }
 
-            this.#techniques.push(technique);
+            this.#visualizations.push(visualization);
         }
     }
 
-    search_techniques(query, sorting, filter)
+    search_visualizations(query, sorting, filter)
     {
         let candidates = [];
 
-        for(const technique of this.#techniques)
+        for(const visualization of this.#visualizations)
         {
-            if(!filter(technique))
+            if(!filter(visualization))
             {
                 continue;
             }
 
-            let score = this.#search_score(query, technique.get_name());
-            score = Math.min(score, this.#search_score(query, technique.get_description()));
-            score = Math.min(score, this.#search_score(query, technique.get_date().toString()));
+            let score = this.#search_score(query, visualization.get_name());
+            score = Math.min(score, this.#search_score(query, visualization.get_description()));
+            score = Math.min(score, this.#search_score(query, visualization.get_date().toString()));
 
-            for(const tag of technique.get_tags())
+            for(const tag of visualization.get_tags())
             {
                 score = Math.min(score, this.#search_score(query, tag.get_name()));
                 score = Math.min(score, this.#search_score(query, tag.get_type()));
@@ -106,7 +106,7 @@ class Database
 
             const candidate = 
             {
-                value: technique,
+                value: visualization,
                 score
             };
 
@@ -132,11 +132,11 @@ class Database
     {
         let candidates = [];
 
-        for(const technique of this.#techniques)
+        for(const visualization of this.#visualizations)
         {
-            if(filter(technique, null) && this.#search_has_properties(technique, query_property, output_properties))
+            if(filter(visualization, null) && this.#search_has_properties(visualization, query_property, output_properties))
             {
-                const candidate = this.#search_candidate(technique, query, query_property, output_properties);
+                const candidate = this.#search_candidate(visualization, query, query_property, output_properties);
 
                 if(candidate.score < 10)
                 {
@@ -144,9 +144,9 @@ class Database
                 }
             }
 
-            for(const tag of technique.get_tags())
+            for(const tag of visualization.get_tags())
             {
-                if(filter(technique, tag) && this.#search_has_properties(tag, query_property, output_properties))
+                if(filter(visualization, tag) && this.#search_has_properties(tag, query_property, output_properties))
                 {
                     const candidate = this.#search_candidate(tag, query, query_property, output_properties);
 
@@ -248,13 +248,13 @@ class Database
         return 1 + Math.min(score1, score2, score3);
     }
 
-    get_technique(technique_name)
+    get_visualization(visualization_name)
     {
-        for(const technique of this.#techniques)
+        for(const visualization of this.#visualizations)
         {
-            if(technique.get_name() == technique_name)
+            if(visualization.get_name() == visualization_name)
             {
-                return technique;
+                return visualization;
             }
         }
 

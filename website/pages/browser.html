@@ -73,7 +73,7 @@
 
     async function setup_filter_date()
     {
-        const technique_request = 
+        const visualization_request = 
         {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -83,30 +83,30 @@
             })
         }
 
-        let technique_response = await (await fetch("/api/search_techniques", technique_request)).json();
+        let visualization_response = await (await fetch("/api/search_visualizations", visualization_request)).json();
 
         let begin = "01 Jan 1900";
         let end = "01 Feb 1900";
 
-        if(technique_response.length > 0)
+        if(visualization_response.length > 0)
         {
-            begin = technique_response[0].date;
-            end = technique_response[0].date;
+            begin = visualization_response[0].date;
+            end = visualization_response[0].date;
 
-            for(const technique of technique_response)
+            for(const visualization of visualization_response)
             {
                 const date_begin = new Date(begin);
                 const date_end = new Date(end);
-                const date_technique = new Date(technique.date);
+                const date_visualization = new Date(visualization.date);
 
-                if(date_technique < date_begin)
+                if(date_visualization < date_begin)
                 {
-                    begin = technique.date;
+                    begin = visualization.date;
                 }
 
-                if(date_technique > date_end)
+                if(date_visualization > date_end)
                 {
-                    end = technique.date;
+                    end = visualization.date;
                 }
             }
 
@@ -169,7 +169,7 @@
                     browser_is_loading.value = true;    
                 }, 100);
 
-                const technique_request =
+                const visualization_request =
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -183,16 +183,16 @@
                     })
                 };
 
-                let technique_response = await (await fetch("/api/search_techniques", technique_request)).json();
+                let visualization_response = await (await fetch("/api/search_visualizations", visualization_request)).json();
                 browser_items.value = [];
 
-                for(const technique of technique_response)
+                for(const visualization of visualization_response)
                 {
                     const browser_item = 
                     {
-                        name: technique.name,
-                        tags: technique.tags,
-                        images: technique.images
+                        name: visualization.name,
+                        tags: visualization.tags,
+                        images: visualization.images
                     };
 
                     browser_items.value.push(browser_item);
@@ -204,7 +204,7 @@
 
             function on_browser_item_click(item)
             {
-                window.location = "/technique?name=" + encodeURIComponent(item.name);
+                window.location = "/visualization?name=" + encodeURIComponent(item.name);
             }
 
             function on_browser_item_tag_click(tag)

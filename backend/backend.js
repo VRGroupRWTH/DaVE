@@ -1,6 +1,7 @@
 const {Database, Sorting} = require("./database.js");
 const Tag = require("./tag.js");
 const AdmZip = require("adm-zip");
+const fs = require("fs");
 
 class Backend
 {
@@ -15,20 +16,20 @@ class Backend
     {
         this.#database.load("database/");
 
-        app.post("/api/fetch_technique", async (request, response) => this.#on_fetch_technique_request(request, response));
-        app.post("/api/search_techniques", async (request, response) => this.#on_search_technqiues_request(request, response));
+        app.post("/api/fetch_visualization", async (request, response) => this.#on_fetch_visualization_request(request, response));
+        app.post("/api/search_visualizations", async (request, response) => this.#on_search_visualizations_request(request, response));
         app.post("/api/search_property", async (request, response) => this.#on_search_property_request(request, response));
         app.get("/api/create_script", async (request, response) => this.#on_create_script(request, response));
     }
 
-    async #on_fetch_technique_request(request, response)
+    async #on_fetch_visualization_request(request, response)
     {
-        const technique_name = request.body.technique_name;
-        const technique = this.#database.get_technique(technique_name);
+        const visualization_name = request.body.visualization_name;
+        const visualization = this.#database.get_visualization(visualization_name);
 
-        if(technique != null)
+        if(visualization != null)
         {
-            response.send(technique.export());
+            response.send(visualization.export());
         }
 
         else
@@ -37,7 +38,7 @@ class Backend
         }
     }
 
-    async #on_search_technqiues_request(request, response)
+    async #on_search_visualizations_request(request, response)
     {
         const query = request.body.query;
         let sorting = Sorting.score_descending;
@@ -65,9 +66,9 @@ class Backend
             filter_tags = Tag.import(request.body.filter_tags);
         }
 
-        const techniques = this.#database.search_techniques(query, sorting, (technique) =>
+        const visualizations = this.#database.search_visualizations(query, sorting, (visualization) =>
         {
-            const date = new Date(technique.get_date());
+            const date = new Date(visualization.get_date());
 
             if(filter_date_begin != null)
             {
@@ -87,7 +88,7 @@ class Backend
 
             for(const filter_tag of filter_tags)
             {
-                if(!technique.get_tags().some(tag => tag.is_equal(filter_tag)))
+                if(!visualization.get_tags().some(tag => tag.is_equal(filter_tag)))
                 {
                     return false;
                 }
@@ -98,9 +99,9 @@ class Backend
 
         let result = [];
 
-        for(const technique of techniques)
+        for(const visualization of visualizations)
         {
-            result.push(technique.export());
+            result.push(visualization.export());
         }
 
         response.send(result);
@@ -111,7 +112,7 @@ class Backend
         const query = request.body.query;
         const query_property = request.body.query_property;
         let output_properties = [request.body.query_property];
-        let filter_all_techniques = false;
+        let filter_all_visualizations = false;
         let filter_all_tags = false;
 
         if("output_properties" in request.body)
@@ -119,9 +120,9 @@ class Backend
             output_properties = request.body.output_properties;
         }
 
-        if("filter_all_techniques" in request.body)
+        if("filter_all_visualizations" in request.body)
         {
-            filter_all_techniques = request.body.filter_all_techniques;
+            filter_all_visualizations = request.body.filter_all_visualizations;
         }
 
         if("filter_all_tags" in request.body)
@@ -129,7 +130,7 @@ class Backend
             filter_all_tags = request.body.filter_all_tags;
         }
 
-        const result = this.#database.search_property(query, query_property, output_properties, (technique, tag) =>
+        const result = this.#database.search_property(query, query_property, output_properties, (visualization, tag) =>
         {
             if(tag != null)
             {
@@ -139,9 +140,9 @@ class Backend
                 }
             }
 
-            else if(technique != null)
+            else if(visualization != null)
             {
-                if(filter_all_techniques)
+                if(filter_all_visualizations)
                 {
                     return false;
                 }
@@ -157,136 +158,177 @@ class Backend
     {
         const required_parameters = 
         [
-            "technique_name",
-            "technique_container",
-            
+            "visualization",
+            "technique",
+            "command"
         ];
 
-        if(!("technique_name" in request.query))
+        for(const parameter of required_parameters)
         {
-            response.sendStatus(400);
+            if(!(parameter in request.query))
+            {
+                response.sendStatus(400);
 
-            return;
+                return;
+            }
         }
 
-        if(!("template_index" in request.query))
-        {
-            response.sendStatus(400);
+        const visualization = this.#database.get_visualization(request.query.visualization);
 
-            return;
-        }
-
-        if(!("command_type" in request.query))
-        {
-            response.sendStatus(400);
-
-            return;
-        }
-
-        const technique_name = request.query.technique_name;
-        const technique_container = request.query.technique_container;
-        const template_index = parseInt(request.query.template_index);
-        const command_type = request.query.command_type;
-
-        let dataset_path = "./dataset/";
-        let dataset_included = true;
-
-        if("dataset_path" in request.query)
-        {
-            dataset_path = request.query.dataset_path;
-        }
-
-        if("dataset_included" in request.query)
-        {
-            dataset_included = request.query.dataset_included;
-        }
-
-        const technique = this.#database.get_technique(technique_name);
-        
-        if(technique == null)
+        if(visualization == null)
         {
             response.sendStatus(404);
 
             return;
         }
 
-        const templates = technique.get_templates(); 
-
-        if(template_index == NaN)
-        {
-            response.sendStatus(400);
-
-            return;
-        }
-
-        if(template_index < 0 || template_index >= templates.length)
-        {
-            response.sendStatus(404);
-
-            return;
-        }
-
-        const template = templates[template_index];
+        const templates = visualization.get_templates();
+        const technique = request.query.technique;
+        let template = null;
         let command = null;
 
-        for(const item of template.commands)
+        for(const template_item of templates)
         {
-            if(item.type == command_type)
+            if(!template_item.techniques.some(technique_item => technique_item == technique))
             {
-                command = item;
+                continue;
+            }
 
+            for(const command_item of template_item.commands)
+            {
+                if(command_item.type == request.query.command)
+                {
+                    command = command_item;
+                    template = template_item;
+
+                    break;
+                }
+            }
+
+            if(command != null || template != null)
+            {
                 break;
             }
         }
 
-        if(command == null)
+        if(template == null || command == null)
         {
             response.sendStatus(404);
 
             return;
         }
 
-        let constants = "";
-        constants += "TECHNIQUE=" + technique_container + "\n";
-        constants += "COMMAND_TYPE=" + command.type + "\n";
-        constants += "COMMAND=" + command.run + "\n";
-        constants += "DATASET=" + dataset_path + "\n";
+        let container_path = "";
+        let container_file = null;
 
         if("path" in template.container)
         {
-            constants += "CONTAINER=" + template.container.path + "\n";
+            container_path = "./" + this.#get_file_name(template.container.path);
+            container_file = fs.readFileSync(path).toString();
         }
 
-        else if("url" in )
+        else if("url" in template.container)
         {
-            constants += "CONTAINER=" + template.container.path + "\n";
+            container_path = template.container.url;
         }
 
+        else
+        {
+            response.sendStatus(404);
+
+            return;
+        }
+
+        let dataset_path = "";
+        let dataset_file = null;
+
+        if("dataset" in request.query)
+        {
+            dataset_path = request.query.dataset;
+        }
+
+        else
+        {
+            const dataset = visualization.get_dataset();
+
+            if("path" in dataset)
+            {
+                dataset_path = "./" + this.#get_file_name(dataset.path);
+                dataset_file = fs.readFileSync(path).toString();
+            }
+
+            else if("url" in dataset)
+            {
+                dataset_path = dataset.url;
+
+                //TODO: Download the dataset somehow
+            }
+        }
+
+        let constants =
+        [
+            "CONTAINER=" + container_path,
+            "DATASET=" + dataset_path,
+            "TECHNIQUE=" + technique,
+            "COMMAND=" + command.run,
+            "COMMAND_TYPE=" + command.type
+        ];
 
         const trace_file = fs.readFileSync(template.trace).toString();
         const script_file = fs.readFileSync(template.script).toString();
+        const script_lines = script_file.split("\n");
 
+        let script_compiled = script_lines[0] + "\n";
 
-        //TECHNIQUE=
-        //COMMAND_TYPE
-        //COMMAND
-        //CONTAINER
-        //DATASET
+        for(const constant of constants)
+        {
+            script_compiled += constant + "\n";
+        }
 
+        for(let index = 1; index < script_lines.length; index++)
+        {
+            script_compiled += script_lines[index];
 
+            if(index < script_lines.length - 1)
+            {
+                script_compiled += "\n";
+            }
+        }
 
-        //TODO: Alter script file and add constants
-        //TODO: Load dataset if included
-
+        const trace_file_name = this.#get_file_name(template.trace);
+        const script_file_name = this.#get_file_name(template.script);
 
         let archive = new AdmZip();
-        archive.addLocalFile("/home/me/some_picture.png");
+        archive.addFile(trace_file_name, Buffer.from(trace_file));
+        archive.addFile(script_file_name, Buffer.from(script_compiled));
 
+        if(container_file != null)
+        {
+            const container_file_name = this.#get_file_name(container_path);
 
+            archive.addFile(container_file_name, Buffer.from(container_file));
+        }
 
+        if(dataset_file != null)
+        {
+            const dataset_file_name = this.#get_file_name(dataset_path);
 
+            archive.addFile(dataset_file_name, Buffer.from(dataset_file));
+        }
 
         response.send(archive.toBuffer());
+    }
+
+    #get_file_name(file_path)
+    {
+        const offset = file_path.lastIndexOf("/");
+
+        if(offset == -1)
+        {
+            return file_path;
+        }
+
+        return file_path.substr(offset + 1);
     }
 }
 

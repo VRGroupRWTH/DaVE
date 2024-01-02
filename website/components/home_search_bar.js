@@ -159,7 +159,7 @@ export default
             <div class="form-control shadow-sm w-100" :style="'border-bottom-right-radius: 0px; border-top-right-radius: 0px; border-color: var(--bs-border-color-translucent); ' + search_bar_style">
                 <div class="d-flex" style="height: 28px">                     
                     <tag v-for="tag of tags" :name="tag.name" :type="tag.type" class="me-1" @on_tag_click="on_search_bar_tag_remove"></tag>
-                    <input class="flex-fill" style="border: none; outline: none;" size="1" v-model="query" type="text" placeholder="Visualisation" @keydown.delete="on_search_bar_query_delete" @keydown.enter="on_search_bar_search_internal" @keydown.escape="on_search_bar_query_escape">
+                    <input class="flex-fill" style="border: none; outline: none;" size="1" v-model="query" type="text" placeholder="Visualization" @keydown.delete="on_search_bar_query_delete" @keydown.enter="on_search_bar_search_internal" @keydown.escape="on_search_bar_query_escape">
                 </div>
             </div>
             <ul :class="'dropdown-menu shadow-sm position-absolute top-100 w-100 ' + search_dropdown_class" style="inset: 0px 0px auto 0px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-top-width: 0px;">
