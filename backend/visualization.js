@@ -15,6 +15,7 @@ class Visualization
     #templates
     #dataset
 
+    #scene
     #description
 
     constructor()
@@ -29,6 +30,7 @@ class Visualization
         this.#templates = [];
         this.#dataset = {};
 
+        this.#scene = "";
         this.#description = "";
     }
 
@@ -113,6 +115,11 @@ class Visualization
             }
         }
 
+        if("scene" in visualization)
+        {
+            this.#scene = visualization_path + visualization.scene;
+        }
+
         let description_file = "";
 
         try
@@ -143,6 +150,7 @@ class Visualization
             resources: this.#resources,
             templates: this.#templates,
             dataset: this.#dataset,
+            scene: this.#scene,
             description: this.#description
         }
     }
@@ -180,6 +188,11 @@ class Visualization
     get_dataset()
     {
         return this.#dataset;
+    }
+
+    get_scene()
+    {
+        return this.#scene;
     }
 
     get_description()

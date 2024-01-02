@@ -1,0 +1,246 @@
+{
+  "version": 1.0,
+  "background": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "camera": {
+    "focalPoint": [
+      127.5,
+      127.5,
+      127.5
+    ],
+    "position": [
+      -366.816,
+      704.924,
+      515.138
+    ],
+    "viewUp": [
+      -0.759553,
+      -0.650446,
+      0.000319572
+    ]
+  },
+  "centerOfRotation": [
+    127.5,
+    127.5,
+    127.5
+  ],
+  "scene": [
+    {
+      "name": "1",
+      "type": "vtkHttpDataSetReader",
+      "vtkHttpDataSetReader": {
+        "url": "1"
+      },
+      "volume": {
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      "volumeRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "mapper": {},
+      "property": {
+        "interpolationType": 1,
+        "independentComponents": true,
+        "ambient": 0,
+        "diffuse": 1,
+        "specular": 0,
+        "specularPower": 100,
+        "shade": 0,
+        "components": [
+          {
+            "colorChannels": 3,
+            "rgbTransferFunction": {
+              "useAboveRangeColor": false,
+              "useBelowRangeColor": false,
+              "colorSpace": 3,
+              "nanColor": [
+                1,
+                1,
+                0
+              ],
+              "nodes": [
+                [
+                  0,
+                  0.231373,
+                  0.298039,
+                  0.752941,
+                  0.5,
+                  0
+                ],
+                [
+                  127.5,
+                  0.865003,
+                  0.865003,
+                  0.865003,
+                  0.5,
+                  0
+                ],
+                [
+                  255,
+                  0.705882,
+                  0.0156863,
+                  0.14902,
+                  0.5,
+                  0
+                ]
+              ]
+            },
+            "scalarOpacity": {
+              "clamping": true,
+              "points": [
+                [
+                  0,
+                  0,
+                  0.5,
+                  0
+                ],
+                [
+                  255,
+                  1,
+                  0.5,
+                  0
+                ]
+              ]
+            },
+            "scalarOpacityUnitDistance": 1.73205
+          },
+          {
+            "colorChannels": 1,
+            "grayTransferFunction": {
+              "clamping": true,
+              "points": [
+                [
+                  0,
+                  0,
+                  0.5,
+                  0
+                ],
+                [
+                  1024,
+                  1,
+                  0.5,
+                  0
+                ]
+              ]
+            },
+            "scalarOpacity": {
+              "clamping": true,
+              "points": [
+                [
+                  0,
+                  1,
+                  0.5,
+                  0
+                ],
+                [
+                  1024,
+                  1,
+                  0.5,
+                  0
+                ]
+              ]
+            },
+            "scalarOpacityUnitDistance": 1
+          },
+          {
+            "colorChannels": 1,
+            "grayTransferFunction": {
+              "clamping": true,
+              "points": [
+                [
+                  0,
+                  0,
+                  0.5,
+                  0
+                ],
+                [
+                  1024,
+                  1,
+                  0.5,
+                  0
+                ]
+              ]
+            },
+            "scalarOpacity": {
+              "clamping": true,
+              "points": [
+                [
+                  0,
+                  1,
+                  0.5,
+                  0
+                ],
+                [
+                  1024,
+                  1,
+                  0.5,
+                  0
+                ]
+              ]
+            },
+            "scalarOpacityUnitDistance": 1
+          },
+          {
+            "colorChannels": 1,
+            "grayTransferFunction": {
+              "clamping": true,
+              "points": [
+                [
+                  0,
+                  0,
+                  0.5,
+                  0
+                ],
+                [
+                  1024,
+                  1,
+                  0.5,
+                  0
+                ]
+              ]
+            },
+            "scalarOpacity": {
+              "clamping": true,
+              "points": [
+                [
+                  0,
+                  1,
+                  0.5,
+                  0
+                ],
+                [
+                  1024,
+                  1,
+                  0.5,
+                  0
+                ]
+              ]
+            },
+            "scalarOpacityUnitDistance": 1
+          }
+        ]
+      }
+    }
+  ],
+  "lookupTables": {}
+}

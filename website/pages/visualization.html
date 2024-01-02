@@ -1,12 +1,10 @@
+<script src="https://unpkg.com/vtk.js@29.3.0/vtk.js"></script>
 <body id="app">
     <header>
         <shared-header></shared-header>
     </header>
     <main>
         <visualization-preview :visualization="visualization"></visualization-preview>
-        <div ref="display_container" class="container my-5" style="height: 200px;">
-
-        </div>
         <div class="container mb-4">
             <h1 class="mb-2">{{ visualization.name }}</h1>
             <div class="d-flex">
@@ -25,7 +23,6 @@
         <shared-footer class="container py-5"></shared-footer>
     </footer>
 </body>
-<script src="https://unpkg.com/vtk.js@29.3.0/vtk.js"></script>
 <script type="module">
     import { createApp, ref } from "vue"
     import VisualizationPreview from "components/visualization_preview.js"
@@ -50,8 +47,6 @@
                 description: ""
             });
 
-            let display_container = ref(null);
-
             function on_visualization_tag_click(tag)
             {
                 console.log(tag);
@@ -59,7 +54,6 @@
 
             return {
                 visualization,
-                display_container,
                 on_visualization_tag_click
             }
         },
@@ -84,26 +78,6 @@
             {
                 this.visualization = await response.json();    
             }
-
-            return;
-
-            const fullScreenRenderer = vtk.Rendering.Misc.vtkFullScreenRenderWindow.newInstance(
-            {
-                container:  this.display_container
-            });
-            const renderer = fullScreenRenderer.getRenderer();
-            const renderWindow = fullScreenRenderer.getRenderWindow();
-
-            const sceneImporter = vtk.IO.Core.vtkHttpSceneLoader.newInstance(
-            {
-                renderer,
-                fetchGzip: false,
-            });
-            sceneImporter.setUrl("/database/volume");
-            sceneImporter.onReady(() =>
-            {
-                renderWindow.render();
-            });
         }
     });
 

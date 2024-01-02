@@ -11,6 +11,8 @@ domain_tags:
 images:
   - "images/volumerender.png"
 
+sceme: "scene/index.json"
+
 resources:
   - name: "volumerender_trace.py"
     type: "Script"
