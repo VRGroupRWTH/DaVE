@@ -62,8 +62,8 @@ let wizard_question_dataset =
         {
             const option_dataset_default =
             {
-                name: "default",
-                title: "Default Dataset",
+                name: "preview",
+                title: "Preview Dataset",
                 description: "Along with the scripts for the visualization technique, a small dataset is downloaded with which the visualization can be directly tested.",
                 settings: []
             };
@@ -263,7 +263,7 @@ export default
 
         let visualization_wizard_config = ref(
         {
-            dataset: "default",
+            dataset: "preview",
             dataset_path: "./dataset/",
             technique: "",
             command: ""
@@ -299,7 +299,7 @@ export default
         {
             let config = 
             {
-                dataset: "default",
+                dataset: "preview",
                 dataset_path: "./dataset/",
                 technique: "",
                 command: ""
