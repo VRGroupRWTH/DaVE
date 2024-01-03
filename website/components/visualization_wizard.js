@@ -287,7 +287,7 @@ export default
             link += "technique=" + visualization_wizard_config.value.technique + "&";
             link += "command=" + visualization_wizard_config.value.command;
 
-            if(visualization_wizard_config.value.dataset != "default")
+            if(visualization_wizard_config.value.dataset != "preview")
             {
                 link += "&dataset=" + visualization_wizard_config.value.dataset_path;
             }

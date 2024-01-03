@@ -1,0 +1,27 @@
+<body id="app"></body>
+<script type="module">
+    import { createApp } from "vue"
+    import SharedHeader from "components/shared_header.js"
+    import SharedFooter from "components/shared_footer.js"
+
+    createApp(
+    {
+        components:
+        {
+            "shared-header": SharedHeader,
+            "shared-footer": SharedFooter,
+        },
+        template:
+        `
+        <header>
+            <shared-header></shared-header>
+        </header>
+        <main>
+            Work in Progress
+        </main>
+        <footer>
+            <shared-footer class="container py-5"></shared-footer>
+        </footer>
+        `
+    }).mount("#app");
+</script>

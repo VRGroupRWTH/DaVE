@@ -9,7 +9,7 @@
     import SharedFooter from "components/shared_footer.js"
     import Tag from "components/tag.js"
 
-    let app = createApp(
+    createApp(
     {
         components:
         {
@@ -35,7 +35,7 @@
 
             function on_visualization_tag_click(tag)
             {
-                console.log(tag);
+                window.location = "/browser?tags=" + encodeURIComponent(tag.name + "+" + tag.type);
             }
 
             return {

@@ -36,6 +36,35 @@ class Visualization
 
     load(visualization_path)
     {
+        if(!this.#load_visualization(visualization_path))
+        {
+            return false;
+        }
+
+        if(!this.#load_description(visualization_path))
+        {
+            return false;
+        }
+
+        fs.watchFile(visualization_path + "visualization.yaml", (old_state, new_state) =>
+        {
+            console.log("Reloaded: " + visualization_path + "visualization.yaml");
+
+            this.#load_visualization(visualization_path);
+        });
+
+        fs.watchFile(visualization_path + "description.md", (old_state, new_state) =>
+        {
+            console.log("Reloaded: " + visualization_path + "description.md");
+
+            this.#load_description(visualization_path);
+        });
+
+        return true;
+    }
+
+    #load_visualization(visualization_path)
+    {
         let visualization_file = "";
 
         try
@@ -120,6 +149,11 @@ class Visualization
             this.#scene = visualization_path + visualization.scene;
         }
 
+        return true;
+    }
+
+    #load_description(visualization_path)
+    {
         let description_file = "";
 
         try

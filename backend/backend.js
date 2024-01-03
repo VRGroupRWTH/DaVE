@@ -154,7 +154,7 @@ class Backend
         response.send(result);
     }
 
-    #on_create_script(request, response)
+    async #on_create_script(request, response)
     {
         const required_parameters = 
         [
@@ -223,7 +223,7 @@ class Backend
 
         if("path" in template.container)
         {
-            container_path = "./" + this.#get_file_name(template.container.path);
+            container_path = this.#get_file_name(template.container.path);
             container_file = fs.readFileSync(path).toString();
         }
 
@@ -253,15 +253,24 @@ class Backend
 
             if("path" in dataset)
             {
-                dataset_path = "./" + this.#get_file_name(dataset.path);
-                dataset_file = fs.readFileSync(path).toString();
+                dataset_path = "dataset/" + this.#get_file_name(dataset.path);
+                dataset_file = fs.readFileSync(dataset.path).toString();
             }
 
             else if("url" in dataset)
             {
-                dataset_path = dataset.url;
+                const dataset_request =
+                {
+                    method: "GET"
+                };
 
-                //TODO: Download the dataset somehow
+                const dataset_response = await fetch(dataset.url, dataset_request);
+
+                if(dataset_response.ok)
+                {
+                    dataset_path = "dataset/" + this.#get_file_name(dataset.url);
+                    dataset_file = await dataset_response.text();
+                }
             }
         }
 
@@ -304,16 +313,12 @@ class Backend
 
         if(container_file != null)
         {
-            const container_file_name = this.#get_file_name(container_path);
-
-            archive.addFile(container_file_name, Buffer.from(container_file));
+            archive.addFile(container_path, Buffer.from(container_file));
         }
 
         if(dataset_file != null)
         {
-            const dataset_file_name = this.#get_file_name(dataset_path);
-
-            archive.addFile(dataset_file_name, Buffer.from(dataset_file));
+            archive.addFile(dataset_path, Buffer.from(dataset_file));
         }
 
         response.send(archive.toBuffer());
