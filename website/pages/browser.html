@@ -1,32 +1,4 @@
-<body id="app" class="overflow-y-scroll">
-    <header>
-        <browser-header v-model:browser_query="browser_query" v-model:browser_sorting="browser_sorting"></browser-header>
-    </header>
-    <main>
-        <browser-filter class="border-bottom d-md-none" v-model:browser_filters="browser_filters"></browser-filter>
-        <div class="d-flex bg-body-tertiary">
-            <browser-filter class="card m-3 align-self-start flex-shrink-0 d-none d-md-block" style="width: 300px;" v-model:browser_filters="browser_filters"></browser-filter>
-            <div class="flex-fill my-3 me-3 ms-3 ms-md-0">
-                <div v-if="browser_is_loading" class="d-flex align-items-center justify-content-center" style="height: 300px;">
-                    <div class="spinner-border text-body-tertiary" role="status"></div>
-                    <span class="ms-2 text-body-tertiary fw-semibold fs-4">Loading visualizations</span>
-                </div>
-                <div v-else-if="browser_items.length > 0" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
-                    <div v-for="item of browser_items" class="col">
-                        <browser-item :browser_item="item" @on_browser_item_click="on_browser_item_click(item)" @on_browser_item_tag_click="on_browser_item_tag_click"></browser-item>
-                    </div>
-                </div>
-                <div v-else class="d-flex align-items-center justify-content-center" style="height: 300px;">
-                    <img src="symbols/not_found.svg" style="width: 32px; margin-bottom: -6px;">
-                    <span class="ms-2 text-body-tertiary fw-semibold fs-4">No visualizations found</span>
-                </div>
-            </div>
-        </div>
-    </main>
-    <footer>
-        <shared-footer class="container py-5"></shared-footer>
-    </footer>
-</body>
+<body id="app" class="overflow-y-scroll"></body>
 <script type="module">
     import { createApp, ref, watch } from "vue"
     import BrowserHeader from "components/browser_header.js"
@@ -141,6 +113,13 @@
 
     let app = createApp(
     {
+        components:
+        {
+            "browser-header": BrowserHeader,
+            "browser-filter": BrowserFilter,
+            "browser-item": BrowserItem,
+            "shared-footer": SharedFooter
+        },
         setup()
         {
             let browser_items = ref([]);
@@ -240,12 +219,36 @@
             this.browser_filters.date_begin = filter_date.begin;
             this.browser_filters.date_end = filter_date.end;
             this.browser_filters.tags = filter_tags;
-        }
-    });
-
-    app.component("browser-header", BrowserHeader);
-    app.component("browser-filter", BrowserFilter);
-    app.component("browser-item", BrowserItem);
-    app.component("shared-footer", SharedFooter);
-    app.mount("#app");
+        },
+        template:
+        `
+        <header>
+            <browser-header v-model:browser_query="browser_query" v-model:browser_sorting="browser_sorting"></browser-header>
+        </header>
+        <main>
+            <browser-filter class="border-bottom d-md-none" v-model:browser_filters="browser_filters"></browser-filter>
+            <div class="d-flex bg-body-tertiary">
+                <browser-filter class="card m-3 align-self-start flex-shrink-0 d-none d-md-block" style="width: 300px;" v-model:browser_filters="browser_filters"></browser-filter>
+                <div class="flex-fill my-3 me-3 ms-3 ms-md-0">
+                    <div v-if="browser_is_loading" class="d-flex align-items-center justify-content-center" style="height: 300px;">
+                        <div class="spinner-border text-body-tertiary" role="status"></div>
+                        <span class="ms-2 text-body-tertiary fw-semibold fs-4">Loading visualizations</span>
+                    </div>
+                    <div v-else-if="browser_items.length > 0" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
+                        <div v-for="item of browser_items" class="col">
+                            <browser-item :browser_item="item" @on_browser_item_click="on_browser_item_click(item)" @on_browser_item_tag_click="on_browser_item_tag_click"></browser-item>
+                        </div>
+                    </div>
+                    <div v-else class="d-flex align-items-center justify-content-center" style="height: 300px;">
+                        <img src="symbols/not_found.svg" style="width: 32px; margin-bottom: -6px;">
+                        <span class="ms-2 text-body-tertiary fw-semibold fs-4">No visualizations found</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <shared-footer class="container py-5"></shared-footer>
+        </footer>
+        `
+    }).mount("#app");
 </script>

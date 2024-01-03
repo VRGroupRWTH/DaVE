@@ -1,28 +1,5 @@
 <script src="https://unpkg.com/vtk.js@29.3.0/vtk.js"></script>
-<body id="app">
-    <header>
-        <shared-header></shared-header>
-    </header>
-    <main>
-        <visualization-preview class="container my-4" :visualization="visualization"></visualization-preview>
-        <div class="container mb-4">
-            <h1 class="mb-2">{{ visualization.name }}</h1>
-            <div class="d-flex">
-                <tag v-for="tag in visualization.tags" :name="tag.name" :type="tag.type" class="me-1" @on_tag_click="on_visualization_tag_click(tag)"></tag>
-            </div>
-        </div>
-        <div class="container mb-4" v-html="visualization.description"></div>
-        <div class="w-100 py-4 bg-body-tertiary">
-            <div class="container">
-                <visualization-wizard :visualization="visualization" class="mb-4"></visualization-wizard>
-                <visualization-content :visualization="visualization"></visualization-content>
-            </div>
-        </div>
-    </main>
-    <footer>
-        <shared-footer class="container py-5"></shared-footer>
-    </footer>
-</body>
+<body id="app"></body>
 <script type="module">
     import { createApp, ref } from "vue"
     import VisualizationPreview from "components/visualization_preview.js"
@@ -34,6 +11,15 @@
 
     let app = createApp(
     {
+        components:
+        {
+            "visualization-preview": VisualizationPreview,
+            "visualization-content": VisualizationContent,
+            "visualization-wizard": VisualizationWizard,
+            "shared-header": SharedHeader,
+            "shared-footer": SharedFooter,
+            "tag": Tag
+        },
         setup()
         {
             let visualization = ref(
@@ -78,14 +64,31 @@
             {
                 this.visualization = await response.json();    
             }
-        }
-    });
-
-    app.component("visualization-preview", VisualizationPreview);
-    app.component("visualization-content", VisualizationContent);
-    app.component("visualization-wizard", VisualizationWizard);
-    app.component("shared-header", SharedHeader);
-    app.component("shared-footer", SharedFooter);
-    app.component("tag", Tag);
-    app.mount("#app");
+        },
+        template:
+        `
+        <header>
+            <shared-header></shared-header>
+        </header>
+        <main>
+            <visualization-preview class="container my-4" :visualization="visualization"></visualization-preview>
+            <div class="container mb-4">
+                <h1 class="mb-2">{{ visualization.name }}</h1>
+                <div class="d-flex">
+                    <tag v-for="tag in visualization.tags" :name="tag.name" :type="tag.type" class="me-1" @on_tag_click="on_visualization_tag_click(tag)"></tag>
+                </div>
+            </div>
+            <div class="container mb-4" v-html="visualization.description"></div>
+            <div class="w-100 py-4 bg-body-tertiary">
+                <div class="container">
+                    <visualization-wizard :visualization="visualization" class="mb-4"></visualization-wizard>
+                    <visualization-content :visualization="visualization"></visualization-content>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <shared-footer class="container py-5"></shared-footer>
+        </footer>
+        `
+    }).mount("#app");
 </script>
