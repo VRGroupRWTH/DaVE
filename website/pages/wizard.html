@@ -1,6 +1,7 @@
 <body id="app"></body>
 <script type="module">
     import { createApp, ref } from "vue"
+    import { analyse_file } from "components/wizard_file_metadata.js"
     import WizardQuestionCheck from "components/wizard_question_check.js"
     import SharedHeader from "components/shared_header.js"
     import SharedFooter from "components/shared_footer.js"
@@ -61,6 +62,9 @@
             ]);
             const wizard_answers = ref({});
 
+
+            const wizard_test = ref("");
+
             function on_wizard_question_back()
             {
                 if(wizard_question_index.value > 0)
@@ -82,15 +86,40 @@
                 console.log("wizard_show");
             }
 
+            async function on_wizard_drop(event)
+            {
+                event.preventDefault();
+                event.stopPropagation()
+
+                for(const item of event.dataTransfer.items)
+                {
+                    if(item.kind =="file")
+                    {
+                        const file = item.getAsFile();
+
+                        wizard_test.value = JSON.stringify(await analyse_file(file));
+                    }
+                }
+            }
+
+            function on_wizard_drag_prevent_default(event)
+            {
+                event.preventDefault();
+                event.stopPropagation()
+            }
+
             return {
                 wizard_question_index,
                 wizard_question_options,
                 wizard_question_titles,
                 wizard_questions,
                 wizard_answers,
+                wizard_test,
                 on_wizard_question_back,
                 on_wizard_question_next,
-                on_wizard_show
+                on_wizard_show,
+                on_wizard_drop,
+                on_wizard_drag_prevent_default
             }
         },
         template:
@@ -110,6 +139,12 @@
                         <div v-for="(question, index) of wizard_questions" :id="'wizzard_question_' + index" :class="'tab-pane ' + ((index == wizard_question_index) ? 'active' : '')">
                             <component :is="question" v-model:answers="wizard_answers" :options="wizard_question_options[index]"></component>
                         </div>
+                    </div>
+                    <div class="border rounded d-flex align-items-center justify-content-center" style="height: 200px" @drop="on_wizard_drop" @dragover="on_wizard_drag_prevent_default" @dragenter="on_wizard_drag_prevent_default">
+                        <img src="symbols/download_dark.svg" width="50px">
+                    </div>
+                    <div>
+                        {{wizard_test}}
                     </div>
                     <div class="d-flex justify-content-between align-item-center">
                         <button v-if="wizard_question_index > 0" class="btn btn-primary" @click="on_wizard_question_back">Back</button>
