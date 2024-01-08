@@ -253,7 +253,7 @@ class Backend
 
             if("path" in dataset)
             {
-                dataset_path = "dataset/" + this.#get_file_name(dataset.path);
+                dataset_path = "data/" + this.#get_file_name(dataset.path);
                 dataset_file = fs.readFileSync(dataset.path).toString();
             }
 
@@ -268,7 +268,7 @@ class Backend
 
                 if(dataset_response.ok)
                 {
-                    dataset_path = "dataset/" + this.#get_file_name(dataset.url);
+                    dataset_path = "data/" + this.#get_file_name(dataset.url);
                     dataset_file = await dataset_response.text();
                 }
             }
@@ -276,11 +276,11 @@ class Backend
 
         let constants =
         [
-            "CONTAINER=" + container_path,
-            "DATASET=" + dataset_path,
-            "TECHNIQUE=" + technique,
-            "COMMAND=" + command.run,
-            "COMMAND_TYPE=" + command.type
+            "DATASET='" + dataset_path + "'",
+            "CONTAINER_URL='" + container_path + "'",
+            "CONTAINER_PLATFORM='" + technique + "'",
+            "COMMAND='" + command.run + "'",
+            "EXEC_TYPE='" + command.type + "'"
         ];
 
         const trace_file = fs.readFileSync(template.trace).toString();
