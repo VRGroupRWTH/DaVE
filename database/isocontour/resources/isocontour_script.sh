@@ -7,7 +7,7 @@ mkdir -p data
 mkdir -p output
 if ! test -f "${DATASET}"; then
     echo "data set '${DATASET}' not found - using default"
-    DATASET="./data/jet.vti"
+    DATASET="./data/ctBones.vti"
     if ! test -f "${DATASET}"; then
         echo "Error! No data found!" 1>$2
         exit 0

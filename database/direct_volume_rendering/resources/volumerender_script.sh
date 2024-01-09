@@ -19,7 +19,7 @@ fi;
 EXEC=""
 case "${EXEC_TYPE}" in
     mpi)
-        EXEC="mpirun"
+        EXEC="mpirun --allow-run-as-root"
         ;;
 
     slurm)

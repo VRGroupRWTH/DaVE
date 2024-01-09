@@ -1,0 +1,49 @@
+name: "Isocontours"
+date: 2023-11-29
+
+technique_tags:
+  - "Scalar"
+  - "3D"
+  - "2D"
+ 
+domain_tags:
+  - "Medicine"
+
+images:
+  - "images/isocontour.png"
+
+scene: "scene/index.json"
+
+resources:
+  - name: "isocontour_trace.py"
+    type: "Script"
+    date: 2024-01-09
+    path: "resources/isocontour_trace.py"
+  - name: "ParaView 5.7.1 osmesa py3"
+    type: "Container"
+    date: 2024-01-09
+    url: "kitware/paraview:pv-v5.7.1-osmesa-py3"
+  - name: "ctBones.vti"
+    type: "Dataset"
+    date: 2024-01-09
+
+templates:
+  - techniques:
+      - "docker"
+      - "singularity"
+    commands:
+      - type: "local"
+        run: "/opt/paraview/bin/pvbatch isocontour_trace.py"
+      - type: "mpi"
+        run: "/opt/paraview/bin/pvbatch isocontour_trace.py"
+      - type: "slurm"
+        run: "/opt/paraview/bin/pvbatch isocontour_trace.py"
+    trace: "resources/isocontour_trace.py"
+    script: "resources/isocontour_script.sh"
+    container:
+      url: "kitware/paraview:pv-v5.7.1-osmesa-py3"
+      #path: ""
+
+dataset:
+  url: "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"
+  # path: "resources/jet.vti"

@@ -20,7 +20,7 @@ if not file_exists:
 
 # create a new 'XML Image Data Reader'
 reader = pvs.XMLImageDataReader(registrationName='reader', FileName=[filepath])
-reader.PointArrayStatus = ['ImageFile'] # OWN_DATA: every field has a name in a .vti file. Replace 'Scalars_' by the corresponding name
+reader.PointArrayStatus = ['ImageFile']                                 # OWN_DATA: every field has a name in a .vti file. Replace 'Scalars_' by the corresponding name
 # reader.TimeArray = 'None'
 
 pvs.UpdatePipeline(time=0.0, proxy=reader)
@@ -37,14 +37,14 @@ pvs.UpdatePipeline(time=0.0, proxy=disk1)
 # create a new 'Transform'
 transform1 = pvs.Transform(registrationName='Transform1', Input=disk1)
 transform1.Transform = 'Transform'
-transform1.Transform.Translate = [0.5, 0.1, 0.5]
-transform1.Transform.Rotate = [90.0, 0.0, 0.0]
+transform1.Transform.Translate = [0.5, 0.1, 0.5]                        # OWN_DATA: This specifies the position and rotation of the disk that we use to seed the streamlines.
+transform1.Transform.Rotate = [90.0, 0.0, 0.0]                          # OWN_DATA: For your application other positions or even other sources might be advantageous.
 
 pvs.UpdatePipeline(time=0.0, proxy=transform1)
 
 # create a new 'Mask Points'
 maskPoints1 = pvs.MaskPoints(registrationName='MaskPoints1', Input=transform1)
-maskPoints1.MaximumNumberofPoints = 100
+maskPoints1.MaximumNumberofPoints = 100                                 # OWN_DATA: for more streamlines increase the number of points here.
 maskPoints1.RandomSampling = 1
 maskPoints1.RandomSamplingMode = 'Random Sampling'
 
@@ -52,7 +52,7 @@ pvs.UpdatePipeline(time=0.0, proxy=maskPoints1)
 
 # create a new 'Stream Tracer With Custom Source'
 streamTracerWithCustomSource1 = pvs.StreamTracerWithCustomSource(registrationName='StreamTracerWithCustomSource1', Input=reader,SeedSource=maskPoints1)
-streamTracerWithCustomSource1.Vectors = ['POINTS', 'ImageFile'] # OWN_DATA: every field has a name in a .vti file. Replace 'Scalars_' by the corresponding name
+streamTracerWithCustomSource1.Vectors = ['POINTS', 'ImageFile']         # OWN_DATA: every field has a name in a .vti file. Replace 'Scalars_' by the corresponding name
 streamTracerWithCustomSource1.MaximumStreamlineLength = 1.9920580079400003
 streamTracerWithCustomSource1.IntegrationDirection = 'FORWARD'
 
@@ -61,6 +61,7 @@ pvs.UpdatePipeline(time=0.0, proxy=streamTracerWithCustomSource1)
 # |                       |
 # | rendering stuff below |
 # v                       v
+
 #### disable automatic camera reset on 'Show'
 pvs._DisableFirstRenderCameraReset()
 pvs.LoadPalette('WhiteBackground')
@@ -81,9 +82,9 @@ renderView1.CameraViewUp = [0.0, 0.0, 1.0]
 renderView1.CameraViewAngle = 20.244328097731238
 renderView1.CameraParallelScale = 1.2182888727290784
 
-imageFileLUT = pvs.GetColorTransferFunction('ImageFile') # OWN_DATA: every field has a name in a .vti file. Replace 'Scalars_' by the corresponding name
+imageFileLUT = pvs.GetColorTransferFunction('ImageFile')                # OWN_DATA: every field has a name in a .vti file. Replace 'Scalars_' by the corresponding name
 imageFileLUTColorBar = pvs.GetScalarBar(imageFileLUT, renderView1)
-imageFileLUTColorBar.Title = 'Velocity'
+imageFileLUTColorBar.Title = 'Velocity'                                 # OWN_DATA: change the name of the color bar accoridng to what value is visualized
 imageFileLUTColorBar.WindowLocation = 'AnyLocation'
 imageFileLUTColorBar.Position = [0.9, 0.1]
 imageFileLUTColorBar.ScalarBarLength = 0.8
