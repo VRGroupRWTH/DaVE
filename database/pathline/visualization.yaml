@@ -1,0 +1,49 @@
+name: "Pathline"
+date: 2023-11-29
+
+technique_tags:
+  - "Vector"
+  - "3D"
+ 
+domain_tags:
+  - "CFD - Computational Fluid Dynamics"
+
+images:
+  - "images/pathline.gif"
+  - "images/pathline2.gif"
+
+scene: "scene/index.json"
+
+resources:
+  - name: "pathline_trace.py"
+    type: "Script"
+    date: 2024-01-08
+    path: "resources/pathline_trace.py"
+  - name: "ParaView 5.7.1 osmesa py3"
+    type: "Container"
+    date: 2024-01-08
+    url: "kitware/paraview:pv-v5.7.1-osmesa-py3"
+  - name: "jet.vti"
+    type: "Dataset"
+    date: 2024-01-08
+
+templates:
+  - techniques:
+      - "docker"
+      - "singularity"
+    commands:
+      - type: "local"
+        run: "/opt/paraview/bin/pvbatch pathline_trace.py"
+      - type: "mpi"
+        run: "/opt/paraview/bin/pvbatch pathline_trace.py"
+      - type: "slurm"
+        run: "/opt/paraview/bin/pvbatch pathline_trace.py"
+    trace: "resources/pathline_trace.py"
+    script: "resources/pathline_script.sh"
+    container:
+      url: "kitware/paraview:pv-v5.7.1-osmesa-py3"
+      #path: ""
+
+# dataset:
+#   path: "resources/jet4.zip"
+  # url: "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"
