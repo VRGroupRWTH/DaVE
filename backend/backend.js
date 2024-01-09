@@ -224,7 +224,7 @@ class Backend
         if("path" in template.container)
         {
             container_path = this.#get_file_name(template.container.path);
-            container_file = fs.readFileSync(path).toString();
+            container_file = fs.readFileSync(path);
         }
 
         else if("url" in template.container)
@@ -254,7 +254,7 @@ class Backend
             if("path" in dataset)
             {
                 dataset_path = "dataset/" + this.#get_file_name(dataset.path);
-                dataset_file = fs.readFileSync(dataset.path).toString();
+                dataset_file = fs.readFileSync(dataset.path);
             }
 
             else if("url" in dataset)
@@ -269,7 +269,7 @@ class Backend
                 if(dataset_response.ok)
                 {
                     dataset_path = "dataset/" + this.#get_file_name(dataset.url);
-                    dataset_file = await dataset_response.text();
+                    dataset_file = Buffer.from(await dataset_response.arrayBuffer());
                 }
             }
         }
@@ -313,12 +313,12 @@ class Backend
 
         if(container_file != null)
         {
-            archive.addFile(container_path, Buffer.from(container_file));
+            archive.addFile(container_path, container_file);
         }
 
         if(dataset_file != null)
         {
-            archive.addFile(dataset_path, Buffer.from(dataset_file));
+            archive.addFile(dataset_path, dataset_file);
         }
 
         response.send(archive.toBuffer());
