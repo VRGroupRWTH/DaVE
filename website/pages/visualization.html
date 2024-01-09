@@ -78,11 +78,11 @@
                     <tag v-for="tag in visualization.tags" :name="tag.name" :type="tag.type" class="me-1" @on_tag_click="on_visualization_tag_click(tag)"></tag>
                 </div>
             </div>
-            <div class="container mb-4" v-html="visualization.description"></div>
-            <div class="w-100 py-4 bg-body-tertiary">
+            <div class="container mb-4 visualization-description" v-html="visualization.description"></div>
+            <div v-if="visualization.resources.length > 0 || visualization.templates.length > 0" class="w-100 py-4 bg-body-tertiary">
                 <div class="container">
-                    <visualization-wizard :visualization="visualization" class="mb-4"></visualization-wizard>
-                    <visualization-content :visualization="visualization"></visualization-content>
+                    <visualization-wizard v-if="visualization.templates.length > 0" :visualization="visualization" class="mb-4"></visualization-wizard>
+                    <visualization-content v-if="visualization.resources.length > 0" :visualization="visualization"></visualization-content>
                 </div>
             </div>
         </main>

@@ -1,0 +1,87 @@
+<body id="app"></body>
+<script type="module">
+    import { createApp } from "vue"
+    import SharedHeader from "components/shared_header.js"
+    import SharedFooter from "components/shared_footer.js"
+
+    createApp(
+    {
+        components:
+        {
+            "shared-header": SharedHeader,
+            "shared-footer": SharedFooter
+        },
+        template:
+        `
+        <header>
+            <shared-header></shared-header>
+        </header>
+        <main class="py-4">
+            <div class="row">
+                <div class="col-2">
+                    <nav id="guide_nav_bar" class="h-100 flex-column align-items-stretch pe-4 border-end">
+                        <nav class="nav nav-pills flex-column">
+                            <a class="nav-link" h-ref="#a">Tags</a>
+                        </nav>
+                    </nav>
+                </div>
+                <div class="col-8">
+                    <div databs-spy="scroll" data-bs-target="#guide_nav_bar" data-bs-smooth-scroll="true" tabindex="0">
+                        <h4>Tags</h4>
+                        <p>
+                            Searching visualization techniques with a search query alone would be far too general, as there are often many techniques that would match the query but have totally different properties.
+                            To make the search function of DaVE more specific, every technique in the database owns a set of tags that are used to further describe the properties of a visualization technique.
+                            For example, a technique with the tag <span class="mx-1 badge text-primary-emphasis bg-primary-subtle border-primary-subtle px-2 py-1">Scalar</span> would be suitable for datasets consisting of real-valued samples, e.g. a dataset describing the temperature within a room.
+                            The tags that are used throughout the database are divided into two groups.
+                            Blue tags are used to identify technical properties such as the domain for which a visualization can be used or whether the technique can be used for time-dependent datasets.
+                            On the other hand, green tags are used to identify the scientific domain for which a technique is particularly suitable.
+                        </p>
+                        <h4>Architecture</h4>
+                        <p>
+                            This is some test text
+                        </p>
+                        <div class="d-flex justify-content-center">
+                            <img src="images/dave_architecture.svg" width="400px">
+                        </div>
+                        <p>
+                            This is some test text
+                        </p>
+                        <h4>Containers</h4>
+                        <p>
+                            What are containers. Why does DaVE use primarily containers for the vizualization techniques?
+                        </p>
+                        <h5>Docker</h5>
+                        <p>
+                            Short description for docker and where to find additonal materials, resources and tutorials.
+                        </p>
+                        <h5>Singularity</h5>
+                        <p>
+                            Short description for singularity and where to find additonal materials, resources and tutorials.
+                        </p>
+                        <h4>ParaView</h4>
+                        <p>
+                            
+                        </p>
+                        <h5>Trace Files</h5>
+                        <p>
+                            How to load trace files. How to modify trace files.
+                        </p>
+                        <h5>Additional Material</h5>
+                        <p>
+                            Links for addiotnal material
+                        </p>
+
+                        <h4>Frequently ask Questions</h4>
+                        <p>
+                            ????
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <shared-footer class="container py-5"></shared-footer>
+        </footer>
+        `
+    }).mount("#app");
+</script>
