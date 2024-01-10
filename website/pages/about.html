@@ -1,4 +1,4 @@
-<body id="app"></body>
+<body id="app" data-bs-spy="scroll" data-bs-target="#about_nav_bar" data-bs-smooth-scroll="true" data-bs-root-margin="0px 0px 0px 0px" tabindex="0"></body>
 <script type="module">
     import { createApp } from "vue"
     import SharedHeader from "components/shared_header.js"
@@ -17,7 +17,33 @@
             <shared-header></shared-header>
         </header>
         <main>
-            Work in Progress
+            <div class="row g-0 py-4">
+                <div class="col-2">
+                    <nav id="about_nav_bar" class="flex-column align-items-stretch border-end h-100">
+                        <nav class="nav nav-pills flex-column sticky-top p-4">
+                            <a class="nav-link" href="#about_what_dave">What is DaVE?</a>
+                            <a class="nav-link" href="#about_why_dave">Why do we need DaVE?</a>
+                        </nav>
+                    </nav>
+                </div>
+                <div class="col-8 p-4 about-paragraph">
+                    <div id="about">
+                        <h1 class="mb-4">About</h1>
+                    </div>
+                    <div id="about_what_dave">
+                        <h4>What is DaVE?</h4>
+                        <p>
+                            DaVE is ...
+                        </p>
+                    </div>
+                    <div id="about_why_dave">
+                        <h4>Why do we need DaVE?</h4>
+                        <p>
+                            DaVE is ...
+                        </p>
+                    </div>
+                </div>
+            </div>
         </main>
         <footer>
             <shared-footer class="container py-5"></shared-footer>

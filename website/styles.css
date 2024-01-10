@@ -180,3 +180,13 @@
     color: black;
     text-decoration: none;
 }
+
+.guide-paragraph p
+{
+    text-align: justify;
+}
+
+.about-paragraph p
+{
+    text-align: justify;
+}

@@ -1,4 +1,4 @@
-<body id="app"></body>
+<body id="app" data-bs-spy="scroll" data-bs-target="#guide_nav_bar" data-bs-smooth-scroll="true" data-bs-root-margin="0px 0px 0px 0px" tabindex="0"></body>
 <script type="module">
     import { createApp } from "vue"
     import SharedHeader from "components/shared_header.js"
@@ -16,64 +16,106 @@
         <header>
             <shared-header></shared-header>
         </header>
-        <main class="py-4">
-            <div class="row">
+        <main>
+            <div class="row g-0 py-4">
                 <div class="col-2">
-                    <nav id="guide_nav_bar" class="h-100 flex-column align-items-stretch pe-4 border-end">
-                        <nav class="nav nav-pills flex-column">
-                            <a class="nav-link" h-ref="#a">Tags</a>
+                    <nav id="guide_nav_bar" class="flex-column align-items-stretch border-end h-100">
+                        <nav class="nav nav-pills flex-column sticky-top p-4">
+                            <a class="nav-link" href="#guide_search">Database</a>
+                            <nav class="nav nav-pills flex-column">
+                                <a class="nav-link ms-3" href="#guide_search_tags">Tags</a>
+                            </nav>
+                            <a class="nav-link" href="#guide_visualizations">Visualizations</a>
+                            <nav class="nav nav-pills flex-column">
+                                <a class="nav-link ms-3" href="#guide_visualizations_render_script">Templates</a>
+                                <a class="nav-link ms-3" href="#guide_visualizations_containers">Containers</a>
+                                <a class="nav-link ms-3" href="#guide_visualizations_paraview">ParaView</a>
+                            </nav>
+                            <a class="nav-link" href="#guide_frequently_ask_questions">Frequently ask Questions</a>
                         </nav>
                     </nav>
                 </div>
-                <div class="col-8">
-                    <div databs-spy="scroll" data-bs-target="#guide_nav_bar" data-bs-smooth-scroll="true" tabindex="0">
-                        <h4>Tags</h4>
+                <div class="col-8 p-4 guide-paragraph">
+                    <div id="guide">
+                        <h1 class="mb-4">Guide</h1>
+                    </div>
+                    <div id="guide_search">
+                        <h4>Database</h4>
                         <p>
-                            Searching visualization techniques with a search query alone would be far too general, as there are often many techniques that would match the query but have totally different properties.
-                            To make the search function of DaVE more specific, every technique in the database owns a set of tags that are used to further describe the properties of a visualization technique.
-                            For example, a technique with the tag <span class="mx-1 badge text-primary-emphasis bg-primary-subtle border-primary-subtle px-2 py-1">Scalar</span> would be suitable for datasets consisting of real-valued samples, e.g. a dataset describing the temperature within a room.
-                            The tags that are used throughout the database are divided into two groups.
-                            Blue tags are used to identify technical properties such as the domain for which a visualization can be used or whether the technique can be used for time-dependent datasets.
-                            On the other hand, green tags are used to identify the scientific domain for which a technique is particularly suitable.
+                            The database of DaVE contains selection of commonly used vizualization techniuqes and provides documentation and addtional resources for them.
+                            To find a visualization, ether a search term can be used and or tags can be used to further narrow down the selection.
                         </p>
-                        <h4>Architecture</h4>
-                        <p>
-                            This is some test text
-                        </p>
-                        <div class="d-flex justify-content-center">
-                            <img src="images/dave_architecture.svg" width="400px">
+                        <div id="guide_search_tags">
+                            <h5>Tags</h5>
+                            <p>
+                                Searching visualization techniques with a search query alone would be far too general, as there are often many techniques that would match the query but have totally different properties.
+                                To make the search function of DaVE more specific, every technique in the database owns a set of tags that are used to further describe the properties of a visualization technique.
+                            </p>
+                            <div class="d-flex justify-content-center">
+                                <figure class="figure">
+                                    <img class="figure-img img-flud" src="images/dave_guide_tags.svg">
+                                    <figcaption class="figure-caption">Tags used by DaVE to further describe visualizations.</figcaption>
+                                </figure>
+                            </div>
+                            <p>
+                                For example, a technique with the tag <span class="mx-1 badge text-primary-emphasis bg-primary-subtle border-primary-subtle px-2 py-1">Scalar</span> would be suitable for datasets consisting of real-valued samples, e.g. a dataset describing the temperature within a room.
+                                The tags that are used throughout the database are divided into two groups.
+                                Blue tags are used to identify technical properties such as the domain for which a visualization can be used or whether the technique can be used for time-dependent datasets.
+                                On the other hand, green tags are used to identify the scientific domain for which a technique is particularly suitable.
+                            </p>
                         </div>
+                    </div>
+                    <div id="guide_visualizations">
+                        <h4>Visualizations</h4>
                         <p>
-                            This is some test text
+                            Besides of giving an overview over different vizualization techniuqes and providing addtional information, the goal of DaVE is also to make every technique accessible to users.
+                            However, this can be quite challanging as different uesers may use different software environments meaning that the environment in which a vizualization technique should be executed is not always known.
+                            DaVE therefore havily relies on the use of containers with which the software for the viszualization technique can be encapsulated.
+                            The container as well as additonal resources of a vizualization technique can be downloaded separately.
+                            However, there is also the option to create a template that combines al resources of a techniuqe and that is condifured for a specific use case.
                         </p>
-                        <h4>Containers</h4>
-                        <p>
-                            What are containers. Why does DaVE use primarily containers for the vizualization techniques?
-                        </p>
-                        <h5>Docker</h5>
-                        <p>
-                            Short description for docker and where to find additonal materials, resources and tutorials.
-                        </p>
-                        <h5>Singularity</h5>
-                        <p>
-                            Short description for singularity and where to find additonal materials, resources and tutorials.
-                        </p>
-                        <h4>ParaView</h4>
-                        <p>
-                            
-                        </p>
-                        <h5>Trace Files</h5>
-                        <p>
-                            How to load trace files. How to modify trace files.
-                        </p>
-                        <h5>Additional Material</h5>
-                        <p>
-                            Links for addiotnal material
-                        </p>
+                        <div id="guide_visualizations_render_script">
+                            <h5>Templates</h5>
+                            <p>
+                                A template combines all neccessary resources for a visualization techniuqe that are needed to render an image for a given dataset.
+                                If required the template also contains a preview dataset with which the technique can be tested.
+                                The shell script that is always included in the template zip file of the template controlls and automates the execution of the vizualization technique.
+                                When running the script, it loads a container, depending on the configuration of the template ether a docker container or a sigulairty container.
+                            </p>
+                            <div class="d-flex justify-content-center">
+                                <figure class="figure">
+                                    <img class="figure-img img-flud" src="images/dave_guide_template.svg">
+                                    <figcaption class="figure-caption">Tags used by DaVE to further describe visualizations.</figcaption>
+                                </figure>
+                            </div>
+                            <p>
+                                The container that is currently used for most of the visualization techniuqes, contains ParaView which is a software commonly used for sientify visualizations and data exploration.
+                                When loading the container, ParaView is instructed to load a trace file which describes the visualization techniuqe it self and all the steps that ParaView has to take to apply the visualization on the given dataset.
+                                ParaView then loads the Dataset and renders it according to the Trace File.
+                                The resulting image is then stored in the same directory in which the script file is located.
+                                Currently the script as well as the containers only run under linux based operating systems.
+                            </p>
+                        </div>
+                        <div id="guide_visualizations_containers">
+                            <h5>Containers</h5>
+                            <p>
+                                Containers 
 
+                                DaVE tries to provide to different types of containers.
+                                
+                            </p>
+                        </div>
+                        <div id="guide_visualizations_paraview">
+                            <h5>ParaView</h5>
+                            <p>
+                                <a href="https://www.paraview.org/">ParaView</a> is software commonly use for the visualization of siencify datasets.
+                            </p>
+                        </div>
+                    </div>
+                    <div id="guide_frequently_ask_questions">
                         <h4>Frequently ask Questions</h4>
                         <p>
-                            ????
+                            Test
                         </p>
                     </div>
                 </div>
