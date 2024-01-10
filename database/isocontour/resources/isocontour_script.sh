@@ -3,11 +3,11 @@
 set -e
 
 # check for the existence of data and use default when none found
-mkdir -p data
+mkdir -p dataset
 mkdir -p output
 if ! test -f "${DATASET}"; then
     echo "data set '${DATASET}' not found - using default"
-    DATASET="./data/ctBones.vti"
+    DATASET="./dataset/ctBones.vti"
     if ! test -f "${DATASET}"; then
         echo "Error! No data found!" 1>$2
         exit 0

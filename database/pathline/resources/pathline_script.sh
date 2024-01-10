@@ -3,11 +3,11 @@
 set -e
 
 # check for the existence of data and use default when none found
-mkdir -p data
+mkdir -p dataset
 mkdir -p output
 if ! test -d "${DATASET}"; then
     echo "data set '${DATASET}' not found - using default"
-    DATASET="./data/"
+    DATASET="./dataset/"
     if ! test -d "${DATASET}"; then
         echo "Error! No data found!"
         exit 0
