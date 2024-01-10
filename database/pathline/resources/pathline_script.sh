@@ -7,11 +7,14 @@ mkdir -p dataset
 mkdir -p output
 if ! test -d "${DATASET}"; then
     echo "data set '${DATASET}' not found - using default"
-    DATASET="./dataset/"
-    if ! test -d "${DATASET}"; then
-        echo "Error! No data found!"
+    if test -f 'dataset/jet4.zip'; then
+        mkdir -p dataset/jet4/
+        unzip -n -qq dataset/jet4.zip -d dataset/jet4/
+        DATASET="./dataset/jet4/"
+    else
+        echo "default data set not found - aborting"
         exit 0
-    fi;
+    fi
 fi;
 
 # determine additional execution commands for slurm and mpi
@@ -39,7 +42,7 @@ fi;
 if command -v ffmpeg &> /dev/null
 then
     ffmpeg -hide_banner -loglevel error -y -framerate 10 -i output/pathline.%04d.png output/output.avi
-    #ffmpeg -y -i output/output.avi -b:v 2000k -s 1920x1080 output/output.gif # uncomment  for generating gifs for website
+    #ffmpeg -y -i output/output.avi -b:v 8500k -s 1920x1080 output/output.gif # uncomment  for generating gifs for website
 else
     echo "ffmpeg not found - animation from images could not be generated"
 fi

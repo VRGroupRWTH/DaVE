@@ -4,6 +4,7 @@ date: 2023-11-29
 technique_tags:
   - "Vector"
   - "3D"
+  - "time-dependent"
  
 domain_tags:
   - "CFD - Computational Fluid Dynamics"
@@ -44,6 +45,6 @@ templates:
       url: "kitware/paraview:pv-v5.7.1-osmesa-py3"
       #path: ""
 
-# dataset:
-#   path: "resources/jet4.zip"
+dataset:
+  # path: "resources/jet4.zip"
   # url: "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"

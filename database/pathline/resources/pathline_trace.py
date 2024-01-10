@@ -100,9 +100,9 @@ temporalParticlesToPathlines1Display_1.LineWidth = 2.0
 
 # current camera placement for renderView1
 #renderView1.CameraPosition = [0.4960619903367558, 0.9960299942079587, 3.7110792324639665]
-renderView1.CameraPosition = [0.5, 0.5, 1.5]
+renderView1.CameraPosition = [0.5, 1.0, 2.5]
 #renderView1.CameraFocalPoint = [0.4960619903367558, 0.9960299942079587, 0.4960619903367558]
-renderView1.CameraFocalPoint = [0.5, 0.5, 0.5]
+renderView1.CameraFocalPoint = [0.5, 1.0, 0.5]
 renderView1.CameraViewUp = [-1.0, 0.0, 0.0]
 renderView1.CameraParallelScale = 1.2182888727290784
 
