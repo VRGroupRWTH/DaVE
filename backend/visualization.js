@@ -13,7 +13,7 @@ class Visualization
     #resources
 
     #templates
-    #dataset
+    #datasets
 
     #scene
     #description
@@ -28,7 +28,7 @@ class Visualization
         this.#resources = [];
 
         this.#templates = [];
-        this.#dataset = {};
+        this.#datasets = [];
 
         this.#scene = "";
         this.#description = "";
@@ -119,6 +119,10 @@ class Visualization
 
         if("templates" in visualization)
         {
+            this.#templates = visualization.templates;
+
+            for(let t)
+
             for(const item of visualization.templates)
             {
                 let template = item;
@@ -134,13 +138,16 @@ class Visualization
             }
         }
 
-        if("dataset" in visualization)
+        if("datasets" in visualization)
         {
-            this.#dataset = visualization.dataset;
+            this.#datasets = visualization.datasets;
 
-            if("path" in this.#dataset)
+            for(let dataset of this.#datasets)
             {
-                this.#dataset.path = visualization_path + this.#dataset.path;
+                if("path" in dataset)
+                {
+                    dataset.path = visualization_path + dataset.path;
+                }
             }
         }
 
