@@ -34,15 +34,16 @@ templates:
       - "singularity"
     commands:
       - type: "local"
-        run: "/opt/paraview/bin/pvbatch volumerender_trace.py"
+        run: "pvbatch volumerender_trace.py"
       - type: "mpi"
-        run: "/opt/paraview/bin/pvbatch volumerender_trace.py"
+        run: "pvbatch volumerender_trace.py"
       - type: "slurm"
-        run: "/opt/paraview/bin/pvbatch volumerender_trace.py"
+        run: "pvbatch volumerender_trace.py"
     trace: "resources/volumerender_trace.py"
     script: "resources/volumerender_script.sh"
     container:
-      url: "kitware/paraview:pv-v5.7.1-osmesa-py3"
+      # url: "kitware/paraview:pv-v5.7.1-osmesa-py3"
+      url: "ghcr.io/scivislab/paraview:5.11.1"
       #path: ""
 
 dataset:

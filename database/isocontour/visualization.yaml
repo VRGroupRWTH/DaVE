@@ -33,15 +33,16 @@ templates:
       - "singularity"
     commands:
       - type: "local"
-        run: "/opt/paraview/bin/pvbatch isocontour_trace.py"
+        run: "pvbatch isocontour_trace.py"
       - type: "mpi"
-        run: "/opt/paraview/bin/pvbatch isocontour_trace.py"
+        run: "pvbatch isocontour_trace.py"
       - type: "slurm"
-        run: "/opt/paraview/bin/pvbatch isocontour_trace.py"
+        run: "pvbatch isocontour_trace.py"
     trace: "resources/isocontour_trace.py"
     script: "resources/isocontour_script.sh"
     container:
-      url: "kitware/paraview:pv-v5.7.1-osmesa-py3"
+      # url: "kitware/paraview:pv-v5.7.1-osmesa-py3"
+      url: "ghcr.io/scivislab/paraview:5.11.1"
       #path: ""
 
 dataset:

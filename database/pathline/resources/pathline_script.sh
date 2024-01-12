@@ -36,7 +36,7 @@ fi;
 
 # assemble run command for singularity
 if [[ "${CONTAINER_PLATFORM}" == "singularity" ]]; then
-    ${EXEC} singularity run -H "${PWD}:/example" "docker://${CONTAINER_URL}" ${COMMAND} "${DATASET}"
+    ${EXEC} singularity run --containall -H "${PWD}:/example" "docker://${CONTAINER_URL}" ${COMMAND} "${DATASET}"
 fi;
 
 if command -v ffmpeg &> /dev/null

@@ -32,15 +32,16 @@ templates:
       - "singularity"
     commands:
       - type: "local"
-        run: "/opt/paraview/bin/pvbatch streamline_trace.py"
+        run: "pvbatch streamline_trace.py"
       - type: "mpi"
-        run: "/opt/paraview/bin/pvbatch streamline_trace.py"
+        run: "pvbatch streamline_trace.py"
       - type: "slurm"
-        run: "/opt/paraview/bin/pvbatch streamline_trace.py"
+        run: "pvbatch streamline_trace.py"
     trace: "resources/streamline_trace.py"
     script: "resources/streamline_script.sh"
     container:
-      url: "kitware/paraview:pv-v5.7.1-osmesa-py3"
+      # url: "kitware/paraview:pv-v5.7.1-osmesa-py3"
+      url: "ghcr.io/scivislab/paraview:5.11.1"
       #path: ""
 
 dataset:
