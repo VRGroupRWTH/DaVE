@@ -186,6 +186,22 @@
     text-align: justify;
 }
 
+.guide-scrollspy-active a.nav-link.active
+{
+    color: black;
+    border-left-width: 3px;
+    border-left-style: solid;
+    border-left-color: rgb(13, 110, 253);
+}
+
+.guide-scrollspy-active a.nav-link
+{
+    color: black;
+    border-left-width: 3px;
+    border-left-style: solid;
+    border-left-color: transparent;
+}
+
 .about-paragraph p
 {
     text-align: justify;
