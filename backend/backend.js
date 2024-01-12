@@ -218,107 +218,117 @@ class Backend
             return;
         }
 
-        let container_path = "";
-        let container_files = [];
-
-        if("path" in template.container)
-        {
-            const file = 
-            {
-                path: this.#get_file_name(template.container.path),
-                buffer: fs.readFileSync(template.container.path)
-            }
-
-            container_path = file.path;
-            container_files.push(file);
-        }
-
-        else if("url" in template.container)
-        {
-            container_path = template.container.url;
-        }
-
-        else
-        {
-            response.sendStatus(404);
-
-            return;
-        }
-
-        let dataset_path = "";
-        let dataset_files = [];
-
-        if("dataset" in request.query)
-        {
-            dataset_path = request.query.dataset;
-        }
-
-        else
-        {
-            const dataset = visualization.get_dataset();
-
-            if("path" in dataset)
-            {
-                const paths = this.#find_matching_files(dataset.path);
-
-                for(const path of paths)
-                {
-                    const file =
-                    {
-                        path: "dataset/" + this.#get_file_name(path),
-                        buffer: fs.readFileSync(path)
-                    };
-
-                    dataset_files.push(file);
-                }
-
-                if(paths.length > 1)
-                {
-                    dataset_path = "dataset/";
-                }
-
-                else if(paths.length > 0)
-                {
-                    dataset_path = "dataset/" + this.#get_file_name(paths[0]);
-                }
-            }
-
-            else if("url" in dataset)
-            {
-                const dataset_request =
-                {
-                    method: "GET"
-                };
-
-                const dataset_response = await fetch(dataset.url, dataset_request);
-
-                if(dataset_response.ok)
-                {
-                    const file = 
-                    {
-                        path: "dataset/" + this.#get_file_name(dataset.url),
-                        buffer: Buffer.from(await dataset_response.arrayBuffer()),
-                    };
-
-                    dataset_path = file.path;
-                    dataset_files.push(file);
-                }
-            }
-        }
-
-        let constants =
+        let files = [];
+        let constants = 
         [
-            "CONTAINER=" + container_path,
-            "DATASET=" + dataset_path,
             "TECHNIQUE=" + technique,
             "COMMAND=" + command.run,
             "COMMAND_TYPE=" + command.type
         ];
 
-        const trace_file = fs.readFileSync(template.trace).toString();
-        const script_file = fs.readFileSync(template.script).toString();
-        const script_lines = script_file.split("\n");
+        this.#build_container_file(files, constants, template.container);
+        this.#build_dataset_files(files, constants, query);
+        this.#build_trace_file(files, constants, template.trace);
+        this.#build_script_file(files, constants, template.script);
 
+        let archive = new AdmZip();
+
+        for(const file of files)
+        {
+            archive.addFile(file.path, file.buffer);
+        }
+
+        response.send(archive.toBuffer());
+    }
+
+    #build_container_file(files, constants, container)
+    {
+        if("path" in container)
+        {
+            const constant = "CONTAINER=" + this.#get_file_name(container.path);
+            constants.push(constant);
+
+            const file = 
+            {
+                path: this.#get_file_name(container.path),
+                buffer: fs.readFileSync(container.path)
+            };
+
+            files.push(file);
+        }
+
+        else if("url" in container)
+        {
+            const constant = "CONTAINER=" + container.url;
+            constants.push(constant)
+        }
+    }
+
+    #build_dataset_files(files, constants, query)
+    {
+        if("datasets" in query)
+        {
+            const datasets = query.datasets.split("+");
+
+            for(let index = 0; index < datasets.length; index += 2)
+            {
+                const dataset_name = datasets[index];
+                const dataset_path = datasets[index + 1];
+
+                const constant = "DATASET_" + dataset_name.toUpperCase() + "=" + dataset_path;
+                constants.push(constant);
+            }
+        }
+
+        else
+        {
+            const datasets = visualization.get_datasets();
+
+            for(const dataset of datasets)
+            {
+                if("path" in dataset)
+                {
+                    const constant = "DATASET_" + dataset_name.toUpperCase() + "=dataset/" + this.#get_file_name(dataset.path);
+                    constants.push(constant);
+
+                    for(const file_name of this.#get_matching_files(dataset.path))
+                    {
+                        const file = 
+                        {
+                            path: "dataset/" + this.#get_file_name(file_name),
+                            buffer: fs.readFileSync(file)
+                        };
+
+                        files.push(file);
+                    }
+                }
+                
+                else if("url" in dataset)
+                {
+                    const constant = "DATASET_" + dataset.name.toUpperCase() + "=" + dataset.url;
+                    constants.push(constant);
+                }
+            }
+        }
+    }
+
+    #build_trace_file(files, constants, trace)
+    {
+        const constant = "TRACE=" + this.#get_file_name(trace);
+        constants.push(constant);
+
+        const file = 
+        {
+            path: this.#get_file_name(trace),
+            buffer: fs.readFileSync(trace)
+        };
+
+        files.push(file);
+    }
+
+    #build_script_file(files, constants, script)
+    {
+        const script_file = fs.readFileSync(script).toString();
         let script_compiled = script_lines[0] + "\n";
 
         for(const constant of constants)
@@ -336,36 +346,48 @@ class Backend
             }
         }
 
-        const trace_file_name = this.#get_file_name(template.trace);
-        const script_file_name = this.#get_file_name(template.script);
-
-        let archive = new AdmZip();
-        archive.addFile(trace_file_name, Buffer.from(trace_file));
-        archive.addFile(script_file_name, Buffer.from(script_compiled));
-
-        for(const file of container_files)
+        const file = 
         {
-            archive.addFile(file.path, file.buffer);
-        }
+            path: this.#get_file_name(script),
+            buffer: Buffer.from(script_compiled)
+        };
 
-        for(const file of dataset_files)
-        {
-            archive.addFile(file.path, file.buffer);
-        }
-
-        response.send(archive.toBuffer());
+        files.push(file);
     }
 
-    #find_matching_files(file_query)
+    #get_matching_files(query)
     {
-        let paths = [];
-        let path_stack = [];
+        const offset = file_query.lastIndexOf("/");
+        let query_path = "";
+        let query_expression = "^" + query + "$";
 
-        
+        if(offset != -1)
+        {
+            query_path = file_query.substr(0, offset + 1);
+            query_expression = ("^" + file_query.substr(offset + 1) + "$").replaceAll("*", ".*");
+        }
 
-        
+        let files = [];
 
-        return path;
+        for(const file of fs.readdirSync(query_path))
+        {
+            const file_name = this.#get_file_name(file);
+            const file_stats = fs.lstatSync(file);
+
+            if(!file_stats.isFile())
+            {
+                continue;
+            }
+
+            if(file_name.match(query_expression) == null)
+            {
+                continue;
+            }
+
+            files.push(file);
+        }
+
+        return files;
     }
 
     #get_file_name(file_path)

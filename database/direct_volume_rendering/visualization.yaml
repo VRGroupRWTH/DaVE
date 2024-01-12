@@ -45,6 +45,8 @@ templates:
       url: "kitware/paraview:pv-v5.7.1-osmesa-py3"
       #path: ""
 
-dataset:
-  url: "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"
-  #path: ""
+datasets:
+  - name: "Volume"
+    description: "The volumetric dataset for which the image should be created"
+    url: "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"
+    #path:

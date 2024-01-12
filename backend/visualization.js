@@ -96,24 +96,24 @@ class Visualization
 
         if("images" in visualization)
         {
-            for(const image of visualization.images)
+            this.#images = visualization.images;
+
+            for(let image of this.#images)
             {
-                this.#images.push(visualization_path + image);
+                image = visualization_path + image;
             }
         }
 
         if("resources" in visualization)
         {
-            for(const item of visualization.resources)
+            this.#resources = visualization.resources;
+
+            for(let resource of this.#resources)
             {
-                let resource = item;
-                
                 if("path" in resource)
                 {
                     resource.path = visualization_path + resource.path;
                 }
-
-                this.#resources.push(resource);
             }
         }
 
@@ -121,11 +121,8 @@ class Visualization
         {
             this.#templates = visualization.templates;
 
-            for(let t)
-
-            for(const item of visualization.templates)
+            for(let template of this.#templates)
             {
-                let template = item;
                 template.trace = visualization_path + template.trace;
                 template.script = visualization_path + template.script;
 
@@ -133,8 +130,6 @@ class Visualization
                 {
                     template.container.path = visualization_path + template.container;
                 }
-
-                this.#templates.push(template);                
             }
         }
 
@@ -190,7 +185,7 @@ class Visualization
             images: this.#images,
             resources: this.#resources,
             templates: this.#templates,
-            dataset: this.#dataset,
+            datasets: this.#datasets,
             scene: this.#scene,
             description: this.#description
         }
@@ -226,9 +221,9 @@ class Visualization
         return this.#templates;
     }
 
-    get_dataset()
+    get_datasets()
     {
-        return this.#dataset;
+        return this.#datasets;
     }
 
     get_scene()
