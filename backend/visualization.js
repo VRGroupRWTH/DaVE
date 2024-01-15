@@ -13,7 +13,7 @@ class Visualization
     #resources
 
     #templates
-    #dataset
+    #datasets
 
     #scene
     #description
@@ -28,7 +28,7 @@ class Visualization
         this.#resources = [];
 
         this.#templates = [];
-        this.#dataset = {};
+        this.#datasets = [];
 
         this.#scene = "";
         this.#description = "";
@@ -83,6 +83,7 @@ class Visualization
 
         this.#name = visualization.name;
         this.#date = visualization.date;
+        this.#tags = [];
 
         if("technique_tags" in visualization)
         {
@@ -96,51 +97,53 @@ class Visualization
 
         if("images" in visualization)
         {
-            for(const image of visualization.images)
+            this.#images = visualization.images;
+
+            for(let index = 0; index < this.#images.length; index++)
             {
-                this.#images.push(visualization_path + image);
+                this.#images[index] = visualization_path + this.#images[index];
             }
         }
 
         if("resources" in visualization)
         {
-            for(const item of visualization.resources)
-            {
-                let resource = item;
-                
-                if("path" in resource)
-                {
-                    resource.path = visualization_path + resource.path;
-                }
+            this.#resources = visualization.resources;
 
-                this.#resources.push(resource);
+            for(let index = 0; index < this.#resources.length; index++)
+            {
+                if("path" in this.#resources[index])
+                {
+                    this.#resources[index].path = visualization_path + this.#resources[index].path;
+                }
             }
         }
 
         if("templates" in visualization)
         {
-            for(const item of visualization.templates)
+            this.#templates = visualization.templates;
+
+            for(let index = 0; index < this.#templates.length; index++)
             {
-                let template = item;
-                template.trace = visualization_path + template.trace;
-                template.script = visualization_path + template.script;
+                this.#templates[index].trace = visualization_path + this.#templates[index].trace;
+                this.#templates[index].script = visualization_path + this.#templates[index].script;
 
-                if("path" in template.container)
+                if("path" in this.#templates[index].container)
                 {
-                    template.container.path = visualization_path + template.container;
+                    this.#templates[index].container.path = visualization_path + this.#templates[index].container;
                 }
-
-                this.#templates.push(template);                
             }
         }
 
-        if("dataset" in visualization)
+        if("datasets" in visualization)
         {
-            this.#dataset = visualization.dataset;
+            this.#datasets = visualization.datasets;
 
-            if("path" in this.#dataset)
+            for(let index = 0; index < this.#datasets.length; index++)
             {
-                this.#dataset.path = visualization_path + this.#dataset.path;
+                if("path" in this.#datasets[index])
+                {
+                    this.#datasets[index].path = visualization_path + this.#datasets[index].path;
+                }
             }
         }
 
@@ -183,7 +186,7 @@ class Visualization
             images: this.#images,
             resources: this.#resources,
             templates: this.#templates,
-            dataset: this.#dataset,
+            datasets: this.#datasets,
             scene: this.#scene,
             description: this.#description
         }
@@ -219,9 +222,9 @@ class Visualization
         return this.#templates;
     }
 
-    get_dataset()
+    get_datasets()
     {
-        return this.#dataset;
+        return this.#datasets;
     }
 
     get_scene()
