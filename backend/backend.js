@@ -227,7 +227,7 @@ class Backend
         ];
 
         this.#build_container_file(files, constants, template.container);
-        this.#build_dataset_files(files, constants, query);
+        this.#build_dataset_files(files, constants, request.query, visualization);
         this.#build_trace_file(files, constants, template.trace);
         this.#build_script_file(files, constants, template.script);
 
@@ -264,7 +264,7 @@ class Backend
         }
     }
 
-    #build_dataset_files(files, constants, query)
+    #build_dataset_files(files, constants, query, visualization)
     {
         if("datasets" in query)
         {
@@ -288,7 +288,7 @@ class Backend
             {
                 if("path" in dataset)
                 {
-                    const constant = "DATASET_" + dataset_name.toUpperCase() + "=dataset/" + this.#get_file_name(dataset.path);
+                    const constant = "DATASET_" + dataset.name.toUpperCase() + "=dataset/" + this.#get_file_name(dataset.path);
                     constants.push(constant);
 
                     for(const file_name of this.#get_matching_files(dataset.path))
@@ -296,7 +296,7 @@ class Backend
                         const file = 
                         {
                             path: "dataset/" + this.#get_file_name(file_name),
-                            buffer: fs.readFileSync(file)
+                            buffer: fs.readFileSync(file_name)
                         };
 
                         files.push(file);
@@ -329,6 +329,7 @@ class Backend
     #build_script_file(files, constants, script)
     {
         const script_file = fs.readFileSync(script).toString();
+        const script_lines = script_file.split("\n");
         let script_compiled = script_lines[0] + "\n";
 
         for(const constant of constants)
@@ -357,34 +358,33 @@ class Backend
 
     #get_matching_files(query)
     {
-        const offset = file_query.lastIndexOf("/");
+        const offset = query.lastIndexOf("/");
         let query_path = "";
         let query_expression = "^" + query + "$";
 
         if(offset != -1)
         {
-            query_path = file_query.substr(0, offset + 1);
-            query_expression = ("^" + file_query.substr(offset + 1) + "$").replaceAll("*", ".*");
+            query_path = query.substr(0, offset + 1);
+            query_expression = ("^" + query.substr(offset + 1) + "$").replaceAll("*", ".*");
         }
 
         let files = [];
 
         for(const file of fs.readdirSync(query_path))
         {
-            const file_name = this.#get_file_name(file);
-            const file_stats = fs.lstatSync(file);
+            const file_stats = fs.lstatSync(query_path + file);
 
             if(!file_stats.isFile())
             {
                 continue;
             }
 
-            if(file_name.match(query_expression) == null)
+            if(file.match(query_expression) == null)
             {
                 continue;
             }
 
-            files.push(file);
+            files.push(query_path + file);
         }
 
         return files;

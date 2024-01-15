@@ -98,9 +98,9 @@ class Visualization
         {
             this.#images = visualization.images;
 
-            for(let image of this.#images)
+            for(let index = 0; index < this.#images.length; index++)
             {
-                image = visualization_path + image;
+                this.#images[index] = visualization_path + this.#images[index];
             }
         }
 
@@ -108,11 +108,11 @@ class Visualization
         {
             this.#resources = visualization.resources;
 
-            for(let resource of this.#resources)
+            for(let index = 0; index < this.#resources.length; index++)
             {
-                if("path" in resource)
+                if("path" in this.#resources[index])
                 {
-                    resource.path = visualization_path + resource.path;
+                    this.#resources[index].path = visualization_path + this.#resources[index].path;
                 }
             }
         }
@@ -121,14 +121,14 @@ class Visualization
         {
             this.#templates = visualization.templates;
 
-            for(let template of this.#templates)
+            for(let index = 0; index < this.#templates.length; index++)
             {
-                template.trace = visualization_path + template.trace;
-                template.script = visualization_path + template.script;
+                this.#templates[index].trace = visualization_path + this.#templates[index].trace;
+                this.#templates[index].script = visualization_path + this.#templates[index].script;
 
-                if("path" in template.container)
+                if("path" in this.#templates[index].container)
                 {
-                    template.container.path = visualization_path + template.container;
+                    this.#templates[index].container.path = visualization_path + this.#templates[index].container;
                 }
             }
         }
@@ -137,11 +137,11 @@ class Visualization
         {
             this.#datasets = visualization.datasets;
 
-            for(let dataset of this.#datasets)
+            for(let index = 0; index < this.#datasets.length; index++)
             {
-                if("path" in dataset)
+                if("path" in this.#datasets[index])
                 {
-                    dataset.path = visualization_path + dataset.path;
+                    this.#datasets[index].path = visualization_path + this.#datasets[index].path;
                 }
             }
         }
