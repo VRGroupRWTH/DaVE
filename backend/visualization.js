@@ -83,6 +83,7 @@ class Visualization
 
         this.#name = visualization.name;
         this.#date = visualization.date;
+        this.#tags = [];
 
         if("technique_tags" in visualization)
         {
