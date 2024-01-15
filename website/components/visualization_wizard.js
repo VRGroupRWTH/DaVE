@@ -62,6 +62,7 @@ let wizard_question_dataset =
         let wizard_question_dataset_options = computed(() =>
         {
             let dataset_settings = [];
+            let dataset_preview_availiable = true;
 
             for(const dataset of props.visualization.datasets)
             {
@@ -75,9 +76,14 @@ let wizard_question_dataset =
                 };
 
                 dataset_settings.push(dataset_setting);
+
+                if(!("path" in dataset) && !("url" in dataset))
+                {
+                    dataset_preview_availiable = false;
+                }
             }
 
-            const option_dataset_default =
+            const option_dataset_preview =
             {
                 name: "preview",
                 title: "Preview Dataset",
@@ -93,7 +99,12 @@ let wizard_question_dataset =
                 settings: dataset_settings
             };
 
-            return [option_dataset_default, option_dataset_custom];
+            if(dataset_preview_availiable)
+            {
+                return [option_dataset_preview, option_dataset_custom];
+            }
+
+            return [option_dataset_custom];
         });
 
         return {
@@ -279,22 +290,53 @@ export default
             command: ""
         });
 
-        watch([props], (old_state, new_state) =>
+        function setup_visualization_wizard()
         {
+            let config = 
+            {
+                dataset: "",
+                technique: "",
+                command: ""
+            };
+
             if(props.visualization.templates.length > 0)
             {
                 const template = props.visualization.templates[0];
     
-                visualization_wizard_config.value.technique = template.techniques[0];
-                visualization_wizard_config.value.command = template.commands[0].type;
+                config.technique = template.techniques[0];
+                config.command = template.commands[0].type;
             }
+
+            let dataset_preview_availiable = true;
 
             for(const dataset of props.visualization.datasets)
             {
                 const dataset_name = "dataset_path_" + dataset.name.toLowerCase();
 
-                visualization_wizard_config.value[dataset_name] = "./data/"
+                config[dataset_name] = "./data/"
+
+                if(!("path" in dataset) && !("url" in dataset))
+                {
+                    dataset_preview_availiable = false;
+                }
             }
+
+            if(dataset_preview_availiable)
+            {
+                config.dataset = "preview";
+            }
+
+            else
+            {
+                config.dataset = "custom";
+            }
+
+            visualization_wizard_config.value = config;
+        }
+
+        watch([props], (old_state, new_state) =>
+        {
+            setup_visualization_wizard();
         });
 
         let visualization_wizard_link = computed(() =>
@@ -326,30 +368,9 @@ export default
 
         function on_visualization_wizard_open()
         {
-            let config = 
-            {
-                dataset: "preview",
-                technique: "",
-                command: ""
-            };
-
-            if(props.visualization.templates.length > 0)
-            {
-                const template = props.visualization.templates[0];
-    
-                config.technique = template.techniques[0];
-                config.command = template.commands[0].type;
-            }
-
-            for(const dataset of props.visualization.datasets)
-            {
-                const dataset_name = "dataset_path_" + dataset.name.toLowerCase();
-
-                config[dataset_name] = "./data/"
-            }
+            setup_visualization_wizard();
 
             visualization_wizard_question_index.value = 0;
-            visualization_wizard_config.value = config;
         }
 
         function on_visualization_wizard_question_back()
