@@ -221,9 +221,9 @@ class Backend
         let files = [];
         let constants = 
         [
-            "TECHNIQUE=" + technique,
-            "COMMAND=" + command.run,
-            "COMMAND_TYPE=" + command.type
+            "CONTAINER_PLATFORM='" + technique + "'",
+            "COMMAND='" + command.run + "'",
+            "EXEC_TYPE='" + command.type + "'"
         ];
 
         this.#build_container_file(files, constants, template.container);
@@ -245,7 +245,7 @@ class Backend
     {
         if("path" in container)
         {
-            const constant = "CONTAINER=" + this.#get_file_name(container.path);
+            const constant = "CONTAINER_URL='" + this.#get_file_name(container.path) + "'";
             constants.push(constant);
 
             const file = 
@@ -259,7 +259,7 @@ class Backend
 
         else if("url" in container)
         {
-            const constant = "CONTAINER=" + container.url;
+            const constant = "CONTAINER_URL='" + container.url + "'";
             constants.push(constant)
         }
     }
@@ -275,7 +275,7 @@ class Backend
                 const dataset_name = datasets[index];
                 const dataset_path = datasets[index + 1];
 
-                const constant = "DATASET_" + dataset_name.toUpperCase() + "=" + dataset_path;
+                const constant = "DATASET_" + dataset_name.toUpperCase() + "='" + dataset_path + "'";
                 constants.push(constant);
             }
         }
@@ -288,14 +288,14 @@ class Backend
             {
                 if("path" in dataset)
                 {
-                    const constant = "DATASET_" + dataset.name.toUpperCase() + "=dataset/" + this.#get_file_name(dataset.path);
+                    const constant = "DATASET_" + dataset.name.toUpperCase() + "='data/" + this.#get_file_name(dataset.path) + "'";
                     constants.push(constant);
 
                     for(const file_name of this.#get_matching_files(dataset.path))
                     {
                         const file = 
                         {
-                            path: "dataset/" + this.#get_file_name(file_name),
+                            path: "data/" + this.#get_file_name(file_name),
                             buffer: fs.readFileSync(file_name)
                         };
 
@@ -305,7 +305,7 @@ class Backend
                 
                 else if("url" in dataset)
                 {
-                    const constant = "DATASET_" + dataset.name.toUpperCase() + "=" + dataset.url;
+                    const constant = "DATASET_" + dataset.name.toUpperCase() + "='" + dataset.url + "'";
                     constants.push(constant);
                 }
             }
@@ -314,7 +314,7 @@ class Backend
 
     #build_trace_file(files, constants, trace)
     {
-        const constant = "TRACE=" + this.#get_file_name(trace);
+        const constant = "TRACE='" + this.#get_file_name(trace) + "'";
         constants.push(constant);
 
         const file = 
