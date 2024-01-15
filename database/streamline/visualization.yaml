@@ -18,10 +18,10 @@ resources:
     type: "Script"
     date: 2024-01-08
     path: "resources/streamline_trace.py"
-  - name: "ParaView 5.7.1 osmesa py3"
+  - name: "ParaView 5.11.1"
     type: "Container"
     date: 2024-01-08
-    url: "kitware/paraview:pv-v5.7.1-osmesa-py3"
+    url: "ghcr.io/scivislab/paraview:5.11.1"
   - name: "jet.vti"
     type: "Dataset"
     date: 2024-01-08

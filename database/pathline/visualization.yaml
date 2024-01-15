@@ -11,7 +11,6 @@ domain_tags:
 
 images:
   - "images/pathline.gif"
-  - "images/pathline2.gif"
 
 scene: "scene/index.json"
 
@@ -20,11 +19,11 @@ resources:
     type: "Script"
     date: 2024-01-08
     path: "resources/pathline_trace.py"
-  - name: "ParaView 5.7.1 osmesa py3"
+  - name: "ParaView 5.11.1"
     type: "Container"
     date: 2024-01-08
-    url: "kitware/paraview:pv-v5.7.1-osmesa-py3"
-  - name: "jet.vti"
+    url: "ghcr.io/scivislab/paraview:5.11.1"
+  - name: "TODO jet4 time series"
     type: "Dataset"
     date: 2024-01-08
 
@@ -46,6 +45,6 @@ templates:
       url: "ghcr.io/scivislab/paraview:5.11.1"
       #path: ""
 
-dataset:
-  path: "resources/jet4.zip"
+# dataset:
+  # path: "resources/jet4.zip"
   # url: "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"
