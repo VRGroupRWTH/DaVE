@@ -181,6 +181,11 @@
     text-decoration: none;
 }
 
+.visualization-description p
+{
+    text-align: justify;
+}
+
 .guide-paragraph p
 {
     text-align: justify;
