@@ -39,6 +39,9 @@
                 {
                     let link_element = document.getElementById(element + "_link");
                     link_element.classList.remove("active");
+
+                    let offcanvas_element = document.getElementById(element + "_link_offcanvas");
+                    offcanvas_element.classList.remove("active");
                 }
 
                 for(const entity of entities)
@@ -62,6 +65,9 @@
                     let link_element = document.getElementById(entity.target.id + "_link");
                     link_element.classList.remove("active");
 
+                    let offcanvas_element = document.getElementById(entity.target.id + "_link_offcanvas");
+                    offcanvas_element.classList.remove("active");
+
                     if(offset_top_entity == null)
                     {
                         offset_top_entity = entity;
@@ -82,6 +88,9 @@
                 {
                     let link_element = document.getElementById(offset_top_entity.target.id + "_link");
                     link_element.classList.add("active");
+
+                    let offcanvas_element = document.getElementById(offset_top_entity.target.id + "_link_offcanvas");
+                    offcanvas_element.classList.add("active");
                 }
             }
 
@@ -116,14 +125,14 @@
                         <h1 class="display-3 fw-normal border-bottom pb-5">Guide</h1>
                     </div>
                     <div id="guide_search">
-                        <h4>Database</h4>
+                        <h2 style="margin-top: 2rem; margin-bottom: 1rem;">Database</h2>
                         <p>
                             The database of DaVE contains selection of commonly used vizualization techniuqes and provides documentation and addtional resources for them.
                             To find a visualization, ether a search term can be used and or tags can be used to further narrow down the selection.
                         </p>
                     </div>
                     <div id="guide_search_tags">
-                        <h5>Tags</h5>
+                        <h3>Tags</h3>
                         <p>
                             Searching visualization techniques with a search query alone would be far too general, as there are often many techniques that would match the query but have totally different properties.
                             To make the search function of DaVE more specific, every technique in the database owns a set of tags that are used to further describe the properties of a visualization technique.
@@ -142,7 +151,7 @@
                         </p>
                     </div>
                     <div id="guide_visualizations">
-                        <h4 class="fw-semibold">Visualizations</h4>
+                        <h2 style="margin-top: 2rem; margin-bottom: 1rem;">Visualizations</h2>
                         <p id="test">
                             Besides of giving an overview over different vizualization techniuqes and providing addtional information, the goal of DaVE is also to make every technique accessible to users.
                             However, this can be quite challanging as different uesers may use different software environments meaning that the environment in which a vizualization technique should be executed is not always known.
@@ -152,7 +161,7 @@
                         </p>
                     </div>
                     <div id="guide_visualizations_render_script">
-                        <h5>Templates</h5>
+                        <h3>Templates</h3>
                         <p>
                             A template combines all neccessary resources for a visualization techniuqe that are needed to render an image for a given dataset.
                             If required the template also contains a preview dataset with which the technique can be tested.
@@ -174,7 +183,7 @@
                         </p>
                     </div>
                     <div id="guide_visualizations_containers">
-                        <h5>Containers</h5>
+                        <h3>Containers</h3>
                         <p>
                             Containers 
 
@@ -183,13 +192,13 @@
                         </p>
                     </div>
                     <div id="guide_visualizations_paraview">
-                        <h5>ParaView</h5>
+                        <h3>ParaView</h3>
                         <p>
                             <a href="https://www.paraview.org/">ParaView</a> is software commonly use for the visualization of siencify datasets.
                         </p>
                     </div>
                     <div id="guide_frequently_ask_questions">
-                        <h4>Frequently ask Questions</h4>
+                        <h2 style="margin-top: 2rem; margin-bottom: 1rem;">Frequently ask Questions</h2>
                         <p>
                             Test
                         </p>
@@ -215,7 +224,7 @@
                 </div>
                 <div class="offcanvas offcanvas-end d-lg-none" tabindex="-1" id="offcanvasExample">
                     <div class="offcanvas-header">
-                        <button type="button" class="btn-close btn-close ms-auto me-4 mt-4" data-bs-dismiss="offcanvasExample"></button>
+                        <button type="button" class="btn-close btn-close ms-auto me-4 mt-4" data-bs-dismiss="offcanvas"></button>
                     </div>
                     <div class="offcanvas-body">
                         <ul class="navbar-nav border-bottom p-4">
@@ -231,19 +240,19 @@
                         </ul>
 
 
-                        <nav id="guide_nav_bar" class="flex-column align-items-stretch h-100">
+                        <nav id="guide_nav_bar" class="flex-column align-items-stretch">
                             <nav class="nav nav-pills flex-column p-4">
-                                <a class="nav-link" href="#guide_search">Database</a>
+                                <a class="nav-link" id="guide_search_link_offcanvas" href="#guide_search">Database</a>
                                 <nav class="nav nav-pills flex-column">
-                                    <a class="nav-link ms-3" href="#guide_search_tags">Tags</a>
+                                    <a class="nav-link ms-3" id="guide_search_tags_link_offcanvas" href="#guide_search_tags">Tags</a>
                                 </nav>
-                                <a class="nav-link" href="#guide_visualizations">Visualizations</a>
+                                <a class="nav-link" id="guide_visualizations_link_offcanvas" href="#guide_visualizations">Visualizations</a>
                                 <nav class="nav nav-pills flex-column">
-                                    <a class="nav-link ms-3" href="#guide_visualizations_render_script">Templates</a>
-                                    <a class="nav-link ms-3" href="#guide_visualizations_containers">Containers</a>
-                                    <a class="nav-link ms-3" href="#guide_visualizations_paraview">ParaView</a>
+                                    <a class="nav-link ms-3" id="guide_visualizations_render_script_link_offcanvas" href="#guide_visualizations_render_script">Templates</a>
+                                    <a class="nav-link ms-3" id="guide_visualizations_containers_link_offcanvas" href="#guide_visualizations_containers">Containers</a>
+                                    <a class="nav-link ms-3" id="guide_visualizations_paraview_link_offcanvas" href="#guide_visualizations_paraview">ParaView</a>
                                 </nav>
-                                <a class="nav-link" href="#guide_frequently_ask_questions">Frequently ask Questions</a>
+                                <a class="nav-link" id="guide_frequently_ask_questions_link_offcanvas" href="#guide_frequently_ask_questions">Frequently ask Questions</a>
                             </nav>
                         </nav>
                     </div>
