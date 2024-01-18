@@ -41,9 +41,7 @@ templates:
     trace: "resources/pathline_trace.py"
     script: "resources/pathline_script.sh"
     container:
-      # url: "kitware/paraview:pv-v5.7.1-osmesa-py3"
       url: "ghcr.io/scivislab/paraview:5.11.1"
-      #path: ""
 
 # dataset:
   # path: "resources/jet4.zip"
