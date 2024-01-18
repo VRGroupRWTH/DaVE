@@ -1,9 +1,38 @@
 #!/bin/bash
 
-set -e
+set -ex
 
-wget "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"
+# check for the existence of data and use default when none found
+mkdir -p dataset
+mkdir -p output
+if ! test -f "${DATASET_VOLUME}"; then
+    echo "data set '${DATASET_VOLUME}' not found - using default"
+    DATASET_VOLUME="./dataset/ctBones.vti"
+    if ! test -f "${DATASET_VOLUME}"; then
+	    cd dataset
+	    wget "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"
+	    cd ..
+    fi;
+fi;
 
-docker pull kitware/paraview:pv-v5.7.1-osmesa-py3
+# determine additional execution commands for slurm and mpi
+EXEC=""
+case "${EXEC_TYPE}" in
+    mpi)
+        EXEC="mpirun --allow-run-as-root"
+        ;;
 
-docker run --rm  -v .:/example -w /example kitware/paraview:pv-v5.7.1-osmesa-py3 /opt/paraview/bin/pvpython volumerender_trace.py
+    slurm)
+        EXEC="srun -n 2 --time=2"
+        ;;
+esac
+
+# assemble run command for docker
+if [[ "${CONTAINER_PLATFORM}" == "docker" ]]; then
+    docker run --rm -v .:/example -w /example "${CONTAINER_URL}" ${EXEC} ${COMMAND} "${DATASET_VOLUME}"
+fi;
+
+# assemble run command for singularity
+if [[ "${CONTAINER_PLATFORM}" == "singularity" ]]; then
+    ${EXEC} singularity run --containall -H "${PWD}:/example" "docker://${CONTAINER_URL}" ${COMMAND} "${DATASET_VOLUME}"
+fi;

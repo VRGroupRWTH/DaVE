@@ -19,10 +19,10 @@ resources:
     type: "Script"
     date: 2023-11-29
     path: "resources/volumerender_trace.py"
-  - name: "paraview:pv-v5.7.1-osmesa-py3"
+  - name: "ParaView 5.11.1"
     type: "Container"
     date: 2023-11-29
-    url: "kitware/paraview:pv-v5.7.1-osmesa-py3"
+    url: "ghcr.io/scivislab/paraview:5.11.1"
   - name: "ctBones.vti"
     type: "Dataset"
     date: 2023-11-29
@@ -34,16 +34,15 @@ templates:
       - "singularity"
     commands:
       - type: "local"
-        run: "pvpython volumerender_trace.py"
+        run: "pvbatch volumerender_trace.py"
       - type: "mpi"
-        run: "command using mpi"
+        run: "pvbatch volumerender_trace.py"
       - type: "slurm"
-        run: "command using slurm"
+        run: "pvbatch volumerender_trace.py"
     trace: "resources/volumerender_trace.py"
     script: "resources/volumerender_script.sh"
     container:
-      url: "kitware/paraview:pv-v5.7.1-osmesa-py3"
-      #path: ""
+      url: "ghcr.io/scivislab/paraview:5.11.1"
 
 datasets:
   - name: "Volume"
