@@ -218,75 +218,118 @@ class Backend
             return;
         }
 
-        let container_path = "";
-        let container_file = null;
-
-        if("path" in template.container)
-        {
-            container_path = this.#get_file_name(template.container.path);
-            container_file = fs.readFileSync(path);
-        }
-
-        else if("url" in template.container)
-        {
-            container_path = template.container.url;
-        }
-
-        else
-        {
-            response.sendStatus(404);
-
-            return;
-        }
-
-        let dataset_path = "";
-        let dataset_file = null;
-
-        if("dataset" in request.query)
-        {
-            dataset_path = request.query.dataset;
-        }
-
-        else
-        {
-            const dataset = visualization.get_dataset();
-
-            if("path" in dataset)
-            {
-                dataset_path = "dataset/" + this.#get_file_name(dataset.path);
-                dataset_file = fs.readFileSync(dataset.path);
-            }
-
-            else if("url" in dataset)
-            {
-                const dataset_request =
-                {
-                    method: "GET"
-                };
-
-                const dataset_response = await fetch(dataset.url, dataset_request);
-
-                if(dataset_response.ok)
-                {
-                    dataset_path = "dataset/" + this.#get_file_name(dataset.url);
-                    dataset_file = Buffer.from(await dataset_response.arrayBuffer());
-                }
-            }
-        }
-
-        let constants =
+        let files = [];
+        let constants = 
         [
-            "DATASET='" + dataset_path + "'",
-            "CONTAINER_URL='" + container_path + "'",
             "CONTAINER_PLATFORM='" + technique + "'",
             "COMMAND='" + command.run + "'",
             "EXEC_TYPE='" + command.type + "'"
         ];
 
-        const trace_file = fs.readFileSync(template.trace).toString();
-        const script_file = fs.readFileSync(template.script).toString();
-        const script_lines = script_file.split("\n");
+        this.#build_container_file(files, constants, template.container);
+        this.#build_dataset_files(files, constants, request.query, visualization);
+        this.#build_trace_file(files, constants, template.trace);
+        this.#build_script_file(files, constants, template.script);
 
+        let archive = new AdmZip();
+
+        for(const file of files)
+        {
+            archive.addFile(file.path, file.buffer);
+        }
+
+        response.send(archive.toBuffer());
+    }
+
+    #build_container_file(files, constants, container)
+    {
+        if("path" in container)
+        {
+            const constant = "CONTAINER_URL='" + this.#get_file_name(container.path) + "'";
+            constants.push(constant);
+
+            const file = 
+            {
+                path: this.#get_file_name(container.path),
+                buffer: fs.readFileSync(container.path)
+            };
+
+            files.push(file);
+        }
+
+        else if("url" in container)
+        {
+            const constant = "CONTAINER_URL='" + container.url + "'";
+            constants.push(constant)
+        }
+    }
+
+    #build_dataset_files(files, constants, query, visualization)
+    {
+        if("datasets" in query)
+        {
+            const datasets = query.datasets.split("+");
+
+            for(let index = 0; index < datasets.length; index += 2)
+            {
+                const dataset_name = datasets[index];
+                const dataset_path = datasets[index + 1];
+
+                const constant = "DATASET_" + dataset_name.toUpperCase() + "='" + dataset_path + "'";
+                constants.push(constant);
+            }
+        }
+
+        else
+        {
+            const datasets = visualization.get_datasets();
+
+            for(const dataset of datasets)
+            {
+                if("path" in dataset)
+                {
+                    const constant = "DATASET_" + dataset.name.toUpperCase() + "='data/" + this.#get_file_name(dataset.path) + "'";
+                    constants.push(constant);
+
+                    for(const file_name of this.#get_matching_files(dataset.path))
+                    {
+                        const file = 
+                        {
+                            path: "data/" + this.#get_file_name(file_name),
+                            buffer: fs.readFileSync(file_name)
+                        };
+
+                        files.push(file);
+                    }
+                }
+                
+                else if("url" in dataset)
+                {
+                    const constant = "DATASET_" + dataset.name.toUpperCase() + "='" + dataset.url + "'";
+                    constants.push(constant);
+                }
+            }
+        }
+    }
+
+    #build_trace_file(files, constants, trace)
+    {
+        const constant = "TRACE='" + this.#get_file_name(trace) + "'";
+        constants.push(constant);
+
+        const file = 
+        {
+            path: this.#get_file_name(trace),
+            buffer: fs.readFileSync(trace)
+        };
+
+        files.push(file);
+    }
+
+    #build_script_file(files, constants, script)
+    {
+        const script_file = fs.readFileSync(script).toString();
+        const script_lines = script_file.split("\n");
         let script_compiled = script_lines[0] + "\n";
 
         for(const constant of constants)
@@ -304,24 +347,47 @@ class Backend
             }
         }
 
-        const trace_file_name = this.#get_file_name(template.trace);
-        const script_file_name = this.#get_file_name(template.script);
-
-        let archive = new AdmZip();
-        archive.addFile(trace_file_name, Buffer.from(trace_file));
-        archive.addFile(script_file_name, Buffer.from(script_compiled));
-
-        if(container_file != null)
+        const file = 
         {
-            archive.addFile(container_path, container_file);
+            path: this.#get_file_name(script),
+            buffer: Buffer.from(script_compiled)
+        };
+
+        files.push(file);
+    }
+
+    #get_matching_files(query)
+    {
+        const offset = query.lastIndexOf("/");
+        let query_path = "";
+        let query_expression = "^" + query + "$";
+
+        if(offset != -1)
+        {
+            query_path = query.substr(0, offset + 1);
+            query_expression = ("^" + query.substr(offset + 1) + "$").replaceAll("*", ".*");
         }
 
-        if(dataset_file != null)
+        let files = [];
+
+        for(const file of fs.readdirSync(query_path))
         {
-            archive.addFile(dataset_path, dataset_file);
+            const file_stats = fs.lstatSync(query_path + file);
+
+            if(!file_stats.isFile())
+            {
+                continue;
+            }
+
+            if(file.match(query_expression) == null)
+            {
+                continue;
+            }
+
+            files.push(query_path + file);
         }
 
-        response.send(archive.toBuffer());
+        return files;
     }
 
     #get_file_name(file_path)

@@ -5,10 +5,10 @@ set -ex
 # check for the existence of data and use default when none found
 mkdir -p dataset
 mkdir -p output
-if ! test -f "${DATASET}"; then
-    echo "data set '${DATASET}' not found - using default"
-    DATASET="./dataset/ctBones.vti"
-    if ! test -f "${DATASET}"; then
+if ! test -f "${DATASET_VOLUME}"; then
+    echo "data set '${DATASET_VOLUME}' not found - using default"
+    DATASET_VOLUME="./dataset/ctBones.vti"
+    if ! test -f "${DATASET_VOLUME}"; then
 	    cd dataset
 	    wget "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"
 	    cd ..
@@ -29,10 +29,10 @@ esac
 
 # assemble run command for docker
 if [[ "${CONTAINER_PLATFORM}" == "docker" ]]; then
-    docker run --rm -v .:/example -w /example "${CONTAINER_URL}" ${EXEC} ${COMMAND} "${DATASET}"
+    docker run --rm -v .:/example -w /example "${CONTAINER_URL}" ${EXEC} ${COMMAND} "${DATASET_VOLUME}"
 fi;
 
 # assemble run command for singularity
 if [[ "${CONTAINER_PLATFORM}" == "singularity" ]]; then
-    ${EXEC} singularity run --containall -H "${PWD}:/example" "docker://${CONTAINER_URL}" ${COMMAND} "${DATASET}"
+    ${EXEC} singularity run --containall -H "${PWD}:/example" "docker://${CONTAINER_URL}" ${COMMAND} "${DATASET_VOLUME}"
 fi;

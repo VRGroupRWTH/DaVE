@@ -43,5 +43,8 @@ templates:
     container:
       url: "ghcr.io/scivislab/paraview:5.11.1"
 
-dataset:
-  url: "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"
+
+datasets:
+  - name: "Volume"
+    description: "The volumetric dataset for which the image should be created"
+    url: "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"
