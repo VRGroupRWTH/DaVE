@@ -43,6 +43,7 @@ templates:
     container:
       url: "ghcr.io/scivislab/paraview:5.11.1"
 
-# dataset:
-  # path: "resources/jet4.zip"
-  # url: "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"
+datasets:
+  - name: "jet4"
+    description: "A time series vector field of a jet"
+    url: ""

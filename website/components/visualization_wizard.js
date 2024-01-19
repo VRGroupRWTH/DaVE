@@ -87,7 +87,7 @@ let wizard_question_dataset =
             {
                 name: "preview",
                 title: "Preview Dataset",
-                description: "Along with the scripts for the visualization technique, a small dataset is downloaded with which the visualization can be directly tested.",
+                description: "The script for the visualization technique will donwload a small dataset with which the visualization can be directly tested.",
                 settings: []
             };
 
@@ -95,7 +95,7 @@ let wizard_question_dataset =
             {
                 name: "custom",
                 title: "Custom Dataset",
-                description: "Only the scripts for the visualization technique will be included in the download. The dataset used by the technique is expected to be located at the given path.",
+                description: "Only the scripts for the visualization technique will be downloaded. The datasets used by the technique are expected to be located at the given paths.",
                 settings: dataset_settings
             };
 

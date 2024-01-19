@@ -3,17 +3,16 @@
 set -e
 
 # check for the existence of data and use default when none found
-mkdir -p dataset
+mkdir -p data
 mkdir -p output
-if ! test -d "${DATASET}"; then
-    echo "data set '${DATASET}' not found - using default"
-    if test -f 'dataset/jet4.zip'; then
-        mkdir -p dataset/jet4/
-        unzip -n -qq dataset/jet4.zip -d dataset/jet4/
-        DATASET="./dataset/jet4/"
-    else
-        echo "default data set not found - aborting"
-        exit 0
+if ! test -d "${DATASET_VOLUME_PATH}"; then
+    echo "data set '${DATASET_VOLUME_PATH}' not found - using default"
+    DATASET_VOLUME_PATH="./data/jet4/"
+    if ! test -d "${DATASET_VOLUME_PATH}"; then
+        # TODO download default data set
+        cd data
+        wget "${DATASET_VOLUME_URL}"
+        cd ..
     fi
 fi;
 
@@ -31,12 +30,12 @@ esac
 
 # assemble run command for docker
 if [[ "${CONTAINER_PLATFORM}" == "docker" ]]; then
-    docker run --rm -v .:/example -w /example "${CONTAINER_URL}" ${EXEC} ${COMMAND} "${DATASET}"
+    docker run --rm -v .:/example -w /example "${CONTAINER_URL}" ${EXEC} ${COMMAND} "${DATASET_VOLUME_PATH}"
 fi;
 
 # assemble run command for singularity
 if [[ "${CONTAINER_PLATFORM}" == "singularity" ]]; then
-    ${EXEC} singularity run --containall -H "${PWD}:/example" "docker://${CONTAINER_URL}" ${COMMAND} "${DATASET}"
+    ${EXEC} singularity run --containall -H "${PWD}:/example" "docker://${CONTAINER_URL}" ${COMMAND} "${DATASET_VOLUME_PATH}"
 fi;
 
 if command -v ffmpeg &> /dev/null
