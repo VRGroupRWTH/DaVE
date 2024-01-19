@@ -28,7 +28,7 @@ export default
             </tr>
             <tr>
                 <td class="px-2">Marvin Petersen</td>
-                <td><div class="border-start my-1 px-2">m_petersen12@informatik.uni-kl.de</div></td>
+                <td><div class="border-start my-1 px-2">m.petersen@rptu.de</div></td>
             </tr>
             <tr>
                 <td class="px-2">Jens Koenen</td>
