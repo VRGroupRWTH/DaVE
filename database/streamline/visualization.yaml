@@ -25,6 +25,7 @@ resources:
   - name: "jet.vti"
     type: "Dataset"
     date: 2024-01-08
+    url: 
 
 templates:
   - techniques:
@@ -45,5 +46,5 @@ templates:
 datasets:
   - name: "FlowField"
     description: "The volumetric dataset for which the image should be created"
-    # url: "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"
     path: "resources/jet.vti"
+    # url: "https://github.com/topology-tool-kit/ttk-data/raw/1.1.0/jet.vti"

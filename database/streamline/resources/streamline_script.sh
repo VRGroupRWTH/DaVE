@@ -3,14 +3,15 @@
 set -e
 
 # check for the existence of data and use default when none found
-mkdir -p dataset
+mkdir -p data
 mkdir -p output
-if ! test -f "${DATASET_FLOWFIELD}"; then
-    echo "data set '${DATASET_FLOWFIELD}' not found - using default"
-    DATASET_FLOWFIELD="./dataset/jet.vti"
-    if ! test -f "${DATASET_FLOWFIELD}"; then
-        echo "Error! No data found!" 1>$2
-        exit 0
+if ! test -f "${DATASET_FLOWFIELD_PATH}"; then
+    echo "data set '${DATASET_FLOWFIELD_PATH}' not found - using default"
+    DATASET_FLOWFIELD_PATH="./data/jet.vti"
+    if ! test -f "${DATASET_FLOWFIELD_PATH}"; then 
+	    cd data
+	    wget "${DATASET_FLOWFIELD_URL}"
+	    cd ..
     fi;
 fi;
 
@@ -28,10 +29,10 @@ esac
 
 # assemble run command for docker
 if [[ "${CONTAINER_PLATFORM}" == "docker" ]]; then
-    docker run --rm -v .:/example -w /example "${CONTAINER_URL}" ${EXEC} ${COMMAND} "${DATASET_FLOWFIELD}"
+    docker run --rm -v .:/example -w /example "${CONTAINER_URL}" ${EXEC} ${COMMAND} "${DATASET_FLOWFIELD_PATH}"
 fi;
 
 # assemble run command for singularity
 if [[ "${CONTAINER_PLATFORM}" == "singularity" ]]; then
-    ${EXEC} singularity run --containall -H "${PWD}:/example" "docker://${CONTAINER_URL}" ${COMMAND} "${DATASET_FLOWFIELD}"
+    ${EXEC} singularity run --containall -H "${PWD}:/example" "docker://${CONTAINER_URL}" ${COMMAND} "${DATASET_FLOWFIELD_PATH}"
 fi;

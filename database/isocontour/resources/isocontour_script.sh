@@ -3,14 +3,15 @@
 set -e
 
 # check for the existence of data and use default when none found
-mkdir -p dataset
+mkdir -p data
 mkdir -p output
-if ! test -f "${DATASET_VOLUME}"; then
-    echo "data set '${DATASET_VOLUME}' not found - using default"
-    DATASET_VOLUME="./dataset/ctBones.vti"
-    if ! test -f "${DATASET_VOLUME}"; then
-        echo "Error! No data found!" 1>$2
-        exit 0
+if ! test -f "${DATASET_VOLUME_PATH}"; then
+    echo "data set '${DATASET_VOLUME_PATH}' not found - using default"
+    DATASET_VOLUME_PATH="./data/ctBones.vti"
+    if ! test -f "${DATASET_VOLUME_PATH}"; then 
+	    cd data
+	    wget "${DATASET_VOLUME_URL}"
+	    cd ..
     fi;
 fi;
 
@@ -28,10 +29,10 @@ esac
 
 # assemble run command for docker
 if [[ "${CONTAINER_PLATFORM}" == "docker" ]]; then
-    docker run --rm -v .:/example -w /example "${CONTAINER_URL}" ${EXEC} ${COMMAND} "${DATASET_VOLUME}"
+    docker run --rm -v .:/example -w /example "${CONTAINER_URL}" ${EXEC} ${COMMAND} "${DATASET_VOLUME_PATH}"
 fi;
 
 # assemble run command for singularity
 if [[ "${CONTAINER_PLATFORM}" == "singularity" ]]; then
-    ${EXEC} singularity run --containall  -H "${PWD}:/example" "docker://${CONTAINER_URL}" ${COMMAND} "${DATASET_VOLUME}"
+    ${EXEC} singularity run --containall  -H "${PWD}:/example" "docker://${CONTAINER_URL}" ${COMMAND} "${DATASET_VOLUME_PATH}"
 fi;
