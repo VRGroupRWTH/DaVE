@@ -11,7 +11,7 @@ To execute the example just run
 If the script is not executible run the following command
 
 ```
-chmod +x miltpile_slice_script.sh
+chmod +x multiple_slice_script.sh
 ```
 
 #### Limitations ####
