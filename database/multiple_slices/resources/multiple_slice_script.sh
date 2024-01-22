@@ -4,13 +4,16 @@ set -e
 
 # check for the existence of data and use default when none found
 mkdir -p dataset
-mkdir -p output
-if ! test -f "${DATASET_VOLUME}"; then
-    echo "data set '${DATASET_VOLUME}' not found - using default"
-    DATASET_VOLUME="./dataset/ctBones.vti"
-    if ! test -f "${DATASET_VOLUME}"; then
+mkdir -p output/sliceview1.cdb/image
+mkdir -p output/sliceview2.cdb/image
+mkdir -p output/sliceview3.cdb/image
+mkdir -p output/sliceview4.cdb/image
+if ! test -f "${DATASET_VOLUME_PATH}"; then
+    echo "data set '${DATASET_VOLUME_PATH}' not found - using default"
+    DATASET_VOLUME_PATH="./data/ctBones.vti"
+    if ! test -f "${DATASET_VOLUME_PATH}"; then 
 	    cd dataset
-	    wget "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"
+	    wget "${DATASET_VOLUME_URL}"
 	    cd ..
     fi;
 fi;

@@ -130,7 +130,7 @@ text3 = pvs.Text(registrationName='Text3')
 text3.Text = 'XY plane'
 
 # create a new 'XML Image Data Reader'
-ctBonesvti = pvs.XMLImageDataReader(registrationName='ctBones.vti', FileName=['/home/petersen/Data/ttk-data/ctBones.vti'])
+ctBonesvti = pvs.XMLImageDataReader(registrationName='ctBones.vti', FileName=[filepath])
 ctBonesvti.PointArrayStatus = ['Scalars_']
 ctBonesvti.TimeArray = 'None'
 pvs.UpdatePipeline(time=0.0, proxy=ctBonesvti)

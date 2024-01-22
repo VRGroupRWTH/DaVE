@@ -1,5 +1,5 @@
 #### Description ####
-Slices show a cut throught the data.In this case three slices are shown, each aligned with an axis. Furhtermore, this example produces a Cinema database file for data exploration after rendering. With, for example, [Cinema View](https://github.com/cinemascience/cinema_view) these .cdb files can be displayed.
+Slices show a cut throught the data. In this case three slices are shown, each aligned with an axis. Furthermore, this example produces a Cinema database file for data exploration after rendering. With, for example, [Cinema View](https://github.com/cinemascience/cinema_view) these .cdb files can be displayed.
 
 #### Instructions ####
 To execute the example just run
