@@ -1,0 +1,50 @@
+name: "Heatmap"
+date: 2023-11-29
+
+technique_tags:
+  - "Scalar"
+  - "3D"
+  - "2D"
+ 
+domain_tags:
+  - "Geology"
+
+images:
+  - "images/heatmap.png"
+
+# scene: "scene/index.json"
+
+resources:
+  - name: "heatmap_trace.py"
+    type: "Script"
+    date: 2024-01-09
+    path: "resources/heatmap_trace.py"
+  - name: "ParaView 5.11.1"
+    type: "Container"
+    date: 2024-01-09
+    url: "ghcr.io/scivislab/paraview:5.11.1"
+  - name: "ctBones.vti"
+    type: "Dataset"
+    date: 2024-01-09
+
+templates:
+  - techniques:
+      - "docker"
+      - "singularity"
+    commands:
+      - type: "local"
+        run: "pvbatch heatmap_trace.py"
+      - type: "mpi"
+        run: "pvbatch heatmap_trace.py"
+      - type: "slurm"
+        run: "pvbatch heatmap_trace.py"
+    trace: "resources/heatmap_trace.py"
+    script: "resources/heatmap_script.sh"
+    container:
+      url: "ghcr.io/scivislab/paraview:5.11.1"
+
+
+datasets:
+  - name: "Volume"
+    description: "The volumetric dataset for which the image should be created"
+    url: "https://nextcloud.computecanada.ca/index.php/s/edS6be3sk8oQ58N/download"
