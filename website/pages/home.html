@@ -38,7 +38,7 @@
 
                     for(let index = 1; index < tags.length; index++)
                     {
-                        search_url += "+" + tags[index].name + "+" + tags[index].type + "+" + tags[index].abbreviation;
+                        search_tag_url += "+" + tags[index].name + "+" + tags[index].type + "+" + tags[index].abbreviation;
                     }
 
                     search_url += "tags=" + encodeURIComponent(search_tag_url);

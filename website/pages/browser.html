@@ -235,7 +235,7 @@
                         <div class="spinner-border text-body-tertiary" role="status"></div>
                         <span class="ms-2 text-body-tertiary fw-semibold fs-4">Loading visualizations</span>
                     </div>
-                    <div v-else-if="browser_items.length > 0" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
+                    <div v-else-if="browser_items.length > 0" class="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xxl-3 g-3">
                         <div v-for="item of browser_items" class="col">
                             <browser-item :browser_item="item" @on_browser_item_click="on_browser_item_click(item)" @on_browser_item_tag_click="on_browser_item_tag_click"></browser-item>
                         </div>
