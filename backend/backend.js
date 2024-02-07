@@ -41,14 +41,14 @@ class Backend
     async #on_search_visualizations_request(request, response)
     {
         const query = request.body.query;
-        let sorting = Sorting.score_descending;
+        let sorting = Sorting.name_descending;
         let filter_date_begin = null;
         let filter_date_end = null;
         let filter_tags = [];
 
         if("sorting" in request.body)
         {
-            sorting = Sorting.import(request.body.sorting);
+            sorting = Sorting.select(query, request.body.sorting);
         }
 
         if("filter_date_begin" in request.body)
