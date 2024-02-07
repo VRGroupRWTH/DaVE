@@ -66,11 +66,11 @@ let wizard_question_dataset =
 
             for(const dataset of props.visualization.datasets)
             {
-                const dataset_name = "dataset_path_" + dataset.name.toLowerCase();
+                const dataset_identifier = "dataset_path_" + dataset.identifier.toLowerCase();
 
                 const dataset_setting =
                 {
-                    name: dataset_name,
+                    name: dataset_identifier,
                     title: dataset.name,
                     description: dataset.description
                 };
@@ -311,9 +311,9 @@ export default
 
             for(const dataset of props.visualization.datasets)
             {
-                const dataset_name = "dataset_path_" + dataset.name.toLowerCase();
+                const dataset_identifier = "dataset_path_" + dataset.identifier.toLowerCase();
 
-                config[dataset_name] = "./data/"
+                config[dataset_identifier] = "./data/"
 
                 if(!("path" in dataset) && !("url" in dataset))
                 {
@@ -352,11 +352,11 @@ export default
 
                 for(const dataset of props.visualization.datasets)
                 {
-                    const dataset_name = "dataset_path_" + dataset.name.toLowerCase();
+                    const dataset_identifier = "dataset_path_" + dataset.identifier.toLowerCase();
 
-                    if(dataset_name in visualization_wizard_config.value)
+                    if(dataset_identifier in visualization_wizard_config.value)
                     {
-                        dataset_link += dataset.name + "+" + visualization_wizard_config.value[dataset_name];
+                        dataset_link += dataset.identifier + "+" + visualization_wizard_config.value[dataset_identifier];
                     }
                 }
 

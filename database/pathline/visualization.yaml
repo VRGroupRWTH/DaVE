@@ -45,5 +45,6 @@ templates:
 
 datasets:
   - name: "jet4"
+    identifier: "DATASET_VOLUME"
     description: "A time series vector field of a jet"
     url: ""
