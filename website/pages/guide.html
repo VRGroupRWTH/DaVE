@@ -200,7 +200,11 @@
                     <div id="guide_frequently_ask_questions">
                         <h2 style="margin-top: 2rem; margin-bottom: 1rem;">Frequently ask Questions</h2>
                         <p>
-                            Test
+                            The container that is currently used for most of the visualization techniuqes, contains ParaView which is a software commonly used for sientify visualizations and data exploration.
+                            When loading the container, ParaView is instructed to load a trace file which describes the visualization techniuqe it self and all the steps that ParaView has to take to apply the visualization on the given dataset.
+                            ParaView then loads the Dataset and renders it according to the Trace File.
+                            The resulting image is then stored in the same directory in which the script file is located.
+                            Currently the script as well as the containers only run under linux based operating systems.
                         </p>
                     </div>
                 </div>
@@ -241,7 +245,7 @@
 
 
                         <nav id="guide_nav_bar" class="flex-column align-items-stretch">
-                            <nav class="nav nav-pills flex-column p-4">
+                            <nav class="nav  flex-column p-4 guide-scrollspy-active">
                                 <a class="nav-link" id="guide_search_link_offcanvas" href="#guide_search">Database</a>
                                 <nav class="nav nav-pills flex-column">
                                     <a class="nav-link ms-3" id="guide_search_tags_link_offcanvas" href="#guide_search_tags">Tags</a>
@@ -258,12 +262,15 @@
                     </div>
                 </div>
             </div>
-            <div class="" style="height: 100px">
+            <div class=" bg-body-tertiary" style="height: 100px">
 
             </div>
         </main>
         <footer>
-            <shared-footer class="container py-5"></shared-footer>
+            <shared-footer class="container py-5 my-5"></shared-footer>
+            <div class="border-top">
+
+            </div>
         </footer>
         `
     }).mount("#app");
