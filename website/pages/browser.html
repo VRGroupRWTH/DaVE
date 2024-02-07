@@ -28,12 +28,13 @@
         {
             const items = parameters.get("tags").split("+");
 
-            for(let index = 0; index < items.length - 1; index += 2)
+            for(let index = 0; index < items.length - 1; index += 3)
             {
                 let tag = 
                 {
                     name: items[index],
-                    type: items[index + 1]
+                    type: items[index + 1],
+                    abbreviation: items[index + 2]
                 };
 
                 tags.push(tag);

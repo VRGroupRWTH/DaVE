@@ -32,7 +32,7 @@ export default
         <div class="card-body">
             <h5 class="card-title">{{ browser_item.name }}</h5>
             <div class="d-flex flex-wrap">
-                <tag v-for="tag of browser_item.tags" :name="tag.name" :type="tag.type" class="me-1" @on_tag_click="on_browser_item_tag_click_internal(tag)"></tag>
+                <tag v-for="tag of browser_item.tags" :tag="tag" class="me-1" @on_tag_click="on_browser_item_tag_click_internal"></tag>
             </div>
         </div>
     </div>

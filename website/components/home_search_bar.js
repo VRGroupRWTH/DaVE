@@ -43,7 +43,7 @@ export default
                 {
                     query : query.value,
                     query_property : "name",
-                    output_properties : ["name", "type"],
+                    output_properties : ["name", "type", "abbreviation"],
                     filter_all_techniques : true
                 })
             };
@@ -116,9 +116,9 @@ export default
             search_dropdown_class.value = "";
         }
 
-        function on_search_bar_tag_remove(name, type)
+        function on_search_bar_tag_remove(tag)
         {
-            tags.value = tags.value.filter(tag => tag.name != name);
+            tags.value = tags.value.filter(item => item.name != tag.name || item.type != tag.type);
         }
 
         function on_search_bar_query_suggestion_select(query)
@@ -126,14 +126,8 @@ export default
             context.emit("on_search_bar_search", query, tags.value);
         }
 
-        function on_search_bar_tag_suggestion_select(name, type)
+        function on_search_bar_tag_suggestion_select(tag)
         {
-            const tag = 
-            {
-                name,
-                type
-            };
-
             tags.value.push(tag);
         }
 
@@ -158,7 +152,7 @@ export default
         <div class="position-relative w-100" style="max-width: 700px">
             <div class="form-control shadow-sm w-100" :style="'border-bottom-right-radius: 0px; border-top-right-radius: 0px; border-color: var(--bs-border-color-translucent); ' + search_bar_style">
                 <div class="d-flex" style="height: 28px">                     
-                    <tag v-for="tag of tags" :name="tag.name" :type="tag.type" class="me-1" @on_tag_click="on_search_bar_tag_remove"></tag>
+                    <tag v-for="tag of tags" :tag="tag" class="me-1" @on_tag_click="on_search_bar_tag_remove"></tag>
                     <input class="flex-fill" style="border: none; outline: none;" size="1" v-model="query" type="text" placeholder="Visualization" @keydown.delete="on_search_bar_query_delete" @keydown.enter="on_search_bar_search_internal" @keydown.escape="on_search_bar_query_escape">
                 </div>
             </div>
@@ -172,7 +166,7 @@ export default
                     <hr class="dropdown-divider">
                 </li>
                 <li class="d-flex" style="padding-left: 12px; padding-right: 12px;">
-                    <tag v-for="tag of tag_suggestions" :name="tag.name" :type="tag.type" class="me-1" @on_tag_click="on_search_bar_tag_suggestion_select"></tag>
+                    <tag v-for="tag of tag_suggestions" :tag="tag" class="me-1" @on_tag_click="on_search_bar_tag_suggestion_select"></tag>
                 </li>
             </ul>
         </div>

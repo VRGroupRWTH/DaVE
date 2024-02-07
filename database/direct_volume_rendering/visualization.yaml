@@ -1,12 +1,13 @@
 name: "Direct Volume Rendering"
 date: 2023-11-29
 
-technique_tags:
-  - "Scalar"
-  - "3D"
- 
-domain_tags:
-  - "Medicine"
+tags:
+  - name: "Scalar"
+    type: "technique"
+  - name: "3D"
+    type: "technique"
+  - name: "Medicine"
+    type: "domain"
 
 images:
   - "images/volumerender.png"

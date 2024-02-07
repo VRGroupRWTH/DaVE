@@ -85,14 +85,9 @@ class Visualization
         this.#date = visualization.date;
         this.#tags = [];
 
-        if("technique_tags" in visualization)
+        if("tags" in visualization)
         {
-            this.#tags = this.#tags.concat(Tag.load(visualization.technique_tags, "technique"));
-        }
-
-        if("domain_tags" in visualization)
-        {
-            this.#tags = this.#tags.concat(Tag.load(visualization.domain_tags, "domain"));
+            this.#tags = Tag.import(visualization.tags);
         }
 
         if("images" in visualization)

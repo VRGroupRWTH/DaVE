@@ -1,13 +1,16 @@
 name: "Glyphs"
 date: 2023-11-29
 
-technique_tags:
-  - "Vector"
-  - "3D"
-  - "2D"
- 
-domain_tags:
-  - "CFD - Computational Fluid Dynamics"
+tags:
+  - name: "Vector"
+    type: "technique"
+  - name: "2D"
+    type: "technique"
+  - name: "3D"
+    type: "technique"
+  - name: "Computational Fluid Dynamics"
+    type: "domain"
+    abbreviation: "CFD"
 
 images:
   - "images/glyphs.png"

@@ -1,13 +1,16 @@
 name: "Pathline"
 date: 2023-11-29
 
-technique_tags:
-  - "Vector"
-  - "3D"
-  - "time-dependent"
- 
-domain_tags:
-  - "CFD - Computational Fluid Dynamics"
+tags:
+  - name: "Vector"
+    type: "technique"
+  - name: "3D"
+    type: "technique"
+  - name: "Time Dependent"
+    type: "technique"
+  - name: "Computational Fluid Dynamics"
+    type: "domain"
+    abbreviation: "CFD"
 
 images:
   - "images/pathline.gif"
