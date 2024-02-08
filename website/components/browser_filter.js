@@ -1,7 +1,7 @@
-import BrowserFilterDate from "components/browser_filter_date.js"
-import BrowserFilterTag from "components/browser_filter_tag.js"
+import { BrowserFilterDate } from "components/browser_filter_date.js"
+import { BrowserFilterTag } from "components/browser_filter_tag.js"
 
-export default
+export const BrowserFilter =
 {
     components:
     {

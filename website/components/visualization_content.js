@@ -1,4 +1,4 @@
-export default
+export const VisualizationContent =
 {
     props: ["visualization"],
     setup()

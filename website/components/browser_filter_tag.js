@@ -1,7 +1,7 @@
 import { ref, watch } from "vue"
-import Tag from "components/tag.js"
+import { Tag } from "components/tag.js"
 
-export default
+export const BrowserFilterTag =
 {
     components:
     {

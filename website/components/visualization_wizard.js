@@ -1,6 +1,6 @@
 import { ref, computed, watch } from "vue"
 
-let wizard_question = 
+const WizardQuestion = 
 {
     props: ["name", "options", "config"],
     emits: ["update:config"],
@@ -49,11 +49,11 @@ let wizard_question =
     `
 };
 
-let wizard_question_dataset = 
+const WizardQuestionDataset = 
 {
     components:
     {
-        "wizard-question": wizard_question
+        "wizard-question": WizardQuestion
     },
     props: ["visualization", "config"],
     emits: ["update:config"],
@@ -117,11 +117,11 @@ let wizard_question_dataset =
     `
 };
 
-let wizard_question_technique = 
+const WizardQuestionTechnique = 
 {
     components: 
     {
-        "wizard-question": wizard_question
+        "wizard-question": WizardQuestion
     },
     props: ["visualization", "config"],
     emits: ["update:config"],
@@ -181,11 +181,11 @@ let wizard_question_technique =
     `
 };
 
-let wizard_question_command = 
+const WizardQuestionCommand = 
 {
     components: 
     {
-        "wizard-question": wizard_question
+        "wizard-question": WizardQuestion
     },
     props: ["visualization", "config"],
     emits: ["update:config"],
@@ -258,13 +258,13 @@ let wizard_question_command =
     `
 };
 
-export default
+export const VisualizationWizard = 
 {
     components:
     {
-        "wizard-question-dataset": wizard_question_dataset,
-        "wizard-question-technique": wizard_question_technique,
-        "wizard-question-command": wizard_question_command,
+        "wizard-question-dataset": WizardQuestionDataset,
+        "wizard-question-technique": WizardQuestionTechnique,
+        "wizard-question-command": WizardQuestionCommand,
     },
     props: ["visualization"],
     setup(props)

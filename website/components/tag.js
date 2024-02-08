@@ -1,8 +1,37 @@
 import { ref, computed, watch } from "vue"
 
-export default
+const tag_types = 
+[
+    "technique",
+    "domain"
+];
+
+export function equal_tags(tag1, tag2)
 {
-    props: ["tag", "is_removable"],
+    return tag1.name == tag2.name && tag1.type == tag2.type;
+}
+
+export function compare_tags(tag1, tag2)
+{
+    const type_index1 = tag_types.indexOf(tag1.type);
+    const type_index2 = tag_types.indexOf(tag2.type);
+
+    if(type_index1 == type_index2)
+    {
+        return tag1.name.localeCompare(tag2.name);
+    }
+
+    return type_index1 - type_index2;
+}
+
+export function sort_tags(tags)
+{
+    return tags.sort(compare_tags);
+}
+
+export const Tag =
+{
+    props: ["tag", "is_removable", "is_highlighted"],
     emits: ["on_tag_click", "on_tag_remove"],
     setup(props, context)
     {
@@ -21,17 +50,39 @@ export default
 
         let tag_class = computed(() =>
         {
+            let class_list = "";
+
             switch(props.tag.type)
             {
             case "technique":
-                return "text-primary-emphasis bg-primary-subtle border-primary-subtle";
+                class_list = "text-primary-emphasis bg-primary-subtle border-primary-subtle";
+                break;
             case "domain":
-                return "text-success-emphasis bg-success-subtle border-success-subtle";
+                class_list = "text-success-emphasis bg-success-subtle border-success-subtle";
+                break;
             default:
                 break;
             }
 
-            return "";
+            if("is_highlighted" in props)
+            {
+                if(props.is_highlighted)
+                {
+                    switch(props.tag.type)
+                    {
+                    case "technique":
+                        class_list += " tag-highlight-technique";
+                        break;
+                    case "domain":
+                        class_list += " tag-highlight-domain";
+                        break;
+                    default:
+                        break;
+                    }
+                }
+            }
+
+            return class_list;
         });
 
         watch([props, tag_button], (old_state, new_state) =>

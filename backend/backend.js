@@ -1,4 +1,4 @@
-const {Database, Sorting} = require("./database.js");
+const { Database, Sorting } = require("./database.js");
 const Tag = require("./tag.js");
 const AdmZip = require("adm-zip");
 const fs = require("fs");

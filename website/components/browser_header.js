@@ -1,4 +1,4 @@
-export default
+export const BrowserHeader =
 {
     props: ["browser_query", "browser_sorting"],
     emits: ["update:browser_query", "update:browser_sorting"],

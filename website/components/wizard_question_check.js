@@ -1,6 +1,6 @@
 import { computed } from "vue"
 
-export default
+export const WizardQuestionCheck =
 {
     props: ["answers", "options"],
     setup(props)
