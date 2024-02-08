@@ -1,4 +1,4 @@
-name: "Line-Integral Convolution (LIC)"
+name: "Line-Integral Convolution (LIC) of a Jet Flow"
 date: 2023-02-01
 
 tags:
@@ -49,5 +49,6 @@ templates:
 
 datasets:
   - name: "Volume"
-    description: "A time series of the flow field of the earths mantle from the SciVis Contest 2021 (https://scivis2021.netlify.app/data/)"
-    url: "https://nextcloud.computecanada.ca/index.php/s/edS6be3sk8oQ58N/download"
+    description: "A flow field of a simulated jet."
+    path: ../glyphs/resources/jet.vti
+    # url: "https://nextcloud.computecanada.ca/index.php/s/edS6be3sk8oQ58N/download"

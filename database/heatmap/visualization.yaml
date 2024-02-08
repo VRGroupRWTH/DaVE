@@ -1,13 +1,15 @@
 name: "Heatmap"
 date: 2023-11-29
 
-technique_tags:
-  - "Scalar"
-  - "3D"
-  - "2D"
- 
-domain_tags:
-  - "Geology"
+tags:
+  - name: "Scalar"
+    type: "technique"
+  - name: "2D"
+    type: "technique"
+  - name: "3D"
+    type: "technique"
+  - name: "Geology"
+    type: "domain"
 
 images:
   - "images/heatmap.png"

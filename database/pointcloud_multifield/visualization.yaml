@@ -1,15 +1,20 @@
 name: "Point Cloud Multifield"
 date: 2023-02-01
 
-technique_tags:
-  - "Vector"
-  - "Scalar"
-  - "Multifield"
-  - "3D"
-  - "2D"
- 
-domain_tags:
-  - "CFD - Computational Fluid Dynamics"
+tags:
+  - name: "Vector"
+    type: "technique"
+  - name: "Scalar"
+    type: "technique"
+  - name: "Multifield"
+    type: "technique"
+  - name: "2D"
+    type: "technique"
+  - name: "3D"
+    type: "technique"
+  - name: "Computational Fluid Dynamics"
+    type: "domain"
+    abbreviation: "CFD"
 
 images:
   - "images/pointcloud.gif"
