@@ -1,13 +1,15 @@
 name: "Muliple Slices"
 date: 2023-11-29
 
-technique_tags:
-  - "Scalar"
-  - "3D"
-  - "Cinema"
- 
-domain_tags:
-  - "Medicine"
+tags:
+  - name: "Scalar"
+    type: "technique"
+  - name: "3D"
+    type: "technique"
+  - name: "Cinema"
+    type: "technique"
+  - name: "Medicine"
+    type: "domain"
 
 images:
   - "images/51_xy.png"
@@ -50,5 +52,6 @@ templates:
 
 datasets:
   - name: "Volume"
+    identifier: "DATASET_VOLUME"
     description: "The volumetric dataset for which the image should be created"
     url: "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"

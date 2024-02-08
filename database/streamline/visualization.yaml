@@ -1,12 +1,14 @@
 name: "Streamlines"
 date: 2023-11-29
 
-technique_tags:
-  - "Vector"
-  - "3D"
- 
-domain_tags:
-  - "CFD - Computational Fluid Dynamics"
+tags:
+  - name: "Vector"
+    type: "technique"
+  - name: "3D"
+    type: "technique"
+  - name: "Computational Fluid Dynamics"
+    type: "domain"
+    abbreviation: "CFD"
 
 images:
   - "images/streamline.png"
@@ -44,7 +46,8 @@ templates:
       url: "ghcr.io/scivislab/paraview:5.11.1"
 
 datasets:
-  - name: "FlowField"
+  - name: "Flow Field"
+    identifier: "DATASET_FLOWFIELD"
     description: "The volumetric dataset for which the image should be created"
     path: "resources/jet.vti"
     # url: "https://github.com/topology-tool-kit/ttk-data/raw/1.1.0/jet.vti"

@@ -41,14 +41,14 @@ class Backend
     async #on_search_visualizations_request(request, response)
     {
         const query = request.body.query;
-        let sorting = Sorting.score_descending;
+        let sorting = Sorting.name_descending;
         let filter_date_begin = null;
         let filter_date_end = null;
         let filter_tags = [];
 
         if("sorting" in request.body)
         {
-            sorting = Sorting.import(request.body.sorting);
+            sorting = Sorting.select(query, request.body.sorting);
         }
 
         if("filter_date_begin" in request.body)
@@ -272,10 +272,10 @@ class Backend
 
             for(let index = 0; index < datasets.length; index += 2)
             {
-                const dataset_name = datasets[index];
+                const dataset_identifier = datasets[index];
                 const dataset_path = datasets[index + 1];
 
-                const constant = "DATASET_" + dataset_name.toUpperCase() + "_PATH='" + dataset_path + "'";
+                const constant = dataset_identifier.toUpperCase() + "_PATH='" + dataset_path + "'";
                 constants.push(constant);
             }
         }
@@ -288,7 +288,7 @@ class Backend
             {
                 if("path" in dataset)
                 {
-                    const constant = "DATASET_" + dataset.name.toUpperCase() + "_PATH='data/" + this.#get_file_name(dataset.path) + "'";
+                    const constant = dataset.identifier.toUpperCase() + "_PATH='data/" + this.#get_file_name(dataset.path) + "'";
                     constants.push(constant);
 
                     for(const file_name of this.#get_matching_files(dataset.path))
@@ -305,7 +305,7 @@ class Backend
                 
                 else if("url" in dataset)
                 {
-                    const constant = "DATASET_" + dataset.name.toUpperCase() + "_URL='" + dataset.url + "'";
+                    const constant = dataset.identifier.toUpperCase() + "_URL='" + dataset.url + "'";
                     constants.push(constant);
                 }
             }

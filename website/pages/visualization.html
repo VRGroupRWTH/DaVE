@@ -36,7 +36,7 @@
 
             function on_visualization_tag_click(tag)
             {
-                window.location = "/browser?tags=" + encodeURIComponent(tag.name + "+" + tag.type);
+                window.location = "/browser?tags=" + encodeURIComponent(tag.name + "+" + tag.type + "+" + tag.abbreviation);
             }
 
             return {
@@ -76,7 +76,7 @@
             <div class="container mb-4">
                 <h1 class="mb-2">{{ visualization.name }}</h1>
                 <div class="d-flex">
-                    <tag v-for="tag in visualization.tags" :name="tag.name" :type="tag.type" class="me-1" @on_tag_click="on_visualization_tag_click(tag)"></tag>
+                    <tag v-for="tag in visualization.tags" :tag="tag" class="me-1" @on_tag_click="on_visualization_tag_click"></tag>
                 </div>
             </div>
             <div class="container mb-4" v-html="visualization.description"></div>

@@ -1,13 +1,15 @@
 name: "Isocontours"
 date: 2023-11-29
 
-technique_tags:
-  - "Scalar"
-  - "3D"
-  - "2D"
- 
-domain_tags:
-  - "Medicine"
+tags:
+  - name: "Scalar"
+    type: "technique"
+  - name: "2D"
+    type: "technique"
+  - name: "3D"
+    type: "technique"
+  - name: "Medicine"
+    type: "domain"
 
 images:
   - "images/isocontour.png"
@@ -46,5 +48,6 @@ templates:
 
 datasets:
   - name: "Volume"
+    identifier: "DATASET_VOLUME"
     description: "The volumetric dataset for which the image should be created"
     url: "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"

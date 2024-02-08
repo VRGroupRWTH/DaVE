@@ -24,7 +24,7 @@ export default
                 {
                     query: browser_tag_suggestion_query.value,
                     query_property: "name",
-                    output_properties: ["name", "type"],
+                    output_properties: ["name", "type", "abbreviation"],
                     filter_all_visualizations: true
                 })
             };
@@ -50,12 +50,12 @@ export default
             browser_tag_suggestions.value = tag_suggestions;
         }, { immediate: true });
 
-        function on_browser_tag_remove(name, type)
+        function on_browser_tag_remove(tag)
         {
             let filters = props.browser_filters;
-            filters.tags = filters.tags.filter(tag =>
+            filters.tags = filters.tags.filter(item =>
             {
-                return tag.name != name || tag.type != type; 
+                return item.name != tag.name || item.type != tag.type; 
             });
 
             context.emit("update:browser_filters", filters);
@@ -66,14 +66,8 @@ export default
             browser_tag_suggestion_query.value = "";
         }
 
-        function on_browser_tag_suggestion_select(name, type)
+        function on_browser_tag_suggestion_select(tag)
         {
-            let tag = 
-            {
-                name,
-                type
-            }
-
             let filters = props.browser_filters;
             filters.tags.push(tag);
 
@@ -92,14 +86,14 @@ export default
     `
     <div class="border rounded d-flex align-items-center">
         <div class="flex-fill d-flex flex-wrap m-1">
-            <tag v-for="tag of browser_filters.tags" :name="tag.name" :type="tag.type" is_removable="true" class="m-1" @on_tag_remove="on_browser_tag_remove"></tag>
+            <tag v-for="tag of browser_filters.tags" :tag="tag" is_removable="true" class="m-1" @on_tag_remove="on_browser_tag_remove"></tag>
         </div>
         <div class="dropdown dropend-md align-self-end m-2">
             <button class="btn btn-primary d-flex align-items-center justify-content-center p-0" style="width: 28px; height: 28px;" input="button" data-bs-toggle="dropdown" @click="on_browser_tag_suggestion_open">
                 <img src="symbols/plus.svg" width="20px">
             </button>
             <div class="dropdown-menu p-3">
-                <div class="input-group mb-3" style="width: 200px;">
+                <div class="input-group mb-3" style="min-width: 200px;">
                     <span class="input-group-text p-2">
                         <img src="symbols/search.svg">
                     </span>
@@ -107,7 +101,7 @@ export default
                 </div>
                 <ul class="list-unstyled border rounded overflow-y-scroll" style="height: 150px;">
                     <li v-for="tag of browser_tag_suggestions">
-                        <div class="dropdown-item d-flex align-items-center" @click="on_browser_tag_suggestion_select(tag.name, tag.type)">
+                        <div class="dropdown-item d-flex align-items-center" @click="on_browser_tag_suggestion_select(tag)">
                             <div v-if="tag.type == 'technique'" class="border rounded bg-primary-subtle border-primary-subtle me-2" style="width: 16px; height: 16px"></div>
                             <div v-if="tag.type == 'domain'" class="border rounded bg-success-subtle border-success-subtle me-2" style="width: 16px; height: 16px"></div>
                             <span>{{ tag.name }}</span>
