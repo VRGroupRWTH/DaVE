@@ -1,0 +1,53 @@
+name: "Pathline"
+date: 2023-11-29
+
+tags:
+  - name: "Vector"
+    type: "technique"
+  - name: "3D"
+    type: "technique"
+  - name: "Time Dependent"
+    type: "technique"
+  - name: "Computational Fluid Dynamics"
+    type: "domain"
+    abbreviation: "CFD"
+
+images:
+  - "images/pathline.gif"
+
+scene: "scene/index.json"
+
+resources:
+  - name: "pathline_trace.py"
+    type: "Script"
+    date: 2024-01-08
+    path: "resources/pathline_trace.py"
+  - name: "ParaView 5.11.1"
+    type: "Container"
+    date: 2024-01-08
+    url: "ghcr.io/scivislab/paraview:5.11.1"
+  - name: "TODO jet4 time series"
+    type: "Dataset"
+    date: 2024-01-08
+
+templates:
+  - techniques:
+      - "docker"
+      - "singularity"
+    commands:
+      - type: "local"
+        run: "pvbatch pathline_trace.py"
+      - type: "mpi"
+        run: "pvbatch pathline_trace.py"
+      - type: "slurm"
+        run: "pvbatch pathline_trace.py"
+    trace: "resources/pathline_trace.py"
+    script: "resources/pathline_script.sh"
+    container:
+      url: "ghcr.io/scivislab/paraview:5.11.1"
+
+datasets:
+  - name: "jet4"
+    identifier: "DATASET_VOLUME"
+    description: "A time series vector field of a jet"
+    url: ""

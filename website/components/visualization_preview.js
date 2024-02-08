@@ -1,6 +1,6 @@
 import { ref, watch } from "vue"
 
-export default
+export const VisualizationPreview =
 {
     props: ["visualization"],
     setup(props)

@@ -1,4 +1,4 @@
-export default
+export const SharedFooter =
 {
     template:
     `
@@ -23,12 +23,12 @@ export default
                 <td><div class="border-start my-1 px-2">gerrits@vis.rwth-aachen.de</div></td>
             </tr>
             <tr>
-                <td class="px-2">Christop Garth</td>
+                <td class="px-2">Christoph Garth</td>
                 <td><div class="border-start my-1 px-2">garth@rptu.de</div></td>
             </tr>
             <tr>
                 <td class="px-2">Marvin Petersen</td>
-                <td><div class="border-start my-1 px-2">m_petersen12@informatik.uni-kl.de</div></td>
+                <td><div class="border-start my-1 px-2">m.petersen@rptu.de</div></td>
             </tr>
             <tr>
                 <td class="px-2">Jens Koenen</td>

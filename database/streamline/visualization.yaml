@@ -1,0 +1,53 @@
+name: "Streamlines"
+date: 2023-11-29
+
+tags:
+  - name: "Vector"
+    type: "technique"
+  - name: "3D"
+    type: "technique"
+  - name: "Computational Fluid Dynamics"
+    type: "domain"
+    abbreviation: "CFD"
+
+images:
+  - "images/streamline.png"
+
+scene: "scene/index.json"
+
+resources:
+  - name: "streamline_trace.py"
+    type: "Script"
+    date: 2024-01-08
+    path: "resources/streamline_trace.py"
+  - name: "ParaView 5.11.1"
+    type: "Container"
+    date: 2024-01-08
+    url: "ghcr.io/scivislab/paraview:5.11.1"
+  - name: "jet.vti"
+    type: "Dataset"
+    date: 2024-01-08
+    url: 
+
+templates:
+  - techniques:
+      - "docker"
+      - "singularity"
+    commands:
+      - type: "local"
+        run: "pvbatch streamline_trace.py"
+      - type: "mpi"
+        run: "pvbatch streamline_trace.py"
+      - type: "slurm"
+        run: "pvbatch streamline_trace.py"
+    trace: "resources/streamline_trace.py"
+    script: "resources/streamline_script.sh"
+    container:
+      url: "ghcr.io/scivislab/paraview:5.11.1"
+
+datasets:
+  - name: "Flow Field"
+    identifier: "DATASET_FLOWFIELD"
+    description: "The volumetric dataset for which the image should be created"
+    path: "resources/jet.vti"
+    # url: "https://github.com/topology-tool-kit/ttk-data/raw/1.1.0/jet.vti"

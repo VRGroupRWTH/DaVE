@@ -1,4 +1,4 @@
-export default
+export const BrowserHeader =
 {
     props: ["browser_query", "browser_sorting"],
     emits: ["update:browser_query", "update:browser_sorting"],
@@ -80,8 +80,8 @@ export default
                     </ul>
                 </div>
                 <button class="btn btn-dark border-start-0 border-white d-flex align-items-center justify-content-center p-0" style="width: 38px; height: 38px; border-top-left-radius: 0px; border-bottom-left-radius: 0px;" type="button" @click="on_browser_sort_direction_toggle">
-                    <img v-if="browser_sorting.direction == 'ascending'" src="symbols/sort_down.svg" width="20px">
-                    <img v-if="browser_sorting.direction == 'descending'" src="symbols/sort_up.svg" width="20px">
+                    <img v-if="browser_sorting.direction == 'ascending'" src="symbols/sort_ascending.svg" width="20px">
+                    <img v-if="browser_sorting.direction == 'descending'" src="symbols/sort_descending.svg" width="20px">
                 </button>
             </div>
         </div>

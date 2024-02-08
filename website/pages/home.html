@@ -1,8 +1,8 @@
 <body id="app"></body>
 <script type="module">
     import { createApp, ref } from "vue"
-    import HomeSearchBar from "components/home_search_bar.js"
-    import SharedFooter from "components/shared_footer.js"
+    import { HomeSearchBar } from "components/home_search_bar.js"
+    import { SharedFooter } from "components/shared_footer.js"
 
     createApp(
     {
@@ -34,11 +34,11 @@
 
                 if(tags.length > 0)
                 {
-                    let search_tag_url = tags[0].name + "+" + tags[0].type;
+                    let search_tag_url = tags[0].name + "+" + tags[0].type + "+" + tags[0].abbreviation;
 
                     for(let index = 1; index < tags.length; index++)
                     {
-                        search_url += "+" + tags[index].name + "+" + tags[index].type;
+                        search_tag_url += "+" + tags[index].name + "+" + tags[index].type + "+" + tags[index].abbreviation;
                     }
 
                     search_url += "tags=" + encodeURIComponent(search_tag_url);

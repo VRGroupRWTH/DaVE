@@ -2,28 +2,13 @@ class Tag
 {
     #name
     #type
+    #abbreviation
 
-    constructor(name, type)
+    constructor(name, type, abbreviation)
     {
         this.#name = name;
         this.#type = type;
-    }
-
-    static load(names, type)
-    {
-        let tags = [];
-
-        for(const name of names)
-        {
-            if(!tags.some(value => value == name))
-            {
-                const tag = new Tag(name, type);
-
-                tags.push(tag);
-            }
-        }
-
-        return tags;
+        this.#abbreviation = abbreviation;
     }
 
     static import(objects)
@@ -32,9 +17,21 @@ class Tag
 
         for(const object of objects)
         {
-            const tag = new Tag(object.name, object.type);
+            const name = object.name;
+            const type = object.type;
+            let abbreviation = "";
 
-            tags.push(tag);
+            if("abbreviation" in object)
+            {
+                abbreviation = object.abbreviation;
+            }
+
+            const tag = new Tag(name, type, abbreviation);
+
+            if(!tags.some(item => item.is_equal(tag)))
+            {
+                tags.push(tag);
+            }
         }
 
         return tags;
@@ -56,7 +53,8 @@ class Tag
     {
         return {
             name: this.#name,
-            type: this.#type
+            type: this.#type,
+            abbreviation: this.#abbreviation
         }
     }
 

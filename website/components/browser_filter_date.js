@@ -1,6 +1,6 @@
 import { ref, computed } from "vue"
 
-export default
+export const BrowserFilterDate =
 {
     props: ["browser_filters"],
     emits: ["update:browser_filters"],

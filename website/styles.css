@@ -6,6 +6,18 @@
     background-image: url("symbols/x_circle_fill.svg");
 }
 
+.tag-highlight-technique
+{
+    outline: 2px solid var(--bs-primary-border-subtle) !important;
+    outline-offset: -1px;
+}
+
+.tag-highlight-domain
+{
+    outline: 2px solid var(--bs-success-border-subtle) !important;
+    outline-offset: -1px;
+}
+
 .footer-table
 {
     font-size: 11px;

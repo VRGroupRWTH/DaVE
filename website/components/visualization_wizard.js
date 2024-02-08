@@ -1,6 +1,6 @@
 import { ref, computed, watch } from "vue"
 
-let wizard_question = 
+const WizardQuestion = 
 {
     props: ["name", "options", "config"],
     emits: ["update:config"],
@@ -49,11 +49,11 @@ let wizard_question =
     `
 };
 
-let wizard_question_dataset = 
+const WizardQuestionDataset = 
 {
     components:
     {
-        "wizard-question": wizard_question
+        "wizard-question": WizardQuestion
     },
     props: ["visualization", "config"],
     emits: ["update:config"],
@@ -66,11 +66,11 @@ let wizard_question_dataset =
 
             for(const dataset of props.visualization.datasets)
             {
-                const dataset_name = "dataset_path_" + dataset.name.toLowerCase();
+                const dataset_identifier = "dataset_path_" + dataset.identifier.toLowerCase();
 
                 const dataset_setting =
                 {
-                    name: dataset_name,
+                    name: dataset_identifier,
                     title: dataset.name,
                     description: dataset.description
                 };
@@ -87,7 +87,7 @@ let wizard_question_dataset =
             {
                 name: "preview",
                 title: "Preview Dataset",
-                description: "Along with the scripts for the visualization technique, a small dataset is downloaded with which the visualization can be directly tested.",
+                description: "The script for the visualization technique will donwload a small dataset with which the visualization can be directly tested.",
                 settings: []
             };
 
@@ -95,7 +95,7 @@ let wizard_question_dataset =
             {
                 name: "custom",
                 title: "Custom Dataset",
-                description: "Only the scripts for the visualization technique will be included in the download. The dataset used by the technique is expected to be located at the given path.",
+                description: "Only the scripts for the visualization technique will be downloaded. The datasets used by the technique are expected to be located at the given paths.",
                 settings: dataset_settings
             };
 
@@ -117,11 +117,11 @@ let wizard_question_dataset =
     `
 };
 
-let wizard_question_technique = 
+const WizardQuestionTechnique = 
 {
     components: 
     {
-        "wizard-question": wizard_question
+        "wizard-question": WizardQuestion
     },
     props: ["visualization", "config"],
     emits: ["update:config"],
@@ -181,11 +181,11 @@ let wizard_question_technique =
     `
 };
 
-let wizard_question_command = 
+const WizardQuestionCommand = 
 {
     components: 
     {
-        "wizard-question": wizard_question
+        "wizard-question": WizardQuestion
     },
     props: ["visualization", "config"],
     emits: ["update:config"],
@@ -258,13 +258,13 @@ let wizard_question_command =
     `
 };
 
-export default
+export const VisualizationWizard = 
 {
     components:
     {
-        "wizard-question-dataset": wizard_question_dataset,
-        "wizard-question-technique": wizard_question_technique,
-        "wizard-question-command": wizard_question_command,
+        "wizard-question-dataset": WizardQuestionDataset,
+        "wizard-question-technique": WizardQuestionTechnique,
+        "wizard-question-command": WizardQuestionCommand,
     },
     props: ["visualization"],
     setup(props)
@@ -311,9 +311,9 @@ export default
 
             for(const dataset of props.visualization.datasets)
             {
-                const dataset_name = "dataset_path_" + dataset.name.toLowerCase();
+                const dataset_identifier = "dataset_path_" + dataset.identifier.toLowerCase();
 
-                config[dataset_name] = "./data/"
+                config[dataset_identifier] = "./data/"
 
                 if(!("path" in dataset) && !("url" in dataset))
                 {
@@ -352,11 +352,11 @@ export default
 
                 for(const dataset of props.visualization.datasets)
                 {
-                    const dataset_name = "dataset_path_" + dataset.name.toLowerCase();
+                    const dataset_identifier = "dataset_path_" + dataset.identifier.toLowerCase();
 
-                    if(dataset_name in visualization_wizard_config.value)
+                    if(dataset_identifier in visualization_wizard_config.value)
                     {
-                        dataset_link += dataset.name + "+" + visualization_wizard_config.value[dataset_name];
+                        dataset_link += dataset.identifier + "+" + visualization_wizard_config.value[dataset_identifier];
                     }
                 }
 

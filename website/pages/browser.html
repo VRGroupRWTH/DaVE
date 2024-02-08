@@ -1,10 +1,10 @@
 <body id="app" class="overflow-y-scroll"></body>
 <script type="module">
     import { createApp, ref, watch } from "vue"
-    import BrowserHeader from "components/browser_header.js"
-    import BrowserFilter from "components/browser_filter.js"
-    import BrowserItem from "components/browser_item.js"
-    import SharedFooter from "components/shared_footer.js"
+    import { BrowserHeader } from "components/browser_header.js"
+    import { BrowserFilter } from "components/browser_filter.js"
+    import { BrowserItem } from "components/browser_item.js"
+    import { SharedFooter } from "components/shared_footer.js"
 
     function setup_query()
     {
@@ -28,12 +28,13 @@
         {
             const items = parameters.get("tags").split("+");
 
-            for(let index = 0; index < items.length - 1; index += 2)
+            for(let index = 0; index < items.length - 1; index += 3)
             {
                 let tag = 
                 {
                     name: items[index],
-                    type: items[index + 1]
+                    type: items[index + 1],
+                    abbreviation: items[index + 2]
                 };
 
                 tags.push(tag);
@@ -234,9 +235,9 @@
                         <div class="spinner-border text-body-tertiary" role="status"></div>
                         <span class="ms-2 text-body-tertiary fw-semibold fs-4">Loading visualizations</span>
                     </div>
-                    <div v-else-if="browser_items.length > 0" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
+                    <div v-else-if="browser_items.length > 0" class="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xxl-3 g-3">
                         <div v-for="item of browser_items" class="col">
-                            <browser-item :browser_item="item" @on_browser_item_click="on_browser_item_click(item)" @on_browser_item_tag_click="on_browser_item_tag_click"></browser-item>
+                            <browser-item :browser_item="item" :browser_filters="browser_filters" @on_browser_item_click="on_browser_item_click(item)" @on_browser_item_tag_click="on_browser_item_tag_click"></browser-item>
                         </div>
                     </div>
                     <div v-else class="d-flex align-items-center justify-content-center" style="height: 300px;">
