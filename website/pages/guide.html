@@ -3,8 +3,8 @@
 <!-- data-bs-spy="scroll" data-bs-target="#guide_nav_bar" data-bs-smooth-scroll="true" data-bs-root-margin="0px 0px 0px 0px" tabindex="0"-->
 <script type="module">
     import { createApp } from "vue"
-    import GuideHeader from "components/guide_header.js"
-    import SharedFooter from "components/shared_footer.js"
+    import { GuideHeader } from "components/guide_header.js"
+    import { SharedFooter } from "components/shared_footer.js"
 
     createApp(
     {
@@ -116,13 +116,13 @@
             <guide-header></guide-header>
         </header>
         <main>
-            <div class="d-flex py-4">
-                <div class="d-none d-xxl-block flex-shrink-0"style="min-width: 300px; width: 16.6666%">
+            <div class="d-flex py-4 container-xxl">
+                <!--<div class="d-none d-xxl-block flex-shrink-0"style="min-width: 300px; width: 16.6666%">
                     
-                </div>
+                </div>-->
                 <div class="flex-fill p-4 guide-paragraph">
                     <div id="guide" class="mb-4">
-                        <h1 class="display-3 fw-normal border-bottom pb-5">Guide</h1>
+                        <h1 class="display-3 fw-normal pb-3">Guide</h1>
                     </div>
                     <div id="guide_search">
                         <h2 style="margin-top: 2rem; margin-bottom: 1rem;">Database</h2>
@@ -208,68 +208,56 @@
                         </p>
                     </div>
                 </div>
-                <div class="d-none d-lg-block flex-shrink-0" style="min-width: 300px; width: 16.6666%;">
+                <!-- style="min-width: 300px; width: 16.6666%;" -->
+                <div class="d-none d-lg-block flex-shrink-0" style="width: 300px">
                     <nav id="guide_nav_bar" class="flex-column align-items-stretch h-100">
-                        <nav class="nav flex-column sticky-top p-4 guide-scrollspy-active" style="top: 88px;">
-                            <h5 class="border-bottom py-3">On this page</h5>
+                        <nav class="nav flex-column sticky-top p-4 guide-scrollspy-active" style="top: 90px;">
+                            <h5 class="pt-3 pb-1">On this page</h5>
                             <a id="guide_search_link" class="nav-link" href="#guide_search">Database</a>
-                            <nav class="nav flex-column">
-                                <a id="guide_search_tags_link" class="nav-link ms-3" href="#guide_search_tags">Tags</a>
-                            </nav>
+                            <a id="guide_search_tags_link" class="nav-link" style="padding-left: 35px" href="#guide_search_tags">Tags</a>
                             <a id="guide_visualizations_link" class="nav-link" href="#guide_visualizations">Visualizations</a>
-                            <nav class="nav flex-column">
-                                <a id="guide_visualizations_render_script_link" class="nav-link ms-3" href="#guide_visualizations_render_script">Templates</a>
-                                <a id="guide_visualizations_containers_link" class="nav-link ms-3" href="#guide_visualizations_containers">Containers</a>
-                                <a id="guide_visualizations_paraview_link" class="nav-link ms-3" href="#guide_visualizations_paraview">ParaView</a>
-                            </nav>
+                            <a id="guide_visualizations_render_script_link" class="nav-link" style="padding-left: 35px" href="#guide_visualizations_render_script">Templates</a>
+                            <a id="guide_visualizations_containers_link" class="nav-link" style="padding-left: 35px" href="#guide_visualizations_containers">Containers</a>
+                            <a id="guide_visualizations_paraview_link" class="nav-link" style="padding-left: 35px" href="#guide_visualizations_paraview">ParaView</a>
                             <a id="guide_frequently_ask_questions_link" class="nav-link" href="#guide_frequently_ask_questions">Frequently ask Questions</a>
                         </nav>
                     </nav>
                 </div>
                 <div class="offcanvas offcanvas-end d-lg-none" tabindex="-1" id="offcanvasExample">
-                    <div class="offcanvas-header">
-                        <button type="button" class="btn-close btn-close ms-auto me-4 mt-4" data-bs-dismiss="offcanvas"></button>
+                    <div class="offcanvas-header p-4 pb-0">
+                        <input type="text" class="form-control guide-search-bar flex-fill" placeholder="Search" >
+                        <button type="button" class="btn-close btn-close ms-3" data-bs-dismiss="offcanvas"></button>
                     </div>
-                    <div class="offcanvas-body">
-                        <ul class="navbar-nav border-bottom p-4">
-                            <li class="nav-item">
-                                <a class="nav-link" href="/browser">Browser</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/guide">Guide</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/about">About</a>
-                            </li>
-                        </ul>
-
-
+                    <div class="offcanvas-body pt-0 px-4">
+                        
+                        <h5 class="pt-4 pb-2">On this page</h5>
                         <nav id="guide_nav_bar" class="flex-column align-items-stretch">
-                            <nav class="nav  flex-column p-4 guide-scrollspy-active">
-                                <a class="nav-link" id="guide_search_link_offcanvas" href="#guide_search">Database</a>
-                                <nav class="nav nav-pills flex-column">
-                                    <a class="nav-link ms-3" id="guide_search_tags_link_offcanvas" href="#guide_search_tags">Tags</a>
-                                </nav>
-                                <a class="nav-link" id="guide_visualizations_link_offcanvas" href="#guide_visualizations">Visualizations</a>
-                                <nav class="nav nav-pills flex-column">
-                                    <a class="nav-link ms-3" id="guide_visualizations_render_script_link_offcanvas" href="#guide_visualizations_render_script">Templates</a>
-                                    <a class="nav-link ms-3" id="guide_visualizations_containers_link_offcanvas" href="#guide_visualizations_containers">Containers</a>
-                                    <a class="nav-link ms-3" id="guide_visualizations_paraview_link_offcanvas" href="#guide_visualizations_paraview">ParaView</a>
-                                </nav>
-                                <a class="nav-link" id="guide_frequently_ask_questions_link_offcanvas" href="#guide_frequently_ask_questions">Frequently ask Questions</a>
+                            <nav class="nav flex-column guide-scrollspy-active">
+                                <a id="guide_search_link_offcanvas" class="nav-link" href="#guide_search">Database</a>
+                                <a id="guide_search_tags_link_offcanvas" class="nav-link" style="padding-left: 35px" href="#guide_search_tags">Tags</a>
+                                <a id="guide_visualizations_link_offcanvas" class="nav-link" href="#guide_visualizations">Visualizations</a>
+                                <a id="guide_visualizations_render_script_link_offcanvas" class="nav-link" style="padding-left: 35px" href="#guide_visualizations_render_script">Templates</a>
+                                <a id="guide_visualizations_containers_link_offcanvas" class="nav-link" style="padding-left: 35px" href="#guide_visualizations_containers">Containers</a>
+                                <a id="guide_visualizations_paraview_link_offcanvas" class="nav-link" style="padding-left: 35px" href="#guide_visualizations_paraview">ParaView</a>
+                                <a id="guide_frequently_ask_questions_link_offcanvas" class="nav-link" href="#guide_frequently_ask_questions">Frequently ask Questions</a>
                             </nav>
                         </nav>
+                        
                     </div>
                 </div>
             </div>
-            <div class=" bg-body-tertiary" style="height: 100px">
+            <div class="" style="height: 100px">
 
             </div>
         </main>
-        <footer>
-            <shared-footer class="container py-5 my-5"></shared-footer>
-            <div class="border-top">
-
+        <footer class="bg-body-tertiary">
+            <shared-footer class="container"></shared-footer>
+            <div style="font-size: 13px;opacity: 0.75;" class="container d-flex flex-row justify-content-end py-3 pb-4 px-4">
+                <div style="margin-right: auto;">
+                    Copyright © 2024
+                </div>
+                <a style="margin-right: 20px;">Privacy Policy</a>
+                <a style="">Imprint</a>
             </div>
         </footer>
         `

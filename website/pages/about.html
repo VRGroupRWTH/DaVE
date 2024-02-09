@@ -2,6 +2,7 @@
 <script type="module">
     import { createApp } from "vue"
     import { SharedHeader } from "components/shared_header.js"
+    import { SharedContainer } from "components/shared_container.js"
     import { SharedFooter } from "components/shared_footer.js"
 
     createApp(
@@ -9,7 +10,8 @@
         components:
         {
             "shared-header": SharedHeader,
-            "shared-footer": SharedFooter,
+            "shared-container": SharedContainer,
+            "shared-footer": SharedFooter
         },
         template:
         `
@@ -17,33 +19,12 @@
             <shared-header></shared-header>
         </header>
         <main>
-            <div class="row g-0 py-4">
-                <div class="col-2">
-                    <nav id="about_nav_bar" class="flex-column align-items-stretch border-end h-100">
-                        <nav class="nav nav-pills flex-column sticky-top p-4">
-                            <a class="nav-link" href="#about_what_dave">What is DaVE?</a>
-                            <a class="nav-link" href="#about_why_dave">Why do we need DaVE?</a>
-                        </nav>
-                    </nav>
-                </div>
-                <div class="col-8 p-4 about-paragraph">
-                    <div id="about">
-                        <h1 class="mb-4">About</h1>
-                    </div>
-                    <div id="about_what_dave">
-                        <h4>What is DaVE?</h4>
-                        <p>
-                            DaVE is ...
-                        </p>
-                    </div>
-                    <div id="about_why_dave">
-                        <h4>Why do we need DaVE?</h4>
-                        <p>
-                            DaVE is ...
-                        </p>
-                    </div>
-                </div>
-            </div>
+            <shared-container>
+                <h4 id="test">Test</h4>
+                <p>
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                </p>
+            </shared-container>
         </main>
         <footer>
             <shared-footer class="container py-5"></shared-footer>
