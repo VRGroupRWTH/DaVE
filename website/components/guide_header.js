@@ -3,7 +3,7 @@ export const GuideHeader =
     template:
     `
     <div class="navbar navbar-expand bg-dark shadow-sm" data-bs-theme="dark">
-        <div class="container-xxl w-100 px-4 py-1 d-flex align-items-center justify-content-between">
+        <div class="container-lg w-100 px-4 py-1 d-flex align-items-center justify-content-between">
             <div class="d-flex flex-fill">
                 <div class="d-flex align-items-center justify-content-start me-4">
                     <a href="/"><img src="symbols/dave_logo_dark.svg" width="38px"></a>
