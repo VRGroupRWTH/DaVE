@@ -18,6 +18,23 @@
     outline-offset: -1px;
 }
 
+.outline a.nav-link
+{
+    color: black;
+    border-left-width: 3px;
+    border-left-style: solid;
+    border-left-color: rgb(var(--bs-tertiary-bg-rgb));
+}
+
+.outline a.nav-link.active
+{
+    color: black;
+    border-left-width: 3px;
+    border-left-style: solid;
+    border-left-color: rgb(var(--bs-primary-rgb));
+    background-color: rgb(var(--bs-tertiary-bg-rgb));
+}
+
 .footer-table
 {
     font-size: 11px;
@@ -197,6 +214,14 @@
 {
     text-align: justify;
 }
+
+
+
+
+
+
+
+
 
 .guide-paragraph p
 {
