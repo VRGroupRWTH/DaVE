@@ -178,11 +178,28 @@
     --label-location: calc(min(max(var(--label-right), var(--label-bound-left)), var(--label-bound-right)));
 }
 
-pre
+.visualization-description pre
 {
     padding: 0.75rem 1.25rem;
     border: solid var(--bs-border-color);
     background-color: var(--bs-tertiary-bg);
     border-width: 1px;
     border-radius: var(--bs-border-radius);
+}
+
+.visualization-description p
+{
+    text-align: justify;
+}
+
+.visualization-description a
+{
+    color: var(--bs-body-color);
+    text-decoration: none;
+}
+
+.visualization-reference
+{
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
 }

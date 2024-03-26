@@ -79,7 +79,7 @@
                     <tag v-for="tag in visualization.tags" :tag="tag" class="me-1" @on_tag_click="on_visualization_tag_click"></tag>
                 </div>
             </div>
-            <div class="container mb-4" v-html="visualization.description"></div>
+            <div class="container mb-4 visualization-description" v-html="visualization.description"></div>
             <div class="w-100 py-4 bg-body-tertiary">
                 <div class="container">
                     <visualization-wizard :visualization="visualization" class="mb-4"></visualization-wizard>
