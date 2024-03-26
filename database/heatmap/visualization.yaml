@@ -48,5 +48,6 @@ templates:
 
 datasets:
   - name: "Volume"
+    identifier: "DATASET_VOLUME"
     description: "The volumetric dataset for which the image should be created"
     url: "https://nextcloud.computecanada.ca/index.php/s/edS6be3sk8oQ58N/download"
