@@ -23,7 +23,7 @@
     color: black;
     border-left-width: 3px;
     border-left-style: solid;
-    border-left-color: rgb(var(--bs-tertiary-bg-rgb));
+    border-left-color: var(--bs-gray-300);
 }
 
 .outline a.nav-link.active
@@ -31,14 +31,38 @@
     color: black;
     border-left-width: 3px;
     border-left-style: solid;
-    border-left-color: rgb(var(--bs-primary-rgb));
-    background-color: rgb(var(--bs-tertiary-bg-rgb));
+    border-left-color: var(--bs-primary);
+    background-color: color-mix(in srgb, var(--bs-primary-bg-subtle) 30%, var(--bs-white));
 }
 
-.footer-table
+.shared-header-search-bar
 {
-    font-size: 11px;
+    background-image: url(/symbols/search_dark.svg);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    padding-left: 35px !important;
+    transition: max-width 0.05s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !important;
+}
+
+.shared-footer-contact-header
+{
+    font-size: 13px;
+    font-weight: bold;
     white-space: nowrap;
+}
+
+.shared-footer-contact-e-mail
+{
+    color: var(--bs-gray-600);
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.shared-footer-legal > *
+{
+    font-size: 13px !important;
+    color: var(--bs-gray-600) !important;
+    text-decoration: none !important;
 }
 
 .home-background-image
@@ -215,6 +239,25 @@
     text-align: justify;
 }
 
+.about-content h1, h2, h3, h4, h5, h6
+{
+    color: black !important;
+}
+
+.about-content p
+{
+    text-align: justify;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -288,22 +331,4 @@
     border-left-width: 3px;
     border-left-style: solid;
     border-left-color: rgba(155, 155, 155, 0);
-}
-
-.about-paragraph p
-{
-    text-align: justify;
-}
-
-.footer-header
-{
-    font-size: 13px;
-    font-weight: bold;
-}
-
-.footer-e-mail
-{
-    font-size: 12px;
-    opacity: 0.75;
-    margin-bottom: 20px;
 }
