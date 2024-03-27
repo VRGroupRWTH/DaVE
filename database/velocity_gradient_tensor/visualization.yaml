@@ -1,0 +1,47 @@
+name: "Velocity Gradient Tensor"
+date: 2024-03-27
+
+tags:
+  - name: "Vector"
+    type: "technique"
+  - name: "Tensor"
+    type: "technique"
+  - name: "Computational Fluid Dynamics"
+    type: "domain"
+    abbreviation: "CFD"
+
+images:
+  - "images/velocity_gradient_tensor.png"
+
+resources:
+  - name: "velocity_gradient_tensor_trace.py"
+    type: "Script"
+    date: 2023-03-27
+    path: "resources/velocity_gradient_tensor_trace.py"
+  - name: "ParaView 5.11.1"
+    type: "Container"
+    date: 2024-01-09
+    url: "ghcr.io/scivislab/paraview:5.11.1"
+
+templates:
+  - techniques:
+      - "docker"
+      - "singularity"
+    commands:
+      - type: "local"
+        run: "pvbatch velocity_gradient_tensor_trace.py"
+      - type: "mpi"
+        run: "pvbatch velocity_gradient_tensor_trace.py"
+      - type: "slurm"
+        run: "pvbatch velocity_gradient_tensor_trace.py"
+    trace: "resources/velocity_gradient_tensor_trace.py"
+    script: "resources/velocity_gradient_tensor_script.sh"
+    container:
+      url: "ghcr.io/scivislab/paraview:5.11.1"
+
+
+datasets:
+  - name: "flow field"
+    identifier: "FLOWFIELD"
+    description: "The velocity field for which the tesnor glyphs should be created and rendered"
+    path: "../streamline/resources/jet.vti"
