@@ -198,6 +198,11 @@
     text-decoration: none;
 }
 
+.visualization-description strong
+{
+    font-weight: 600;
+}
+
 .visualization-reference
 {
     font-weight: 600;

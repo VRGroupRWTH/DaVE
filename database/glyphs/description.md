@@ -25,7 +25,7 @@ After a successful execution of the script, the image `glyphs.png` containing th
 
 A dataset may contain more than one attribute that can be visualized using glyphs.
 The selection of the attribute is determined by the lines in the file `glyphs_script.py` that are marked with the keyword `OWN_DATA`.
-When changing the attribute, these lines need to be changed such that they contain the name of the desired attribute.
+When changing the attribute, these lines need to be modified such that they contain the name of the desired attribute.
 Especially when using custom data, it is important to make sure that the correct attribute is selected for the creation of the glyphs.
 One of the lines that would need to be changed when using a different dataset is shown below
 ```
