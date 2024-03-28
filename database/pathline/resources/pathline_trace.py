@@ -21,10 +21,13 @@ if not exists(path):
 input_files = [path+f for f in listdir(path) if isfile(join(path, f))]
 input_files.sort()
 
+# ----------------------------------------------------------------
+# setup the data processing pipelines
+# ----------------------------------------------------------------
+
 # create a new 'XML Image Data Reader'
 reader = pvs.XMLImageDataReader(registrationName='reader', FileName=input_files)
 reader.PointArrayStatus = ['ImageFile']                                 # OWN_DATA: every field has a name in a .vti file. Replace 'Scalars_' by the corresponding name
-# reader.TimeArray = 'None'
 
 pvs.UpdatePipeline(time=0.0, proxy=reader)
 
@@ -58,7 +61,7 @@ pvs.UpdatePipeline(time=0.0, proxy=transform1)
 
 # create a new 'Mask Points'
 maskPoints1 = pvs.MaskPoints(registrationName='MaskPoints1', Input=transform1)
-maskPoints1.MaximumNumberofPoints = 99                                  # OWN_DATA: for more streamlines increase the number of points here.
+maskPoints1.MaximumNumberofPoints = 99                              # OWN_DATA: for more pathlines increase the number of points here.
 maskPoints1.RandomSampling = 1
 maskPoints1.RandomSamplingMode = 'Random Sampling'
 
@@ -77,9 +80,9 @@ temporalParticlesToPathlines1.MaxTrackLength = 150
 temporalParticlesToPathlines1.MaxStepDistance = [1.0, 1.0, 1.0]
 temporalParticlesToPathlines1.IdChannelArray = 'Global or Local IDs'
 
-# |                       |
-# | rendering stuff below |
-# v                       v
+# ----------------------------------------------------------------
+# setup the views
+# ----------------------------------------------------------------
 
 #### disable automatic camera reset on 'Show'
 pvs._DisableFirstRenderCameraReset()
@@ -90,21 +93,16 @@ animationScene1.UpdateAnimationUsingDataTimeSteps()
 
 renderView1 = pvs.GetActiveViewOrCreate('RenderView')
 renderView1.OrientationAxesVisibility = 0
-
-# outlineDisplay = pvs.Show(reader, renderView1)
-
-# temporalParticlesToPathlines1Display_1 = pvs.Show(pvs.OutputPort(temporalParticlesToPathlines1, 0), renderView1, 'GeometryRepresentation')
-temporalParticlesToPathlines1Display_1 = pvs.Show(pvs.OutputPort(temporalParticlesToPathlines1, 0), renderView1)
-temporalParticlesToPathlines1Display_1.RenderLinesAsTubes = 1
-temporalParticlesToPathlines1Display_1.LineWidth = 2.0
-
-# current camera placement for renderView1
-#renderView1.CameraPosition = [0.4960619903367558, 0.9960299942079587, 3.7110792324639665]
-renderView1.CameraPosition = [0.5, 1.0, 2.5]
-#renderView1.CameraFocalPoint = [0.4960619903367558, 0.9960299942079587, 0.4960619903367558]
+renderView1.CameraPosition = [0.5, 1.0, 2.5]                        # OWN_DATA: depending on the data another camera view is needed
 renderView1.CameraFocalPoint = [0.5, 1.0, 0.5]
 renderView1.CameraViewUp = [-1.0, 0.0, 0.0]
 renderView1.CameraParallelScale = 1.2182888727290784
+
+temporalParticlesToPathlines1Display_1 = pvs.Show(pvs.OutputPort(temporalParticlesToPathlines1, 0), renderView1, 'GeometryRepresentation')
+temporalParticlesToPathlines1Display_1.RenderLinesAsTubes = 1
+temporalParticlesToPathlines1Display_1.LineWidth = 2.0
+
+# pvs.ResetCamera(renderView1)                                      # OWN_DATA: if the original view does not fit ResetCamera can be used to focus on the visible data
 
 # save animation
 pvs.SaveAnimation('./output/pathline.png', renderView1, ImageResolution=[1920, 1080],

@@ -63,7 +63,7 @@ ctBonesvtiDisplay = pvs.Show(reader, renderView1)
 ctBonesvtiDisplay.SetRepresentationType('Volume')
 pvs.ColorBy(ctBonesvtiDisplay, ('POINTS', 'Scalars_'))                                      # OWN_DATA: every field has a name in a .vti file. Replace 'Scalars_' by the corresponding name
 
-pvs.ResetCamera(renderView1)
+pvs.ResetCamera(renderView1)                                                                # OWN_DATA: if the original view does not fit ResetCamera can be used to focus on the visible data
 
 # save screenshot
 pvs.SaveScreenshot('./output/volumerender.png', 

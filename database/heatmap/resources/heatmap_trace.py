@@ -102,8 +102,7 @@ temperatureLUTColorBar.ComponentTitle = ''
 temperatureLUTColorBar.ScalarBarLength = 0.8
 temperatureLUTColorBar.Visibility = 1
 
-
-pvs.ResetCamera(renderView1)
+# pvs.ResetCamera(renderView1)                                              # OWN_DATA: if the original view does not fit ResetCamera can be used to focus on the visible data
 
 # save screenshot
 pvs.SaveScreenshot('./output/heatmap.png', 

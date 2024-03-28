@@ -44,7 +44,7 @@ pvs.LoadPalette('WhiteBackground')
 renderView1 = pvs.GetActiveViewOrCreate('RenderView')
 renderView1.OrientationAxesVisibility = 0
 renderView1.ViewSize = [1920,1080]
-renderView1.CameraPosition = [3.0, 1.0019608795, 0.5]           # OWN_DATA: depending on the data another camera view is needed
+renderView1.CameraPosition = [3.0, 1.0019608795, 0.5]               # OWN_DATA: depending on the data another camera view is needed
 renderView1.CameraFocalPoint = [0.5, 1.00196, 0.5]
 renderView1.CameraViewUp = [0.0, 0.0, 1.0]
 renderView1.CameraParallelScale = 4363.638893631146
@@ -76,7 +76,7 @@ sliceWithPlane1Display = pvs.Show(sliceWithPlane1, renderView1, 'GeometryReprese
 sliceWithPlane1Display.Representation = 'Surface LIC'
 sliceWithPlane1Display.ColorArrayName = ['POINTS', 'ImageFile']         # OWN_DATA: change field
 sliceWithPlane1Display.LookupTable = imageFileLUT
-sliceWithPlane1Display.SelectInputVectors = ['POINTS', 'ImageFile']    # OWN_DATA: change field
+sliceWithPlane1Display.SelectInputVectors = ['POINTS', 'ImageFile']     # OWN_DATA: change field
 sliceWithPlane1Display.LICIntensity = 0.5
 sliceWithPlane1Display.EnhanceContrast = 'LIC and Color'
 sliceWithPlane1Display.SetScalarBarVisibility(renderView1, True)
@@ -92,7 +92,7 @@ imageFileLUTColorBar.HorizontalTitle = 1
 imageFileLUTColorBar.ScalarBarLength = 0.8
 imageFileLUTColorBar.Visibility = 1
 
-# pvs.ResetCamera(renderView1)
+# pvs.ResetCamera(renderView1)                                          # OWN_DATA: if the original view does not fit ResetCamera can be used to focus on the visible data
 
 # save screenshot
 pvs.SaveScreenshot('./output/lic.png', 

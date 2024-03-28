@@ -38,14 +38,12 @@ clip1 = pvs.Clip(registrationName='Clip1', Input=calculator1)
 clip1.ClipType = 'Box'
 clip1.Invert = 0
 clip1.ClipType.Length = [12756.185782244429, 12756.307890537775, 12756.305636130483]
-# clip1.HyperTreeGridClipper.Origin = [-0.12210887778564938, 0.0, 0.0]
 
 # create a new 'Clip'
 clip2 = pvs.Clip(registrationName='Clip2', Input=calculator1)
 clip2.ClipType = 'Sphere'
 clip2.ClipType.Center = [-0.12210887778564938, 0.0, 0.0]
 clip2.ClipType.Radius = 3490.0
-# clip2.HyperTreeGridClipper.Origin = [-0.12210887778564938, 0.0, 0.0]
 
 # create a new 'Cell Data to Point Data'
 cellDatatoPointData1 = pvs.CellDatatoPointData(registrationName='CellDatatoPointData1', Input=clip1)
@@ -112,7 +110,7 @@ velocityLUTColorBar.ComponentTitle = 'Magnitude'
 velocityLUTColorBar.ScalarBarLength = 0.8
 velocityLUTColorBar.Visibility = 1
 
-#pvs.ResetCamera(renderView1)                           #OWN_DATA: if the  original view does not fit REsetCamera can be used to focus on the visible data
+#pvs.ResetCamera(renderView1)                           # OWN_DATA: if the original view does not fit ResetCamera can be used to focus on the visible data
 
 # save screenshot
 pvs.SaveScreenshot('./output/lic.png', 

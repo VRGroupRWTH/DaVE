@@ -94,6 +94,7 @@ depthLUTColorBar.AddRangeLabels = 0
 depthLUTColorBar.Visibility = 1
 
 
-pvs.ResetCamera(renderView1)
+pvs.ResetCamera(renderView1)                                            # OWN_DATA: if the original view does not fit ResetCamera can be used to focus on the visible data
+
 # save screenshot
 pvs.SaveScreenshot("./output/amr.png", layout1)
