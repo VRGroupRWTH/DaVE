@@ -49,6 +49,7 @@ pvs.LoadPalette('WhiteBackground')
 renderView1 = pvs.GetActiveViewOrCreate('RenderView')
 renderView1.OrientationAxesVisibility = 0
 renderView1.UseAmbientOcclusion = 1
+
 # OWN_DATA: depending on the data another camera view is needed
 renderView1.CameraPosition = [13753.608458927734, 11769.453858771536, 13166.256540152988]
 renderView1.CameraFocalPoint = [3677.7997430754835, 3264.3641288520075, 2659.373734152541]
@@ -100,6 +101,9 @@ temperatureLUTColorBar.Title = 'temperature'                                # OW
 temperatureLUTColorBar.ComponentTitle = ''
 temperatureLUTColorBar.ScalarBarLength = 0.8
 temperatureLUTColorBar.Visibility = 1
+
+
+pvs.ResetCamera(renderView1)
 
 # save screenshot
 pvs.SaveScreenshot('./output/heatmap.png', 

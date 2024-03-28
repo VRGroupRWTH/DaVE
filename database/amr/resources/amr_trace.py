@@ -93,5 +93,7 @@ depthLUTColorBar.CustomLabels = list(range(9))                          # OWN_DA
 depthLUTColorBar.AddRangeLabels = 0
 depthLUTColorBar.Visibility = 1
 
+
+pvs.ResetCamera(renderView1)
 # save screenshot
 pvs.SaveScreenshot("./output/amr.png", layout1)

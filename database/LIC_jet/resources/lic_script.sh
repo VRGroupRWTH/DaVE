@@ -5,12 +5,12 @@ set -e
 # check for the existence of data and use default when none found
 mkdir -p data
 mkdir -p output
-if ! test -f "${DATASET_VOLUME_PATH}"; then
-    echo "data set '${DATASET_VOLUME_PATH}' not found - using default"
-    DATASET_VOLUME_PATH="./data/spherical001.nc"
-    if ! test -f "${DATASET_VOLUME_PATH}"; then 
+if ! test -f "${FLOWFIELD_PATH}"; then
+    echo "data set '${FLOWFIELD_PATH}' not found - using default"
+    FLOWFIELD_PATH="./data/spherical001.nc"
+    if ! test -f "${FLOWFIELD_PATH}"; then 
 	    cd data
-	    wget "${DATASET_VOLUME_URL}" -O mantle.tgz
+	    wget "${FLOWFIELD_URL}" -O mantle.tgz
         tar -zxvf mantle.tgz
 	    cd ..
     fi;
@@ -30,10 +30,10 @@ esac
 
 # assemble run command for docker
 if [[ "${CONTAINER_PLATFORM}" == "docker" ]]; then
-    docker run --rm -v .:/example -w /example "${CONTAINER_URL}" ${EXEC} ${COMMAND} "${DATASET_VOLUME_PATH}"
+    docker run --rm -v .:/example -w /example "${CONTAINER_URL}" ${EXEC} ${COMMAND} "${FLOWFIELD_PATH}"
 fi;
 
 # assemble run command for singularity
 if [[ "${CONTAINER_PLATFORM}" == "singularity" ]]; then
-    ${EXEC} singularity run --containall  -H "${PWD}:/example" "docker://${CONTAINER_URL}" ${COMMAND} "${DATASET_VOLUME_PATH}"
+    ${EXEC} singularity run --containall  -H "${PWD}:/example" "docker://${CONTAINER_URL}" ${COMMAND} "${FLOWFIELD_PATH}"
 fi;

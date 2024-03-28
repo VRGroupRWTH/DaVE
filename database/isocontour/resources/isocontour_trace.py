@@ -67,7 +67,9 @@ layout1.SetSize(825, 1176)
 # show data from contour1
 contour1Display = pvs.Show(contour1, renderView1, 'GeometryRepresentation')
 contour1Display.Representation = 'Surface'
-contour1Display.ColorArrayName = ['POINTS', 'Scalars_']
+contour1Display.ColorArrayName = ['POINTS', 'Scalars_']             # OWN_DATA: change field
+
+pvs.ResetCamera(renderView1)
 
 # save screenshot
 pvs.SaveScreenshot('./output/isocontour.png', 
