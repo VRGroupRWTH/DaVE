@@ -1,17 +1,15 @@
 #### Description ####
-Direct volume rendering **(DVR)** is one of the most commonly used methods for the visualization of three-dimensional scalar datasets.
-Especially in the medical field, DVR is widely used for the visualzation of CT or MRI scans of patients.
-But there are also other research areas where DVR is used, such as the field of energy conversion, where it is used to visualize gases and fumes simulated for a combustion process.
-Compared to other methods 
+Direct volume rendering is one of the most commonly used methods for the visualization of three-dimensional scalar datasets.
+Especially in the medical field, direct volume rendering is widely used for the visualzation of CT or MRI scans of patients.
+But there are also other research areas where direct volume rendering is used, such as the field of energy conversion, where it is used for the visualization of gasses in a simulated combustion process.
+Compared to for example iso-surface extraction or similar methods for the exploration of three-dimensional scalar datasets, direct volume rendering does not create an alternative representation of the dataset as for example a polygon mesh.
+This direct approach has the disadvantage that the dataset can not be further simplified before it is visualized which makes this techniuqe sometimes more computationally demainding if an interactive visualization is needed.
+However, what makes direct volume rendering particularly interesting is its ability to provide a in-depth view into the dataset, allowing multiple structures at different depths of the dataset to be examined simultaneously.
 
+A fundamental part of direct volume rendering is the transfer function, which assigns every value within the range of the dataset specific color and or opacity values that are then used for the rendering.
+There are several approaches how this transfer function can be defined but most commonly a look up table is used which defines for a finite set of 
 
-
-Compared to other methos with which volumetric datasets can be rendered such as iso-surface extraction, direct volume rendering does not convert the volume into another representation such as an polygon mesh.
-Instead, the image is directly derived from the volumetric dataset which has disadvantages and also advantages.
-First, direct volume rendering mostly more computationally demanding as for example an mesh representation of the volume.
-On the other hand however, the rendering can show different layers of the volumes ad once and also no pre-processing is required.
-
-An fundamental part of direct volume rendering is the transfer function **(TF)** which is used to derive the parameters required for rendering from the input dataset.
+which is used to derive the parameters required for rendering from the input dataset.
 The transfer function is used to define two parameters, the opacity which defines how strong the view into the volume is blocked by at a given location as well as the color at a give location of the volume.
 The transfer function defines a mapping from dataset sample to opacity and color.
 There are different approaches how the transfer function can be defined.
