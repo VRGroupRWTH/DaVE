@@ -80,19 +80,15 @@
                 </div>
             </div>
             <div class="container mb-4 visualization-description" v-html="visualization.description"></div>
-            <div v-if="visualization.resources.length > 0 || visualization.templates.length > 0" class="w-100 py-4 bg-body-tertiary">
+            <div class="w-100 py-4 bg-body-tertiary">
                 <div class="container">
-                    <visualization-wizard v-if="visualization.templates.length > 0" :visualization="visualization" class="mb-4"></visualization-wizard>
-                    <visualization-content v-if="visualization.resources.length > 0" :visualization="visualization"></visualization-content>
+                    <visualization-wizard :visualization="visualization" class="mb-4"></visualization-wizard>
+                    <visualization-content :visualization="visualization"></visualization-content>
                 </div>
             </div>
         </main>
         <footer>
-            <shared-footer class="container"></shared-footer>
-            <div style="font-size: 13px;opacity: 0.75;" class="container d-flex flex-row justify-content-end py-3 pb-4 px-5">
-                <a style="margin-right: 20px;/*! opacity: 0.75; */">Privacy Notice</a>
-                <a style="">Imprint</a>
-            </div>
+            <shared-footer class="container py-5"></shared-footer>
         </footer>
         `
     }).mount("#app");
