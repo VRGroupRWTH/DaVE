@@ -1,137 +1,46 @@
 <body id="app"></body>
-
-<!-- data-bs-spy="scroll" data-bs-target="#guide_nav_bar" data-bs-smooth-scroll="true" data-bs-root-margin="0px 0px 0px 0px" tabindex="0"-->
 <script type="module">
-    import { createApp } from "vue"
-    import { GuideHeader } from "components/guide_header.js"
+    import { createApp, ref } from "vue"
+    import { SharedHeader } from "components/shared_header.js"
     import { SharedFooter } from "components/shared_footer.js"
+    import { Outline } from "components/outline.js"
 
     createApp(
     {
         components:
         {
-            "guide-header": GuideHeader,
-            "shared-footer": SharedFooter
+            "shared-header": SharedHeader,
+            "shared-footer": SharedFooter,
+            "outline": Outline
         },
-        mounted()
+        setup()
         {
-            const elements = 
-            [
-                "guide_search",
-                "guide_search_tags",
-                "guide_visualizations",
-                "guide_visualizations_render_script",
-                "guide_visualizations_containers",
-                "guide_visualizations_paraview",
-                "guide_frequently_ask_questions"
-            ]
+            let content = ref(null);
 
-            let visibility = {};
-
-            function on_intersection(entities)
-            {
-                if(entities.length <= 0)
-                {
-                    return;
-                }
-
-                for(const element of elements)
-                {
-                    let link_element = document.getElementById(element + "_link");
-                    link_element.classList.remove("active");
-
-                    let offcanvas_element = document.getElementById(element + "_link_offcanvas");
-                    offcanvas_element.classList.remove("active");
-                }
-
-                for(const entity of entities)
-                {
-                    if(!entity.isIntersecting)
-                    {
-                        delete visibility[entity.target.id];
-                    }
-
-                    else
-                    {
-                        visibility[entity.target.id] = entity;
-                    }
-                }
-
-                let offset_top_entity = null;
-                let offset_top_min = 0.0;
-
-                for(const [key, entity] of Object.entries(visibility))
-                {
-                    let link_element = document.getElementById(entity.target.id + "_link");
-                    link_element.classList.remove("active");
-
-                    let offcanvas_element = document.getElementById(entity.target.id + "_link_offcanvas");
-                    offcanvas_element.classList.remove("active");
-
-                    if(offset_top_entity == null)
-                    {
-                        offset_top_entity = entity;
-                        offset_top_min = entity.target.offsetTop;
-                    }
-
-                    else
-                    {
-                        if(entity.target.offsetTop < offset_top_min)
-                        {
-                            offset_top_entity = entity;
-                            offset_top_min = entity.target.offsetTop;
-                        }
-                    }
-                }
-
-                if(offset_top_entity != null)
-                {
-                    let link_element = document.getElementById(offset_top_entity.target.id + "_link");
-                    link_element.classList.add("active");
-
-                    let offcanvas_element = document.getElementById(offset_top_entity.target.id + "_link_offcanvas");
-                    offcanvas_element.classList.add("active");
-                }
-            }
-
-            const intersection_options = 
-            {
-                root: null,
-                threshold: [0.1, 0.5, 1.0],
-                rootMargin: "-80px 0px 0px 0px"
-            };
-
-            this.intersection_observer = new IntersectionObserver(entries => on_intersection(entries), intersection_options);
-
-            for(const element of elements)
-            {
-                const target = document.getElementById(element);
-
-                this.intersection_observer.observe(target);
+            return {
+                content
             }
         },
         template:
         `
         <header class="sticky-top">
-            <guide-header></guide-header>
+            <shared-header>
+                <h5 class="pt-3 pb-1">On this page</h5>
+                <outline :target="content"></outline>
+            </shared-header>
         </header>
         <main>
-            <div class="d-flex py-4 container">
-                <!--<div class="d-none d-xxl-block flex-shrink-0"style="min-width: 300px; width: 16.6666%">
-                    
-                </div>-->
-                <div class="flex-fill p-4 guide-paragraph">
-                    <div id="guide" class="mb-4">
-                        <h1 class="display-3 fw-normal pb-3">Guide</h1>
-                    </div>
-                    <div id="guide_search">
-                        <h2 style="margin-top: 2rem; margin-bottom: 1rem;">Database</h2>
+            <div class="container d-flex">
+                <div ref="content" class="about-content me-lg-4">
+                    <h1 class="display-3 ps-2 py-5" style="font-weight: 350;">Guide</h1>
+                    <div id="database" outline_label="Database" outline_indent="0">
+                        <h3>Database</h3>
                         <p>
                             The database of DaVE contains selection of commonly used vizualization techniuqes and provides documentation and addtional resources for them.
                             To find a visualization, ether a search term can be used and or tags can be used to further narrow down the selection.
                         </p>
                     </div>
-                    <div id="guide_search_tags">
+                    <div id="tags" outline_label="Tags" outline_indent="0">
                         <h3>Tags</h3>
                         <p>
                             Searching visualization techniques with a search query alone would be far too general, as there are often many techniques that would match the query but have totally different properties.
@@ -150,9 +59,9 @@
                             On the other hand, green tags are used to identify the scientific domain for which a technique is particularly suitable.
                         </p>
                     </div>
-                    <div id="guide_visualizations">
-                        <h2 style="margin-top: 2rem; margin-bottom: 1rem;">Visualizations</h2>
-                        <p id="test">
+                    <div id="visualizations" outline_label="Visualizations" outline_indent="0">
+                        <h3>Visualizations</h3>
+                        <p>
                             Besides of giving an overview over different vizualization techniuqes and providing addtional information, the goal of DaVE is also to make every technique accessible to users.
                             However, this can be quite challanging as different uesers may use different software environments meaning that the environment in which a vizualization technique should be executed is not always known.
                             DaVE therefore havily relies on the use of containers with which the software for the viszualization technique can be encapsulated.
@@ -160,7 +69,7 @@
                             However, there is also the option to create a template that combines al resources of a techniuqe and that is condifured for a specific use case.
                         </p>
                     </div>
-                    <div id="guide_visualizations_render_script">
+                    <div id="templates" outline_label="Templates" outline_indent="0">
                         <h3>Templates</h3>
                         <p>
                             A template combines all neccessary resources for a visualization techniuqe that are needed to render an image for a given dataset.
@@ -182,23 +91,21 @@
                             Currently the script as well as the containers only run under linux based operating systems.
                         </p>
                     </div>
-                    <div id="guide_visualizations_containers">
+                    <div id="containers" outline_label="Containers" outline_indent="0">
                         <h3>Containers</h3>
                         <p>
                             Containers 
-
                             DaVE tries to provide to different types of containers.
-                            
                         </p>
                     </div>
-                    <div id="guide_visualizations_paraview">
+                    <div id="paraview" outline_label="ParaView" outline_indent="0">
                         <h3>ParaView</h3>
                         <p>
                             <a href="https://www.paraview.org/">ParaView</a> is software commonly use for the visualization of siencify datasets.
                         </p>
                     </div>
-                    <div id="guide_frequently_ask_questions">
-                        <h2 style="margin-top: 2rem; margin-bottom: 1rem;">Frequently ask Questions</h2>
+                    <div id="faq" outline_label="Frequently ask Questions" outline_indent="0">
+                        <h3>Frequently ask Questions</h3>
                         <p>
                             The container that is currently used for most of the visualization techniuqes, contains ParaView which is a software commonly used for sientify visualizations and data exploration.
                             When loading the container, ParaView is instructed to load a trace file which describes the visualization techniuqe it self and all the steps that ParaView has to take to apply the visualization on the given dataset.
@@ -208,57 +115,16 @@
                         </p>
                     </div>
                 </div>
-                <!-- style="min-width: 300px; width: 16.6666%;" -->
-                <div class="d-none d-lg-block flex-shrink-0" style="width: 300px">
-                    <nav id="guide_nav_bar" class="flex-column align-items-stretch h-100">
-                        <nav class="nav flex-column sticky-top p-4 guide-scrollspy-active" style="top: 90px;">
-                            <h5 class="pt-3 pb-1">On this page</h5>
-                            <a id="guide_search_link" class="nav-link" href="#guide_search">Database</a>
-                            <a id="guide_search_tags_link" class="nav-link" style="padding-left: 35px" href="#guide_search_tags">Tags</a>
-                            <a id="guide_visualizations_link" class="nav-link" href="#guide_visualizations">Visualizations</a>
-                            <a id="guide_visualizations_render_script_link" class="nav-link" style="padding-left: 35px" href="#guide_visualizations_render_script">Templates</a>
-                            <a id="guide_visualizations_containers_link" class="nav-link" style="padding-left: 35px" href="#guide_visualizations_containers">Containers</a>
-                            <a id="guide_visualizations_paraview_link" class="nav-link" style="padding-left: 35px" href="#guide_visualizations_paraview">ParaView</a>
-                            <a id="guide_frequently_ask_questions_link" class="nav-link" href="#guide_frequently_ask_questions">Frequently ask Questions</a>
-                        </nav>
-                    </nav>
-                </div>
-                <div class="offcanvas offcanvas-end d-lg-none" tabindex="-1" id="offcanvasExample">
-                    <div class="offcanvas-header p-4 pb-0">
-                        <input type="text" class="form-control guide-search-bar flex-fill" placeholder="Search" >
-                        <button type="button" class="btn-close btn-close ms-3" data-bs-dismiss="offcanvas"></button>
-                    </div>
-                    <div class="offcanvas-body pt-0 px-4">
-                        
-                        <h5 class="pt-4 pb-2">On this page</h5>
-                        <nav id="guide_nav_bar" class="flex-column align-items-stretch">
-                            <nav class="nav flex-column guide-scrollspy-active">
-                                <a id="guide_search_link_offcanvas" class="nav-link" href="#guide_search">Database</a>
-                                <a id="guide_search_tags_link_offcanvas" class="nav-link" style="padding-left: 35px" href="#guide_search_tags">Tags</a>
-                                <a id="guide_visualizations_link_offcanvas" class="nav-link" href="#guide_visualizations">Visualizations</a>
-                                <a id="guide_visualizations_render_script_link_offcanvas" class="nav-link" style="padding-left: 35px" href="#guide_visualizations_render_script">Templates</a>
-                                <a id="guide_visualizations_containers_link_offcanvas" class="nav-link" style="padding-left: 35px" href="#guide_visualizations_containers">Containers</a>
-                                <a id="guide_visualizations_paraview_link_offcanvas" class="nav-link" style="padding-left: 35px" href="#guide_visualizations_paraview">ParaView</a>
-                                <a id="guide_frequently_ask_questions_link_offcanvas" class="nav-link" href="#guide_frequently_ask_questions">Frequently ask Questions</a>
-                            </nav>
-                        </nav>
-                        
+                <div class="flex-shrink-0 d-none d-lg-block" style="width: 250px;">
+                    <div class="sticky-top" style="top: 100px; z-index: 0;">
+                        <h5 class="about-content pt-3 pb-1">On this page</h5>
+                        <outline :target="content"></outline>
                     </div>
                 </div>
-            </div>
-            <div class="" style="height: 100px">
-                
             </div>
         </main>
         <footer class="bg-body-tertiary">
-            <shared-footer class="container"></shared-footer>
-            <div style="font-size: 13px;opacity: 0.75;" class="container d-flex flex-row justify-content-end py-3 pb-4 px-4">
-                <div style="margin-right: auto;">
-                    Copyright © 2024
-                </div>
-                <a style="margin-right: 20px;">Privacy Policy</a>
-                <a style="">Imprint</a>
-            </div>
+            <shared-footer></shared-footer>
         </footer>
         `
     }).mount("#app");

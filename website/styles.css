@@ -239,6 +239,11 @@
     text-align: justify;
 }
 
+.about-content div
+{
+    scroll-margin-top: 80px;
+}
+
 .about-content h1, h2, h3, h4, h5, h6
 {
     color: black !important;
