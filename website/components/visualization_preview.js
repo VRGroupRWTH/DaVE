@@ -77,15 +77,15 @@ export const VisualizationPreview =
     template:
     `
     <div>
-        <template v-if="visualization_preview_valid">
+        <!--<template v-if="visualization_preview_valid">
             <div v-if="visualization_preview_state == 'closed'" class="d-flex align-items-center justify-content-end" style="height: 40px">
                 <button class="btn btn-primary" type="button" @click="on_visualization_preview_open">Preview</button>
             </div>
             <div v-else class="d-flex align-items-center justify-content-end" style="height: 40px">
                 <button class="btn-close float-end" type="button" @click="on_visualization_preview_close"></button>
             </div>
-        </template>
-        <div style="width: 100%; height: 300px;">
+        </template>-->
+        <div style="width: 100%; height: 350px;">
             <div v-if="visualization_preview_state == 'closed'" id="visualization_preview_carousel" class="carousel carousel-dark slide w-100 h-100">
                 <div class="carousel-inner w-100 h-100">
                     <div v-for="(image, index) of visualization.images" :class="'carousel-item w-100 h-100 ' + ((index == 0) ? 'active' : '')">
@@ -109,6 +109,14 @@ export const VisualizationPreview =
                 <span class="ms-2 text-body-tertiary fw-semibold fs-4">Loading preview</span>
             </div>
             <div v-else-if="visualization_preview_state == 'open'" ref="visualization_preview_container" class="w-100 h-100"></div>
+        </div>
+        <div class="alert alert-success d-flex justify-content-between align-items-center py-2">
+            <div>
+                Interactive live demo available!
+            </div>
+            <div v-if="visualization_preview_state == 'closed'" class="d-flex align-items-center justify-content-end" style="height: 40px">
+                <button class="btn btn-outline-success" type="button" @click="on_visualization_preview_open">Show</button>
+            </div>
         </div>
     </div>
     `

@@ -1,4 +1,5 @@
-#### Description ####
+<div id="description" outline_label="Description" outline_indent="0" markdown="1">
+### Description ###
 Perhaps the most common method of visualizing vector fields or fields comprising multiple scalar attributes is by using glyphs.
 In the field of data visualization, glyphs are markers that describe the properties of a given field at a specific location.
 These glyphs are often distributed in a regular grid within the domain of the given input field.
@@ -10,8 +11,9 @@ For example, arrows are well suited for the visualization of attributes describi
 What makes glyphs particularly interesting is their ability to visualize multiple quantities at once, which is also known as multivariate data visualization.
 For example, arrow glyphs can be used to visualize more than just the flow of gas in a running combustion engine.
 At the same time, the lengths of the arrows can be used to visualize the velocity of the gas, while the color of the arrow can be changed to reflect the temperature of the gas.
-
-#### Instructions ####
+</div>
+<div id="instructions" outline_label="Instructions" outline_indent="0" markdown="1">
+### Instructions ###
 The visualization template that can be configured and downloaded below contains the shell script `glyphs_script.sh` that when executed visualizes the provided dataset using glaphs.
 The script can be started by ruinning the following command in the terminal
 ```
@@ -45,11 +47,14 @@ Depending on the dataset it might be also neccessary to change the scale of the 
 glyph1.ScaleFactor = 0.025
 ```
 For further options please look at the documentation of the ParaView Python API <span class="visualization-reference">[[1](#citation_paraview_python_api)]</span>. Otherwise it is also possible to load the file `glyphs_script.py` directly into ParaView granting even more options for costumizations.
-
-#### Limitations ####
+</div>
+<div id="limitations" outline_label="Limitations" outline_indent="0" markdown="1">
+### Limitations ###
 Currently only a shell script is provided which can be not that easily executed under Windows.
-
+</div>
+<div id="references" outline_label="References" outline_indent="0" markdown="1">
 ### References ###
 <span id="citation_paraview_python_api" class="ms-2 visualization-reference">[1]</span> [Kitware, Inc. , March 26, 2024, "ParaView’s Python documentation!", https://kitware.github.io/paraview-docs/v5.10.1/python/index.html.](https://kitware.github.io/paraview-docs/v5.10.1/python/index.html)
 
 <span id="citation_preview_dataset" class="ms-2 visualization-reference">[2]</span> [Christoph Garth, March 9, 2020, "Simulation of a jet flow", IEEE Dataport, doi: https://dx.doi.org/10.21227/qjxp-kc31.](https://dx.doi.org/10.21227/qjxp-kc31)
+</div>

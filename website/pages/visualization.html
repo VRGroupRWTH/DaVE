@@ -7,6 +7,7 @@
     import { VisualizationWizard } from "components/visualization_wizard.js"
     import { SharedHeader } from "components/shared_header.js"
     import { SharedFooter } from "components/shared_footer.js"
+    import { Outline } from "components/outline.js"
     import { Tag } from "components/tag.js"
 
     createApp(
@@ -18,10 +19,12 @@
             "visualization-wizard": VisualizationWizard,
             "shared-header": SharedHeader,
             "shared-footer": SharedFooter,
+            "outline": Outline,
             "tag": Tag
         },
         setup()
         {
+            let content = ref(null);
             let visualization = ref(
             {
                 name: "",
@@ -40,6 +43,7 @@
             }
 
             return {
+                content,
                 visualization,
                 on_visualization_tag_click
             }
@@ -68,27 +72,46 @@
         },
         template:
         `
-        <header>
-            <shared-header></shared-header>
+        <header class="sticky-top">
+            <shared-header>
+                <h5 class="pt-3 pb-1">On this page</h5>
+                <outline :target="content"></outline>
+            </shared-header>
         </header>
         <main>
-            <visualization-preview class="container my-4" :visualization="visualization"></visualization-preview>
-            <div class="container mb-4">
-                <h1 class="mb-2">{{ visualization.name }}</h1>
-                <div class="d-flex">
-                    <tag v-for="tag in visualization.tags" :tag="tag" class="me-1" @on_tag_click="on_visualization_tag_click"></tag>
+            <div class="container d-flex">
+                <div ref="content" class="me-lg-4">
+                    <visualization-preview class="my-4" :visualization="visualization"></visualization-preview>
+                    <div class="mb-4">
+                        <h1 class="mb-2" style="font-size: 3rem">{{ visualization.name }}</h1>
+                        <div class="d-flex">
+                            <tag v-for="tag in visualization.tags" :tag="tag" class="me-1" @on_tag_click="on_visualization_tag_click"></tag>
+                        </div>
+                    </div>
+                    <div class="mb-4 visualization-description" v-html="visualization.description"></div>
+                    <div class="mb-4" id="resources" outline_label="Resources" outline_indent="0" markdown="1">
+                        <h3 class="mb-2">Resources</h3>
+                        <visualization-content :visualization="visualization"></visualization-content>
+                    </div>
+                    <!--<visualization-wizard :visualization="visualization" class="mb-4"></visualization-wizard>-->
                 </div>
-            </div>
-            <div class="container mb-4 visualization-description" v-html="visualization.description"></div>
-            <div class="w-100 py-4 bg-body-tertiary">
-                <div class="container">
-                    <visualization-wizard :visualization="visualization" class="mb-4"></visualization-wizard>
-                    <visualization-content :visualization="visualization"></visualization-content>
+                <div class="flex-shrink-0 d-none d-lg-block" style="width: 250px;">
+                    <div class="sticky-top" style="top: 100px; z-index: 0;">
+                        <h5 class="about-content pt-3 pb-1">Example</h5>
+                        <div class="btn btn-primary">
+                            <div class="d-flex align-items-center">
+                                <div>Download</div>
+                                <img class="ms-2" src="symbols/download.svg">
+                            </div>
+                        </div>
+                        <h5 class="about-content pt-3 pb-1">On this page</h5>
+                        <outline :target="content"></outline>
+                    </div>
                 </div>
             </div>
         </main>
-        <footer>
-            <shared-footer class="container py-5"></shared-footer>
+        <footer class="bg-body-tertiary">
+            <shared-footer></shared-footer>
         </footer>
         `
     }).mount("#app");

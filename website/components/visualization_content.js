@@ -22,7 +22,7 @@ export const VisualizationContent =
     },
     template:
     `
-    <div class="card card-body shadow-sm">
+    <div class="">
         <table class="table align-middle">
             <thead>
                 <tr>

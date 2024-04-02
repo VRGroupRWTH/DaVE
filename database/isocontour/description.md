@@ -1,18 +1,28 @@
-#### Description ####
-Isocontours ...
-
-#### Instructions ####
-To execute the example just run
-
+<div id="description" outline_label="Description" outline_indent="0" markdown="1">
+### Description ###
+The extraction of isocontours is a fundamental visualization technique used in many research areas for the exploration of primarily three-dimensional scalar datasets.
+In this example, the extraction of an isocontour is demonstrated for a medical use case in which the x-ray scan of a paitents foot needs to be visualized.
+The dataset used in this example contains a dimensional scalar field that captures the density of the tissues and bones within the foot of the patient.
+The extraction of isocontours is particularly interesting in this use case as it allows for an isolated view on specific structures within the foot.
+By selecting an appropriate threshold for the extraction, it is for example possible to visualize only the bones in the foot, which enables the diagnosis of potential fractures.
+</div>
+<div id="instructions" outline_label="Instructions" outline_indent="0" markdown="1">
+### Instructions ###
+The archive that can be downloaded after the configuration of the example contains the shell script `isocontour_script.sh` that creates an isocontour for the provided dataset.
+The script can be started by ruinning the following command in the terminal
 ```
 ./isocontour_script.sh
 ```
-
-If the script is not executible run the following command
-
+In some cases it is neccessary to first mark the script as executible which can be done by running the following line in the terminal
 ```
 chmod +x isocontour_script.sh
 ```
-
-#### Limitations ####
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+After a successful execution of the script, the image `isocontour.png` containing the final visualization of the provided dataset is placed in the folder `output`.
+</div>
+<div id="references" outline_label="References" outline_indent="0" markdown="1">
+### References ###
+<ol class="visualization-reference">
+    <li id="citation_paraview_python_api">[Kitware, Inc. , March 26, 2024, "ParaView’s Python documentation!", https://kitware.github.io/paraview-docs/v5.10.1/python/index.html.](https://kitware.github.io/paraview-docs/v5.10.1/python/index.html)</li>
+    <li id="citation_preview_dataset">[Philips Research, "Rotational C-arm x-ray scan of a human foot", Hamburg, Germany, https://github.com/topology-tool-kit/ttk-data/blob/dev/ctBones.vti.](https://github.com/topology-tool-kit/ttk-data/blob/dev/ctBones.vti)</li>
+</ol>
+</div>

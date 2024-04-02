@@ -51,5 +51,6 @@ templates:
 
 datasets:
   - name: "PointCloud"
+    identifier: "DATASET_VOLUME"
     description: "A point cloud in .vtu format from the SciVis contest 2016 (https://www.uni-kl.de/sciviscontest)"
     url: "https://cloud.sdsc.edu/v1/AUTH_sciviscontest/2016/smoothinglength_0.30/030_run01.tar.bz2"

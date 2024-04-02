@@ -1,3 +1,4 @@
+<div id="description" outline_label="Description" outline_indent="0" markdown="1">
 #### Description ####
 Direct volume rendering is one of the most commonly used methods for the visualization of three-dimensional scalar datasets.
 Especially in the medical field, direct volume rendering is widely used for the visualzation of CT or MRI scans of patients.
@@ -23,7 +24,8 @@ There are many different rendering techniuqes with which the opacity field defin
 Rendering using volume ray casting
 the accumulation using volme ray casting can be aplied in regular steps or using an adaptive approach
 accumulation of values along a ray. it is more like an integration process. there are many ways how this intergation process can be done.
-
+</div>
+<div id="instructions" outline_label="Instructions" outline_indent="0" markdown="1">
 #### Instructions ####
 To execute the example just run
 
@@ -38,6 +40,8 @@ chmod +x volumerender_script.sh
 ```
 
 For entering your own data, search for "OWN_DATA" comments in the volumerender_trace.py file and change the file according to the instructions.
-
+</div>
+<div id="limitations" outline_label="Limitations" outline_indent="0" markdown="1">
 #### Limitations ####
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+</div>
