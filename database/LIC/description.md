@@ -1,7 +1,7 @@
-#### Description ####
+### Description ###
 Line-Integral Convolution ...
 
-#### Instructions ####
+### Instructions ###
 To execute the example just run
 
 ```
@@ -14,5 +14,5 @@ If the script is not executible run the following command
 chmod +x lic_script.sh
 ```
 
-#### Limitations ####
+### Limitations ###
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.

@@ -80,7 +80,7 @@
         </header>
         <main>
             <div class="container d-flex">
-                <div ref="content" class="me-lg-4">
+                <div ref="content" class="me-lg-4 flex-fill">
                     <visualization-preview class="my-4" :visualization="visualization"></visualization-preview>
                     <div class="mb-4">
                         <h1 class="mb-2" style="font-size: 3rem">{{ visualization.name }}</h1>
@@ -89,10 +89,10 @@
                         </div>
                     </div>
                     <div class="mb-4 visualization-description" v-html="visualization.description"></div>
-                    <div class="mb-4" id="resources" outline_label="Resources" outline_indent="0" markdown="1">
+                    <!--<div class="mb-4" id="resources" outline_label="Resources" outline_indent="0" markdown="1">
                         <h3 class="mb-2">Resources</h3>
                         <visualization-content :visualization="visualization"></visualization-content>
-                    </div>
+                    </div>-->
                     <!--<visualization-wizard :visualization="visualization" class="mb-4"></visualization-wizard>-->
                 </div>
                 <div class="flex-shrink-0 d-none d-lg-block" style="width: 250px;">

@@ -110,7 +110,7 @@ export const VisualizationPreview =
             </div>
             <div v-else-if="visualization_preview_state == 'open'" ref="visualization_preview_container" class="w-100 h-100"></div>
         </div>
-        <div class="alert alert-success d-flex justify-content-between align-items-center py-2">
+        <div class="alert alert-success d-flex justify-content-between align-items-center py-2 mt-2">
             <div>
                 Interactive live demo available!
             </div>

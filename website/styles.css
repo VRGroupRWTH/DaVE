@@ -230,8 +230,40 @@
     font-weight: 600;
 }
 
-.visualization-reference
+.visualization-description [href^="#"]::before
 {
+    content: "[";
+    font-weight: 600;
+}
+
+.visualization-description [href^="#"]
+{
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+.visualization-description [href^="#"]::after
+{
+    content: "]";
+    font-weight: 600;
+}
+
+.visualization-description #references ol
+{
+    padding-left: 2.5rem;
+    margin-bottom: -0.75rem;
+    counter-reset: reference;
+}
+
+.visualization-description #references ol li
+{
+    margin-bottom: 0.75rem;
+    counter-increment: reference;
+}
+
+.visualization-description #references ol li::marker
+{
+    content: "[" counter(reference) "] ";
     font-weight: 600;
     font-variant-numeric: tabular-nums;
 }
