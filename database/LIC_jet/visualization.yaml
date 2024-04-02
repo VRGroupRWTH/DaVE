@@ -48,7 +48,7 @@ templates:
 
 
 datasets:
-  - name: "Volume"
+  - name: "flow field"
+    identifier: "FLOWFIELD"
     description: "A flow field of a simulated jet."
     path: ../glyphs/resources/jet.vti
-    # url: "https://nextcloud.computecanada.ca/index.php/s/edS6be3sk8oQ58N/download"
