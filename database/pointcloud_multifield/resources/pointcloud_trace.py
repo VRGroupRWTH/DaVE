@@ -35,7 +35,7 @@ glyph1.ScaleFactor = 0.2
 glyph1.GlyphTransform = 'Transform2'
 
 # create a new 'Cylinder'
-cylinder1 = pvs.Cylinder(registrationName='Cylinder1')
+cylinder1 = pvs.Cylinder(registrationName='Cylinder1')                              # OWN_DATA: another enclosing object with different dimensions maz be selected.
 cylinder1.Resolution = 100
 cylinder1.Height = 10.1
 cylinder1.Radius = 5.05
@@ -198,7 +198,7 @@ animationScene1.StartTime=0.0
 animationScene1.EndTime=1.0
 
 pvs.SaveAnimation('./output/pointcloud.png',
-  renderView1,
+  layout1,
   scene=animationScene1,
   ImageResolution=[1920, 1080])
 
