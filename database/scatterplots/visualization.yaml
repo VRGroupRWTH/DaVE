@@ -4,6 +4,8 @@ date: 2024-03-25
 tags:
   - name: "Scalar"
     type: "technique"
+  - name: "Geology"
+    type: "domain"
 
 images:
   - "images/scatterplots.png"
@@ -33,7 +35,6 @@ templates:
     script: "resources/scatterplots_script.sh"
     container:
       url: "ghcr.io/scivislab/paraview:5.11.1"
-
 
 datasets:
   - name: "Data"

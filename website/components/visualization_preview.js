@@ -1,4 +1,4 @@
-import { ref, watch } from "vue"
+import { ref, watch, computed } from "vue"
 
 export const VisualizationPreview =
 {
@@ -6,16 +6,14 @@ export const VisualizationPreview =
     setup(props)
     {
         let visualization_preview_state = ref("closed");
-        let visualization_preview_valid = ref(false);
+        let visualization_preview_valid = computed(() =>
+        {
+            return props.visualization.scene != "";
+        });
 
         let visualization_preview_container = ref(null);
         let visualization_preview_renderer = ref(null);
         let visualization_preview_full_screen_renderer = ref(null);
-
-        if(props.visualization.scene != "")
-        {
-            visualization_preview_valid.value = true;
-        }
 
         async function on_visualization_preview_open()
         {
@@ -110,14 +108,16 @@ export const VisualizationPreview =
             </div>
             <div v-else-if="visualization_preview_state == 'open'" ref="visualization_preview_container" class="w-100 h-100"></div>
         </div>
-        <div class="alert alert-success d-flex justify-content-between align-items-center py-2 mt-2">
-            <div>
-                Interactive live demo available!
+        <template v-if="visualization_preview_valid">
+            <div class="alert alert-success d-flex justify-content-between align-items-center py-2 mt-2">
+                <div>
+                    Interactive live demo available!
+                </div>
+                <div v-if="visualization_preview_state == 'closed'" class="d-flex align-items-center justify-content-end" style="height: 40px">
+                    <button class="btn btn-outline-success" type="button" @click="on_visualization_preview_open">Show</button>
+                </div>
             </div>
-            <div v-if="visualization_preview_state == 'closed'" class="d-flex align-items-center justify-content-end" style="height: 40px">
-                <button class="btn btn-outline-success" type="button" @click="on_visualization_preview_open">Show</button>
-            </div>
-        </div>
+        </template>
     </div>
     `
 }

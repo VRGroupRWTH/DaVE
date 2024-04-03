@@ -6,6 +6,9 @@ tags:
     type: "technique"
   - name: "3D"
     type: "technique"
+  - name: "Computational Fluid Dynamics"
+    type: "domain"
+    abbreviation: "CFD"
 
 images:
   - "images/volume_statistics.png"
@@ -35,7 +38,6 @@ templates:
     script: "resources/volume_statistics_script.sh"
     container:
       url: "ghcr.io/scivislab/paraview:5.11.1"
-
 
 datasets:
   - name: "Density Field"

@@ -11,6 +11,9 @@ For example, arrows are well suited for the visualization of attributes describi
 What makes glyphs particularly interesting is their ability to visualize multiple quantities at once, which is also known as multivariate data visualization.
 For example, arrow glyphs can be used to visualize more than just the flow of gas in a running combustion engine.
 At the same time, the lengths of the arrows can be used to visualize the velocity of the gas, while the color of the arrow can be changed to reflect the temperature of the gas.
+
+Dataset [1](#citation_paraview_python_api)
+
 </div>
 <div id="instructions" outline_label="Instructions" outline_indent="0" markdown="1">
 ### Instructions ###
@@ -26,7 +29,7 @@ chmod +x glyphs_script.sh
 After a successful execution of the script, the image `glyphs.png` containing the final visualization of the provided dataset is placed in the folder `output`.
 
 A dataset may contain more than one attribute that can be visualized using glyphs.
-The selection of the attribute is determined by the lines in the file `glyphs_script.py` that are marked with the keyword `OWN_DATA`.
+The selection of the attribute is determined by the lines in the file `glyphs_trace.py` that are marked with the keyword `OWN_DATA`.
 When changing the attribute, these lines need to be modified such that they contain the name of the desired attribute.
 Especially when using custom data, it is important to make sure that the correct attribute is selected for the creation of the glyphs.
 One of the lines that would need to be changed when using a different dataset is shown below
@@ -36,17 +39,17 @@ glyph1.OrientationArray = ['POINTS', 'ImageFile']
 By default the script uses the attribute with the name `ImageFile`.
 
 There are many options with which the glyphs can be customized. 
-For example the shape of the glyphs can be controlled using the following line of the `glyphs_script.py` script
+For example the shape of the glyphs can be controlled using the following line of the `glyphs_trace.py` script
 ```
 glyph1 = pvs.Glyph(registrationName='Glyph1', Input=reader, GlyphType='Arrow')
 ```
 By default the script uses `GlyphType='Arrow'` meaning that arrows are used for the visualization.
 Alternatives are `GlyphType='Cone'` for cones or `GlyphType='Box'` for boxes.
-Depending on the dataset it might be also neccessary to change the scale of the glyphs which can be controlled using the following line of the `glyphs_script.py` script
+Depending on the dataset it might be also neccessary to change the scale of the glyphs which can be controlled using the following line of the `glyphs_trace.py` script
 ```
 glyph1.ScaleFactor = 0.025
 ```
-For further options please look at the documentation of the ParaView Python API <span class="visualization-reference">[[1](#citation_paraview_python_api)]</span>. Otherwise it is also possible to load the file `glyphs_script.py` directly into ParaView granting even more options for costumizations.
+For further options please look at the documentation of the ParaView Python API [2](#citation_paraview_python_api). Otherwise it is also possible to load the file `glyphs_trace.py` directly into ParaView granting even more options for costumizations.
 </div>
 <div id="limitations" outline_label="Limitations" outline_indent="0" markdown="1">
 ### Limitations ###
@@ -54,7 +57,6 @@ Currently only a shell script is provided which can be not that easily executed 
 </div>
 <div id="references" outline_label="References" outline_indent="0" markdown="1">
 ### References ###
-<span id="citation_paraview_python_api" class="ms-2 visualization-reference">[1]</span> [Kitware, Inc. , March 26, 2024, "ParaView’s Python documentation!", https://kitware.github.io/paraview-docs/v5.10.1/python/index.html.](https://kitware.github.io/paraview-docs/v5.10.1/python/index.html)
-
-<span id="citation_preview_dataset" class="ms-2 visualization-reference">[2]</span> [Christoph Garth, March 9, 2020, "Simulation of a jet flow", IEEE Dataport, doi: https://dx.doi.org/10.21227/qjxp-kc31.](https://dx.doi.org/10.21227/qjxp-kc31)
+1. [<span id="citation_preview_dataset">Christoph Garth, March 9, 2020, "Simulation of a jet flow", IEEE Dataport, doi: https://dx.doi.org/10.21227/qjxp-kc31.</span>](https://dx.doi.org/10.21227/qjxp-kc31)
+2. [<span id="citation_paraview_python_api">Kitware, Inc. , March 26, 2024, "ParaView’s Python documentation!", https://kitware.github.io/paraview-docs/v5.10.1/python/index.html.</span>](https://kitware.github.io/paraview-docs/v5.10.1/python/index.html)
 </div>

@@ -18,8 +18,6 @@ images:
   - "images/slice_overview_51_176_76.png"
   - "images/cinema_view1.png"
 
-# scene: "scene/index.json"
-
 resources:
   - name: "multiple_slice_trace.py"
     type: "Script"
@@ -48,7 +46,6 @@ templates:
     script: "resources/multiple_slice_script.sh"
     container:
       url: "ghcr.io/scivislab/paraview:5.11.1"
-
 
 datasets:
   - name: "Volume"

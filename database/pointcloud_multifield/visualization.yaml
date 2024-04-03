@@ -20,8 +20,6 @@ images:
   - "images/pointcloud.gif"
   - "images/pointcloud.png"
 
-# scene: "scene/index.json"
-
 resources:
   - name: "pointcloud_trace.py"
     type: "Script"
@@ -47,7 +45,6 @@ templates:
     script: "resources/pointcloud_script.sh"
     container:
       url: "ghcr.io/scivislab/paraview:5.11.1"
-
 
 datasets:
   - name: "PointCloud"

@@ -11,11 +11,11 @@ tags:
   - name: "Computational Fluid Dynamics"
     type: "domain"
     abbreviation: "CFD"
+  - name: "Geology"
+    type: "domain"
 
 images:
   - "images/lic.png"
-
-# scene: "scene/index.json"
 
 resources:
   - name: "lic_trace.py"
@@ -45,7 +45,6 @@ templates:
     script: "resources/lic_script.sh"
     container:
       url: "ghcr.io/scivislab/paraview:5.11.1"
-
 
 datasets:
   - name: "Volume"

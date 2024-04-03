@@ -14,8 +14,6 @@ tags:
 images:
   - "images/heatmap.png"
 
-# scene: "scene/index.json"
-
 resources:
   - name: "heatmap_trace.py"
     type: "Script"
@@ -44,7 +42,6 @@ templates:
     script: "resources/heatmap_script.sh"
     container:
       url: "ghcr.io/scivislab/paraview:5.11.1"
-
 
 datasets:
   - name: "Volume"

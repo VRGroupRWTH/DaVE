@@ -1,5 +1,5 @@
 <div id="description" outline_label="Description" outline_indent="0" markdown="1">
-#### Description ####
+### Description ###
 Direct volume rendering is one of the most commonly used methods for the visualization of three-dimensional scalar datasets.
 Especially in the medical field, direct volume rendering is widely used for the visualzation of CT or MRI scans of patients.
 But there are also other research areas where direct volume rendering is used, such as the field of energy conversion, where it is used for the visualization of gasses in a simulated combustion process.
@@ -7,41 +7,40 @@ Compared to for example iso-surface extraction or similar methods for the explor
 This direct approach has the disadvantage that the dataset can not be further simplified before it is visualized which makes this techniuqe sometimes more computationally demainding if an interactive visualization is needed.
 However, what makes direct volume rendering particularly interesting is its ability to provide a in-depth view into the dataset, allowing multiple structures at different depths of the dataset to be examined simultaneously.
 
-A fundamental part of direct volume rendering is the transfer function, which assigns every value within the range of the dataset specific color and or opacity values that are then used for the rendering.
-There are several approaches how this transfer function can be defined but most commonly a look up table is used which defines for a finite set of 
+This example illustrates the usage of direct volume rendering in a medical context.
+The dataset used in the example describes the x-ray scan of a patiens foot as a scalar field that represents the density of tissues and bones within the foot [1](#reference_dataset).
+A common practice when using direct volume rendering is color the reulitng volume using a user defined look up table that assignes every value of the field a specific color.
+This makes it then easier to identify different structures in the volume, as for example in this case, the bones in the foot colored in red and the less dense tissue colored in blue.
+Beisdes that is also possible to coltroll the opacity of structures based on the values of the scalar field which makes it possible to cut away structures that are not of interset.
+In this example, dense structures such as the bones were set to fully opaque while the tissue of the foot was made semi-transparent.
 
-which is used to derive the parameters required for rendering from the input dataset.
-The transfer function is used to define two parameters, the opacity which defines how strong the view into the volume is blocked by at a given location as well as the color at a give location of the volume.
-The transfer function defines a mapping from dataset sample to opacity and color.
-There are different approaches how the transfer function can be defined.
-One way would be using a piecewise linear function over the domain of the input samples.
-Another way would be using lookup tables such as gradient textures.
-In most cases the transfer function has to be defined by the user which can be difficult as it often requires many changes to highlight a specifiy feature within the dataset.
-However, there is still the problem that features with the same dataset value are mapped to the same opacity and color.
-This means that independent of how the transfer function is defined, features with the same dataset value are always shown at the same time.
-
-There are many different rendering techniuqes with which the opacity field defined by the transfer function can be turned into an images.
-Rendering using volume ray casting
-the accumulation using volme ray casting can be aplied in regular steps or using an adaptive approach
-accumulation of values along a ray. it is more like an integration process. there are many ways how this intergation process can be done.
 </div>
 <div id="instructions" outline_label="Instructions" outline_indent="0" markdown="1">
-#### Instructions ####
-To execute the example just run
-
+### Instructions ###
+The file archive that comes with this example when downloading it, contains the script file `volumerender_script` that when executed visualizes the provided dataset using direct volume rendering.
+The script can be started using the following terminal command
 ```
 ./volumerender_script.sh
 ```
-
-If the script is not executible run the following command
-
+In some cases it is neccessary to first mark the script as executible which can be done by running the following line in the terminal
 ```
 chmod +x volumerender_script.sh
 ```
+After a successful execution of the script, the image `volumerender.png` containing the final visualization of the provided dataset is placed in the folder `output`. 
 
-For entering your own data, search for "OWN_DATA" comments in the volumerender_trace.py file and change the file according to the instructions.
+In case the example is used together with a custom dataset, the lines of the script `volumerender_trace.py` that are marked with the key word `OWN_DATA` need to be changed.
+These lines, as for example the line shown below, need to be changed so that they match with the name of the attribut of the dataset that should be used for the visualization.
+```
+reader.PointArrayStatus = ['Scalars_']
+```
+By default, the script uses the attribute with the name `Scalars_` for the visualization.
 </div>
 <div id="limitations" outline_label="Limitations" outline_indent="0" markdown="1">
-#### Limitations ####
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+### Limitations ###
+Currently the example only supports datasets in the `.vti` file format.
+Other dataset format are possible but would require extensive changes to the `volumerender_script.py` script file as the reader used by it would need to be changed.
+</div>
+<div id="references" outline_label="References" outline_indent="0" markdown="1">
+### References ###
+1. [<span id="reference_dataset">Philips Research, "Rotational C-arm x-ray scan of a human foot", Hamburg, Germany, https://github.com/topology-tool-kit/ttk-data/blob/dev/ctBones.vti.</span>](https://github.com/topology-tool-kit/ttk-data/blob/dev/ctBones.vti)
 </div>

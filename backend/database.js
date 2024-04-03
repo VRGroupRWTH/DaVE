@@ -2,6 +2,8 @@ const Visualization = require("./visualization.js");
 const fs = require("fs");
 const fuzzysort = require("fuzzysort");
 
+const DATABASE_SEARCH_THRESHOLD = -1000000.0;
+
 class Sorting
 {
     static select(query, sorting)
@@ -152,6 +154,11 @@ class Database
 
         for(const candidate of candidates)
         {
+            if(candidate.score < DATABASE_SEARCH_THRESHOLD)
+            {
+                continue;
+            }
+
             results.push(candidate.value);
         }
 
@@ -199,6 +206,11 @@ class Database
 
         for(const candidate of candidates)
         {
+            if(candidate.score < DATABASE_SEARCH_THRESHOLD)
+            {
+                continue;
+            }
+
             if(!results.includes(candidate.value))
             {
                 results.push(candidate.value);
@@ -241,7 +253,7 @@ class Database
             return rating.score;
         }
 
-        return null;
+        return -Infinity;
     }
 
     #search_has_properties(object, query_property, output_properties)

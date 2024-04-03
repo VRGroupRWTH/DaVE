@@ -15,8 +15,6 @@ tags:
 images:
   - "images/pathline.gif"
 
-scene: "scene/index.json"
-
 resources:
   - name: "pathline_trace.py"
     type: "Script"

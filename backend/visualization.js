@@ -84,6 +84,11 @@ class Visualization
         this.#name = visualization.name;
         this.#date = visualization.date;
         this.#tags = [];
+        this.#images = [];
+        this.#resources = [];
+        this.#templates = [];
+        this.#datasets = [];
+        this.#scene = "";
 
         if("tags" in visualization)
         {

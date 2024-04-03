@@ -39,7 +39,6 @@ templates:
     container:
       url: "ghcr.io/scivislab/paraview:5.11.1"
 
-
 datasets:
   - name: "AMR data"
     identifier: "AMR"
