@@ -51,11 +51,11 @@ c=0
 
 for entry in *.sh
 do
-    c=$((s+1))
+    c=$((c+1))
     echo "${s}/${count} execute ${entry} ..."
     chmod +x ${entry}
     if ./${entry} | indent ; test ${PIPESTATUS[0]} -eq 0 ; then
-	s=$((c+1))
+	s=$((s+1))
     fi
 done
 echo "Completed ${c}/${count} examples"
