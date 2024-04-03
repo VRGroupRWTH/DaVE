@@ -2,6 +2,7 @@
 <body id="app"></body>
 <script type="module">
     import { createApp, ref } from "vue"
+    import { VisualizationImages } from "components/visualization_images.js"
     import { VisualizationPreview } from "components/visualization_preview.js"
     import { VisualizationContent } from "components/visualization_content.js"
     import { VisualizationWizard } from "components/visualization_wizard.js"
@@ -14,6 +15,7 @@
     {
         components:
         {
+            "visualization-images" : VisualizationImages,
             "visualization-preview": VisualizationPreview,
             "visualization-content": VisualizationContent,
             "visualization-wizard": VisualizationWizard,
@@ -82,6 +84,7 @@
         <main>
             <div class="container d-flex">
                 <div ref="content" class="me-lg-4 flex-fill">
+                    <visualization-images :visualization="visualization" class="w-100 my-4" style="height: 350px"></visualization-images>
                     <visualization-preview class="my-4" :visualization="visualization"></visualization-preview>
                     <div class="mb-4">
                         <h1 class="mb-2" style="font-size: 3rem">{{ visualization.name }}</h1>
