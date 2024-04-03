@@ -95,6 +95,6 @@ imageFileLUTColorBar.Visibility = 1
 # pvs.ResetCamera(renderView1)                                          # OWN_DATA: if the original view does not fit ResetCamera can be used to focus on the visible data
 
 # save screenshot
-pvs.SaveScreenshot('./output/lic.png', 
+pvs.SaveScreenshot('./output/lic_jet.png', 
     layout1, 
     FontScaling='Do not scale fonts')

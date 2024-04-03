@@ -27,6 +27,8 @@ if not file_exists:
 reader = pvs.NetCDFReader(registrationName='spherical001.nc', FileName=[filepath])
 reader.Dimensions = '(lat, r, lon)'             # OWN_DATA: the example data specifies the dimensions in latitude, radius and longitude; change as needed
 
+pvs.UpdatePipeline(time=0.0, proxy=reader)
+
 # create a new 'Extract Subset'                                                                      
 extractSubset1 = pvs.ExtractSubset(registrationName='ExtractSubset1', Input=reader)
 extractSubset1.VOI = [0, 360, 0, 201, 90, 90]
