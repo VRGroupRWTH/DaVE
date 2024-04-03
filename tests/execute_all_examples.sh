@@ -31,7 +31,6 @@ SUFFIXES=('Direct Volume Rendering'
        )
 
 mkdir -p test
-
 rm test/* || true
 
 for SUFFIX in "${SUFFIXES[@]}";
