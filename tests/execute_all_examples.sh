@@ -2,48 +2,10 @@
 
 set -eo pipefail
 
-CONTAINER=${1}
-EXEC=${2}
-
-case $EXEC in
-    "local");;
-    "mpi");;
-    "slurm");;
-    *)
-	exit;;
-esac
-
-PREFIX="http://localhost:8080/api/create_script?visualization="
-SUFFIXES=('Direct Volume Rendering'
-	'Glyphs'
-	'Heatmap'
-	'Isocontours'
-	'Line-Integral Convolution (LIC)'
-	'Line-Integral Convolution (LIC) of a Jet Flow'
-	'Muliple Slices'
-	'Parallel Coordinates'
-	'Pathline'
-	'Point Cloud Multifield'
-	'Scatterplots'
-	'Streamlines'
-	'Velocity Gradient Tensor'
-	'Volume Statistics'
-       )
-
-mkdir -p test
-rm test/* || true
-
-for SUFFIX in "${SUFFIXES[@]}";
-do
-    wget -P test "${PREFIX}${SUFFIX}&technique=${CONTAINER}&command=${EXEC}" -O tmp.zip
-    unzip -n -q tmp.zip -d test
-done
-
-rm tmp.zip
-
-# execute examples
+# indent funciton for more readable output
 indent() { sed 's/^/  /'; }
 
+# execute all examples
 cd test
 count=$(ls -1q *.sh | wc -l)
 s=0
@@ -58,4 +20,4 @@ do
 	s=$((s+1))
     fi
 done
-echo "Completed ${c}/${count} examples"
+echo "Successfully completed ${c}/${count} examples"
