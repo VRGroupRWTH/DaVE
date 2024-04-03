@@ -14,10 +14,14 @@ c=0
 for entry in *.sh
 do
     c=$((c+1))
-    echo "${s}/${count} execute ${entry} ..."
+    echo "${c}/${count} execute ${entry} ..."
     chmod +x ${entry}
-    if ./${entry} | indent ; test ${PIPESTATUS[0]} -eq 0 ; then
+    ./${entry} | indent
+    RC=${PIPESTATUS[0]}
+    if [ "${RC}" = "0" ] ; then
 	s=$((s+1))
+    else
+	echo "${entry} failed"
     fi
 done
-echo "Successfully completed ${c}/${count} examples"
+echo "Successfully completed ${s}/${count} examples"
