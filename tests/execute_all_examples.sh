@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#set -e
+set -eo pipefail
 
 CONTAINER=${1}
 EXEC=${2}
@@ -31,9 +31,7 @@ SUFFIXES=('Direct Volume Rendering'
        )
 
 mkdir -p test
-rm test/*
-
-set -e
+rm test/* || true
 
 for SUFFIX in "${SUFFIXES[@]}";
 do
@@ -44,11 +42,20 @@ done
 rm tmp.zip
 
 # execute examples
+indent() { sed 's/^/  /'; }
+
 cd test
+count=$(ls -1q *.sh | wc -l)
+s=0
+c=0
 
 for entry in *.sh
 do
-    echo "execute ${entry} ..."
+    c=$((s+1))
+    echo "${s}/${count} execute ${entry} ..."
     chmod +x ${entry}
-    ./${entry}
+    if ./${entry} | indent ; test ${PIPESTATUS[0]} -eq 0 ; then
+	s=$((c+1))
+    fi
 done
+echo "Completed ${c}/${count} examples"
