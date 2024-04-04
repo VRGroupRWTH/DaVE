@@ -4,7 +4,7 @@
     import { createApp, ref } from "vue"
     import { VisualizationImages } from "components/visualization_images.js"
     import { VisualizationPreview } from "components/visualization_preview.js"
-    import { VisualizationContent } from "components/visualization_content.js"
+    import { VisualizationDownload } from "components/visualization_download.js"
     import { VisualizationWizard } from "components/visualization_wizard.js"
     import { SharedHeader } from "components/shared_header.js"
     import { SharedFooter } from "components/shared_footer.js"
@@ -17,7 +17,7 @@
         {
             "visualization-images" : VisualizationImages,
             "visualization-preview": VisualizationPreview,
-            "visualization-content": VisualizationContent,
+            "visualization-download": VisualizationDownload,
             "visualization-wizard": VisualizationWizard,
             "shared-header": SharedHeader,
             "shared-footer": SharedFooter,
@@ -77,15 +77,24 @@
         `
         <header class="sticky-top">
             <shared-header>
-                <h5 class="pt-3 pb-1">On this page</h5>
+                <h5 class="about-content mt-3 mb-2">Example</h5>
+                <div class="d-flex justify-content-center mb-3 py-4 alert alert-light">
+                    <div class="btn btn-primary">
+                        <div class="d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#visualization_wizard">
+                            <div>Download</div>
+                            <img class="ms-2" src="symbols/download.svg">
+                        </div>
+                    </div>
+                </div>
+                <h5 class="about-content mb-2">On this page</h5>
                 <outline :target="content"></outline>
             </shared-header>
         </header>
         <main>
             <div class="container d-flex">
-                <div ref="content" class="me-lg-4 flex-fill">
-                    <visualization-images :visualization="visualization" class="w-100 my-4" style="height: 350px"></visualization-images>
-                    <visualization-preview class="my-4" :visualization="visualization"></visualization-preview>
+                <div ref="content" class="me-lg-4 flex-fill" style="min-width: 0px;">
+                    <visualization-images :visualization="visualization" class="mt-4 mb-2 w-100" style="height: 350px"></visualization-images>
+                    <visualization-preview :visualization="visualization" class="mb-4"></visualization-preview>
                     <div class="mb-4">
                         <h1 class="mb-2" style="font-size: 3rem">{{ visualization.name }}</h1>
                         <div class="d-flex">
@@ -93,22 +102,20 @@
                         </div>
                     </div>
                     <div class="mb-4 visualization-description" v-html="visualization.description"></div>
-                    <!--<div class="mb-4" id="resources" outline_label="Resources" outline_indent="0" markdown="1">
-                        <h3 class="mb-2">Resources</h3>
-                        <visualization-content :visualization="visualization"></visualization-content>
-                    </div>-->
-                    <!--<visualization-wizard :visualization="visualization" class="mb-4"></visualization-wizard>-->
+                    <visualization-wizard id="visualization_wizard" :visualization="visualization"></visualization-wizard>
                 </div>
                 <div class="flex-shrink-0 d-none d-lg-block" style="width: 250px;">
                     <div class="sticky-top" style="top: 100px; z-index: 0;">
-                        <h5 class="about-content pt-3 pb-1">Example</h5>
-                        <div class="btn btn-primary">
-                            <div class="d-flex align-items-center">
-                                <div>Download</div>
-                                <img class="ms-2" src="symbols/download.svg">
+                        <h5 class="about-content mb-2">Example</h5>
+                        <div class="d-flex justify-content-center mb-3 py-4 alert alert-light">
+                            <div class="btn btn-primary">
+                                <div class="d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#visualization_wizard">
+                                    <div>Download</div>
+                                    <img class="ms-2" src="symbols/download.svg">
+                                </div>
                             </div>
                         </div>
-                        <h5 class="about-content pt-3 pb-1">On this page</h5>
+                        <h5 class="about-content mb-2">On this page</h5>
                         <outline :target="content"></outline>
                     </div>
                 </div>

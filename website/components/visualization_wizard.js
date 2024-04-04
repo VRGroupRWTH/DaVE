@@ -402,24 +402,20 @@ export const VisualizationWizard =
     },
     template:
     `
-    <div class="card card-body shadow-sm d-flex flex-row align-items-center justify-content-between">
-        <span>Render Script</span>
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#visualization_wizard_modal" @click="on_visualization_wizard_open">Create</button>
-        <div id="visualization_wizard_modal" class="modal fade" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">{{ visualization_wizard_question_titles[visualization_wizard_question_index] }}</h5>
-                        <button class="btn-close" type="button" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body">
-                        <component :is="visualization_wizard_questions[visualization_wizard_question_index]" :visualization="visualization" v-model:config="visualization_wizard_config"></component>
-                    </div>
-                    <div class="modal-footer">
-                        <button v-if="visualization_wizard_question_index > 0" class="btn btn-primary" type="button" @click="on_visualization_wizard_question_back">Back</button>
-                        <button v-if="visualization_wizard_question_index < visualization_wizard_questions.length - 1" class="btn btn-primary ms-auto" type="button" @click="on_visualization_wizard_question_next">Next</button>
-                        <a v-else class="btn btn-primary ms-auto" :href="visualization_wizard_link" download="render_script.zip">Download</a>
-                    </div>
+    <div class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ visualization_wizard_question_titles[visualization_wizard_question_index] }}</h5>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <component :is="visualization_wizard_questions[visualization_wizard_question_index]" :visualization="visualization" v-model:config="visualization_wizard_config"></component>
+                </div>
+                <div class="modal-footer">
+                    <button v-if="visualization_wizard_question_index > 0" class="btn btn-primary" type="button" @click="on_visualization_wizard_question_back">Back</button>
+                    <button v-if="visualization_wizard_question_index < visualization_wizard_questions.length - 1" class="btn btn-primary ms-auto" type="button" @click="on_visualization_wizard_question_next">Next</button>
+                    <a v-else class="btn btn-primary ms-auto" :href="visualization_wizard_link" download="render_script.zip">Download</a>
                 </div>
             </div>
         </div>
