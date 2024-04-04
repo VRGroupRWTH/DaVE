@@ -16,21 +16,22 @@ esac
 
 # define example urls
 PREFIX="http://localhost:8080/api/create_script?visualization="
-SUFFIXES=('Direct Volume Rendering'
-	'Glyphs'
-	'Heatmap'
-	'Isocontours'
-	'Line-Integral Convolution (LIC)'
-	'Line-Integral Convolution (LIC) of a Jet Flow'
-	'Muliple Slices'
-	'Parallel Coordinates'
-	'Pathline'
-	'Point Cloud Multifield'
-	'Scatterplots'
-	'Streamlines'
-	'Velocity Gradient Tensor'
-	'Volume Statistics'
-       )
+SUFFIXES=('Adaptive Mesh Refinement'
+	  'Direct Volume Rendering'
+	  'Glyphs'
+	  'Heatmap'
+	  'Isocontours'
+	  'Line-Integral Convolution (LIC)'
+	  'Line-Integral Convolution (LIC) of a Jet Flow'
+	  'Muliple Slices'
+	  'Parallel Coordinates'
+	  'Pathline'
+	  'Point Cloud Multifield'
+	  'Scatterplots'
+	  'Streamlines'
+	  'Velocity Gradient Tensor'
+	  'Volume Statistics'
+	 )
 
 # create test directory and clean up old scripts
 mkdir -p test
