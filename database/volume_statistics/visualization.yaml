@@ -27,10 +27,10 @@ templates:
     commands:
       - type: "local"
         run: "pvbatch volume_statistics_trace.py"
-      - type: "mpi"
-        run: "pvbatch volume_statistics_trace.py"
-      - type: "slurm"
-        run: "pvbatch volume_statistics_trace.py"
+      # - type: "mpi"
+      #   run: "pvbatch volume_statistics_trace.py"
+      # - type: "slurm"
+      #   run: "pvbatch volume_statistics_trace.py"
     trace: "resources/volume_statistics_trace.py"
     script: "resources/volume_statistics_script.sh"
     container:
