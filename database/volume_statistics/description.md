@@ -15,4 +15,4 @@ chmod +x volume_statistics_script.sh
 ```
 
 #### Limitations ####
-The pipeline contains a programmable filter summing up the volume for each connected component. This filter does not work in the distributed case.
+The pipeline contains a programmable filter summing up the volume for each connected component. This filter does not work correctly in the distributed case.

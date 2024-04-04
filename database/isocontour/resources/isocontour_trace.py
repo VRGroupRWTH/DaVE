@@ -18,44 +18,61 @@ file_exists = exists(filepath)
 if not file_exists:
     print("file ", filepath," does not exist", file=sys.stderr)
 
+# ----------------------------------------------------------------
+# setup the data processing pipelines
+# ----------------------------------------------------------------
+
 # create a new 'XML Image Data Reader'
 reader = pvs.XMLImageDataReader(registrationName='reader', FileName=[filepath])
-reader.PointArrayStatus = ['Scalars_']
-
-# Properties modified on ctBonesvti
-# reader.TimeArray = 'None'
-
-pvs.UpdatePipeline(time=0.0, proxy=reader)
+reader.PointArrayStatus = ['Scalars_']                              # OWN_DATA: every field has a name in a .vti file. Replace 'Scalars_' by the corresponding name
 
 # create a new 'Contour'
 contour1 = pvs.Contour(registrationName='Contour1', Input=reader)
 contour1.ContourBy = ['POINTS', 'Scalars_']                         # OWN_DATA: every field has a name in a .vti file. Replace 'Scalars_' by the corresponding name
-contour1.Isosurfaces = [100.0]                                      # OWN_DATA: depending on the data other iso values might be of interes which can be specified here
+contour1.Isosurfaces = [100.0]                                      # OWN_DATA: depending on the data other iso values might be of interest which can be specified here
 contour1.PointMergeMethod = 'Uniform Binning'
 
 pvs.UpdatePipeline(time=0.0, proxy=contour1)
 
-# |                       |
-# | rendering stuff below |
-# v                       v
+# ----------------------------------------------------------------
+# setup the views
+# ----------------------------------------------------------------
 
 #### disable automatic camera reset on 'Show'
 pvs._DisableFirstRenderCameraReset()
 pvs.LoadPalette('WhiteBackground')
+
 renderView1 = pvs.GetActiveViewOrCreate('RenderView')
 renderView1.OrientationAxesVisibility = 0
 
-# contour1Display = pvs.Show(contour1, renderView1, 'GeometryRepresentation')
-contour1Display = pvs.Show(contour1, renderView1)
-
-# current camera placement for renderView1
+# current camera placement for renderView1                          # OWN_DATA: depending on the data another camera view is needed
 renderView1.CameraPosition = [-450.09328651352865, 187.0918092385905, 76.60307205636042]
 renderView1.CameraFocalPoint = [127.00789008867332, 118.83463710226165, 120.49464749112177]
 renderView1.CameraViewUp = [-0.11763147206941053, -0.9930545901265777, 0.002327618378984832]
 renderView1.CameraParallelScale = 220.83647796503186
 
+# ----------------------------------------------------------------
+# setup view layouts
+# ----------------------------------------------------------------
+
+# create new layout object 'Layout #1'
+layout1 = pvs.CreateLayout(name='Layout #1')
+layout1.AssignView(0, renderView1)
+layout1.SetSize(825, 1176)
+
+# ----------------------------------------------------------------
+# setup the visualization in view 'renderView1'
+# ----------------------------------------------------------------
+
+# show data from contour1
+contour1Display = pvs.Show(contour1, renderView1, 'GeometryRepresentation')
+contour1Display.Representation = 'Surface'
+contour1Display.ColorArrayName = ['POINTS', 'Scalars_']             # OWN_DATA: change field
+
+# pvs.ResetCamera(renderView1)                                      # OWN_DATA: if the original view does not fit ResetCamera can be used to focus on the visible data
+
 # save screenshot
 pvs.SaveScreenshot('./output/isocontour.png', 
-    renderView1, 
+    layout1, 
     ImageResolution=[1920, 1080],
     FontScaling='Do not scale fonts')

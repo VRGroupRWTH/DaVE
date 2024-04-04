@@ -18,13 +18,17 @@ file_exists = exists(filepath)
 if not file_exists:
     print("file ", filepath," does not exist", file=sys.stderr)
 
+# ----------------------------------------------------------------
+# setup the data processing pipelines
+# ----------------------------------------------------------------
+
 # create a new 'XML Image Data Reader'
 reader = pvs.XMLImageDataReader(registrationName='reader', FileName=[filepath])
 reader.PointArrayStatus = ['Scalars_']                                                      # OWN_DATA: every field has a name in a .vti file. Replace 'Scalars_' by the corresponding name
 
-# |                       |
-# | rendering stuff below |
-# v                       v
+# ----------------------------------------------------------------
+# setup the views
+# ----------------------------------------------------------------
 
 #### disable automatic camera reset on 'Show'
 pvs._DisableFirstRenderCameraReset()
@@ -34,21 +38,34 @@ pvs.LoadPalette('WhiteBackground')
 renderView1 = pvs.GetActiveViewOrCreate('RenderView')
 renderView1.OrientationAxesVisibility = 0
 
-# show data in view
-ctBonesvtiDisplay = pvs.Show(reader, renderView1)
-ctBonesvtiDisplay.SetRepresentationType('Volume')
-pvs.ColorBy(ctBonesvtiDisplay, ('POINTS', 'Scalars_'))                                       # OWN_DATA: every field has a name in a .vti file. Replace 'Scalars_' by the corresponding name
-
 # current camera placement for renderView1
-renderView1.CameraPosition = [-423.3902339590129, 198.44191188274755, 304.85091798628196]
+renderView1.CameraPosition = [-423.3902339590129, 198.44191188274755, 304.85091798628196]       # OWN_DATA: change camera position if needed
 renderView1.CameraFocalPoint = [120.98375218527654, 119.8419039072476, 112.21062642326825]
 renderView1.CameraViewUp = [-0.26270924860874034, -0.8866291025912916, -0.3806214459717057]
 renderView1.CameraParallelScale = 220.83647796503186
 
-pvs.ResetCamera(renderView1)
+
+# ----------------------------------------------------------------
+# setup view layouts
+# ----------------------------------------------------------------
+
+# create new layout object 'Layout #1'
+layout1 = pvs.CreateLayout(name='Layout #1')
+layout1.AssignView(0, renderView1)
+layout1.SetSize(1920, 1080)
+
+# ----------------------------------------------------------------
+# setup the visualization in view 'renderView1'
+# ----------------------------------------------------------------
+
+# show data in view
+ctBonesvtiDisplay = pvs.Show(reader, renderView1)
+ctBonesvtiDisplay.SetRepresentationType('Volume')
+pvs.ColorBy(ctBonesvtiDisplay, ('POINTS', 'Scalars_'))                                      # OWN_DATA: every field has a name in a .vti file. Replace 'Scalars_' by the corresponding name
+
+pvs.ResetCamera(renderView1)                                                                # OWN_DATA: if the original view does not fit ResetCamera can be used to focus on the visible data
 
 # save screenshot
 pvs.SaveScreenshot('./output/volumerender.png', 
-    renderView1, 
-    ImageResolution=[1920, 1080],
+    layout1, 
     FontScaling='Do not scale fonts')

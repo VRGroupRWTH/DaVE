@@ -40,7 +40,7 @@ fi;
 
 if command -v ffmpeg &> /dev/null
 then
-    ffmpeg -hide_banner -loglevel error -y -framerate 10 -i output/pathline.%04d.png output/output.avi
+    ffmpeg -hide_banner -loglevel error -y -framerate 10 -i output/pathline.%04d.png output/pathline.avi
     #ffmpeg -y -i output/output.avi -b:v 8500k -s 1920x1080 output/output.gif # uncomment  for generating gifs for website
 else
     echo "ffmpeg not found - animation from images could not be generated"

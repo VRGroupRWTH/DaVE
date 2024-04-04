@@ -48,5 +48,6 @@ templates:
 
 datasets:
   - name: "Volume"
+    identifier: "VOLUME"
     description: "A time series of the flow field of the earths mantle from the SciVis Contest 2021 (https://scivis2021.netlify.app/data/)"
     url: "https://nextcloud.computecanada.ca/index.php/s/edS6be3sk8oQ58N/download"

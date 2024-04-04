@@ -36,8 +36,10 @@ Currently the `lic_script.py` only supports datasets that are stored in the NetC
 Datasets that are stored in this particular format can be identified by the file extension `.nc`.
 Other file formats are theoretically possible but would require extensive changes to the `lic_script.py` file as the reader used by the script would need to be replaced.
 
+- artifacts in distributed execution
+
 </div>
 <div id="references" outline_label="References" outline_indent="0" markdown="1">
 ### References ###
-1. [<span id="reference_dataset">2021, "SciVis Contest 2021: Earthâ€™s Mantle Convection", https://scivis2021.netlify.app/data/</span>](https://scivis2021.netlify.app/data/)
+1. [<span id="reference_dataset">2021, "SciVis Contest 2021: Earth’s Mantle Convection", https://scivis2021.netlify.app/data/</span>](https://scivis2021.netlify.app/data/)
 </div>
