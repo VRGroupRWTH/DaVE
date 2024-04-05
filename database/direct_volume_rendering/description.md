@@ -38,7 +38,7 @@ By default, the script uses the attribute with the name `Scalars_` for the visua
 <div id="limitations" outline_label="Limitations" outline_indent="0" markdown="1">
 ### Limitations ###
 Currently the example only supports datasets in the `.vti` file format.
-Other dataset format are possible but would require extensive changes to the `volumerender_script.py` script file as the reader used by it would need to be changed.
+Other dataset format are possible but would require extensive changes to the `volumerender_trace.py` script file as the reader used by it would need to be changed.
 </div>
 <div id="references" outline_label="References" outline_indent="0" markdown="1">
 ### References ###

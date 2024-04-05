@@ -28,13 +28,12 @@ After a successful execution of the script, the image `lic.png` containing the f
 
 When using a dataset other than the default dataset shipped together with the example, some modification need to be done in the file `lic_trace.py` to make sure that the correct vector field is used for the visualization.
 
-
 </div>
 <div id="limitations" outline_label="Limitations" outline_indent="0" markdown="1">
 ### Limitations ###
-Currently the `lic_script.py` only supports datasets that are stored in the NetCDF (Network Common Data Form) format.
+Currently the `lic_trace.py` only supports datasets that are stored in the NetCDF (Network Common Data Form) format.
 Datasets that are stored in this particular format can be identified by the file extension `.nc`.
-Other file formats are theoretically possible but would require extensive changes to the `lic_script.py` file as the reader used by the script would need to be replaced.
+Other file formats are theoretically possible but would require extensive changes to the `lic_trace.py` file as the reader used by the script would need to be replaced.
 
 - artifacts in distributed execution
 
