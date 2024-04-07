@@ -38,7 +38,7 @@ temperatureLUT.RGBPoints = [100.0, 0.0, 0.0, 0.0, 200.0, 1.0, 0.0, 0.0, 300.0, 1
 </div>
 <div id="limitations" outline_label="Limitations" outline_indent="0" markdown="1">
 ### Limitations ###
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+None
 </div>
 <div id="references" outline_label="References" outline_indent="0" markdown="1">
 ### References ###
