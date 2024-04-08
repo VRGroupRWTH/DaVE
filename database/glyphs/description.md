@@ -12,8 +12,11 @@ What makes glyphs particularly interesting is their ability to visualize multipl
 For example, arrow glyphs can be used to visualize more than just the flow of gas in a running combustion engine.
 At the same time, the lengths of the arrows can be used to visualize the velocity of the gas, while the color of the arrow can be changed to reflect the temperature of the gas.
 
-Dataset [1](#citation_paraview_python_api)
-
+This example demonstrates the use of glaphy using a three-dimensional dataset that describes the exhaust of a running jet engine [1](#reference_dataset).
+More precisely, the dataset captures the velcoity field of the flow as calculated by a fluid dynamics simulation.
+For the visualization of the vector field, arrow glyphs are used are which align with the vector field.
+The length and the color of the arrows is dependent on the speed of the flow which can be derived from the velocity magnitude.
+With an increasing speed, the arrow becomes longer and the color changes from blue to red.
 </div>
 <div id="instructions" outline_label="Instructions" outline_indent="0" markdown="1">
 ### Instructions ###
@@ -47,16 +50,17 @@ By default the script uses `GlyphType='Arrow'` meaning that arrows are used for 
 Alternatives are `GlyphType='Cone'` for cones or `GlyphType='Box'` for boxes.
 Depending on the dataset it might be also neccessary to change the scale of the glyphs which can be controlled using the following line of the `glyphs_trace.py` script
 ```
-glyph1.ScaleFactor = 0.025
+glyph1Display.ScaleFactor = 0.2231481334194541
 ```
-For further options please look at the documentation of the ParaView Python API [2](#citation_paraview_python_api). Otherwise it is also possible to load the file `glyphs_trace.py` directly into ParaView granting even more options for costumizations.
+For further options please look at the documentation of the ParaView Python API [2](#reference_python_api). Otherwise it is also possible to load the file `glyphs_trace.py` directly into ParaView granting even more options for costumizations.
 </div>
 <div id="limitations" outline_label="Limitations" outline_indent="0" markdown="1">
 ### Limitations ###
-Currently only a shell script is provided which can be not that easily executed under Windows.
+Currently this example only supports dataset that are stored in the `.vti` file format.
+Other file formats are thoretically possible but would require wider chnages to the script `glyphs_trace.py` as a different file reader would be required.
 </div>
 <div id="references" outline_label="References" outline_indent="0" markdown="1">
 ### References ###
-1. [<span id="citation_preview_dataset">Christoph Garth, March 9, 2020, "Simulation of a jet flow", IEEE Dataport, doi: https://dx.doi.org/10.21227/qjxp-kc31.</span>](https://dx.doi.org/10.21227/qjxp-kc31)
-2. [<span id="citation_paraview_python_api">Kitware, Inc. , March 26, 2024, "ParaView’s Python documentation!", https://kitware.github.io/paraview-docs/v5.10.1/python/index.html.</span>](https://kitware.github.io/paraview-docs/v5.10.1/python/index.html)
+1. [<span id="reference_dataset">Christoph Garth, March 9, 2020, "Simulation of a jet flow", IEEE Dataport, doi: https://dx.doi.org/10.21227/qjxp-kc31.</span>](https://dx.doi.org/10.21227/qjxp-kc31)
+2. [<span id="reference_python_api">Kitware, Inc. , March 26, 2024, "ParaView’s Python documentation!", https://kitware.github.io/paraview-docs/v5.10.1/python/index.html.</span>](https://kitware.github.io/paraview-docs/v5.10.1/python/index.html)
 </div>

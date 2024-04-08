@@ -29,7 +29,20 @@ export const VisualizationPreview =
             scene_importer.setUrl(props.visualization.scene);
             scene_importer.onReady(() =>
             {
+
+
+
+                console.log(scene_importer.getMetadata());
+
                 visualization_preview_state.value = "open";
+
+                if(visualization_preview_container.value != null)
+                {
+                    let render_window = visualization_preview_full_screen_renderer.value.getRenderWindow();
+                    render_window.render();
+
+                    console.log("b");
+                }
             });
         }
 

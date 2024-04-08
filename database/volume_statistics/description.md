@@ -25,5 +25,5 @@ The pipeline contains a programmable filter summing up the volume for each conne
 </div>
 <div id="references" outline_label="References" outline_indent="0" markdown="1">
 ### References ###
-1. Dataset ?
+1. [<span id="reference_dataset">Andrew W. Cook, William Cabot and Paul L. Miller, 2004, "A time step of a density field in a simulation of the mixing transition in Rayleigh-Taylor instability.", https://klacansky.com/open-scivis-datasets/miranda/.</span>](https://klacansky.com/open-scivis-datasets/miranda/)
 </div>

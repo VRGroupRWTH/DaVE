@@ -25,5 +25,5 @@ None
 </div>
 <div id="description" outline_label="Description" outline_indent="0" markdown="1">
 ### References ###
-1. Dataset ?
+1. [<span id="reference_dataset">2021, "SciVis Contest 2021: Earth's Mantle Convection", https://scivis2021.netlify.app/data/</span>](https://scivis2021.netlify.app/data/)
 </div>

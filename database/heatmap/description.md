@@ -5,40 +5,52 @@ The creation of heatmaps is simple as the scalar values of the dataset are simpl
 The mapping of the scalar dataset values to the color values can be defined using different methods, but most commonly they are defined based on a user defined set of key colors at specific input values of the dataset.
 The color of every value of the dataset that lies in between these key color values is created by linear interpolation of the closest key colors.
 Even though heatmaps mostly 
+
+In this example .... dataset [1](#reference_dataset).
 </div>
 <div id="instructions" outline_label="Instructions" outline_indent="0" markdown="1">
 ### Instructions ###
-To execute the example just run
-
+After downloading, the example can be executed by running the script `heatmap_script.sh` using the following terminal command
 ```
 ./heatmap_script.sh
 ```
-
-If the script is not executible run the following command
-
+In some cases, the script file `heatmap_script.sh` is not detected by the operating system as an executible file.
+If this happens, the following command can be used to mark the script file as executable
 ```
 chmod +x heatmap_script.sh
 ```
+After the execution of the example, the image `heatmap.png` containing the visualized dataset will be placed in the folder `output`.
 
-As shown below, the script `heatmap_trace.py` assumes that the dataset stores the data in the order: `latitude`, `radius`, `longitude`.
-In case this is not the case the format needs to be changed accordingly.
-```
-reader.Dimensions = '(lat, r, lon)'
-```
-Besides that the script assumes that the attribute used for the coloring has the name `temperatur`
+The example assumes that the dataset serving as input contains a three-dimensioanl scalar field with the name `temperature`.
+When using the example with a custome dataset, it might be neccessary to change name of the scalar field.
+For that, the lines in the script file `heatmap_trace.py` marked with the keyword `OWN_DATA` need to be changed accordingly so that they contain the name of the desired scalar field.
+In the following, one for these lines is shown
 ```
 clip2Display.ColorArrayName = ['CELLS', 'temperature']
 ```
-
-Maybe the transfer function needs to be changed as well
+Addtionaly, the dataset also has to store the scalar field in a polar coordinate system defined by the axes `latitude (lat)`, `longitude (lon)` and `radius (r)`.
+The order in which these axes are read from the dataset can be controlled using the following line of the `heatmap_trace.py` script
 ```
-temperatureLUT.RGBPoints = [100.0, 0.0, 0.0, 0.0, 200.0, 1.0, 0.0, 0.0, 300.0, 1.0, 1.0, 1.0]
+reader.Dimensions = '(lat, r, lon)'
 ```
 
+However, most importantly for the visualization is the look up table that controlls the coloring of the scalar field.
+This lookup table is defined in the `heatmap_trace.py` as an array of floating point values.
+An example for the structure of this array is given in the following
+```
+temperatureLUT.RGBPoints = [100.0, 0.0, 0.0, 0.0,
+                            200.0, 1.0, 0.0, 0.0,
+                            300.0, 1.0, 1.0, 1.0]
+```
+Four consecutive values of the array define a key point of the loop up table.
+The first value controls the dataset value that the key point will affect, while the remaining three values define the color of the key point.
+More precisely, the color is specified in the RGB color space, where the value of each color component must lie in the interval from `0.0` to `1.0`.
 </div>
 <div id="limitations" outline_label="Limitations" outline_indent="0" markdown="1">
 ### Limitations ###
-None
+Currently the `heatmap_trace.py` only supports datasets that are stored in the NetCDF (Network Common Data Form) format.
+Datasets that are stored in this particular format can be identified by the file extension `.nc`.
+Other file formats are theoretically possible but would require extensive changes to the `heatmap_trace.py` file as the reader used by the script would need to be replaced.
 </div>
 <div id="references" outline_label="References" outline_indent="0" markdown="1">
 ### References ###
