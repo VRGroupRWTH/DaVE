@@ -35,7 +35,7 @@ fi;
 
 # assemble run command for singularity
 if [[ "${CONTAINER_PLATFORM}" == "singularity" ]]; then
-    singularity pull container.sif "docker://${CONTAINER_URL}"
+    singularity pull --force container.sif "docker://${CONTAINER_URL}"
     ${EXEC} singularity run --containall  -H "${PWD}:/example" container.sif  ${COMMAND} "${DATASET_VOLUME_PATH}"
 fi;
 
