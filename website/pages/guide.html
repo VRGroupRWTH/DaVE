@@ -36,8 +36,8 @@
                     <div id="database" outline_label="Database" outline_indent="0">
                         <h3>Database</h3>
                         <p>
-                            The database of DaVE contains selection of commonly used vizualization techniuqes and provides documentation and addtional resources for them.
-                            To find a visualization, ether a search term can be used and or tags can be used to further narrow down the selection.
+                            The database of DaVE contains selection of commonly used visualization techniques and provides documentation and addtional resources for them.
+                            To find a visualization, either a search term can be used and or tags can be used to further narrow down the selection.
                         </p>
                     </div>
                     <div id="tags" outline_label="Tags" outline_indent="0">
@@ -72,10 +72,10 @@
                     <div id="templates" outline_label="Templates" outline_indent="0">
                         <h3>Templates</h3>
                         <p>
-                            A template combines all neccessary resources for a visualization techniuqe that are needed to render an image for a given dataset.
-                            If required the template also contains a preview dataset with which the technique can be tested.
+                            A template combines all neccessary resources for a visualization technique that are needed to render an image for a given dataset.
+                            If required, the template also contains a preview dataset with which the technique can be tested.
                             The shell script that is always included in the template zip file of the template controlls and automates the execution of the vizualization technique.
-                            When running the script, it loads a container, depending on the configuration of the template ether a docker container or a sigulairty container.
+                            When running the script, it loads a docker container, depending on the configuration of the template ether with docker or singularity.
                         </p>
                         <div class="d-flex justify-content-center">
                             <figure class="figure">
@@ -84,9 +84,9 @@
                             </figure>
                         </div>
                         <p>
-                            The container that is currently used for most of the visualization techniuqes, contains ParaView which is a software commonly used for sientify visualizations and data exploration.
-                            When loading the container, ParaView is instructed to load a trace file which describes the visualization techniuqe it self and all the steps that ParaView has to take to apply the visualization on the given dataset.
-                            ParaView then loads the Dataset and renders it according to the Trace File.
+                            The container that is currently used for most of the visualization techniques, contains ParaView which is a software commonly used for scientific visualizations and data exploration.
+                            The script calls the ParaView instance in the container and ParaView is instructed to load a trace file which describes the visualization technique itself and all the steps that ParaView has to take to apply the visualization on the given dataset.
+                            ParaView then loads the dataset and renders it according to the trace File.
                             The resulting image is then stored in the same directory in which the script file is located.
                             Currently the script as well as the containers only run under linux based operating systems.
                         </p>
@@ -94,20 +94,26 @@
                     <div id="containers" outline_label="Containers" outline_indent="0">
                         <h3>Containers</h3>
                         <p>
-                            Containers 
-                            DaVE tries to provide to different types of containers.
+                            DaVE tries to provide to different types of containers. Any Docker container can theoretically be used. Singularity is used to convert Docker images into Singularity images
+                            that require less permissions. Singularity/Apptainer is often used in HPC environments where users have no root access.
+                            Each example references a Docker image with which it can be executed. Additionally, it also provides the build recipe for the image - a dockerfile. 
+                            This can be used to extend existing images for new examples, but is not needed for executing the example.
+
+                            The main provided docker image uses spack to manage required software and its dependencies. Spack is a package manager designed with HPC in mind. 
+                            To create your own container for an example, either build upon an existing docker container bz using the one of the reference example as a base or
+                            change or add packages via spack in the original dockerfile.
                         </p>
                     </div>
                     <div id="paraview" outline_label="ParaView" outline_indent="0">
                         <h3>ParaView</h3>
                         <p>
-                            <a href="https://www.paraview.org/">ParaView</a> is software commonly use for the visualization of siencify datasets.
+                            <a href="https://www.paraview.org/">ParaView</a> is software commonly use for the visualization of scientific datasets.
                         </p>
                     </div>
                     <div id="faq" outline_label="Frequently ask Questions" outline_indent="0">
                         <h3>Frequently ask Questions</h3>
                         <p>
-                            The container that is currently used for most of the visualization techniuqes, contains ParaView which is a software commonly used for sientify visualizations and data exploration.
+                            The container that is currently used for most of the visualization techniques, contains ParaView which is a software commonly used for sientify visualizations and data exploration.
                             When loading the container, ParaView is instructed to load a trace file which describes the visualization techniuqe it self and all the steps that ParaView has to take to apply the visualization on the given dataset.
                             ParaView then loads the Dataset and renders it according to the Trace File.
                             The resulting image is then stored in the same directory in which the script file is located.
