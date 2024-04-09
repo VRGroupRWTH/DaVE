@@ -24,9 +24,6 @@ resources:
     type: "Container"
     date: 2024-01-08
     url: "ghcr.io/scivislab/paraview:5.11.1"
-  - name: "TODO jet4 time series"
-    type: "Dataset"
-    date: 2024-01-08
 
 templates:
   - techniques:

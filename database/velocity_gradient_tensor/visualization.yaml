@@ -24,6 +24,10 @@ resources:
     type: "Container"
     date: 2024-01-09
     url: "ghcr.io/scivislab/paraview:5.11.1"
+  - name: "jet.vti"
+    type: "Dataset"
+    date: 2024-01-08
+    path: "../streamline/resources/jet.vti"
 
 templates:
   - techniques:

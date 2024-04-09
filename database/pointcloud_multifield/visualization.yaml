@@ -20,8 +20,6 @@ images:
   - "images/pointcloud.gif"
   - "images/pointcloud.png"
 
-# scene: "scene/index.json"
-
 resources:
   - name: "pointcloud_trace.py"
     type: "Script"
@@ -31,6 +29,10 @@ resources:
     type: "Container"
     date: 2024-01-09
     url: "ghcr.io/scivislab/paraview:5.11.1"
+  - name: "030_run01.tar.bz2"
+    type: "Dataset"
+    date: 2024-01-09
+    url: "https://cloud.sdsc.edu/v1/AUTH_sciviscontest/2016/smoothinglength_0.30/030_run01.tar.bz2"
 
 templates:
   - techniques:
@@ -47,7 +49,6 @@ templates:
     script: "resources/pointcloud_script.sh"
     container:
       url: "ghcr.io/scivislab/paraview:5.11.1"
-
 
 datasets:
   - name: "PointCloud"

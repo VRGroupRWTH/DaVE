@@ -32,6 +32,7 @@ resources:
   - name: "ctBones.vti"
     type: "Dataset"
     date: 2024-01-09
+    url: "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"
 
 templates:
   - techniques:
