@@ -13,6 +13,8 @@ tags:
 images:
   - "images/velocity_gradient_tensor.png"
 
+scene: "scene/index.json"
+
 resources:
   - name: "velocity_gradient_tensor_trace.py"
     type: "Script"
