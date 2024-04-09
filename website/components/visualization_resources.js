@@ -1,4 +1,4 @@
-export const VisualizationContent =
+export const VisualizationResources =
 {
     props: ["visualization"],
     setup()
@@ -22,8 +22,10 @@ export const VisualizationContent =
     },
     template:
     `
-    <div class="">
-        <table class="table align-middle">
+    <div id="resources" outline_label="Resources" outline_indent="0">
+        <h3>Resources</h3>
+        <div class="alert alert-light">
+        <table class="table align-middle visualization-resources-table ">
             <thead>
                 <tr>
                     <th scope="col">Name</th>
@@ -50,6 +52,7 @@ export const VisualizationContent =
                 </tr>
             </tbody>
         </table>
+        </div>
     </div>
     `
 }

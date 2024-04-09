@@ -405,14 +405,14 @@ export const VisualizationWizard =
     <div class="modal fade" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">{{ visualization_wizard_question_titles[visualization_wizard_question_index] }}</h5>
+                <div class="modal-header text-bg-dark" data-bs-theme="dark">
+                    <h5 class="modal-title text-bg-dark">{{ visualization_wizard_question_titles[visualization_wizard_question_index] }}</h5>
                     <button class="btn-close" type="button" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <component :is="visualization_wizard_questions[visualization_wizard_question_index]" :visualization="visualization" v-model:config="visualization_wizard_config"></component>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer border-0">
                     <button v-if="visualization_wizard_question_index > 0" class="btn btn-primary" type="button" @click="on_visualization_wizard_question_back">Back</button>
                     <button v-if="visualization_wizard_question_index < visualization_wizard_questions.length - 1" class="btn btn-primary ms-auto" type="button" @click="on_visualization_wizard_question_next">Next</button>
                     <a v-else class="btn btn-primary ms-auto" :href="visualization_wizard_link" download="render_script.zip">Download</a>

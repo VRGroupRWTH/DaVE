@@ -4,7 +4,7 @@
     import { createApp, ref } from "vue"
     import { VisualizationImages } from "components/visualization_images.js"
     import { VisualizationPreview } from "components/visualization_preview.js"
-    import { VisualizationDownload } from "components/visualization_download.js"
+    import { VisualizationResources } from "components/visualization_resources.js"
     import { VisualizationWizard } from "components/visualization_wizard.js"
     import { SharedHeader } from "components/shared_header.js"
     import { SharedFooter } from "components/shared_footer.js"
@@ -17,7 +17,7 @@
         {
             "visualization-images" : VisualizationImages,
             "visualization-preview": VisualizationPreview,
-            "visualization-download": VisualizationDownload,
+            "visualization-resources": VisualizationResources,
             "visualization-wizard": VisualizationWizard,
             "shared-header": SharedHeader,
             "shared-footer": SharedFooter,
@@ -77,7 +77,7 @@
         `
         <header class="sticky-top">
             <shared-header>
-                <h5 class="about-content mt-3 mb-2">Example</h5>
+                <h5 class="mt-3 mb-2">Example</h5>
                 <div class="d-flex justify-content-center mb-3 py-4 alert alert-light">
                     <div class="btn btn-primary">
                         <div class="d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#visualization_wizard">
@@ -86,7 +86,7 @@
                         </div>
                     </div>
                 </div>
-                <h5 class="about-content mb-2">On this page</h5>
+                <h5 class="mb-2">On this page</h5>
                 <outline :target="content"></outline>
             </shared-header>
         </header>
@@ -102,11 +102,12 @@
                         </div>
                     </div>
                     <div class="mb-4 visualization-description" v-html="visualization.description"></div>
-                    <visualization-wizard id="visualization_wizard" :visualization="visualization"></visualization-wizard>
+                    <visualization-resources :visualization="visualization"></visualization-resources>
+                    <visualization-wizard :visualization="visualization" id="visualization_wizard"></visualization-wizard>
                 </div>
                 <div class="flex-shrink-0 d-none d-lg-block" style="width: 250px;">
                     <div class="sticky-top" style="top: 100px; z-index: 0;">
-                        <h5 class="about-content mb-2">Example</h5>
+                        <h5 class="mb-2">Example</h5>
                         <div class="d-flex justify-content-center mb-3 py-4 alert alert-light">
                             <div class="btn btn-primary">
                                 <div class="d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#visualization_wizard">
@@ -115,7 +116,7 @@
                                 </div>
                             </div>
                         </div>
-                        <h5 class="about-content mb-2">On this page</h5>
+                        <h5 class="mb-2">On this page</h5>
                         <outline :target="content"></outline>
                     </div>
                 </div>

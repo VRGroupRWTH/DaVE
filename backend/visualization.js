@@ -171,7 +171,7 @@ class Visualization
             return false;
         }
 
-        const converter = new showdown.Converter();
+        let converter = new showdown.Converter();
         this.#description = converter.makeHtml(description_file);
 
         return true;

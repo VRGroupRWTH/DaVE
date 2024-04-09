@@ -15,11 +15,13 @@ export const VisualizationPreview =
         let visualization_preview_container = ref(null);
         let visualization_preview_renderer = ref(null);
         let visualization_preview_full_screen_renderer = ref(null);
+        let visualization_preview_scene_count = 0;
 
         async function on_visualization_preview_open()
         {
             visualization_preview_state.value = "loading";
             visualization_preview_renderer.value = vtk.Rendering.Core.vtkRenderer.newInstance();
+            visualization_preview_scene_count = 0;
 
             const scene_importer = vtk.IO.Core.vtkHttpSceneLoader.newInstance(
             {
@@ -29,19 +31,12 @@ export const VisualizationPreview =
             scene_importer.setUrl(props.visualization.scene);
             scene_importer.onReady(() =>
             {
+                const metadata = scene_importer.getMetadata();
+                visualization_preview_scene_count++;
 
-
-
-                console.log(scene_importer.getMetadata());
-
-                visualization_preview_state.value = "open";
-
-                if(visualization_preview_container.value != null)
+                if(visualization_preview_scene_count >= metadata.scene.length)
                 {
-                    let render_window = visualization_preview_full_screen_renderer.value.getRenderWindow();
-                    render_window.render();
-
-                    console.log("b");
+                    visualization_preview_state.value = "open";
                 }
             });
         }
@@ -88,9 +83,12 @@ export const VisualizationPreview =
                     rootContainer: visualization_preview_modal.value
                 });
 
+                visualization_preview_renderer.value.resetCamera();
+
                 let render_window = visualization_preview_full_screen_renderer.value.getRenderWindow();
                 render_window.addRenderer(visualization_preview_renderer.value);
                 render_window.render();
+                
             }
         });
 

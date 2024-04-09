@@ -268,14 +268,14 @@
     font-variant-numeric: tabular-nums;
 }
 
+.visualization-resources-table th, td
+{
+    background-color: rgb(252, 252, 253) !important;
+}
+
 .guide-content div
 {
     scroll-margin-top: 80px;
-}
-
-.guide-content h1, h2, h3, h4, h5, h6
-{
-    color: black !important;
 }
 
 .guide-content p
@@ -286,11 +286,6 @@
 .about-content div
 {
     scroll-margin-top: 80px;
-}
-
-.about-content h1, h2, h3, h4, h5, h6
-{
-    color: black !important;
 }
 
 .about-content p
