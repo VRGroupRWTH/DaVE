@@ -13,6 +13,8 @@ tags:
 images:
   - "images/streamline.png"
 
+scene: "scene/index.json"
+
 resources:
   - name: "streamline_trace.py"
     type: "Script"

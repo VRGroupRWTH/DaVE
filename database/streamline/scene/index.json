@@ -1,0 +1,162 @@
+{
+  "version": 1.0,
+  "background": [
+    1,
+    1,
+    1
+  ],
+  "camera": {
+    "focalPoint": [
+      0.496062,
+      1.08124,
+      0.496062
+    ],
+    "position": [
+      5.20317,
+      1.08124,
+      0.496062
+    ],
+    "viewUp": [
+      0,
+      0,
+      1
+    ]
+  },
+  "centerOfRotation": [
+    0.496062,
+    1.08124,
+    0.496062
+  ],
+  "scene": [
+    {
+      "name": "reader",
+      "type": "vtkHttpDataSetReader",
+      "vtkHttpDataSetReader": {
+        "url": "1"
+      },
+      "actor": {
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actorRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "mapper": {
+        "colorByArrayName": "",
+        "colorMode": 1,
+        "scalarMode": 0
+      },
+      "property": {
+        "representation": 1,
+        "edgeVisibility": 0,
+        "diffuseColor": [
+          0,
+          0,
+          0
+        ],
+        "pointSize": 2,
+        "opacity": 1
+      }
+    },
+    {
+      "name": "StreamTracerWithCustomSource1",
+      "type": "vtkHttpDataSetReader",
+      "vtkHttpDataSetReader": {
+        "url": "2"
+      },
+      "actor": {
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actorRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "mapper": {
+        "colorByArrayName": "ImageFile",
+        "colorMode": 1,
+        "scalarMode": 3
+      },
+      "property": {
+        "representation": 2,
+        "edgeVisibility": 0,
+        "diffuseColor": [
+          1,
+          1,
+          1
+        ],
+        "pointSize": 2,
+        "opacity": 1
+      }
+    }
+  ],
+  "lookupTables": {
+    "ImageFile": {
+      "clamping": true,
+      "colorSpace": 3,
+      "hSVWrap": false,
+      "alpha": 1,
+      "vectorComponent": 0,
+      "vectorSize": -1,
+      "vectorMode": 0,
+      "indexedLookup": 0,
+      "nodes": [
+        [
+          0.00364298,
+          0.231373,
+          0.298039,
+          0.752941,
+          0.5,
+          0
+        ],
+        [
+          6.12835,
+          0.865003,
+          0.865003,
+          0.865003,
+          0.5,
+          0
+        ],
+        [
+          12.2531,
+          0.705882,
+          0.0156863,
+          0.14902,
+          0.5,
+          0
+        ]
+      ]
+    }
+  }
+}
