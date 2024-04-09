@@ -14,6 +14,8 @@ tags:
 images:
   - "images/isocontour.png"
 
+scene: "scene/index.json"
+
 resources:
   - name: "isocontour_trace.py"
     type: "Script"

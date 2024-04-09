@@ -1,0 +1,116 @@
+{
+  "version": 1.0,
+  "background": [
+    1,
+    1,
+    1
+  ],
+  "camera": {
+    "focalPoint": [
+      127.008,
+      118.835,
+      120.495
+    ],
+    "position": [
+      -450.093,
+      187.092,
+      76.6031
+    ],
+    "viewUp": [
+      -0.117631,
+      -0.993055,
+      0.00232762
+    ]
+  },
+  "centerOfRotation": [
+    127.008,
+    118.835,
+    120.495
+  ],
+  "scene": [
+    {
+      "name": "Contour1",
+      "type": "vtkHttpDataSetReader",
+      "vtkHttpDataSetReader": {
+        "url": "1"
+      },
+      "actor": {
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actorRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "mapper": {
+        "colorByArrayName": "Scalars_",
+        "colorMode": 1,
+        "scalarMode": 3
+      },
+      "property": {
+        "representation": 2,
+        "edgeVisibility": 0,
+        "diffuseColor": [
+          1,
+          1,
+          1
+        ],
+        "pointSize": 2,
+        "opacity": 1
+      }
+    }
+  ],
+  "lookupTables": {
+    "Scalars_": {
+      "clamping": true,
+      "colorSpace": 3,
+      "hSVWrap": false,
+      "alpha": 1,
+      "vectorComponent": 0,
+      "vectorSize": -1,
+      "vectorMode": 0,
+      "indexedLookup": 0,
+      "nodes": [
+        [
+          100,
+          0.231373,
+          0.298039,
+          0.752941,
+          0.5,
+          0
+        ],
+        [
+          100.008,
+          0.865003,
+          0.865003,
+          0.865003,
+          0.5,
+          0
+        ],
+        [
+          100.016,
+          0.705882,
+          0.0156863,
+          0.14902,
+          0.5,
+          0
+        ]
+      ]
+    }
+  }
+}
