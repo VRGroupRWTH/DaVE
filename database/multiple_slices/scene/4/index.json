@@ -1,0 +1,26 @@
+{
+  "vtkClass": "vtkPolyData",
+  "points": {
+      "vtkClass": "vtkPoints",
+      "name": "points",
+      "numberOfComponents": 3,
+      "dataType": "Float32Array",
+      "ref": {
+         "encode": "LittleEndian",
+         "basepath": "data",
+         "id": "Float32_24-63390f21b3b38eba080f6bbd95786933"
+      },
+      "size": 24
+    },
+  "lines": {
+      "vtkClass": "vtkCellArray",
+      "name": "lines",
+      "numberOfComponents": 1,
+      "dataType": "Int32Array",
+      "ref": {
+         "encode": "LittleEndian",
+         "basepath": "data",
+         "id": "Int32_36-6ed20ee21bd33decf1b4230d4c3fe3bf"
+      },
+      "size": 36
+    }}
