@@ -1,0 +1,170 @@
+{
+  "version": 1.0,
+  "background": [
+    1,
+    1,
+    1
+  ],
+  "camera": {
+    "focalPoint": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "position": [
+      18429.8,
+      15716.7,
+      18042.5
+    ],
+    "viewUp": [
+      -0.367562,
+      0.863151,
+      -0.34622
+    ]
+  },
+  "centerOfRotation": [
+    3677.8,
+    3264.36,
+    2659.37
+  ],
+  "scene": [
+    {
+      "name": "Clip1",
+      "type": "vtkHttpDataSetReader",
+      "vtkHttpDataSetReader": {
+        "url": "1"
+      },
+      "actor": {
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actorRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "mapper": {
+        "colorByArrayName": "temperature",
+        "colorMode": 1,
+        "scalarMode": 4
+      },
+      "property": {
+        "representation": 2,
+        "edgeVisibility": 0,
+        "diffuseColor": [
+          1,
+          1,
+          1
+        ],
+        "pointSize": 2,
+        "opacity": 1
+      }
+    },
+    {
+      "name": "Clip2",
+      "type": "vtkHttpDataSetReader",
+      "vtkHttpDataSetReader": {
+        "url": "2"
+      },
+      "actor": {
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actorRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "mapper": {
+        "colorByArrayName": "temperature",
+        "colorMode": 1,
+        "scalarMode": 4
+      },
+      "property": {
+        "representation": 2,
+        "edgeVisibility": 0,
+        "diffuseColor": [
+          1,
+          1,
+          1
+        ],
+        "pointSize": 2,
+        "opacity": 1
+      }
+    }
+  ],
+  "lookupTables": {
+    "temperature": {
+      "clamping": true,
+      "colorSpace": 0,
+      "hSVWrap": false,
+      "alpha": 1,
+      "vectorComponent": 0,
+      "vectorSize": -1,
+      "vectorMode": 0,
+      "indexedLookup": 0,
+      "nodes": [
+        [
+          293,
+          0,
+          0,
+          0,
+          0.5,
+          0
+        ],
+        [
+          1618.74,
+          0.901961,
+          0,
+          0,
+          0.5,
+          0
+        ],
+        [
+          2944.48,
+          0.901961,
+          0.901961,
+          0,
+          0.5,
+          0
+        ],
+        [
+          3607.34,
+          1,
+          1,
+          1,
+          0.5,
+          0
+        ]
+      ]
+    }
+  }
+}
