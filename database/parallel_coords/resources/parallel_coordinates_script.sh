@@ -24,7 +24,7 @@ case "${EXEC_TYPE}" in
         ;;
 
     slurm)
-        EXEC="srun -n 2 --time=2"
+        EXEC="srun -n 2 --time=2 --mem=20G"
         ;;
 esac
 

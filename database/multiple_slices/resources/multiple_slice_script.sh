@@ -26,7 +26,7 @@ case "${EXEC_TYPE}" in
         ;;
 
     slurm)
-        EXEC="srun -n 2 --time=2"
+        EXEC="srun -n 2 --time=10"
         ;;
 esac
 
