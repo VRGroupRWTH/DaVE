@@ -34,7 +34,3 @@ After a successful execution of the script, the image `arm.png` containing the f
 Currently the example only accepts dataset in the `.vthb` or `.vth` format.
 Other file formats are tehoretically possible but would required extensive changes to the `amr_script.py` script file as the reader used by it would need to be replaced.
 </div>
-<div id="references" outline_label="References" outline_indent="0" markdown="1">
-### References ###
-1. <span id="reference_dataset">Dataset ?</span>
-</div>

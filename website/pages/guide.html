@@ -129,36 +129,39 @@
                         <p>
                             hallo welt
                         </p>
-                        <pre><code>database/
+<pre>
+database/
 ├─ example/
 │  ├─ images/
 │  ├─ resources/
 │  ├─ scene/
 │  ├─ visualization.yaml
 │  ├─ description.md
-</code></pre>
+</pre>
                         <h5>Visualization Metadata</h5>
                         <p>
                             hallo welt
                         </p>
-                        <pre><code>name: "Isocontours"
-date: 2023-11-29
-
+<pre>
+name: "&lt;Name of the example&gt;"
+date: 1900-01-01
+</pre>
+<pre>
 tags:
-  - name: "Scalar"
+  - name: "Name of technique related tag"
     type: "technique"
-  - name: "2D"
-    type: "technique"
-  - name: "3D"
-    type: "technique"
-  - name: "Medicine"
+  - name: "Name of domain related tag"
     type: "domain"
-
+    abbreviation: "Abbreviation of tag name"
+</pre>
+<pre>
 images:
-  - "images/isocontour.png"
-
+  - "images/name of image"
+</pre>
+<pre>
 scene: "scene/index.json"
-
+</pre>
+<pre>
 resources:
   - name: "isocontour_trace.py"
     type: "Script"
@@ -172,7 +175,8 @@ resources:
     type: "Dataset"
     date: 2024-01-09
     url: "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"
-
+</pre>
+<pre>
 templates:
   - techniques:
       - "docker"
@@ -188,12 +192,14 @@ templates:
     script: "resources/isocontour_script.sh"
     container:
       url: "ghcr.io/scivislab/paraview:5.11.1"
-
+</pre>
+<pre>
 datasets:
   - name: "Volume"
     identifier: "DATASET_VOLUME"
     description: "The volumetric dataset for which the image should be created"
-    url: "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"</code></pre>
+    url: "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"
+</pre>
 
                     </div>
                 </div>

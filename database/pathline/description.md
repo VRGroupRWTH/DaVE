@@ -48,7 +48,3 @@ For entering your own data, search for "OWN_DATA" comments in the volumerender_t
 - Time series data is currently unavailable
 
 </div>
-<div id="references" outline_label="References" outline_indent="0" markdown="1">
-### References ###
-1. <span id="reference_dataset">Dataset ?</span>
-</div>

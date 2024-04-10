@@ -2,11 +2,15 @@
 ### Description ###
 Heatmaps are a widely used visualization method with which mostly two-dimensional scalar datasets can be easily explored.
 The creation of heatmaps is simple as the scalar values of the dataset are simply mapped to color values.
-The mapping of the scalar dataset values to the color values can be defined using different methods, but most commonly they are defined based on a user defined set of key colors at specific input values of the dataset.
-The color of every value of the dataset that lies in between these key color values is created by linear interpolation of the closest key colors.
-Even though heatmaps mostly 
+The mapping of the scalar dataset values to the color values can be defined using different methods, but most commonly they are defined based on a user defined look up table, which makes a given dataset value to a specific color.
 
-In this example .... dataset [1](#reference_dataset).
+This example illustrates the use of heatmaps in the context of an geological use case.
+The dataset that comes with the example describes the convection process that takes places in the earth's mantel and was created by a simulation [1](#reference_dataset).
+Using heatmaps, the temperature within the earth's mantel is mapped to color table ranging from dark red for low temperatures to yellow and white for high temeratures.
+As expected, the inner core of the earth is colored by a bright yellow as it is by far the hottest part of the earth's mantel.
+With in creasing distance to the earths center, the temperature decreases and the color turns from yellow to orange and finaly to red.
+At some points of the mantel, there are yellow regions of hot material reaching from the inner to the outer mantel.
+These areas are cause by the convection and are most likely mantle plume.
 </div>
 <div id="instructions" outline_label="Instructions" outline_indent="0" markdown="1">
 ### Instructions ###
