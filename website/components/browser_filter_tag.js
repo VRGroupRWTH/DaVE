@@ -93,12 +93,13 @@ export const BrowserFilterTag =
                 <img src="symbols/plus.svg" width="20px">
             </button>
             <div class="dropdown-menu p-3">
-                <div class="input-group mb-3" style="min-width: 200px;">
+                <!--<div class="input-group mb-3" style="min-width: 200px;">
                     <span class="input-group-text p-2">
                         <img src="symbols/search.svg">
                     </span>
                     <input class="form-control form-control-sm" type="text" placeholder="Search" v-model="browser_tag_suggestion_query">
-                </div>
+                </div>-->
+                <input class="form-control mb-3 browser-filter-tag-search-bar" style="min-width: 200px;" type="text" placeholder="Search" v-model="browser_tag_suggestion_query">
                 <ul class="list-unstyled border rounded overflow-y-scroll" style="height: 150px;">
                     <li v-for="tag of browser_tag_suggestions">
                         <div class="dropdown-item d-flex align-items-center" @click="on_browser_tag_suggestion_select(tag)">

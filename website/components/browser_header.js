@@ -53,10 +53,45 @@ export const BrowserHeader =
     },
     template:
     `
-    <div class="navbar bg-dark shadow-sm">
-        <div class="w-100 px-4 py-1" style="display: grid; grid-auto-flow: column; grid-auto-columns: 1fr;">
-            <div class="d-flex align-items-center justify-content-start">
-                <a href="/"><img src="symbols/dave_logo_dark.svg" width="38px"></a>
+    <nav class="navbar navbar-expand bg-dark shadow-sm" data-bs-theme="dark">
+        <div class="container-fluid px-3 align-items-center" style="display: grid; grid-auto-flow: column; grid-template-columns: 1fr 2fr 1fr">
+            <div class="d-flex justify-content-start">
+                <div class="navbar-nav align-items-center">
+                    <a class="navbar-brand" href="/"><img src="symbols/dave_logo_dark.svg" width="40px"></a>
+                    <a class="nav-link d-none d-xl-block active" href="/browser">Browser</a>
+                    <a class="nav-link d-none d-xl-block" href="/guide">Guide</a>
+                    <a class="nav-link d-none d-xl-block" href="/about">About</a>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <input class="form-control browser-header-search-bar" style="max-width: 500px;" type="text" placeholder="Search" :value="browser_query" @input="on_browser_query_change($event.target.value)">
+            </div>
+            <div class="d-flex justify-content-end">
+                <div class="dropdown">
+                    <button class="focus-ring focus-ring-secondary btn border dropdown-toggle d-none d-md-block browser-header-dropdown" style="--bs-focus-ring-color: rgba(255, 255, 255, 0.55); color: var(--bs-body-color); height: 40px; border-color: rgba(255,255,255, 0.1) !important; border-top-right-radius: 0px; border-bottom-right-radius: 0px;" type="button" data-bs-toggle="dropdown">
+                        {{ browser_sort_type_names[browser_sorting.type] }}
+                    </button>
+                    <button class="navbar-toggler d-flex align-items-center justify-content-between p-2 d-md-none" style="width: 40px; height: 40px; border-top-right-radius: 0px; border-bottom-right-radius: 0px;" type="button" data-bs-toggle="dropdown">
+                        <span class="navbar-toggler-icon browser-header-toggle"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li v-for="(sort_type_name, sort_type) of browser_sort_type_names">
+                            <div class="dropdown-item d-flex align-items-center" @click="on_browser_sort_type_change(sort_type)">
+                                <img v-if="browser_sorting.type == sort_type" width="12px" style="margin-bottom: -2px" src="symbols/circle.svg">
+                                <div v-else style="width: 12px;"></div>
+                                <span class="ms-2">{{ sort_type_name }}</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <button class="btn btn-dark border border-start-0 d-flex align-items-center justify-content-center p-0" style="width: 40px; height: 40px; border-color: rgba(255,255,255, 0.1) !important; border-top-left-radius: 0px; border-bottom-left-radius: 0px;" type="button" @click="on_browser_sort_direction_toggle">
+                    <img v-if="browser_sorting.direction == 'ascending'" src="symbols/sort_ascending.svg" width="20px">
+                    <img v-if="browser_sorting.direction == 'descending'" src="symbols/sort_descending.svg" width="20px">
+                </button>
+            </div>
+            
+            <!--<div class="d-flex align-items-center justify-content-start">
+                <a class="navbar-brand" href="/"><img src="symbols/dave_logo_dark.svg" width="40px"></a>
             </div>
             <div class="d-flex align-items-center justify-content-center">
                 <input id="search_input" type="text" class="form-control form-control-dark text-bg-dark browser-search-bar" style="max-width: 500px;" placeholder="Search" :value="browser_query" @input="on_browser_query_change($event.target.value)">
@@ -83,8 +118,8 @@ export const BrowserHeader =
                     <img v-if="browser_sorting.direction == 'ascending'" src="symbols/sort_ascending.svg" width="20px">
                     <img v-if="browser_sorting.direction == 'descending'" src="symbols/sort_descending.svg" width="20px">
                 </button>
-            </div>
+            </div>-->
         </div>
-    </div>
+    </nav>
     `
 }

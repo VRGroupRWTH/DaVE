@@ -39,7 +39,7 @@ export const SharedHeader =
     template:
     `
     <nav class="navbar navbar-expand bg-dark shadow-sm" data-bs-theme="dark" v-bind="$attrs">
-        <div class="container-lg w-100 d-flex align-items-center justify-content-between">
+        <div class="container-lg d-flex align-items-center justify-content-between">
             <div class="navbar-nav align-items-center">
                 <a class="navbar-brand" href="/"><img src="symbols/dave_logo_dark.svg" width="40px"></a>
                 <a v-for="item of header_links" class="nav-link" :class="is_active_link(item.link) ? 'active' : ''" :href="item.link">{{ item.label }}</a>
@@ -47,7 +47,7 @@ export const SharedHeader =
             <div>
                 <input class="form-control shared-header-search-bar d-none d-lg-block" style="width: 250px;" type="text" placeholder="Search" v-model="header_search_query" @keydown.enter="on_shared_header_search">
                 <button class="navbar-toggler d-flex align-items-center justify-content-between p-2 d-lg-none" style="width: 40px; height: 40px;" type="button" data-bs-toggle="offcanvas" data-bs-target="#shared_header_offcanvas">
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon shared-header-toggle"></span>
                 </button>
             </div>
         </div>

@@ -44,6 +44,11 @@
     transition: max-width 0.05s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !important;
 }
 
+.shared-header-toggle
+{
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1.0%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important
+}
+
 .shared-footer-legal > *
 {
     font-size: 13px !important;
@@ -74,9 +79,23 @@
     color: #176fc1;
 }
 
-.browser-search-bar::placeholder
+.browser-header-search-bar
 {
-    color: white !important;
+    background-image: url(/symbols/search_dark.svg);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    padding-left: 35px !important;
+    transition: max-width 0.05s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !important;
+}
+
+.browser-header-toggle
+{
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1.0%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important
+}
+
+.browser-header-dropdown::after
+{
+    color: white;
 }
 
 .browser-filter-toggle-arrow[aria-expanded="true"] > img
@@ -203,6 +222,15 @@
     --label-bound-left: calc(var(--label-center) + var(--label-gap) / 2 + var(--label-width) / 2);
     --label-bound-right: calc(100% - var(--label-width) / 2 + var(--bs-form-range-thumb-width) / 2);
     --label-location: calc(min(max(var(--label-right), var(--label-bound-left)), var(--label-bound-right)));
+}
+
+.browser-filter-tag-search-bar
+{
+    background-image: url(/symbols/search.svg);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    padding-left: 35px !important;
+    transition: max-width 0.05s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !important;
 }
 
 .visualization-description pre

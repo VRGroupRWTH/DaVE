@@ -102,7 +102,7 @@
                         </div>
                     </div>
                     <div class="mb-4 visualization-description" v-html="visualization.description"></div>
-                    <visualization-resources :visualization="visualization"></visualization-resources>
+                    <visualization-resources class="mb-4" :visualization="visualization"></visualization-resources>
                     <visualization-wizard :visualization="visualization" id="visualization_wizard"></visualization-wizard>
                 </div>
                 <div class="flex-shrink-0 d-none d-lg-block" style="width: 250px;">
@@ -123,7 +123,7 @@
             </div>
         </main>
         <footer class="bg-body-tertiary">
-            <shared-footer></shared-footer>
+            <shared-footer class="container"></shared-footer>
         </footer>
         `
     }).mount("#app");
