@@ -8,7 +8,7 @@ By selecting an appropriate threshold for the extraction, it is for example poss
 </div>
 <div id="instructions" outline_label="Instructions" outline_indent="0" markdown="1">
 ### Instructions ###
-The archive that can be downloaded after the configuration of the example contains the shell script `isocontour_script.sh` that creates an isocontour for the provided dataset.
+The file archive that is provided for this example contains the shell script `isocontour_script.sh` that creates an isocontour for the input dataset.
 The script can be started by ruinning the following command in the terminal
 ```
 ./isocontour_script.sh
@@ -17,20 +17,22 @@ In some cases it is neccessary to first mark the script as executible which can 
 ```
 chmod +x isocontour_script.sh
 ```
-After a successful execution of the script, the image `isocontour.png` containing the final visualization of the provided dataset is placed in the folder `output`.
+After a successful execution of the script, the image `isocontour.png` containing the visualized dataset is placed in the folder `output`.
 
-
+An important aspect to keep in mind is that a dataset can contain multiple scalar fields at the same time.
+By default, the example uses the scalar field with the name `Scalars_`, but depending on the dataset it might be neccessary to select another field with a different name.
+The field that is used by the example can be changed by modifing the lines of the script file `isocontour_trace.py` that are marked with the comment `OWN_DATA`.
+More precicely, the default field name `Scalars_` needs to be replaced by the name of the desired scalar field.
+On of the lines that need to be adapted is shown in the following 
 ```
 contour1.ContourBy = ['POINTS', 'Scalars_']
 ```
 
-An important property for the extration of the isocontour is the iso surface threshold that defines the target surface.
+An important property for the extration of the isocontour is the isocontour threshold that defines the target surface.
 This parameter is controlled by the following line of the `isocontour_trace.py` file
 ```
 contour1.Isosurfaces = [100.0]
 ```
-
-
 </div>
 <div id="limitations" outline_label="Limitations" outline_indent="0" markdown="1">
 ### Limitations ###

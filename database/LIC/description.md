@@ -1,8 +1,21 @@
 <div id="description" outline_label="Description" outline_indent="0" markdown="1">
 ### Description ###
-Line-Integral Convolution is one of the more sophisticated visualization techniques used for two-dimensional or slices of three-dimensional vector fields.
+Line-Integral Convolution is a visualization techniques that can be used to highlight the field lines of two-dimensional or three-dimensional vector fields.
+Starting from an arbitarty point within the domain of the given dataset, the method traces a path that follows the vector field.
+During the tracing of the path, a noise image 
+
+
+used for two-dimensional or slices of three-dimensional vector fields.
+Based on the vector field and an addtional noise filed, Line-Integral Convolution creates a scalar field that highlights the field lines of the vector field.
+
+
+
+
+
+Unlike other visualization technique for vector field, 
+
 Unlike other commonly used methods for the visualization of vector fields, such as streamlines or pathlines, line-lntegral convolution does not illustrate the vector field using tubes or lines.
-Instead, it creates a scalar field using the vector field and an additional noise field, which is in the end visualized similar as a heatmap.
+Instead, it creates a scalar field using the vector field and an additional noise field, which in the end is visualized similar as a heatmap.
 Starting from a point within the domain of the scalar field, the method traces a path that follows the vector field and integrates the values of the noise field along the way.
 The contribution of the noise field to the integration is often modulated by a user defined convolution kernel, which in its simplest from weights the values of the noise field equaliy.
 When the path reaches a user defined length, the integration porcess is stopped and the result of the integral is used to define the value of the scalar field at the starting point.
@@ -15,7 +28,7 @@ Placement of the seed points less problematic. More generak overview over the ve
 </div>
 <div id="instructons" outline_label="Instructions" outline_indent="0" markdown="1">
 ### Instructions ###
-The file archive that can be downloaded for this example, contains the script file `lic_script.sh` that when executed creates a visualization using line-integral convolution.
+The file archive that is provided for this example contains the script file `lic_script.sh` that when executed visalized a dataset using line-integral convolution.
 The script can be started using the following terminal command
 ```
 ./lic_script.sh
@@ -26,6 +39,16 @@ chmod +x lic_script.sh
 ```
 After a successful execution of the script, the image `lic.png` containing the final visualization of the provided dataset is placed in the folder `output`. 
 
+
+```
+reader.Dimensions = '(lat, r, lon)'
+```
+
+```
+calculator1.Function = '(iHat*vx + jHat*vy + kHat*vz) * 1e9'
+```
+
+
 When using a dataset other than the default dataset shipped together with the example, some modification need to be done in the file `lic_trace.py` to make sure that the correct vector field is used for the visualization.
 
 </div>
@@ -35,8 +58,8 @@ Currently the `lic_trace.py` only supports datasets that are stored in the NetCD
 Datasets that are stored in this particular format can be identified by the file extension `.nc`.
 Other file formats are theoretically possible but would require extensive changes to the `lic_trace.py` file as the reader used by the script would need to be replaced.
 
-- artifacts in distributed execution
-
+Besides that there are additional limitations:
+- Artifacts in distributed execution
 </div>
 <div id="references" outline_label="References" outline_indent="0" markdown="1">
 ### References ###
