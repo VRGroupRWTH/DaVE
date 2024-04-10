@@ -1,30 +1,18 @@
 <div id="description" outline_label="Description" outline_indent="0" markdown="1">
 ### Description ###
-Line-Integral Convolution is a visualization techniques that can be used to highlight the field lines of two-dimensional or three-dimensional vector fields.
-Starting from an arbitarty point within the domain of the given dataset, the method traces a path that follows the vector field.
-During the tracing of the path, a noise image 
+Line-Integral Convolution is a visualization technique that can be used to highlight the field lines of two- or three-dimensional vector fields. 
+The method calculates the color for a specific point by integrating a noisy scalar field along a curve.
+This curve starts at the point where the color is to be calculated and follows the vector field for a user-defined length.
+The contribution of the noise field to the integration is often modulated by a user-defined convolution kernel, which in its simplest form weights the values of the noise field equally.
+On the first glance, the result of this visualization technique is just a nosiy representation of the dataset.
+However, points that belong to the same field line are colored alomost equaliy as the curves that are traced form them are nearly identically.
 
-
-used for two-dimensional or slices of three-dimensional vector fields.
-Based on the vector field and an addtional noise filed, Line-Integral Convolution creates a scalar field that highlights the field lines of the vector field.
-
-
-
-
-
-Unlike other visualization technique for vector field, 
-
-Unlike other commonly used methods for the visualization of vector fields, such as streamlines or pathlines, line-lntegral convolution does not illustrate the vector field using tubes or lines.
-Instead, it creates a scalar field using the vector field and an additional noise field, which in the end is visualized similar as a heatmap.
-Starting from a point within the domain of the scalar field, the method traces a path that follows the vector field and integrates the values of the noise field along the way.
-The contribution of the noise field to the integration is often modulated by a user defined convolution kernel, which in its simplest from weights the values of the noise field equaliy.
-When the path reaches a user defined length, the integration porcess is stopped and the result of the integral is used to define the value of the scalar field at the starting point.
-
-In this example, line integral convolution is demonstrated by visualizing a simulation of the convection process that takes place in the earth's mantel.
-Even though the dataset that is used in this example is a three-dimensional vector field, line integral convolution can be still applied in this case as several clipping planes are used [1](#reference_dataset).
-
-Benefits no intersection of lines or tubes, less visual luttering less occlusion problem. 
-Placement of the seed points less problematic. More generak overview over the vector field.
+In this example, line integral convolution is demonstrated in the context of an geological application.
+The dataset that is provided along with this example was created by simulating the convection process that takes place in the earth's mantel [1](#reference_dataset).
+Based on this dataset, the example uses Line integral convolution to visualize the velocity with which material movese in the earth's mantel.
+This example nicely illustrates the advantages of this line integral convolution over other visualization technbiques for vector field sucha as, for example, stream lines or glyphs.
+These approach in particular visualize the dataset using lines or arrows which cause visual cluttering if too many of them are use or only give a rough overview of the dataset if not enoguh of them are used.
+This proplem in particular does not aris when using line integration convolution.
 </div>
 <div id="instructons" outline_label="Instructions" outline_indent="0" markdown="1">
 ### Instructions ###
@@ -39,18 +27,18 @@ chmod +x lic_script.sh
 ```
 After a successful execution of the script, the image `lic.png` containing the final visualization of the provided dataset is placed in the folder `output`. 
 
-
-```
-reader.Dimensions = '(lat, r, lon)'
-```
-
+The example assumes that the dataset owns three scalar field named `vx`, `vy` and `vz`.
+Based on these scalar fields, the velocity field is derived using the following line of the `lic_trace.py` script
 ```
 calculator1.Function = '(iHat*vx + jHat*vy + kHat*vz) * 1e9'
 ```
+When using a custom dataset, it might be neccessary to ether adapt this formula or down right skip this computation entirely if a vector field is already provided by the dataset.
 
-
-When using a dataset other than the default dataset shipped together with the example, some modification need to be done in the file `lic_trace.py` to make sure that the correct vector field is used for the visualization.
-
+Besides that, the dataset also has to store the scalar field in a spherical coordinate system defined by the axes `latitude (lat)`, `longitude (lon)` and `radius (r)`.
+The order in which these axes are read from the dataset can be controlled using the following line of the `lic_trace.py` script
+```
+reader.Dimensions = '(lat, r, lon)'
+```
 </div>
 <div id="limitations" outline_label="Limitations" outline_indent="0" markdown="1">
 ### Limitations ###
@@ -58,7 +46,7 @@ Currently the `lic_trace.py` only supports datasets that are stored in the NetCD
 Datasets that are stored in this particular format can be identified by the file extension `.nc`.
 Other file formats are theoretically possible but would require extensive changes to the `lic_trace.py` file as the reader used by the script would need to be replaced.
 
-Besides that there are additional limitations:
+Besides that, there are the following limitations:
 - Artifacts in distributed execution
 </div>
 <div id="references" outline_label="References" outline_indent="0" markdown="1">

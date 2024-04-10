@@ -68,10 +68,10 @@ export const BrowserHeader =
             </div>
             <div class="d-flex justify-content-end">
                 <div class="dropdown">
-                    <button class="focus-ring focus-ring-secondary btn border dropdown-toggle d-none d-md-block browser-header-dropdown" style="--bs-focus-ring-color: rgba(255, 255, 255, 0.55); color: var(--bs-body-color); height: 40px; border-color: rgba(255,255,255, 0.1) !important; border-top-right-radius: 0px; border-bottom-right-radius: 0px;" type="button" data-bs-toggle="dropdown">
+                    <button class="focus-ring focus-ring-secondary btn border dropdown-toggle d-none d-md-block browser-header-dropdown" style="border-color: #495057 !important; --bs-focus-ring-color: rgba(255, 255, 255, 0.55); color: var(--bs-body-color); height: 40px; border-top-right-radius: 0px; border-bottom-right-radius: 0px;" type="button" data-bs-toggle="dropdown">
                         {{ browser_sort_type_names[browser_sorting.type] }}
                     </button>
-                    <button class="navbar-toggler d-flex align-items-center justify-content-between p-2 d-md-none" style="width: 40px; height: 40px; border-top-right-radius: 0px; border-bottom-right-radius: 0px;" type="button" data-bs-toggle="dropdown">
+                    <button class="navbar-toggler d-flex align-items-center justify-content-between p-2 d-md-none" style="border-color: #495057 !important; width: 40px; height: 40px; border-top-right-radius: 0px; border-bottom-right-radius: 0px;" type="button" data-bs-toggle="dropdown">
                         <span class="navbar-toggler-icon browser-header-toggle"></span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
@@ -84,7 +84,7 @@ export const BrowserHeader =
                         </li>
                     </ul>
                 </div>
-                <button class="btn btn-dark border border-start-0 d-flex align-items-center justify-content-center p-0" style="width: 40px; height: 40px; border-color: rgba(255,255,255, 0.1) !important; border-top-left-radius: 0px; border-bottom-left-radius: 0px;" type="button" @click="on_browser_sort_direction_toggle">
+                <button class="btn btn-dark border border-start-0 d-flex align-items-center justify-content-center p-0" style="width: 40px; height: 40px; border-color: #495057 !important; border-top-left-radius: 0px; border-bottom-left-radius: 0px;" type="button" @click="on_browser_sort_direction_toggle">
                     <img v-if="browser_sorting.direction == 'ascending'" src="symbols/sort_ascending.svg" width="20px">
                     <img v-if="browser_sorting.direction == 'descending'" src="symbols/sort_descending.svg" width="20px">
                 </button>

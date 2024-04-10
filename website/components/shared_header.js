@@ -46,7 +46,7 @@ export const SharedHeader =
             </div>
             <div>
                 <input class="form-control shared-header-search-bar d-none d-lg-block" style="width: 250px;" type="text" placeholder="Search" v-model="header_search_query" @keydown.enter="on_shared_header_search">
-                <button class="navbar-toggler d-flex align-items-center justify-content-between p-2 d-lg-none" style="width: 40px; height: 40px;" type="button" data-bs-toggle="offcanvas" data-bs-target="#shared_header_offcanvas">
+                <button class="navbar-toggler d-flex align-items-center justify-content-between p-2 d-lg-none" style="border-color: #495057 !important; width: 40px; height: 40px;" type="button" data-bs-toggle="offcanvas" data-bs-target="#shared_header_offcanvas">
                     <span class="navbar-toggler-icon shared-header-toggle"></span>
                 </button>
             </div>
