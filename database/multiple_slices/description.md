@@ -32,8 +32,8 @@ reader.PointArrayStatus = ['Scalars_']
 ```
 By default, the script uses the attribute with the name `Scalars_` for the visualization.
 
-**Explain how the databse can be explored using the tool cinema_view
-The Cinema Viewer is not part of this example and has to be downloaded sperately.**
+<!--One of the tools with which the resulting Chinema database can be shown is the tool Cinema:View which needs to be downloaded seperatly [1](#reference_cinema_view).
+After downloading the Github repository as an zip-File, -->
 </div>
 <div id="limitations" outline_label="Limitations" outline_indent="0" markdown="1">
 ### Limitations ###

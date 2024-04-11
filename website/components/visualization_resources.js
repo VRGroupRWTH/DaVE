@@ -22,7 +22,7 @@ export const VisualizationResources =
     },
     template:
     `
-    <div id="resources" outline_label="Resources" outline_indent="0">
+    <div id="resources" outline_label="Resources" outline_indent="0" style="scroll-margin-top: 80px;">
         <h3>Resources</h3>
         <div class="alert alert-light">
         <table class="table align-middle visualization-resources-table ">
