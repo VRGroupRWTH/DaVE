@@ -22,14 +22,18 @@ resources:
     type: "Script"
     date: 2023-02-01
     path: "resources/lic_trace.py"
-  - name: "ParaView 5.11.1"
-    type: "Container"
-    date: 2024-01-09
-    url: "ghcr.io/scivislab/paraview:5.11.1"
   - name: "mantle.tgz"
     type: "Dataset"
     date: 2024-01-09
     url: "https://nextcloud.computecanada.ca/index.php/s/edS6be3sk8oQ58N/download"
+  - name: "ParaView 5.11.1"
+    type: "Docker Image"
+    date: 2024-01-09
+    url: "ghcr.io/scivislab/paraview:5.11.1"
+  - name: "ParaView 5.11.1"
+    type: "Dockerfile"
+    date: 2024-01-09
+    path: "resources/Dockerfile"
 
 templates:
   - techniques:

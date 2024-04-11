@@ -7,13 +7,16 @@ mkdir -p data
 mkdir -p output
 if ! test -d "${DATASET_VOLUME_PATH}"; then
     echo "data set '${DATASET_VOLUME_PATH}' not found - using default"
-    DATASET_VOLUME_PATH="./data/jet4/"
-    if ! test -d "${DATASET_VOLUME_PATH}"; then
-        # TODO download default data set
+    DATASET_VOLUME_PATH="./data/jet.zip"
+    if test -f "${DATASET_VOLUME_PATH}"; then
         cd data
-        wget "${DATASET_VOLUME_URL}"
+        mkdir -p jet
+        unzip jet.zip -d jet
         cd ..
-    fi
+        DATASET_VOLUME_PATH="./data/jet/"
+    else
+        echo "default dataset not found - aborting"
+    fi;
 fi;
 
 # determine additional execution commands for slurm and mpi
