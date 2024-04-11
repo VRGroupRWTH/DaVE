@@ -20,14 +20,18 @@ resources:
     type: "Script"
     date: 2024-01-08
     path: "resources/streamline_trace.py"
-  - name: "ParaView 5.11.1"
-    type: "Container"
-    date: 2024-01-08
-    url: "ghcr.io/scivislab/paraview:5.11.1"
   - name: "jet.vti"
     type: "Dataset"
     date: 2024-01-08
     path: "resources/jet.vti"
+  - name: "ParaView 5.11.1"
+    type: "Docker Image"
+    date: 2024-01-09
+    url: "ghcr.io/scivislab/paraview:5.11.1"
+  - name: "ParaView 5.11.1"
+    type: "Dockerfile"
+    date: 2024-01-09
+    path: "resources/Dockerfile"
 
 templates:
   - techniques:
