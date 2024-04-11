@@ -29,7 +29,7 @@ resources:
   - name: "ParaView 5.11.1"
     type: "Docker Image"
     date: 2024-01-09
-    url: "ghcr.io/scivislab/paraview:5.11.1"
+    url: "https://github.com/orgs/scivislab/packages/container/paraview/165958085?tag=5.11.1"
   - name: "ParaView 5.11.1"
     type: "Dockerfile"
     date: 2024-01-09
