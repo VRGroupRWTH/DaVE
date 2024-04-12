@@ -236,6 +236,12 @@ class Backend
         for(const file of files)
         {
             archive.addFile(file.path, file.buffer);
+
+            if(file.path.endsWith(".zip"))
+            {
+                let entry = archive.getEntry(file.path);
+                entry.header.method = 0; // Store uncompressed since data is already compressed
+            }
         }
 
         response.send(archive.toBuffer());
