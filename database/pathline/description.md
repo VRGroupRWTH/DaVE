@@ -8,9 +8,9 @@ Each line shows the path of a hypotetical particle whose movement is determined 
 The position of such a particle over time is calculated using numerical integration methods such as the euler method.
 On the other hand, the staring points of the lines are often chosen randomly where by the user only controlls the number of the seed points and the area in which they should be spawned.
 
-In comparison to stream lines which also visualize a dataset using lines, 
+<!--In comparison to stream lines which also visualize a dataset using lines, 
 The computation of pathlines makes only sense if the given dataset is time-depenedent.
-Otherwise they are identical to steamlines.
+Otherwise they are identical to steamlines.-->
 
 In this example, path lines are demonstratted using a time dependent two dimensional dataset that models a changing vector field [1](#reference_dataset).
 For the visualization, a small number of seed points are placed on the left side of the dataset which define the starting points of the path.
