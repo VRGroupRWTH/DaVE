@@ -18,7 +18,7 @@ Everybody can join our mission and add more examples and resources.
 ## Development ###
 After cloning or downloading the repository, open the cloned directory in Visual Studio Code with the Dev Containers extension installed.
 Before using the Dev Container extension, it is neccessary to install Docker.
-More information on that can be found on extension page in VS Code.
+More information on that can be found on the extension page in VS Code.
 Following that, reopen the directory in the container by pressing `F1` and entering `reopen in container` in the command box that opens at the top of the editor.
 When the container was fully loaded by Visual Studio Code, open a terminal and type the following command to download and initalize the dependencies of the website
 ```

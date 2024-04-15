@@ -20,7 +20,9 @@ chmod +x scatterplots_script.sh
 </div>
 <div id="limitations" outline_label="Limitations" outline_indent="0" markdown="1">
 ### Limitations ###
-None
+Currently the `scatterplots_trace.py` only supports datasets that are stored in the NetCDF (Network Common Data Form) format.
+Datasets that are stored in this particular format can be identified by the file extension `.nc`.
+Other file formats are theoretically possible but would require extensive changes to the `scatterplots_trace.py` file as the reader used by the script would need to be replaced.
 
 </div>
 <div id="references" outline_label="References" outline_indent="0" markdown="1">
