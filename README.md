@@ -1,5 +1,7 @@
 
-![DaVE Logo](logo.svg)
+<p align=center>
+  <img src="logo.svg" width="60%">
+</p>
 
 Welcome to DaVE - the Database of Visualization Examples.
 The goal of DaVE is simple: empower users, especially working with High Performance Computing (HPC) infrastructure, with easy access to advanced and state-of-the-art visualization techniques.
