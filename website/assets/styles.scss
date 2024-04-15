@@ -1,9 +1,11 @@
+@import "~bootstrap/scss/bootstrap";
+
 .tag-removable-image
 {
     width: 18px;
     height: 18px;
     background-size: cover;
-    background-image: url("symbols/x_circle_fill.svg");
+    background-image: url("../assets/icons/x_circle_fill.svg");
 }
 
 .tag-highlight-technique
@@ -37,7 +39,7 @@
 
 .shared-header-search-bar
 {
-    background-image: url(/symbols/search_dark.svg);
+    background-image: url(../assets/icons/search_dark.svg);
     background-repeat: no-repeat;
     background-position: 10px center;
     padding-left: 35px !important;
@@ -81,7 +83,7 @@
 
 .browser-header-search-bar
 {
-    background-image: url(/symbols/search_dark.svg);
+    background-image: url(../assets/icons/search_dark.svg);
     background-repeat: no-repeat;
     background-position: 10px center;
     padding-left: 35px !important;
@@ -226,7 +228,7 @@
 
 .browser-filter-tag-search-bar
 {
-    background-image: url(/symbols/search.svg);
+    background-image: url(../assets/icons/search.svg);
     background-repeat: no-repeat;
     background-position: 10px center;
     padding-left: 35px !important;

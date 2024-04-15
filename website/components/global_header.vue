@@ -1,47 +1,50 @@
-import { ref } from "vue";
+<script>
+    import { ref } from "vue";
 
-export const SharedHeader =
-{
-    setup()
+    export default
     {
-        let header_search_query = ref("");
-        let header_links = ref(
-        [
-            { link: "/browser", label: "Browser" },
-            { link: "/guide", label: "Guide" },
-            { link: "/about", label: "About" }
-        ]);
-
-        function is_active_link(link)
+        setup()
         {
-            return window.location.pathname.endsWith(link);
-        }
+            let header_search_query = ref("");
+            let header_links = ref(
+            [
+                { link: "/browser", label: "Browser" },
+                { link: "/guide", label: "Guide" },
+                { link: "/about", label: "About" }
+            ]);
 
-        function on_shared_header_search()
-        {
-            let search_url = "/browser";
-
-            if(header_search_query.value.length > 0)
+            function is_active_link(link)
             {
-                search_url += "?query=" + header_search_query.value;
+                return window.location.pathname.endsWith(link);
             }
 
-            window.location = search_url;
-        }
+            function on_shared_header_search()
+            {
+                let search_url = "/browser";
 
-        return {
-            header_links,
-            header_search_query,
-            is_active_link,
-            on_shared_header_search
-        };
-    },
-    template:
-    `
+                if(header_search_query.value.length > 0)
+                {
+                    search_url += "?query=" + header_search_query.value;
+                }
+
+                window.location = search_url;
+            }
+
+            return {
+                header_links,
+                header_search_query,
+                is_active_link,
+                on_shared_header_search
+            };
+        }
+    };
+</script>
+
+<template>
     <nav class="navbar navbar-expand bg-dark shadow-sm" data-bs-theme="dark" v-bind="$attrs">
         <div class="container-lg d-flex align-items-center justify-content-between">
             <div class="navbar-nav align-items-center">
-                <a class="navbar-brand" href="/"><img src="symbols/dave_logo_dark.svg" width="40px"></a>
+                <a class="navbar-brand" href="/"><img src="../assets/icons/dave_logo_dark.svg" width="40px"></a>
                 <a v-for="item of header_links" class="nav-link" :class="is_active_link(item.link) ? 'active' : ''" :href="item.link">{{ item.label }}</a>
             </div>
             <div>
@@ -61,5 +64,4 @@ export const SharedHeader =
             <slot></slot>
         </div>
     </div>
-    `
-}
+</template>

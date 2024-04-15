@@ -1,10 +1,9 @@
-<body id="app" class="overflow-y-scroll"></body>
-<script type="module">
-    import { createApp, ref, watch } from "vue"
-    import { BrowserHeader } from "components/browser_header.js"
-    import { BrowserFilter } from "components/browser_filter.js"
-    import { BrowserItem } from "components/browser_item.js"
-    import { SharedFooter } from "components/shared_footer.js"
+<script>
+    import { ref, watch } from "vue"
+    import BrowserHeader from "../components/browser_header.vue"
+    import BrowserFilter from "../components/browser_filter.vue"
+    import BrowserItem from "../components/browser_item.vue"
+    import GlobalFooter from "../components/global_footer.vue"
 
     function setup_query()
     {
@@ -112,14 +111,14 @@
         }
     }
 
-    createApp(
+    export default
     {
         components:
         {
             "browser-header": BrowserHeader,
             "browser-filter": BrowserFilter,
             "browser-item": BrowserItem,
-            "shared-footer": SharedFooter
+            "shared-footer": GlobalFooter
         },
         setup()
         {
@@ -220,36 +219,36 @@
             this.browser_filters.date_begin = filter_date.begin;
             this.browser_filters.date_end = filter_date.end;
             this.browser_filters.tags = filter_tags;
-        },
-        template:
-        `
-        <header class="sticky-top">
+        }
+    };
+</script>
+
+<template>
+    <header class="sticky-top">
             <browser-header v-model:browser_query="browser_query" v-model:browser_sorting="browser_sorting"></browser-header>
             <browser-filter class="border-bottom d-lg-none bg-white" v-model:browser_filters="browser_filters"></browser-filter>
-        </header>
-        <main>
-            <div class="d-flex bg-body-tertiary">
-                <browser-filter class="sticky-top card m-3 align-self-start flex-shrink-0 d-none d-lg-block" style="width: 300px; top: 82px;" v-model:browser_filters="browser_filters"></browser-filter>
-                <div class="flex-fill my-3 me-3 ms-3 ms-lg-0">
-                    <div v-if="browser_is_loading" class="d-flex align-items-center justify-content-center" style="height: 300px;">
-                        <div class="spinner-border text-body-tertiary" role="status"></div>
-                        <span class="ms-2 text-body-tertiary fw-semibold fs-4">Loading visualizations</span>
-                    </div>
-                    <div v-else-if="browser_items.length > 0" class="row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-xxl-3 g-3">
-                        <div v-for="item of browser_items" class="col">
-                            <browser-item :browser_item="item" :browser_filters="browser_filters" @on_browser_item_click="on_browser_item_click(item)" @on_browser_item_tag_click="on_browser_item_tag_click"></browser-item>
-                        </div>
-                    </div>
-                    <div v-else class="d-flex align-items-center justify-content-center" style="height: 300px;">
-                        <img src="symbols/not_found.svg" style="width: 32px; margin-bottom: -6px;">
-                        <span class="ms-2 text-body-tertiary fw-semibold fs-4">No visualizations found</span>
+    </header>
+    <main>
+        <div class="d-flex bg-body-tertiary">
+            <browser-filter class="sticky-top card m-3 align-self-start flex-shrink-0 d-none d-lg-block" style="width: 300px; top: 82px;" v-model:browser_filters="browser_filters"></browser-filter>
+            <div class="flex-fill my-3 me-3 ms-3 ms-lg-0">
+                <div v-if="browser_is_loading" class="d-flex align-items-center justify-content-center" style="height: 300px;">
+                    <div class="spinner-border text-body-tertiary" role="status"></div>
+                    <span class="ms-2 text-body-tertiary fw-semibold fs-4">Loading visualizations</span>
+                </div>
+                <div v-else-if="browser_items.length > 0" class="row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-xxl-3 g-3">
+                    <div v-for="item of browser_items" class="col">
+                        <browser-item :browser_item="item" :browser_filters="browser_filters" @on_browser_item_click="on_browser_item_click(item)" @on_browser_item_tag_click="on_browser_item_tag_click"></browser-item>
                     </div>
                 </div>
+                <div v-else class="d-flex align-items-center justify-content-center" style="height: 300px;">
+                    <img src="../assets/icons/not_found.svg" style="width: 32px; margin-bottom: -6px;">
+                    <span class="ms-2 text-body-tertiary fw-semibold fs-4">No visualizations found</span>
+                </div>
             </div>
-        </main>
-        <footer>
-            <shared-footer class="container-fluid px-4"></shared-footer>
-        </footer>
-        `
-    }).mount("#app");
-</script>
+        </div>
+    </main>
+    <footer>
+        <shared-footer class="container-fluid px-4"></shared-footer>
+    </footer>
+</template>

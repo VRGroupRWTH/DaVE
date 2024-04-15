@@ -1,407 +1,155 @@
-import { ref, computed, watch } from "vue"
+<script>
+    import { ref, computed, watch } from "vue";
+    import VisualizationQuestionDataset from "./visualization_question_dataset.vue";
+    import VisualizationQuestionTechnique from "./visualization_question_technique.vue";
+    import VisualizationQuestionCommand from "./visualization_question_command.vue";
 
-const WizardQuestion = 
-{
-    props: ["name", "options", "config"],
-    emits: ["update:config"],
-    setup(props, context)
+    export default
     {
-        function on_wizard_question_check(event, option)
+        components:
         {
-            if(event.target.checked)
-            {
-                let config = props.config;
-                config[props.name] = option.name;
-
-                context.emit("update:config", config);
-            }
-        }
-
-        function on_wizard_setting_change(event, setting)
+            "wizard-question-dataset": VisualizationQuestionDataset,
+            "wizard-question-technique": VisualizationQuestionTechnique,
+            "wizard-question-command": VisualizationQuestionCommand,
+        },
+        props: ["visualization"],
+        setup(props)
         {
-            let config = props.config;
-            config[setting.name] = event.target.value;
+            let visualization_wizard_question_index = ref(0);
+            let visualization_wizard_question_titles = ref(
+            [
+                "Dataset",
+                "Container",
+                "Execution"
+            ]);
+            let visualization_wizard_questions = ref(
+            [
+                "wizard-question-dataset",
+                "wizard-question-technique",
+                "wizard-question-command"
+            ]);
 
-            context.emit("update:config", config);
-        }
-
-        return {
-            on_wizard_question_check,
-            on_wizard_setting_change
-        }
-    },
-    template:
-    `
-    <div v-for="option of options">
-        <div class="form-check">
-            <input :id="'wizard_question_' + option.name" class="form-check-input" type="radio" :name="'wizard_question_check_' + name" :checked="config[name] == option.name" @input="on_wizard_question_check($event, option)">
-            <label :for="'wizard_question_' + option.name" class="form-check-label fw-semibold">{{ option.title }}</label>
-        </div>
-        <div style="margin-left: 24px">
-            <p>{{ option.description }}</p>
-            <template v-for="setting of option.settings">
-                <label :for="'wizard_question_setting_' + setting.name" class="form-label">{{ setting.title }}</label>
-                <input :id="'wizard_question_setting_' + setting.name" class="form-control" type="text" :disabled="config[name] != option.name" :value="config[setting.name]" @change="on_wizard_setting_change($event, setting)">
-                <div class="form-text">{{ setting.description }}</div>
-            </template>
-        </div>
-    </div>
-    `
-};
-
-const WizardQuestionDataset = 
-{
-    components:
-    {
-        "wizard-question": WizardQuestion
-    },
-    props: ["visualization", "config"],
-    emits: ["update:config"],
-    setup(props)
-    {
-        let wizard_question_dataset_options = computed(() =>
-        {
-            let dataset_settings = [];
-            let dataset_preview_availiable = true;
-
-            for(const dataset of props.visualization.datasets)
+            let visualization_wizard_config = ref(
             {
-                const dataset_identifier = "dataset_path_" + dataset.identifier.toLowerCase();
-
-                const dataset_setting =
-                {
-                    name: dataset_identifier,
-                    title: dataset.name,
-                    description: dataset.description
-                };
-
-                dataset_settings.push(dataset_setting);
-
-                if(!("path" in dataset) && !("url" in dataset))
-                {
-                    dataset_preview_availiable = false;
-                }
-            }
-
-            const option_dataset_preview =
-            {
-                name: "preview",
-                title: "Preview Dataset",
-                description: "The script for the visualization technique will donwload a small dataset with which the visualization can be directly tested.",
-                settings: []
-            };
-
-            const option_dataset_custom =
-            {
-                name: "custom",
-                title: "Custom Dataset",
-                description: "Only the scripts for the visualization technique will be downloaded. The datasets used by the technique are expected to be located at the given paths.",
-                settings: dataset_settings
-            };
-
-            if(dataset_preview_availiable)
-            {
-                return [option_dataset_preview, option_dataset_custom];
-            }
-
-            return [option_dataset_custom];
-        });
-
-        return {
-            wizard_question_dataset_options
-        };
-    },
-    template:
-    `
-    <wizard-question name="dataset" :options="wizard_question_dataset_options" :config="config"></wizard-question>
-    `
-};
-
-const WizardQuestionTechnique = 
-{
-    components: 
-    {
-        "wizard-question": WizardQuestion
-    },
-    props: ["visualization", "config"],
-    emits: ["update:config"],
-    setup(props)
-    {
-        let wizard_question_technique_options = computed(() =>
-        {
-            const option_docker = 
-            {
-                name: "docker",
-                title: "Docker",
-                description: "The visualization technique should be encapsulated in a docker container. Docker is the most common container technique.",
-                settings: []
-            };
-
-            const option_singularity = 
-            {
-                name: "singularity",
-                title: "Singularity",
-                description: "The visualization technique should be encapsulated in a singularity container. Singularity is generally better suited for the deployment on a cluster, as it does not require root privileges.",
-                settings: []
-            };
-
-            let options = [option_docker, option_singularity];
-            let available_options = [];
-
-            for(const option of options)
-            {
-                let found = false;
-
-                for(const template of props.visualization.templates)
-                {
-                    if(template.techniques.some(item => item == option.name))
-                    {
-                        found = true;
-
-                        break;
-                    }
-                }
-
-                if(found)
-                {
-                    available_options.push(option);
-                }
-            }
-
-            return available_options;
-        });
-
-        return {
-            wizard_question_technique_options
-        }
-    },
-    template:
-    `
-    <wizard-question name="technique" :options="wizard_question_technique_options" :config="config"></wizard-question>
-    `
-};
-
-const WizardQuestionCommand = 
-{
-    components: 
-    {
-        "wizard-question": WizardQuestion
-    },
-    props: ["visualization", "config"],
-    emits: ["update:config"],
-    setup(props)
-    {
-        let wizard_question_command_options = computed(() =>
-        {
-            const option_local = 
-            {
-                name: "local",
-                title: "Execute Local",
-                description: "The visualization technique is executed locally on a single computer, e.g. a desktop computer.",
-                settings: []
-            };
-
-            const option_mpi = 
-            {
-                name: "mpi",
-                title: "Batch using MPI",
-                description: "The visualization technique should be executed using MPI. Choose this option if multiple instances of the visualization technique should be run, for example, on a cluster.",
-                settings: []
-            };
-
-            const option_slurm = 
-            {
-                name: "slurm",
-                title: "Batch using Slurm",
-                description: "The visualization technique should be executed using Slurm. Choose this option if multiple instances of the visualization technique should be run, for example, on a cluster.",
-                settings: []
-            };
-
-            let options = [option_local, option_mpi, option_slurm];
-            let available_options = [];
-
-            for(const option of options)
-            {
-                let found = false;
-
-                for(const template of props.visualization.templates)
-                {
-                    if(!template.techniques.some(item => item == props.config.technique))
-                    {
-                        continue;
-                    }
-
-                    if(template.commands.some(item => item.type == option.name))
-                    {
-                        found = true;
-
-                        break;
-                    }
-                }
-
-                if(found)
-                {
-                    available_options.push(option);
-                }
-            }
-
-            return available_options;
-        });
-
-        return {
-            wizard_question_command_options
-        }
-    },
-    template:
-    `
-    <wizard-question name="command" :options="wizard_question_command_options" :config="config"></wizard-question>
-    `
-};
-
-export const VisualizationWizard = 
-{
-    components:
-    {
-        "wizard-question-dataset": WizardQuestionDataset,
-        "wizard-question-technique": WizardQuestionTechnique,
-        "wizard-question-command": WizardQuestionCommand,
-    },
-    props: ["visualization"],
-    setup(props)
-    {
-        let visualization_wizard_question_index = ref(0);
-        let visualization_wizard_question_titles = ref(
-        [
-            "Dataset",
-            "Container",
-            "Execution"
-        ]);
-        let visualization_wizard_questions = ref(
-        [
-            "wizard-question-dataset",
-            "wizard-question-technique",
-            "wizard-question-command"
-        ]);
-
-        let visualization_wizard_config = ref(
-        {
-            dataset: "preview",
-            technique: "",
-            command: ""
-        });
-
-        function setup_visualization_wizard()
-        {
-            let config = 
-            {
-                dataset: "",
+                dataset: "preview",
                 technique: "",
                 command: ""
-            };
+            });
 
-            if(props.visualization.templates.length > 0)
+            function setup_visualization_wizard()
             {
-                const template = props.visualization.templates[0];
-    
-                config.technique = template.techniques[0];
-                config.command = template.commands[0].type;
-            }
-
-            let dataset_preview_availiable = true;
-
-            for(const dataset of props.visualization.datasets)
-            {
-                const dataset_identifier = "dataset_path_" + dataset.identifier.toLowerCase();
-
-                config[dataset_identifier] = "./data/"
-
-                if(!("path" in dataset) && !("url" in dataset))
+                let config = 
                 {
-                    dataset_preview_availiable = false;
+                    dataset: "",
+                    technique: "",
+                    command: ""
+                };
+
+                if(props.visualization.templates.length > 0)
+                {
+                    const template = props.visualization.templates[0];
+        
+                    config.technique = template.techniques[0];
+                    config.command = template.commands[0].type;
                 }
-            }
 
-            if(dataset_preview_availiable)
-            {
-                config.dataset = "preview";
-            }
-
-            else
-            {
-                config.dataset = "custom";
-            }
-
-            visualization_wizard_config.value = config;
-        }
-
-        watch([props], (old_state, new_state) =>
-        {
-            setup_visualization_wizard();
-        });
-
-        let visualization_wizard_link = computed(() =>
-        {
-            let link = "/api/create_script?";
-            link += "visualization=" + props.visualization.name + "&";
-            link += "technique=" + visualization_wizard_config.value.technique + "&";
-            link += "command=" + visualization_wizard_config.value.command;
-
-            if(visualization_wizard_config.value.dataset != "preview")
-            {
-                let dataset_link = "";
+                let dataset_preview_availiable = true;
 
                 for(const dataset of props.visualization.datasets)
                 {
                     const dataset_identifier = "dataset_path_" + dataset.identifier.toLowerCase();
 
-                    if(dataset_identifier in visualization_wizard_config.value)
+                    config[dataset_identifier] = "./data/"
+
+                    if(!("path" in dataset) && !("url" in dataset))
                     {
-                        dataset_link += dataset.identifier + "+" + visualization_wizard_config.value[dataset_identifier];
+                        dataset_preview_availiable = false;
                     }
                 }
 
-                link += "&datasets=" + encodeURIComponent(dataset_link)
+                if(dataset_preview_availiable)
+                {
+                    config.dataset = "preview";
+                }
+
+                else
+                {
+                    config.dataset = "custom";
+                }
+
+                visualization_wizard_config.value = config;
             }
-            
-            return link;
-        });
 
-        function on_visualization_wizard_open()
-        {
-            setup_visualization_wizard();
-
-            visualization_wizard_question_index.value = 0;
-        }
-
-        function on_visualization_wizard_question_back()
-        {
-            if(visualization_wizard_question_index.value > 0)
+            watch([props], (old_state, new_state) =>
             {
-                visualization_wizard_question_index.value = visualization_wizard_question_index.value - 1;
-            }
-        }
+                setup_visualization_wizard();
+            });
 
-        function on_visualization_wizard_question_next()
-        {
-            if(visualization_wizard_question_index.value < visualization_wizard_questions.value.length - 1)
+            let visualization_wizard_link = computed(() =>
             {
-                visualization_wizard_question_index.value = visualization_wizard_question_index.value + 1;
+                let link = "/api/create_script?";
+                link += "visualization=" + props.visualization.name + "&";
+                link += "technique=" + visualization_wizard_config.value.technique + "&";
+                link += "command=" + visualization_wizard_config.value.command;
+
+                if(visualization_wizard_config.value.dataset != "preview")
+                {
+                    let dataset_link = "";
+
+                    for(const dataset of props.visualization.datasets)
+                    {
+                        const dataset_identifier = "dataset_path_" + dataset.identifier.toLowerCase();
+
+                        if(dataset_identifier in visualization_wizard_config.value)
+                        {
+                            dataset_link += dataset.identifier + "+" + visualization_wizard_config.value[dataset_identifier];
+                        }
+                    }
+
+                    link += "&datasets=" + encodeURIComponent(dataset_link)
+                }
+                
+                return link;
+            });
+
+            function on_visualization_wizard_open()
+            {
+                setup_visualization_wizard();
+
+                visualization_wizard_question_index.value = 0;
+            }
+
+            function on_visualization_wizard_question_back()
+            {
+                if(visualization_wizard_question_index.value > 0)
+                {
+                    visualization_wizard_question_index.value = visualization_wizard_question_index.value - 1;
+                }
+            }
+
+            function on_visualization_wizard_question_next()
+            {
+                if(visualization_wizard_question_index.value < visualization_wizard_questions.value.length - 1)
+                {
+                    visualization_wizard_question_index.value = visualization_wizard_question_index.value + 1;
+                }
+            }
+
+            return {
+                visualization_wizard_question_index,
+                visualization_wizard_question_titles,
+                visualization_wizard_questions,
+                visualization_wizard_config,
+                visualization_wizard_link,
+                on_visualization_wizard_open,
+                on_visualization_wizard_question_back,
+                on_visualization_wizard_question_next
             }
         }
+    };
+</script>
 
-        return {
-            visualization_wizard_question_index,
-            visualization_wizard_question_titles,
-            visualization_wizard_questions,
-            visualization_wizard_config,
-            visualization_wizard_link,
-            on_visualization_wizard_open,
-            on_visualization_wizard_question_back,
-            on_visualization_wizard_question_next
-        }
-    },
-    template:
-    `
+<template>
     <div class="modal fade" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -420,5 +168,4 @@ export const VisualizationWizard =
             </div>
         </div>
     </div>
-    `
-}
+</template>

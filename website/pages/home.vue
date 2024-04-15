@@ -1,15 +1,13 @@
-<body id="app"></body>
-<script type="module">
-    import { createApp, ref } from "vue"
-    import { HomeSearchBar } from "components/home_search_bar.js"
-    import { SharedFooter } from "components/shared_footer.js"
+<script>
+    import HomeSearchBar from "../components/home_search_bar.vue"
+    import GlobalFooter from "../components/global_footer.vue"
 
-    createApp(
+    export default
     {
         components:
         {
-            "home-search-bar": HomeSearchBar,
-            "shared-footer": SharedFooter
+            HomeSearchBar,
+            GlobalFooter
         },
         setup()
         {
@@ -50,67 +48,67 @@
             return {
                 on_search_bar_search
             }
-        },
-        template:
-        `
-        <main>
-            <div class="home-background-image">
-                <div class="container py-5">
-                    <div class="d-flex justify-content-center align-items-center">
-                        <div class="px-2 home-logo-large home-logo-blue">DaVE</div>
-                        <div class="px-2 border-start home-logo-small">
-                            A curated 
-                            <span class="home-logo-blue">Da</span>tabase of <br class="d-none d-md-inline d-lg-none">
-                            <span class="home-logo-blue">V</span>isualization <br class="d-none d-lg-inline d-xl-none">
-                            <span class="home-logo-blue">E</span>xamples
-                        </div>
-                    </div>
-                </div>
-                <home-search-bar class="container-sm pt-5" style="padding-bottom: 200px;" @on_search_bar_search="on_search_bar_search"></home-search-bar>
-            </div>
-            <div class="py-4 bg-body-tertiary">
-                <div class="container">
-                    <div class="row row-cols-1 row-cols-lg-2 g-4">
-                        <!--<div class="col">
-                            <div class="card shadow-sm h-100">
-                                <div class="card-body">
-                                    <h5 class="card-title">Wizard</h5>
-                                    <p class="card-text">Use the wizard to get a siutable visualization technique for your use case by answering some questions. You can also use the wizard to explore new visualization techniques that you might not have known before.</p>
-                                </div>
-                                <div class="p-3">
-                                    <a href="/wizard" class="btn btn-primary float-end">Show</a>
-                                </div>
-                            </div>
-                        </div>-->
-                        <div class="clo">
-                            <div class="card shadow-sm h-100">
-                                <div class="card-body">
-                                    <h5 class="card-title">Guide</h5>
-                                    <p class="card-text">Work in progress.</p>
-                                </div>
-                                <div class="p-3">
-                                    <a href="/guide" class="btn btn-primary float-end">Show</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="clo">
-                            <div class="card shadow-sm h-100">
-                                <div class="card-body">
-                                    <h5 class="card-title">About</h5>
-                                    <p class="card-text">Get more information about the project.</p>
-                                </div>
-                                <div class="p-3">
-                                    <a href="/about" class="btn btn-primary float-end">Show</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-        <footer>
-            <shared-footer class="container"></shared-footer>
-        </footer>
-        `
-    }).mount("#app");
+        }
+    };
 </script>
+
+<template>
+    <main>
+        <div class="home-background-image">
+            <div class="container py-5">
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="px-2 home-logo-large home-logo-blue">DaVE</div>
+                    <div class="px-2 border-start home-logo-small">
+                        A curated 
+                        <span class="home-logo-blue">Da</span>tabase of <br class="d-none d-md-inline d-lg-none">
+                        <span class="home-logo-blue">V</span>isualization <br class="d-none d-lg-inline d-xl-none">
+                        <span class="home-logo-blue">E</span>xamples
+                    </div>
+                </div>
+            </div>
+            <HomeSearchBar class="container-sm pt-5" style="padding-bottom: 200px;" @on_search_bar_search="on_search_bar_search"></HomeSearchBar>
+        </div>
+    <div class="py-4 bg-body-tertiary">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-lg-2 g-4">
+                <!--<div class="col">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Wizard</h5>
+                            <p class="card-text">Use the wizard to get a siutable visualization technique for your use case by answering some questions. You can also use the wizard to explore new visualization techniques that you might not have known before.</p>
+                        </div>
+                        <div class="p-3">
+                            <a href="/wizard" class="btn btn-primary float-end">Show</a>
+                        </div>
+                    </div>
+                </div>-->
+                <div class="clo">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Guide</h5>
+                            <p class="card-text">Work in progress.</p>
+                        </div>
+                        <div class="p-3">
+                            <a href="/guide" class="btn btn-primary float-end">Show</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="clo">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">About</h5>
+                            <p class="card-text">Get more information about the project.</p>
+                        </div>
+                        <div class="p-3">
+                            <a href="/about" class="btn btn-primary float-end">Show</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </main>
+    <footer>
+        <GlobalFooter class="container"></GlobalFooter>
+    </footer>
+</template>

@@ -1,20 +1,23 @@
-import { BrowserFilterDate } from "components/browser_filter_date.js"
-import { BrowserFilterTag } from "components/browser_filter_tag.js"
+<script>
+    import BrowserFilterDate from './browser_filter_date.vue';
+    import BrowserFilterTag from './browser_filter_tag.vue';
 
-export const BrowserFilter =
-{
-    components:
+    export default
     {
-        BrowserFilterDate,
-        BrowserFilterTag
-    },
-    props: ["browser_filters"],
-    emits: ["update:browser_filters"],
-    template:
-    `
+        components:
+        {
+            BrowserFilterDate,
+            BrowserFilterTag
+        },
+        props: ["browser_filters"],
+        emits: ["update:browser_filters"]
+    };
+</script>
+
+<template>
     <div>
         <button class="btn btn-toggle border-0 w-100 d-flex align-items-end browser-filter-toggle-arrow" type="button" data-bs-toggle="collapse" data-bs-target="#browser_filter_collapse" aria-expanded="true">
-            <img src="symbols/caret_down_fill.svg" width="20px">
+            <img src="../assets/icons/caret_down_fill.svg" width="20px">
             <div class="ms-1">Filters</div>
         </button>
         <div id="browser_filter_collapse" class="collapse show px-4">
@@ -30,5 +33,4 @@ export const BrowserFilter =
             </ul>
         </div>
     </div>
-    `
-}
+</template>

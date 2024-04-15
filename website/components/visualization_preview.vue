@@ -1,108 +1,119 @@
-import { ref, watch, computed } from "vue"
+<script>
+    import { ref, watch, computed } from "vue";
 
-export const VisualizationPreview =
-{
-    props: ["visualization"],
-    setup(props)
+    import "@kitware/vtk.js/IO/Core/DataAccessHelper/HttpDataAccessHelper";
+    import '@kitware/vtk.js/Rendering/Profiles/Geometry';
+    import '@kitware/vtk.js/Rendering/Profiles/Volume';
+    
+    import vtkFullScreenRenderWindow from "@kitware/vtk.js/Rendering/Misc/FullScreenRenderWindow";
+    import vtkRenderer from "@kitware/vtk.js/Rendering/Core/Renderer";
+    import vtkHttpSceneLoader from "@kitware/vtk.js/IO/Core/HttpSceneLoader";
+    
+    export default
     {
-        let visualization_preview_modal = ref(null);
-        let visualization_preview_state = ref("closed");
-        let visualization_preview_valid = computed(() =>
+        props: ["visualization"],
+        setup(props)
         {
-            return props.visualization.scene != "";
-        });
-
-        let visualization_preview_container = ref(null);
-        let visualization_preview_renderer = ref(null);
-        let visualization_preview_full_screen_renderer = ref(null);
-        let visualization_preview_scene_count = 0;
-
-        async function on_visualization_preview_open()
-        {
-            visualization_preview_state.value = "loading";
-            visualization_preview_renderer.value = vtk.Rendering.Core.vtkRenderer.newInstance();
-            visualization_preview_scene_count = 0;
-
-            const scene_importer = vtk.IO.Core.vtkHttpSceneLoader.newInstance(
+            let visualization_preview_modal = ref(null);
+            let visualization_preview_state = ref("closed");
+            let visualization_preview_valid = computed(() =>
             {
-                renderer: visualization_preview_renderer.value,
-                fetchGzip: true
+                return props.visualization.scene != "";
             });
-            scene_importer.setUrl(props.visualization.scene);
-            scene_importer.onReady(() =>
-            {
-                const metadata = scene_importer.getMetadata();
-                visualization_preview_scene_count++;
 
-                if(visualization_preview_scene_count >= metadata.scene.length)
+            let visualization_preview_container = ref(null);
+            let visualization_preview_renderer = ref(null);
+            let visualization_preview_full_screen_renderer = ref(null);
+            let visualization_preview_scene_count = 0;
+
+            async function on_visualization_preview_open()
+            {
+                visualization_preview_state.value = "loading";
+                visualization_preview_renderer.value = vtkRenderer.newInstance();
+                visualization_preview_scene_count = 0;
+
+                const scene_importer = vtkHttpSceneLoader.newInstance(
                 {
-                    visualization_preview_state.value = "open";
+                    renderer: visualization_preview_renderer.value,
+                    fetchGzip: true
+                });
+                scene_importer.setUrl(props.visualization.scene);
+                scene_importer.onReady(() =>
+                {
+                    const metadata = scene_importer.getMetadata();
+                    visualization_preview_scene_count++;
+
+                    if(visualization_preview_scene_count >= metadata.scene.length)
+                    {
+                        visualization_preview_state.value = "open";   
+                    }
+                });
+            }
+
+            function on_visualization_preview_close()
+            {
+                visualization_preview_state.value = "closed";
+
+                if(visualization_preview_full_screen_renderer.value != null)
+                {
+                    let render_window = visualization_preview_full_screen_renderer.value.getRenderWindow();
+                    render_window.removeRenderer(visualization_preview_renderer.value);
+
+                    visualization_preview_full_screen_renderer.value.delete();
+                    visualization_preview_full_screen_renderer.value = null;
+                }
+
+                visualization_preview_renderer.value = null;
+            }
+
+            watch([visualization_preview_modal], (old_state, new_state) =>
+            {
+                if(visualization_preview_modal.value != null)
+                {
+                    visualization_preview_modal.value.addEventListener('shown.bs.modal', event =>
+                    {
+                        on_visualization_preview_open();
+                    });
+
+                    visualization_preview_modal.value.addEventListener('hidden.bs.modal', event =>
+                    {
+                        on_visualization_preview_close();
+                    });
                 }
             });
-        }
 
-        function on_visualization_preview_close()
-        {
-            visualization_preview_state.value = "closed";
-
-            if(visualization_preview_full_screen_renderer.value != null)
+            watch([visualization_preview_container, visualization_preview_modal], (old_state, new_state) =>
             {
-                let render_window = visualization_preview_full_screen_renderer.value.getRenderWindow();
-                render_window.removeRenderer(visualization_preview_renderer.value);
+                if(visualization_preview_container.value != null)
+                {
+                    visualization_preview_full_screen_renderer.value = vtkFullScreenRenderWindow.newInstance(
+                    {
+                        container: visualization_preview_container.value,
+                        rootContainer: visualization_preview_modal.value
+                    });
 
-                visualization_preview_full_screen_renderer.value.delete();
-                visualization_preview_full_screen_renderer.value = null;
+                    visualization_preview_renderer.value.resetCamera();
+
+                    let render_window = visualization_preview_full_screen_renderer.value.getRenderWindow();
+                    render_window.addRenderer(visualization_preview_renderer.value);
+                    render_window.render();
+                    
+                }
+            });
+
+            return {
+                visualization_preview_modal,
+                visualization_preview_state,
+                visualization_preview_valid,
+                visualization_preview_container,
+                visualization_preview_renderer,
+                visualization_preview_full_screen_renderer
             }
-
-            visualization_preview_renderer.value = null;
         }
+    };
+</script>
 
-        watch([visualization_preview_modal], (old_state, new_state) =>
-        {
-            if(visualization_preview_modal.value != null)
-            {
-                visualization_preview_modal.value.addEventListener('shown.bs.modal', event =>
-                {
-                    on_visualization_preview_open();
-                });
-
-                visualization_preview_modal.value.addEventListener('hidden.bs.modal', event =>
-                {
-                    on_visualization_preview_close();
-                });
-            }
-        });
-
-        watch([visualization_preview_container, visualization_preview_modal], (old_state, new_state) =>
-        {
-            if(visualization_preview_container.value != null)
-            {
-                visualization_preview_full_screen_renderer.value = vtk.Rendering.Misc.vtkFullScreenRenderWindow.newInstance(
-                {
-                    container: visualization_preview_container.value,
-                    rootContainer: visualization_preview_modal.value
-                });
-
-                visualization_preview_renderer.value.resetCamera();
-
-                let render_window = visualization_preview_full_screen_renderer.value.getRenderWindow();
-                render_window.addRenderer(visualization_preview_renderer.value);
-                render_window.render();
-                
-            }
-        });
-
-        return {
-            visualization_preview_modal,
-            visualization_preview_state,
-            visualization_preview_valid,
-            visualization_preview_container,
-            visualization_preview_renderer,
-            visualization_preview_full_screen_renderer
-        }
-    },
-    template:
-    `
+<template>
     <div v-bind="$attrs">
         <div v-if="visualization_preview_valid" class="alert alert-success d-flex justify-content-between align-items-center py-2">
             <div>Interactive preview available!</div>
@@ -123,5 +134,4 @@ export const VisualizationPreview =
             </div>
         </div>
     </div>
-    `
-}
+</template>

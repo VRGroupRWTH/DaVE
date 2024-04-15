@@ -1,30 +1,33 @@
-export const VisualizationResources =
-{
-    props: ["visualization"],
-    setup()
+<script>
+    export default
     {
-        function convert_date(date_string)
+        props: ["visualization"],
+        setup()
         {
-            const date = new Date(date_string);
-            const date_options =
+            function convert_date(date_string)
             {
-                year: "numeric",
-                month: "numeric",
-                day: "numeric"
-            };
+                const date = new Date(date_string);
+                const date_options =
+                {
+                    year: "numeric",
+                    month: "numeric",
+                    day: "numeric"
+                };
 
-            return date.toLocaleDateString(undefined, date_options);
-        }
+                return date.toLocaleDateString(undefined, date_options);
+            }
 
-        return {
-            convert_date
+            return {
+                convert_date
+            }
         }
-    },
-    template:
-    `
+    };
+</script>
+
+<template>
     <div id="resources" outline_label="Resources" outline_indent="0" style="scroll-margin-top: 80px;">
         <h3>Resources</h3>
-        <div class="alert alert-light">
+        <div class="alert alert-light mb-0">
         <table class="table align-middle visualization-resources-table ">
             <thead>
                 <tr>
@@ -41,12 +44,12 @@ export const VisualizationResources =
                     <td class="d-none d-md-table-cell">{{ convert_date(resource.date) }}</td>
                     <td v-if="'path' in resource">
                         <a class="btn btn-primary float-end me-3 p-0 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px" :href="resource.path" download>
-                            <img src="symbols/download.svg"/>
+                            <img src="../assets/icons/download.svg"/>
                         </a>
                     </td>
                     <td v-else-if="'url' in resource">
                         <a class="btn btn-primary float-end me-3 p-0 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px" :href="resource.url">
-                            <img src="symbols/link_45deg.svg"/>
+                            <img src="../assets/icons/link_45deg.svg"/>
                         </a>
                     </td>
                 </tr>
@@ -54,5 +57,4 @@ export const VisualizationResources =
         </table>
         </div>
     </div>
-    `
-}
+</template>

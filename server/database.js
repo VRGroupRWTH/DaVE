@@ -1,10 +1,10 @@
-const Visualization = require("./visualization.js");
-const fs = require("fs");
-const fuzzysort = require("fuzzysort");
+import { Visualization } from "./visualization.js";
+import fs from "fs";
+import fuzzysort from "fuzzysort";
 
 const DATABASE_SEARCH_THRESHOLD = -1000000.0;
 
-class Sorting
+export class Sorting
 {
     static select(query, sorting)
     {
@@ -73,7 +73,7 @@ class Sorting
     }
 }
 
-class Database
+export class Database
 {
     #visualizations
 
@@ -288,10 +288,4 @@ class Database
 
         return null;
     }
-}
-
-module.exports =
-{
-    Database,
-    Sorting
 }

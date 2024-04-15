@@ -1,4 +1,4 @@
-class Tag
+export class Tag
 {
     #name
     #type
@@ -73,5 +73,3 @@ class Tag
         return (this.#name == tag.get_name() && this.#type == tag.get_type());
     }
 }
-
-module.exports = Tag;

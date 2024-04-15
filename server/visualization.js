@@ -1,9 +1,9 @@
-const Tag = require("./tag.js");
-const fs = require("fs");
-const yaml = require("yaml");
-const showdown = require("showdown");
+import { Tag } from "./tag.js";
+import fs from "fs";
+import yaml from "yaml";
+import showdown from "showdown";
 
-class Visualization
+export class Visualization
 {
     #name
     #date
@@ -237,5 +237,3 @@ class Visualization
         return this.#description;
     }
 }
-
-module.exports = Visualization;

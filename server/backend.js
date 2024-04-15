@@ -1,9 +1,9 @@
-const { Database, Sorting } = require("./database.js");
-const Tag = require("./tag.js");
-const AdmZip = require("adm-zip");
-const fs = require("fs");
+import { Database, Sorting } from "./database.js"
+import { Tag } from "./tag.js"
+import adm_zip from "adm-zip";
+import fs from "fs";
 
-class Backend
+export class Backend
 {
     #database
 
@@ -12,9 +12,9 @@ class Backend
         this.#database = new Database();
     }
 
-    setup(app)
+    setup(app, database_path)
     {
-        this.#database.load("database/");
+        this.#database.load(database_path);
 
         app.post("/api/fetch_visualization", async (request, response) => this.#on_fetch_visualization_request(request, response));
         app.post("/api/search_visualizations", async (request, response) => this.#on_search_visualizations_request(request, response));
@@ -231,7 +231,7 @@ class Backend
         this.#build_trace_file(files, constants, template.trace);
         this.#build_script_file(files, constants, template.script);
 
-        let archive = new AdmZip();
+        let archive = new adm_zip();
 
         for(const file of files)
         {
@@ -408,5 +408,3 @@ class Backend
         return file_path.substr(offset + 1);
     }
 }
-
-module.exports = Backend;

@@ -1,67 +1,71 @@
-import { computed } from "vue"
-import { Tag, sort_tags, equal_tags } from "components/tag.js"
+<script>
+    import { computed } from "vue"
+    import { sort_tags, equal_tags } from "../components/tag.vue";
+    import Tag from "../components/tag.vue";
 
-export const BrowserItem =
-{
-    components:
+    export default
     {
-        Tag
-    },
-    props: ["browser_item", "browser_filters"],
-    emits: ["on_browser_item_click", "on_browser_item_tag_click"],
-    setup(props, context)
-    {
-        let browser_item_filter_tags = computed(() =>
+        components:
         {
-            const filter_tags = props.browser_filters.tags;
-            let tags = [];
-
-            for(const tag of props.browser_item.tags)
+            Tag
+        },
+        props: ["browser_item", "browser_filters"],
+        emits: ["on_browser_item_click", "on_browser_item_tag_click"],
+        setup(props, context)
+        {
+            let browser_item_filter_tags = computed(() =>
             {
-                if(filter_tags.some(item => equal_tags(item, tag)))
+                const filter_tags = props.browser_filters.tags;
+                let tags = [];
+
+                for(const tag of props.browser_item.tags)
                 {
-                    tags.push(tag);
+                    if(filter_tags.some(item => equal_tags(item, tag)))
+                    {
+                        tags.push(tag);
+                    }
                 }
+
+                return sort_tags(tags);
+            });
+
+            let browser_item_tags = computed(() =>
+            {
+                const filter_tags = props.browser_filters.tags;
+                let tags = [];
+
+                for(const tag of props.browser_item.tags)
+                {
+                    if(!filter_tags.some(item => equal_tags(item, tag)))
+                    {
+                        tags.push(tag);
+                    }
+                }
+
+                return sort_tags(tags);
+            });
+
+            function on_browser_item_click_internal()
+            {
+                context.emit("on_browser_item_click", props.browser_item);
             }
 
-            return sort_tags(tags);
-        });
-
-        let browser_item_tags = computed(() =>
-        {
-            const filter_tags = props.browser_filters.tags;
-            let tags = [];
-
-            for(const tag of props.browser_item.tags)
+            function on_browser_item_tag_click_internal(tag)
             {
-                if(!filter_tags.some(item => equal_tags(item, tag)))
-                {
-                    tags.push(tag);
-                }
+                context.emit("on_browser_item_tag_click", tag);
             }
 
-            return sort_tags(tags);
-        });
-
-        function on_browser_item_click_internal()
-        {
-            context.emit("on_browser_item_click", props.browser_item);
+            return {
+                browser_item_filter_tags,
+                browser_item_tags,
+                on_browser_item_click_internal,
+                on_browser_item_tag_click_internal
+            };
         }
+    };
+</script>
 
-        function on_browser_item_tag_click_internal(tag)
-        {
-            context.emit("on_browser_item_tag_click", tag);
-        }
-
-        return {
-            browser_item_filter_tags,
-            browser_item_tags,
-            on_browser_item_click_internal,
-            on_browser_item_tag_click_internal
-        };
-    },
-    template:
-    `
+<template>
     <div class="card h-100" style="cursor: pointer;" @click="on_browser_item_click_internal">
         <img :src="browser_item.images[0]" class="card-img-top m-3 mb-0" style="height: 150px; object-fit: contain;">
         <div class="card-body">
@@ -72,5 +76,4 @@ export const BrowserItem =
             </div>
         </div>
     </div>
-    `
-}
+</template>
