@@ -6,8 +6,4 @@ RUN apk update && \
 
 RUN npm update -g npm
 
-WORKDIR /dave
-COPY ./ ./
-RUN npm install
-
 EXPOSE 8080

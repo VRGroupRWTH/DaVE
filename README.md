@@ -1,3 +1,6 @@
+
+![DaVE Logo](logo.svg)
+
 Welcome to DaVE - the Database of Visualization Examples.
 The goal of DaVE is simple: empower users, especially working with High Performance Computing (HPC) infrastructure, with easy access to advanced and state-of-the-art visualization techniques.
 We understand that many face a lack of time or resources to explore and integrate new techniques.
@@ -10,32 +13,34 @@ Whether you're exploring cutting-edge visualizations for data or seeking practic
 And the best part: DaVE is designed to keep growing!
 Everybody can join our mission and add more examples and resources.
 
+## Development ###
+After cloning or downloading the repository, open the cloned directory in Visual Studio Code with the Dev Containers extension installed.
+Before using the Dev Container extension, it is neccessary to install Docker.
+More information on that can be found on extension page in VS Code.
+Following that, reopen the directory in the container by pressing `F1` and entering `reopen in container` in the command box that opens at the top of the editor.
+When the container was fully loaded by Visual Studio Code, open a terminal and type the following command to download and initalize the dependencies of the website
+```
+npm install
+```
 
+If you want a development version where you can easily make changes to the website, use the following command.
+```
+npm run dev
+```
+On the other hand, if you want a production version of the website use the following command to build and pack the website.
+```
+npm run prod
+```
+In both cases, there should appear the text `Listening on port 8080` in the terminal and you should be able to access the website by visiting `http://localhost:8080/`.
 
+## Deployment ##
+The DaVE website can be deployed easily with the help of Docker and the provided Dockerfile.
+First, a Docker image has to be created by running the following command in the terminal
 ```
 docker build . -t dave
 ```
-
+After that the Docker image and the website in it can be started using the following terminal command
 ```
-docker run -p 127.0.0.1:8080:8080 dave npm run prod
+docker run -p 127.0.0.1:8080:8080 -v .:/dave -w /dave dave bin/bash -c "npm install && npm run prod"
 ```
-
-```
-npm install
-npm run dev #For development
-npm run prod #For production
-```
-
-# DaVE
-DaVE is a curated database of visualization examples. This repository contains the website where examples can be integrated.
-
-## Setup
-To run the website locally for development purposes, follow these steps:
-
-### VS Code + Docker
-1. Clone or download the repository
-2. Open the cloned directory in Visual Studio Code with the Dev Containers extension installed (this requires Docker, you can find more information on how to install Docker on the extension page in VS Code)
-3. Reopen the directory in the container (press F1, then enter "reopen in container")
-4. Open a terminal in VS Code and enter ``./setup.sh``
-5. Start the application by entering ``node index.js``
-6. There should appear a text saying "Listening on port 8080" and you should be able to see the webpage by visiting ``http://localhost:8080/``
+Finally, there should appear a text saying `Listening on port 8080` and you should be able to access the website by visiting `http://localhost:8080/`.
