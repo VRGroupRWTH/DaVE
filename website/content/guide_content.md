@@ -4,12 +4,6 @@
 
 DaVE is an explorable visualization database providing detailed visualization examples with containerized environments for easy execution and extensibility on HPC platforms for non-visualization experts.
 
-<!-- Besides of giving an overview over different vizualization techniques and providing addtional information, the goal of DaVE is also to make every technique accessible to users.
-However, this can be quite challenging as different users may use different software environments meaning that the environment in which a visualization technique should be executed is not always known.
-DaVE therefore heavily relies on the use of containers with which the software for the visualization technique can be encapsulated.
-The container as well as additonal resources of a vizualization technique can be downloaded separately.
-However, there is also the option to create a template that combines all resources of a techniuqe and that is condifured for a specific use case. -->
-
 </div>
 <div id="howtouseDave" outline_label="How to Use DaVE?" outline_indent="0"  markdown="1">
 
@@ -53,7 +47,7 @@ The tags that are used throughout the database are divided into two groups.
 Blue tags are used to identify **technical properties** such as the domain for which a visualization can be used or whether the technique can be used for time-dependent datasets.
 On the other hand, green tags are used to identify the **scientific domain** for which a technique is particularly suitable or where the data of the example visualization came from.
 </div>
-<div id="browsing" outline_label="Executing Examples" outline_indent="1" markdown="1">
+<div id="executing" outline_label="Executing Examples" outline_indent="1" markdown="1">
 
 #### Executing Examples ####
 
@@ -116,18 +110,21 @@ database/
 DaVE tries to cover a wide range of visualization methods from different applications.
 Additionally, the provided examples should be executable on a diverse set of computing resources. In order to categorize and organize each of the example visualizations the meta data for each example is stored in a yaml file.
 
+</div>
+<div id="visualizationmetadata" outline_label="Meta Data" outline_indent="2" markdown="1">
+
 ##### Visualization Metadata #####
 
 At the top name and date of creation are given.
 
-```
+```yaml
 name: "<Name of the example>"
 date: 1900-01-01
 ```
 
 These are followed by the [tags](#tags), which have a name, a type (technique | domain) and an abbreviation if they are long.
 
-```
+```yaml
 tags:
 - name: "Name of technique related tag"
   type: "technique"
@@ -138,7 +135,7 @@ tags:
 
 Next, paths for images and the interactive scene are given. Mutliple images can be listed here, but only the first is shown as thumbnail. The scene can be ommited if no interactive preview is available.
 
-```
+```yaml
 images:
   - "images/volumerender.png"
 
@@ -147,7 +144,7 @@ scene: "scene/index.json"
 
 The list of resources at the bottom of each example page is defined here. Each resource has a name, type and date. Depending on, where the resource resides a path or url is given.
 
-```
+```yaml
 resources:
   - name: "volumerender_trace.py"
     type: "Script"
@@ -169,7 +166,7 @@ resources:
 
 For the creation of the downloadable templates the usable container techniques have to be listed. As well as, the different commands for execution. For ParaView examples a trace file has to be provided. The given script uses all information given here to execute the example, in this case the ParaView trace, with the given command and the selected container platform. Finally, a docker container URI has to be provided.
 
-```
+```yaml
 templates:
   - techniques:
       - "docker"
@@ -189,7 +186,7 @@ templates:
 
 Each example comes with its own default dataset, which has to be specified here. The identifier is used in the execution script, while the name and description are displayed during template customization via the wizard. Datasets should have a url, where it can be downloaded. Alternatively, for small datasets these can also be stored in the resource directory and their path has to be given here in order for them to be included in the template. Multiple datasets can be defined here.
 
-```
+```yaml
 datasets:
   - name: "Volume"
     identifier: "DATASET_VOLUME"
@@ -197,6 +194,9 @@ datasets:
     url: "https://raw.githubusercontent.com/topology-tool-kit/ttk-data/dev/ctBones.vti"
     path:
 ```
+
+</div>
+<div id="visualizationscript" outline_label="Execution Script" outline_indent="2" markdown="1">
 
 ##### Execution Script #####
 
@@ -290,24 +290,26 @@ For example, you download the volume rendering example but want to use on of the
 # create a new 'XML Image Data Reader'
 reader = pvs.XMLImageDataReader(registrationName='reader', FileName=[filepath])
 # OWN_DATA: every field has a name in a .vti file. Replace 'Scalars_' by the corresponding name
-reader.PointArrayStatus = ['Scalars_']                                            
+reader.PointArrayStatus = ['Scalars_']
 
 [...]
 
 # OWN_DATA: every field has a name in a .vti file. Replace 'Scalars_' by the corresponding name
-pvs.ColorBy(ctBonesvtiDisplay, ('POINTS', 'Scalars_'))                            
+pvs.ColorBy(ctBonesvtiDisplay, ('POINTS', 'Scalars_'))
 ```
 
 The two important changes are the field name of the data set. The viscous finger data set has a field called "concentration" instead of 
 
-```python
+```diff
 # create a new 'XML Image Data Reader'
 reader = pvs.XMLImageDataReader(registrationName='reader', FileName=[filepath])
-reader.PointArrayStatus = ['concentration'] 
+-reader.PointArrayStatus = ['Scalars_']
++reader.PointArrayStatus = ['concentration'] 
 
 [...]
 
-pvs.ColorBy(ctBonesvtiDisplay, ('POINTS', 'concentration'))
+-pvs.ColorBy(ctBonesvtiDisplay, ('POINTS', 'Scalars_'))
++pvs.ColorBy(ctBonesvtiDisplay, ('POINTS', 'concentration'))
 ```
 
 </div>
@@ -320,26 +322,26 @@ If you want to adapt the visualization itself, you can change the visualization 
 
 Using the example of the volume rendering pipeline again, we add a subset extraction filter to the pipeline.
 
-```python
+```diff
 # create a new 'XML Image Data Reader'
 reader = pvs.XMLImageDataReader(registrationName='reader', FileName=[filepath])
 # OWN_DATA: every field has a name in a .vti file. Replace 'Scalars_' by the corresponding name
 reader.PointArrayStatus = ['Scalars_']                                          
 
-subset = pvs.ExtractSubset(registrationName='extractSubset', Input=reader)
-subset.VOI = [50, 100, 50, 100, 50, 100]
++subset = pvs.ExtractSubset(registrationName='extractSubset', Input=reader)
++subset.VOI = [50, 100, 50, 100, 50, 100]
 
 [...]
 
 # show data in view
-#display = pvs.Show(reader, renderView1) # replaced reader with subset
-display = pvs.Show(subset, renderView1)
+-display = pvs.Show(reader, renderView1)
++display = pvs.Show(subset, renderView1)
 display.SetRepresentationType('Volume')
 
 [...]
 ```
 
-Alternatively, you can create a completely new trace with [ParaView](https://docs.paraview.org/en/latest/Tutorials/ClassroomTutorials/pythonAndBatchPvpythonAndPvbatch.html#lets-create-a-python-trace) and use it for the exmaple.
+Alternatively, you can create a completely new trace with [ParaView](https://docs.paraview.org/en/latest/Tutorials/ClassroomTutorials/pythonAndBatchPvpythonAndPvbatch.html#python-batch-pvpython-and-pvbatch) and use it for the exmaple.
 
 </div>
 <div id="changingenv" outline_label="Changing Containerized Environment" outline_indent="1" markdown="1">
@@ -347,7 +349,7 @@ Alternatively, you can create a completely new trace with [ParaView](https://doc
 #### Changing the Containerized Environment ####
 
 If you find that you need an additional package not available in the provided container image, you can check whether this package is available in spack.
-If so, you can add it to the build configuration in the Dockerfile provided with each example. Then build the docker container. For errors during the build process consult the spack documentation [TODO link].
+If so, you can add it to the build configuration in the Dockerfile provided with each example. Then build the docker container. For errors during the build process consult the [spack documentation](https://spack.readthedocs.io/en/latest/).
 
 ```Dockerfile
 [...]
@@ -357,9 +359,7 @@ If so, you can add it to the build configuration in the Dockerfile provided with
 RUN mkdir /opt/spack-environment \
 &&  (echo spack: \
 &&   echo '  # add package specs to the `specs` list' \
-&&   echo '  specs: [paraview+mpi+osmesa+python~qt 
-                      ^mesa+osmesa+llvm ^llvm~clang~lld~gold 
-                      ^openmpi+legacylaunchers+pmi+thread_multiple fabrics=ucx schedulers=slurm]' \
+&&   echo '  specs: [paraview+mpi+osmesa+python~qt ^mesa+osmesa+llvm ^llvm~clang~lld~gold ^openmpi+legacylaunchers+pmi+thread_multiple fabrics=ucx schedulers=slurm]' \
 &&   echo '  view: /opt/views/view' \
 &&   echo '  concretizer:' \
 &&   echo '    unify: true' \
