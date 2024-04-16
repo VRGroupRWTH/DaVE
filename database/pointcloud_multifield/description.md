@@ -1,43 +1,67 @@
 <div id="description" outline_label="Description" outline_indent="0" markdown="1">
 ### Description ###
-Point Cloud ...
-
-
-
-Glyph simulation of a vector field and a scalar field that describes the conzentration of salt solved in pure water.
-The process is simulated within a cylinder that is filled with pure water.
-At the top of the cylinder there is an inexhaustible layer of salt that disolves over tim into the water below.
-
-the contentraion is simulated using glyphs that are shaped like sphere where as the velocity of the water is illustrated by arrow glyphs.
-The length of the arrows is scaled depending on the velocity magnitued and the color of the arrow is also dependent on it.
-Within increasing velocity magnitute the arrow truns from dark red to yellow.
-The spehere that describe the concetntration scale with the concentration and are also colored differently.
-with increasing concentration they are colored from birght green to blue.
+This example illustrates a multivariate visualization using glyphs.
+The dataset that is attached to this example was created by simulating a cylinder filled with pure water where the top of the cylinder is covered by an inexhaustible layer of salt.
+Over time the salt disolves into the water and forms regions with high salt concentration also known as viscous fingers.
+Along with a field describing the salt concentraion disribution within the cylinder, the dataset stores a velocity field that describes the water movement inside the container.
+The example shows the concentraion filed using glyphs shaped like spheres wehere as the velocity of the water is illustrated by arrow glyphs.
+To get a better understanding of the speed with which the water moves, the length of the arrows as well as their color are changed depending on the magnitude of the velocity field.
+Wit increasing velocity magnitude the arrows get longer and the color of the arrows turns form dark red to yellow.
+Similarly the spheres are scaled and colored based on the concentraion field.
+As the concentraion increases the spheres become larger and thier color turns from bright green to blue.
 </div>
 <div id="instructions" outline_label="Instructions" outline_indent="0" markdown="1">
 ### Instructions ###
-To execute the example just run
-
+The file archive that is provided for this example contains the script file `pointcloud_script.sh` that when executed visalized a tensor field using ellipsoidal glyphs.
+The script can be started using the following terminal command
 ```
 ./pointcloud_script.sh
 ```
-
-If the script is not executible run the following command
-
+In some cases it is neccessary to first mark the script as executible which can be done by running the following line in the terminal
 ```
 chmod +x pointcloud_script.sh
 ```
+Since the example use an animation to rotate the viewer around the dataset, not a single image but instead a series of images is exported to the folder `output` after the completion of the `pointcloud_script.sh` script.
 
-The example exports the animation as a series of images.
-The animation rotates the users view around the cylinder.
+There are several parameters that need to be adjusted when appying the example to your own data.
+First of all, the example need to be configuired in such a ways that it uses the desired fields of the provided dataset.
+In total two fields are required, on of which must be a three-dimensional scalar field where as the other one must be a three-dimensional vector field.
+By default, the example searches for a scalar field with the name `concentration` and a vector field with the name `velocity`.
+The selection of the fields takes place in `pointcloud_trace.py` script and is determined by the lines marked with the keyword `OWNDATA`.
+To change the selection behaviour, modifiy these lines so that they contain the name of the desired fields.
+One of the lines that would need to be modified is shown below.
+```
+reader.PointArrayStatus = ['concentration', 'velocity']
+```
+Depending on the shape of the used dataset, it may be also necessary to scale the point and or the arrow glyphs.
+The size of the point glyphs is controlled by the following line the `pointcloud_trace.py` script
+```
+readerDisplay.GaussianRadius = 0.05
+```
+and the size of the arrow glyphs is controlled by this line of the `pointcloud_trace.py` script
+```
+glyph1Display.ScaleFactor = 1.0982380867004395
+```
 
+The cylinder which sourrounds the visualization of the dataset can be controlled using the following lines of the `pointcloud_trace.py` script.
+```
+cylinder1 = pvs.Cylinder(registrationName='Cylinder1')
+cylinder1.Resolution = 100
+cylinder1.Height = 10.1
+cylinder1.Radius = 5.05
+cylinder1.Center = [0.0, 0.0, 5.0]
+```
+But there are also other shapes that can be used to frame the dataset such as `pvs.Cylinder`, `pvs.Box` or `pvs.Sphere`.
+For more information on how to configure these shapes, see the ParaView Python documentation [2](#reference_python_api).
 </div>
 <div id="limitations" outline_label="Limitations" outline_indent="0" markdown="1">
 ### Limitations ###
-- artifacts on the cylinder in distributed execution
-
+Currently this example only accepts datasets in the `.vtu` file format as other formats would require major changes to the loading process.
+Besides that there are the following known issues:
+- Artifacts on the cylinder in distributed execution.
 </div>
 <div id="references" outline_label="References" outline_indent="0" markdown="1">
 ### References ###
 1. [<span id="reference_dataset">2016, "SciVis Contest 2016: Simulation of viscous fingers", https://cloud.sdsc.edu/v1/AUTH_sciviscontest/2016/README.html</span>](https://cloud.sdsc.edu/v1/AUTH_sciviscontest/2016/README.html)
+2. [<span id="reference_python_api">Kitware, Inc. , March 26, 2024, "ParaView’s Python documentation!", https://kitware.github.io/paraview-docs/v5.10.1/python/index.html.</span>](https://kitware.github.io/paraview-docs/v5.10.1/python/index.html)
 </div>
