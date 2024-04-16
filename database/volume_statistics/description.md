@@ -1,4 +1,3 @@
-<div id="description" outline_label="Description" outline_indent="0" markdown="1">
 ### Description ###
 Visualizing a scalar dataset just by computing an isosurface is often not enough to gain a deep understanding of the data.
 Depending on the use case, there may be research questions that cannot be answered by an isosurface alone and therefore require further evaluation steps.
@@ -9,8 +8,7 @@ The first step that the example performes is an isovolume extraction, which iden
 An isovolume is simply computed by clipping away all cells of the dataset whose interiour values do not lie in a uer defined range.
 After that, the connected areas within the density field are identified by checking which cells of the remaning cells of the dataset are adjacent to each other.
 Finally, the example computes the volume of these mesh pieces and displays the resulting volume distribution in a histogram.
-</div>
-<div id="instructions" outline_label="Instructions" outline_indent="0" markdown="1">
+
 ### Instructions ###
 The file archive that comes with this example contains the script file `volume_statistics_script.sh` that when executed performs the volume component evaluation on the provided dataset.
 The script can be started using the following terminal command
@@ -43,14 +41,10 @@ to disable this behaviour, removed the following line of the `volume_statistics_
 ```
 full_volume_range[1] -= 1
 ```
-</div>
-<div id="limitations" outline_label="Limitations" outline_indent="0" markdown="1">
 ### Limitations ###
 Currently this example only accepts dataset in the `.nrrd` file format as other formats would required wider changes to the loading process.
 Besides that, the pipeline contains a programmable filter summing up the volume for each connected component.
 The problem with this particular type of filter is that it does not properly work in the distributed case.
-</div>
-<div id="references" outline_label="References" outline_indent="0" markdown="1">
+
 ### References ###
 1. [<span id="reference_dataset">Andrew W. Cook, William Cabot and Paul L. Miller, 2004, "A time step of a density field in a simulation of the mixing transition in Rayleigh-Taylor instability.", https://klacansky.com/open-scivis-datasets/miranda/.</span>](https://klacansky.com/open-scivis-datasets/miranda/)
-</div>

@@ -1,4 +1,3 @@
-<div id="description" outline_label="Description" outline_indent="0" markdown="1">
 ### Description ###
 A popular way to get a quick overview over a set of variables of an experiment and find possible correlection between them is by plotting them in several scatter plots.
 These scatter plots are often arranged in a matrix where by each row and column is dedicated to a single experiment variable.
@@ -12,8 +11,7 @@ The velocity field of the simulated flow of material is stored in the dataset pr
 For the visulization, the example takes only a slice of the three-dimensional scalar fields that cuts right through the earth.
 The sample point of the dataset that lie in the slice are then plotted in several scatter plots that juxtapose the variables `spin transition-induced density anomaly`, `temperature`, `temperature anomaly`, `thermal conductivity` and `thermal expansivity`.
 In addtion to that the example also shows the varibales in isolation using several heatmaps placed left to the grid of scatter plots.
-</div>
-<div id="instructions" outline_label="Instructions" outline_indent="0" markdown="1">
+
 ### Instructions ###
 The file archive that comes with this example contains the script file `scatterplots_script.sh` that when executed creates a matrix of scatter plots for the provided dataset.
 The script can be started using the following terminal command
@@ -51,14 +49,11 @@ The order in which these axes are read from the dataset can be controlled using 
 ```
 reader.Dimensions = '(lat, r, lon)'
 ```
-</div>
-<div id="limitations" outline_label="Limitations" outline_indent="0" markdown="1">
+
 ### Limitations ###
 Currently the `scatterplots_trace.py` only supports datasets that are stored in the NetCDF (Network Common Data Form) format.
 Datasets that are stored in this particular format can be identified by the file extension `.nc`.
 Other file formats are theoretically possible but would require extensive changes to the `scatterplots_trace.py` file as the reader used by the script would need to be replaced.
-</div>
-<div id="references" outline_label="References" outline_indent="0" markdown="1">
+
 ### References ###
 1. [<span id="reference_dataset">2021, "SciVis Contest 2021: Earth's Mantle Convection", https://scivis2021.netlify.app/data/</span>](https://scivis2021.netlify.app/data/)
-</div>

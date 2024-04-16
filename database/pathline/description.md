@@ -1,4 +1,3 @@
-<div id="description" outline_label="Description" outline_indent="0" markdown="1">
 ### Description ###
 Pathlines are frequently used in fluid dynamics for the visualization of unsteady flows, such as the flow of gases in a running combustion engine.
 Unsteady flow, also known as transient flow, is characterized by the fact that certain properties affecting the flow are time-dependent.
@@ -19,8 +18,7 @@ In case the hypotetical particel runs into the more turbulent areas at the edge 
 To make the different paths more distibgushable, each is colored using a different color.
 This also highlights a potential diosadvantage othis veisalization approach, as with increasing number of paths, the resuling image beomes more visually cluttered.
 As a result, it is sometimes difficult to make out the path that a particular particle has taken.
-</div>
-<div id="instructions" outline_label="Instructions" outline_indent="0" markdown="1">
+
 ### Instructions ###
 The file archive that comes with this example contains the script file `pathline_script.sh` that when executed creates pathlines for the provided dataset.
 The script can be started using the following terminal command
@@ -47,12 +45,10 @@ This parameter is controlled by the following line of the `volume_statistics_tra
 ```
 maskPoints1.MaximumNumberofPoints = 99
 ```
-</div>
-<div id="limitations" outline_label="Limitations" outline_indent="0" markdown="1">
+
 ### Limitations ###
 Currently this example only accepts datasets in the `.vti` file format as other formats would require major changes to the loading process.
 Also, the example has only been tested with apptainer version `1.2.5-1.el8` and Docker version `24.0.5, build 24.0.5-0ubuntu1~22.04.1`.
 
 Besides that, there are addtionaly the following limitations:
 - Pathlines using multiple mpi ranks are currently not always correctly connected in ParaView.
-</div>

@@ -1,4 +1,3 @@
-<div id="description" outline_label="Description" outline_indent="0" markdown="1">
 ### Description ###
 Line-Integral Convolution is a visualization technique that can be used to highlight the field lines of two- or three-dimensional vector fields. 
 The method calculates the color for a specific point by integrating a noisy scalar field along a curve.
@@ -13,8 +12,7 @@ Based on this dataset, the example uses Line integral convolution to visualize t
 This example nicely illustrates the advantages of this line integral convolution over other visualization technbiques for vector field sucha as, for example, stream lines or glyphs.
 These approach in particular visualize the dataset using lines or arrows which cause visual cluttering if too many of them are use or only give a rough overview of the dataset if not enoguh of them are used.
 This proplem in particular does not aris when using line integration convolution.
-</div>
-<div id="instructons" outline_label="Instructions" outline_indent="0" markdown="1">
+
 ### Instructions ###
 The file archive that is provided for this example contains the script file `lic_script.sh` that when executed visalized a dataset using line-integral convolution.
 The script can be started using the following terminal command
@@ -39,8 +37,7 @@ The order in which these axes are read from the dataset can be controlled using 
 ```
 reader.Dimensions = '(lat, r, lon)'
 ```
-</div>
-<div id="limitations" outline_label="Limitations" outline_indent="0" markdown="1">
+
 ### Limitations ###
 Currently the `lic_trace.py` only supports datasets that are stored in the NetCDF (Network Common Data Form) format.
 Datasets that are stored in this particular format can be identified by the file extension `.nc`.
@@ -48,8 +45,6 @@ Other file formats are theoretically possible but would require extensive change
 
 Besides that, there are the following limitations:
 - Artifacts in distributed execution
-</div>
-<div id="references" outline_label="References" outline_indent="0" markdown="1">
+
 ### References ###
 1. [<span id="reference_dataset">2021, "SciVis Contest 2021: Earth's Mantle Convection", https://scivis2021.netlify.app/data/</span>](https://scivis2021.netlify.app/data/)
-</div>

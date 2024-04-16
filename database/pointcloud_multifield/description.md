@@ -1,4 +1,3 @@
-<div id="description" outline_label="Description" outline_indent="0" markdown="1">
 ### Description ###
 This example illustrates a multivariate visualization using glyphs.
 The dataset that is attached to this example was created by simulating a cylinder filled with pure water where the top of the cylinder is covered by an inexhaustible layer of salt.
@@ -9,8 +8,7 @@ To get a better understanding of the speed with which the water moves, the lengt
 Wit increasing velocity magnitude the arrows get longer and the color of the arrows turns form dark red to yellow.
 Similarly the spheres are scaled and colored based on the concentraion field.
 As the concentraion increases the spheres become larger and thier color turns from bright green to blue.
-</div>
-<div id="instructions" outline_label="Instructions" outline_indent="0" markdown="1">
+
 ### Instructions ###
 The file archive that is provided for this example contains the script file `pointcloud_script.sh` that when executed visalized a tensor field using ellipsoidal glyphs.
 The script can be started using the following terminal command
@@ -53,15 +51,12 @@ cylinder1.Center = [0.0, 0.0, 5.0]
 ```
 But there are also other shapes that can be used to frame the dataset such as `pvs.Cylinder`, `pvs.Box` or `pvs.Sphere`.
 For more information on how to configure these shapes, see the ParaView Python documentation [2](#reference_python_api).
-</div>
-<div id="limitations" outline_label="Limitations" outline_indent="0" markdown="1">
+
 ### Limitations ###
 Currently this example only accepts datasets in the `.vtu` file format as other formats would require major changes to the loading process.
 Besides that there are the following known issues:
 - Artifacts on the cylinder in distributed execution.
-</div>
-<div id="references" outline_label="References" outline_indent="0" markdown="1">
+
 ### References ###
 1. [<span id="reference_dataset">2016, "SciVis Contest 2016: Simulation of viscous fingers", https://cloud.sdsc.edu/v1/AUTH_sciviscontest/2016/README.html</span>](https://cloud.sdsc.edu/v1/AUTH_sciviscontest/2016/README.html)
 2. [<span id="reference_python_api">Kitware, Inc. , March 26, 2024, "ParaView’s Python documentation!", https://kitware.github.io/paraview-docs/v5.10.1/python/index.html.</span>](https://kitware.github.io/paraview-docs/v5.10.1/python/index.html)
-</div>

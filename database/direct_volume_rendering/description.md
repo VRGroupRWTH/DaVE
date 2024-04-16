@@ -1,4 +1,3 @@
-<div id="description" outline_label="Description" outline_indent="0" markdown="1">
 ### Description ###
 Direct volume rendering is one of the most commonly used methods for the visualization of three-dimensional scalar datasets.
 Especially in the medical field, direct volume rendering is widely used for the visualzation of CT or MRI scans of patients.
@@ -14,8 +13,6 @@ This makes it then easier to identify different structures in the volume, as for
 Beisdes that is also possible to coltroll the opacity of structures based on the values of the scalar field which makes it possible to cut away structures that are not of interset.
 In this example, dense structures such as the bones were set to fully opaque while the tissue of the foot was made semi-transparent.
 
-</div>
-<div id="instructions" outline_label="Instructions" outline_indent="0" markdown="1">
 ### Instructions ###
 The file archive that comes with this example when downloading it, contains the script file `volumerender_script` that when executed visualizes the provided dataset using direct volume rendering.
 The script can be started using the following terminal command
@@ -34,13 +31,10 @@ These lines, as for example the line shown below, need to be changed so that the
 reader.PointArrayStatus = ['Scalars_']
 ```
 By default, the script uses the attribute with the name `Scalars_` for the visualization.
-</div>
-<div id="limitations" outline_label="Limitations" outline_indent="0" markdown="1">
+
 ### Limitations ###
 Currently the example only supports datasets in the `.vti` file format.
 Other dataset format are possible but would require extensive changes to the `volumerender_trace.py` script file as the reader used by it would need to be changed.
-</div>
-<div id="references" outline_label="References" outline_indent="0" markdown="1">
+
 ### References ###
 1. [<span id="reference_dataset">Philips Research, "Rotational C-arm x-ray scan of a human foot", Hamburg, Germany, https://github.com/topology-tool-kit/ttk-data/blob/dev/ctBones.vti.</span>](https://github.com/topology-tool-kit/ttk-data/blob/dev/ctBones.vti)
-</div>
