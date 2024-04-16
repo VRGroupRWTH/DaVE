@@ -12,7 +12,7 @@ Finally, the example computes the volume of these mesh pieces and displays the r
 </div>
 <div id="instructions" outline_label="Instructions" outline_indent="0" markdown="1">
 ### Instructions ###
-The file archive that comes with this example contains the script file `volume_statistics_script` that when executed performs the volume component evaluation on the provided dataset.
+The file archive that comes with this example contains the script file `volume_statistics_script.sh` that when executed performs the volume component evaluation on the provided dataset.
 The script can be started using the following terminal command
 ```
 ./volume_statistics_script.sh

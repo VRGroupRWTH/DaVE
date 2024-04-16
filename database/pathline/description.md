@@ -22,29 +22,37 @@ As a result, it is sometimes difficult to make out the path that a particular pa
 </div>
 <div id="instructions" outline_label="Instructions" outline_indent="0" markdown="1">
 ### Instructions ###
-To execute the example just run
-
+The file archive that comes with this example contains the script file `pathline_script.sh` that when executed creates pathlines for the provided dataset.
+The script can be started using the following terminal command
 ```
 ./pathline_script.sh
 ```
-
-If the script is not executible run the following command
-
+In some cases, the script file `volume_statistics_script.sh` is not detected by the operating system as an executible file.
+If this happens, the following command can be used to mark the script file as executable
 ```
 chmod +x pathline_script.sh
 ```
+After a successful execution of the script, the image `pathline_script.png` containing the final visualization of the provided dataset is placed in the folder `output`. 
 
-The example exports the animation as a series of images
-
-For entering your own data, search for "OWN_DATA" comments in the volumerender_trace.py file and change the file according to the instructions.
-
-asd
+When entering your own data, it is likely that the example and some of its scripts need to be adapted.
+For example, the example assumes that your dataset contains a scalar filed with the name `ImageFile`.
+If such a field does not exist, the example will not know what to visualize and may return with an error.
+To change the name of the field, the lines of the script filed `volume_statistics_trace.py` marked with the keyword `OWN_DATA` need to be modified so that they contain the name of the desired field.
+On of these lines is shown below
+```
+reader.PointArrayStatus = ['ImageFile']
+```
+Another important parameter of this example, that may need to be adjusted when using custom data, is the number of pathlines.
+This parameter is controlled by the following line of the `volume_statistics_trace.py` file
+```
+maskPoints1.MaximumNumberofPoints = 99
+```
 </div>
 <div id="limitations" outline_label="Limitations" outline_indent="0" markdown="1">
 ### Limitations ###
+Currently this example only accepts datasets in the `.vti` file format as other formats would require major changes to the loading process.
+Also, the example has only been tested with apptainer version `1.2.5-1.el8` and Docker version `24.0.5, build 24.0.5-0ubuntu1~22.04.1`.
 
-- Tested with 'apptainer version 1.2.5-1.el8' and 'Docker version 24.0.5, build 24.0.5-0ubuntu1~22.04.1'.
+Besides that, there are addtionaly the following limitations:
 - Pathlines using multiple mpi ranks are currently not always correctly connected in ParaView.
-- Time series data is currently unavailable
-
 </div>

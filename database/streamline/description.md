@@ -15,7 +15,7 @@ Only a small number of lines diverge from the cluster in the middle and from loo
 </div>
 <div id="instructions" outline_label="Instructions" outline_indent="0" markdown="1">
 ### Instructions ###
-The file archive that comes with this example contains the script file `streamline_script` that when executed visualizes the provided vector field using stream lines.
+The file archive that comes with this example contains the script file `streamline_script.sh` that when executed visualizes the provided vector field using stream lines.
 The script can be started using the following terminal command
 ```
 ./streamline_script.sh
