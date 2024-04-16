@@ -16,18 +16,18 @@ In this example, dense structures such as the bones were set to fully opaque whi
 ### Instructions ###
 The file archive that comes with this example when downloading it, contains the script file `volumerender_script` that when executed visualizes the provided dataset using direct volume rendering.
 The script can be started using the following terminal command
-```
+```bash
 ./volumerender_script.sh
 ```
 In some cases it is neccessary to first mark the script as executible which can be done by running the following line in the terminal
-```
+```bash
 chmod +x volumerender_script.sh
 ```
 After a successful execution of the script, the image `volumerender.png` containing the final visualization of the provided dataset is placed in the folder `output`. 
 
 In case the example is used together with a custom dataset, the lines of the script `volumerender_trace.py` that are marked with the key word `OWN_DATA` need to be changed.
 These lines, as for example the line shown below, need to be changed so that they match with the name of the attribut of the dataset that should be used for the visualization.
-```
+```python
 reader.PointArrayStatus = ['Scalars_']
 ```
 By default, the script uses the attribute with the name `Scalars_` for the visualization.

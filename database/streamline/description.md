@@ -15,12 +15,12 @@ Only a small number of lines diverge from the cluster in the middle and from loo
 ### Instructions ###
 The file archive that comes with this example contains the script file `streamline_script.sh` that when executed visualizes the provided vector field using stream lines.
 The script can be started using the following terminal command
-```
+```bash
 ./streamline_script.sh
 ```
 In some cases, the script file `streamline_script.sh` is not detected by the operating system as an executible file.
 If this happens, the following command can be used to mark the script file as executable
-```
+```bash
 chmod +x streamline_script.sh
 ```
 After a successful execution of the script, the image `streamline.png` containing the final visualization of the provided dataset is placed in the folder `output`. 
@@ -28,11 +28,11 @@ After a successful execution of the script, the image `streamline.png` containin
 The vector field that the example uses for the visualization is determined by the lines of the `streamline_trace.py` script that are marked with the keyword `OWN_DATA`.
 By default the example used the field with the name `ImageFile`, but when using a custome dataset it might be neccessary to select field with a different name.
 One of the lines nedd to be modified when changing the name of the field is shown in the following
-```
+```python
 reader.PointArrayStatus = ['ImageFile']
 ```
 The number of lines that are spwaned can be controlled using the following line of the `streamline_trace.py` script
-```
+```python
 maskPoints1.MaximumNumberofPoints = 100
 ```
 

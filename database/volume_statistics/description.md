@@ -12,12 +12,12 @@ Finally, the example computes the volume of these mesh pieces and displays the r
 ### Instructions ###
 The file archive that comes with this example contains the script file `volume_statistics_script.sh` that when executed performs the volume component evaluation on the provided dataset.
 The script can be started using the following terminal command
-```
+```bash
 ./volume_statistics_script.sh
 ```
 In some cases, the script file `volume_statistics_script.sh` is not detected by the operating system as an executible file.
 If this happens, the following command can be used to mark the script file as executable
-```
+```bash
 chmod +x volume_statistics_script.sh
 ```
 After a successful execution of the script, the image `volume_statistics.png` containing the final visualization of the provided dataset is placed in the folder `output`. 
@@ -27,18 +27,18 @@ By default, the example always uses the field within the dataset named  `Images`
 To configure the name of the field accessed by the example, change the lines of the `volume_statistics_trace.py` script file that are marked with the keyword `OWN_DATA`.
 Instead of the default field `Images`, these lines must contain the name of the desired field.
 One of the lines that needs to be modified when changing the field name is shown below.
-```
+```python
 isoVolume1.InputScalars = ['POINTS', 'ImageFile']
 ```
 
 The range that the user can choose for the creation of the iso volume is controlled by the following line of the `volume_statistics_trace.py script.
-```
+```python
 isoVolume1.ThresholdRange = [2.0, 3.000028610229492]
 ```
 The first value defines the lower and the second number defines the upper bound of the range.
 By default, the example discards the area with the largest volume which might be not neccessary for custom datasets.
 to disable this behaviour, removed the following line of the `volume_statistics_trace.py` script file
-```
+```python
 full_volume_range[1] -= 1
 ```
 ### Limitations ###

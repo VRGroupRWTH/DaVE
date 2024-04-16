@@ -20,11 +20,11 @@ With an increasing speed, the arrow becomes longer and the color changes from bl
 ### Instructions ###
 The visualization template that can be configured and downloaded below contains the shell script `glyphs_script.sh` that when executed visualizes the provided dataset using glaphs.
 The script can be started by ruinning the following command in the terminal
-```
+```bash
 ./glyphs_script.sh
 ```
 In some cases it is neccessary to first mark the script as executible which can be done by running the following line in the terminal
-```
+```bash
 chmod +x glyphs_script.sh
 ```
 After a successful execution of the script, the image `glyphs.png` containing the final visualization of the provided dataset is placed in the folder `output`.
@@ -34,20 +34,20 @@ The selection of the attribute is determined by the lines in the file `glyphs_tr
 When changing the attribute, these lines need to be modified such that they contain the name of the desired attribute.
 Especially when using custom data, it is important to make sure that the correct attribute is selected for the creation of the glyphs.
 One of the lines that would need to be changed when using a different dataset is shown below
-```
+```python
 glyph1.OrientationArray = ['POINTS', 'ImageFile']
 ```
 By default the script uses the attribute with the name `ImageFile`.
 
 There are many options with which the glyphs can be customized. 
 For example the shape of the glyphs can be controlled using the following line of the `glyphs_trace.py` script
-```
+```python
 glyph1 = pvs.Glyph(registrationName='Glyph1', Input=reader, GlyphType='Arrow')
 ```
 By default the script uses `GlyphType='Arrow'` meaning that arrows are used for the visualization.
 Alternatives are `GlyphType='Cone'` for cones or `GlyphType='Box'` for boxes.
 Depending on the dataset it might be also neccessary to change the scale of the glyphs which can be controlled using the following line of the `glyphs_trace.py` script
-```
+```python
 glyph1Display.ScaleFactor = 0.2231481334194541
 ```
 For further options please look at the documentation of the ParaView Python API [2](#reference_python_api). Otherwise it is also possible to load the file `glyphs_trace.py` directly into ParaView granting even more options for costumizations.

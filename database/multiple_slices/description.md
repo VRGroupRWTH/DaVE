@@ -14,18 +14,18 @@ The dataset that was chosen for this example represents the x-ray scan of a pati
 ### Instructions ###
 The file archive that comes with this example when downloading it, contains the script file `multiple_slice_script` that when executed creates the Chinema database for the provided dataset.
 The script can be started using the following terminal command
-```
+```bash
 ./multiple_slice_script.sh
 ```
 In some cases it is neccessary to first mark the script as executible which can be done by running the following line in the terminal
-```
+```bash
 chmod +x multiple_slice_script.sh
 ```
 After a successful execution of the script, the Chinema database file `multiple_slice.cdb` containing the slices is placed in the folder `output`. 
 
 In case the example is used together with a custom dataset, the lines of the script `multiple_slice_trace.py` that are marked with the key word `OWN_DATA` need to be changed.
 These lines, as for example the line shown below, need to be changed so that they match with the name of the attribut of the dataset that should be used for the visualization.
-```
+```python
 reader.PointArrayStatus = ['Scalars_']
 ```
 By default, the script uses the attribute with the name `Scalars_` for the visualization.

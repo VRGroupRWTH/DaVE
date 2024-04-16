@@ -2,6 +2,7 @@ import { Tag } from "./tag.js";
 import fs from "fs";
 import yaml from "yaml";
 import showdown from "showdown";
+import showdown_highlight from "showdown-highlight";
 
 export class Visualization
 {
@@ -171,7 +172,19 @@ export class Visualization
             return false;
         }
 
-        let converter = new showdown.Converter();
+        const syntax_highlight_config = 
+        {
+            extensions: 
+            [
+                showdown_highlight(
+                {
+                    pre: true,
+                    auto_detection: true
+                })
+            ]
+        };
+
+        let converter = new showdown.Converter(syntax_highlight_config);
         this.#description = converter.makeHtml(description_file);
 
         return true;

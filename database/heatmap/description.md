@@ -13,12 +13,12 @@ These areas are cause by the convection and are most likely mantle plume.
 
 ### Instructions ###
 After downloading, the example can be executed by running the script `heatmap_script.sh` using the following terminal command
-```
+```bash
 ./heatmap_script.sh
 ```
 In some cases, the script file `heatmap_script.sh` is not detected by the operating system as an executible file.
 If this happens, the following command can be used to mark the script file as executable
-```
+```bash
 chmod +x heatmap_script.sh
 ```
 After the execution of the example, the image `heatmap.png` containing the visualized dataset will be placed in the folder `output`.
@@ -27,19 +27,19 @@ The example assumes that the dataset serving as input contains a three-dimensioa
 When using the example with a custome dataset, it might be neccessary to change name of the scalar field.
 For that, the lines in the script file `heatmap_trace.py` marked with the keyword `OWN_DATA` need to be changed accordingly so that they contain the name of the desired scalar field.
 In the following, one for these lines is shown
-```
+```python
 clip2Display.ColorArrayName = ['CELLS', 'temperature']
 ```
 Addtionaly, the dataset also has to store the scalar field in a polar coordinate system defined by the axes `latitude (lat)`, `longitude (lon)` and `radius (r)`.
 The order in which these axes are read from the dataset can be controlled using the following line of the `heatmap_trace.py` script
-```
+```python
 reader.Dimensions = '(lat, r, lon)'
 ```
 
 However, most importantly for the visualization is the look up table that controlls the coloring of the scalar field.
 This lookup table is defined in the `heatmap_trace.py` as an array of floating point values.
 An example for the structure of this array is given in the following
-```
+```python
 temperatureLUT.RGBPoints = [100.0, 0.0, 0.0, 0.0,
                             200.0, 1.0, 0.0, 0.0,
                             300.0, 1.0, 1.0, 1.0]

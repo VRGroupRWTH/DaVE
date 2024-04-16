@@ -15,12 +15,12 @@ In addtion to that the example also shows the varibales in isolation using sever
 ### Instructions ###
 The file archive that comes with this example contains the script file `scatterplots_script.sh` that when executed creates a matrix of scatter plots for the provided dataset.
 The script can be started using the following terminal command
-```
+```bash
 ./scatterplots_script.sh
 ```
 In some cases, the script file `scatterplots_script.sh` is not detected by the operating system as an executible file.
 If this happens, the following command can be used to mark the script file as executable
-```
+```bash
 chmod +x scatterplots_script.sh
 ```
 After a successful execution of the script, the image `scatterplots.png` containing the final visualization of the provided dataset is placed in the folder `output`.
@@ -28,7 +28,7 @@ After a successful execution of the script, the image `scatterplots.png` contain
 Using this example with your own datat can be complicated as the example not only creates scatter plots but also generates heatmps for all variables to be visualized.
 Both visualizations need to be adjusted such that they use the correct variables of the provided datasets.
 The variables that are taken into account when creating the scatter plot matrix are controlled by the following line of the `scatterplots_trace.py` file.
-```
+```python
 scatterPlot1Display.SeriesVisibility = ['spin transition-induced density anomaly', 
                                         'temperature', 
                                         'temperature anomaly', 
@@ -39,14 +39,14 @@ In this line there is a list that contains the names of the variables that are s
 For more information on how to change the addtional heatmaps, see the <a href="/visualization?name=Parallel Coordinates">Paralel Coordinates</a> example.
 
 The slice that the example derives from the input dataset is controlled by the following line of the `scatterplots_trace.py` file.
-```
+```python
 extractSubset1.VOI = [0, 360, 0, 201, 90, 90]
 ```
 The first three values of the list in this lines define the minimal `x`, `y` and `z` extend of the slice where as the last three values define the maximal extend.
 
 Finally, the example also assumes that input dataset stores its fields in a spherical coordinate system with the axes `latitude (lat)`, `longitude (lon)` and `radius (r)`.
 The order in which these axes are read from the dataset can be controlled using the following line of the `scatterplots_trace.py` script
-```
+```python
 reader.Dimensions = '(lat, r, lon)'
 ```
 

@@ -10,11 +10,11 @@ For more information on Line-Integral Convolution in general, see the <a href="/
 ### Instructions ###
 The file archive that is provided for this example contains the script file `lic_jet_script.sh` that when executed visalized a dataset using line-integral convolution.
 The script can be started using the following terminal command
-```
+```bash
 ./lic_jet_script.sh
 ```
 In some cases it is neccessary to first mark the script as executible which can be done by running the following line in the terminal
-```
+```bash
 chmod +x lic_jet_script.sh
 ```
 After a successful execution of the script, the image `lic_jet.png` containing the final visualization of the provided dataset is placed in the folder `output`. 
@@ -22,7 +22,7 @@ After a successful execution of the script, the image `lic_jet.png` containing t
 The vector field that the example uses for the visualization is determined by the lines of the `lic_jet_trace.py` script that are marked with the keyword `OWN_DATA`.
 By default the example used the field with the name `ImageFile`, but when using a custome dataset it might be neccessary to select field with a different name.
 One of the lines nedd to be modified when changing the name of the field is shown in the following
-```
+```python
 sliceWithPlane1Display.SelectInputVectors = ['POINTS', 'ImageFile']
 ```
 

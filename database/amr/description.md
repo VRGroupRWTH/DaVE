@@ -18,11 +18,11 @@ As this example can be used with costume datasets, it is a valiable debug tool w
 ### Instructions ###
 Under the files that can be downloaded for this particular example, there is the script file `amr_script.sh` that when executed visualizes the grid structure of the provided dataset. 
 The script can be started using the following terminal command
-```
+```bash
 ./amr_script.sh
 ```
 In some cases it is neccessary to first mark the script as executible which can be done by running the following line in the terminal
-```
+```bash
 chmod +x amr_script.sh
 ```
 After a successful execution of the script, the image `arm.png` containing the final visualization of the provided dataset is placed in the folder `output`. 

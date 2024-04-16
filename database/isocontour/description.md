@@ -8,11 +8,11 @@ By selecting an appropriate threshold for the extraction, it is for example poss
 ### Instructions ###
 The file archive that is provided for this example contains the shell script `isocontour_script.sh` that creates an isocontour for the input dataset.
 The script can be started by ruinning the following command in the terminal
-```
+```bash
 ./isocontour_script.sh
 ```
 In some cases it is neccessary to first mark the script as executible which can be done by running the following line in the terminal
-```
+```bash
 chmod +x isocontour_script.sh
 ```
 After a successful execution of the script, the image `isocontour.png` containing the visualized dataset is placed in the folder `output`.
@@ -22,13 +22,13 @@ By default, the example uses the scalar field with the name `Scalars_`, but depe
 The field that is used by the example can be changed by modifing the lines of the script file `isocontour_trace.py` that are marked with the comment `OWN_DATA`.
 More precicely, the default field name `Scalars_` needs to be replaced by the name of the desired scalar field.
 On of the lines that need to be adapted is shown in the following 
-```
+```python
 contour1.ContourBy = ['POINTS', 'Scalars_']
 ```
 
 An important property for the extration of the isocontour is the isocontour threshold that defines the target surface.
 This parameter is controlled by the following line of the `isocontour_trace.py` file
-```
+```python
 contour1.Isosurfaces = [100.0]
 ```
 

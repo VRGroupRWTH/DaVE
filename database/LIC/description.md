@@ -16,25 +16,25 @@ This proplem in particular does not aris when using line integration convolution
 ### Instructions ###
 The file archive that is provided for this example contains the script file `lic_script.sh` that when executed visalized a dataset using line-integral convolution.
 The script can be started using the following terminal command
-```
+```bash
 ./lic_script.sh
 ```
 In some cases it is neccessary to first mark the script as executible which can be done by running the following line in the terminal
-```
+```bash
 chmod +x lic_script.sh
 ```
 After a successful execution of the script, the image `lic.png` containing the final visualization of the provided dataset is placed in the folder `output`. 
 
 The example assumes that the dataset owns three scalar field named `vx`, `vy` and `vz`.
 Based on these scalar fields, the velocity field is derived using the following line of the `lic_trace.py` script
-```
+```python
 calculator1.Function = '(iHat*vx + jHat*vy + kHat*vz) * 1e9'
 ```
 When using a custom dataset, it might be neccessary to ether adapt this formula or down right skip this computation entirely if a vector field is already provided by the dataset.
 
 Besides that, the dataset also has to store the scalar field in a spherical coordinate system defined by the axes `latitude (lat)`, `longitude (lon)` and `radius (r)`.
 The order in which these axes are read from the dataset can be controlled using the following line of the `lic_trace.py` script
-```
+```python
 reader.Dimensions = '(lat, r, lon)'
 ```
 

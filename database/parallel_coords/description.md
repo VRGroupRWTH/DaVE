@@ -13,11 +13,11 @@ Additionally, the example also shows these attributes in isolation using multipl
 ### Instructions ###
 The file archive that comes with this example contains the script file `volumerender_script` that when executed creates a parallel coordinate plot for the provided dataset.
 The script can be started using the following terminal command
-```
+```bash
 ./parallel_coordinates_script.sh
 ```
 In some cases it is neccessary to first mark the script as executible which can be done by running the following line in the terminal
-```
+```bash
 chmod +x parallel_coordinates_script.sh
 ```
 After a successful execution of the script, the image `parallel_coordinates.png` containing the final visualization of the provided dataset is placed in the folder `output`. 
@@ -26,7 +26,7 @@ What makes the example difficult to apply on custome dataset is the fact that ch
 This is due to the fact that the example not only creates a parallel coordinate plot but also provides a heatmap for each scalar field.
 Changing the number of scalar fields therefore means that either heatmaps have to be removed or added.
 When using the example on a custome dataset, all scalar fields that should be included in the parallel coordinate plot need to be listed with thier name in the following array of the `parallel_coordinates_trace.py` script
-```
+```python
 extractSubset1Display.SeriesVisibility = ['temperature', 
                                           'temperature anomaly', 
                                           'thermal conductivity', 
@@ -34,7 +34,7 @@ extractSubset1Display.SeriesVisibility = ['temperature',
 ```
 Besides that, it might be also neccessary to change the already existing four heatmaps so that they used the correct fields as well.
 The lines of the `parallel_coordinates_trace.py` that describe a heatmap are always arranged in a block as shown in the following
-```
+```python
 # ----------------------------------------------------------------
 # setup the visualization in view 'renderView4'
 # ----------------------------------------------------------------
@@ -54,7 +54,7 @@ For more information on that, see the documentation of the ParaView Python API [
 
 Finally, the example also assumes that input dataset stores its fields in a spherical coordinate system with the axes `latitude (lat)`, `longitude (lon)` and `radius (r)`.
 The order in which these axes are read from the dataset can be controlled using the following line of the `parallel_coordinates_trace.py` script
-```
+```python
 reader.Dimensions = '(lat, r, lon)'
 ```
 

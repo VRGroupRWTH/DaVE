@@ -12,11 +12,11 @@ As the concentraion increases the spheres become larger and thier color turns fr
 ### Instructions ###
 The file archive that is provided for this example contains the script file `pointcloud_script.sh` that when executed visalized a tensor field using ellipsoidal glyphs.
 The script can be started using the following terminal command
-```
+```bash
 ./pointcloud_script.sh
 ```
 In some cases it is neccessary to first mark the script as executible which can be done by running the following line in the terminal
-```
+```bash
 chmod +x pointcloud_script.sh
 ```
 Since the example use an animation to rotate the viewer around the dataset, not a single image but instead a series of images is exported to the folder `output` after the completion of the `pointcloud_script.sh` script.
@@ -28,21 +28,21 @@ By default, the example searches for a scalar field with the name `concentration
 The selection of the fields takes place in `pointcloud_trace.py` script and is determined by the lines marked with the keyword `OWNDATA`.
 To change the selection behaviour, modifiy these lines so that they contain the name of the desired fields.
 One of the lines that would need to be modified is shown below.
-```
+```python
 reader.PointArrayStatus = ['concentration', 'velocity']
 ```
 Depending on the shape of the used dataset, it may be also necessary to scale the point and or the arrow glyphs.
 The size of the point glyphs is controlled by the following line the `pointcloud_trace.py` script
-```
+```python
 readerDisplay.GaussianRadius = 0.05
 ```
 and the size of the arrow glyphs is controlled by this line of the `pointcloud_trace.py` script
-```
+```python
 glyph1Display.ScaleFactor = 1.0982380867004395
 ```
 
 The cylinder which sourrounds the visualization of the dataset can be controlled using the following lines of the `pointcloud_trace.py` script.
-```
+```python
 cylinder1 = pvs.Cylinder(registrationName='Cylinder1')
 cylinder1.Resolution = 100
 cylinder1.Height = 10.1

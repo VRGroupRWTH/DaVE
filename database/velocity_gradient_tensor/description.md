@@ -15,11 +15,11 @@ Finally, the example computes the magnitue of the velocity field and uses the re
 ### Instructions ###
 The file archive that is provided for this example contains the script file `velocity_gradient_tensor_script.sh` that when executed visalized a tensor field using ellipsoidal glyphs.
 The script can be started using the following terminal command
-```
+```bash
 ./velocity_gradient_tensor_script.sh
 ```
 In some cases it is neccessary to first mark the script as executible which can be done by running the following line in the terminal
-```
+```bash
 chmod +x velocity_gradient_tensor_script.sh
 ```
 After a successful execution of the script, the image `velocity_gradient_tensor.png` containing the final visualization of the provided dataset is placed in the folder `output`. 
@@ -27,7 +27,7 @@ After a successful execution of the script, the image `velocity_gradient_tensor.
 The vector field that the example uses for the visualization is determined by the lines of the `velocity_gradient_tensor_trace.py` script that are marked with the keyword `OWN_DATA`.
 By default the example used the field with the name `ImageFile`, but when using a custome dataset it might be neccessary to select field with a different name.
 One of the lines nedd to be modified when changing the name of the field is shown in the following
-```
+```python
 reader.PointArrayStatus = ['ImageFile']
 ```
 
