@@ -3,7 +3,7 @@
 
     export default
     {
-        props: ["target"],
+        props: ["target", "depth_max"],
         setup(props)
         {
             const outline_mutation_options = 
@@ -36,7 +36,7 @@
                         label: element.attributes.outline_label.value,
                         link: "#" + element.id,
                         active: (element.id == outline_element_active.value),
-                        indent: parseInt(element.attributes.outline_indent.value) * 25 + 20
+                        indent: element.attributes.outline_indent.value
                     }
 
                     items.push(item);
@@ -70,7 +70,18 @@
 
             function is_outline_element(element)
             {
-                return "id" in element && element.id != "" && "outline_label" in element.attributes;
+                if("id" in element && element.id != "" && "outline_label" in element.attributes)
+                {
+                    const depth_max = props.depth_max || 1;
+                    let depth = parseInt(element.attributes.outline_indent.value);
+
+                    if(depth <= depth_max)
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
             }
 
             function search_elements(element)
@@ -153,7 +164,7 @@
 <template>
     <nav ref="outline_container" class="nav flex-column align-items-stretch outline">
         <template v-for="item of outline_items">
-            <a class="nav-link" :class="item.active ? 'active' : ''" :style="'padding-left: ' + item.indent + 'px;'":href="item.link">{{ item.label }}</a>
+            <a class="nav-link" :class="item.active ? 'active' : ''" :outline_indent="item.indent" :style="'--outline_indent: ' + item.indent + 'px'" :href="item.link">{{ item.label }}</a>
         </template>
     </nav>
 </template>

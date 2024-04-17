@@ -89,7 +89,7 @@
                 </button>
             </div>
             <h5 class="mb-2">On this page</h5>
-            <outline :target="content"></outline>
+            <outline :target="content" depth_max="1"></outline>
         </shared-header>
     </header>
     <main>
@@ -121,7 +121,7 @@
                         </button>
                     </div>
                     <h5 class="mb-2">On this page</h5>
-                    <outline :target="content"></outline>
+                    <outline :target="content" depth_max="1"></outline>
                 </div>
             </div>
         </div>

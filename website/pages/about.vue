@@ -31,7 +31,7 @@
     <header class="sticky-top">
         <GlobalHeader>
             <h5 class="pt-3 pb-1">On this page</h5>
-            <Outline :target="content"></Outline>
+            <Outline :target="content" depth_max="1"></Outline>
         </GlobalHeader>
     </header>
     <main>
@@ -45,12 +45,12 @@
             <div class="flex-shrink-0 d-none d-lg-block" style="width: 250px;">
                 <div class="sticky-top" style="top: 100px; z-index: 0;">
                     <h5 class="about-content pt-3 pb-1">On this page</h5>
-                    <Outline :target="content"></Outline>
+                    <Outline :target="content" depth_max="1"></Outline>
                 </div>
             </div>
         </div>
     </main>
     <footer class="bg-body-tertiary">
-        <GlobalFooter class="container"></GlobalFooter>
+        <GlobalFooter class="container mt-4"></GlobalFooter>
     </footer>
 </template>

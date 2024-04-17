@@ -31,7 +31,7 @@
     <header class="sticky-top">
         <shared-header>
             <h5 class="pt-3 pb-1">On this page</h5>
-            <outline :target="content"></outline>
+            <outline :target="content" depth_max="1"></outline>
         </shared-header>
     </header>
     <main>
@@ -45,12 +45,12 @@
             <div class="flex-shrink-0 d-none d-lg-block" style="width: 250px;">
                 <div class="sticky-top" style="top: 100px; z-index: 0;">
                     <h5 class="about-content pt-3 pb-1">On this page</h5>
-                    <outline :target="content"></outline>
+                    <outline :target="content" depth_max="1"></outline>
                 </div>
             </div>
         </div>
     </main>
     <footer class="bg-body-tertiary">
-        <shared-footer class="container"></shared-footer>
+        <shared-footer class="container mt-4"></shared-footer>
     </footer>
 </template>
