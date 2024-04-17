@@ -37,7 +37,7 @@
     <main>
         <div class="container d-flex">
             <div ref="content" class="about-content me-lg-4 flex-fill" style="min-width: 0px;">
-                <h1 class="display-2 ps-2 py-5 mb-4" style="font-weight: 350;">About</h1>
+                <h1 class="display-2 ps-2 py-5 mb-4 fw-semibold">About</h1>
                 <OutlineContainer>
                     <AboutContent></AboutContent>
                 </OutlineContainer>

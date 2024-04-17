@@ -1,5 +1,9 @@
-## What is DaVE? ##
+<!--## What is DaVE? ##
 DaVE is an explorable visualization database providing detailed visualization examples with containerized environments for easy execution and extensibility on HPC platforms for non-visualization experts.
+
+Moved this to the about page.
+
+-->
 
 ## How to Use DaVE? ##
 
