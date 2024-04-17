@@ -25,7 +25,7 @@
 </script>
 
 <template>
-    <div id="resources" outline_label="Resources" outline_indent="0" style="scroll-margin-top: 80px;">
+    <div id="Resources" outline_label="Resources" outline_indent="0" style="scroll-margin-top: 80px;">
         <h3>Resources</h3>
         <div class="alert alert-light mb-0">
         <table class="table align-middle visualization-resources-table ">

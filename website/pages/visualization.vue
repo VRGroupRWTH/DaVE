@@ -7,6 +7,7 @@
     import GlobalHeader from "../components/global_header.vue";
     import GlobalFooter from "../components/global_footer.vue";
     import Outline from "../components/outline.vue";
+    import OutlineContainer from "../components/outline_container.vue";
     import Tag from "../components/tag.vue";
 
     export default
@@ -20,6 +21,7 @@
             "shared-header": GlobalHeader,
             "shared-footer": GlobalFooter,
             "outline": Outline,
+            "outline-container": OutlineContainer,
             "tag": Tag
         },
         setup()
@@ -87,7 +89,7 @@
                 </button>
             </div>
             <h5 class="mb-2">On this page</h5>
-            <outline :target="content"></outline>
+            <outline :target="content" depth_max="1"></outline>
         </shared-header>
     </header>
     <main>
@@ -101,7 +103,9 @@
                         <tag v-for="tag in visualization.tags" :tag="tag" class="me-1" @on_tag_click="on_visualization_tag_click"></tag>
                     </div>
                 </div>
-                <div class="mb-4 visualization-description" v-html="visualization.description"></div>
+                <outline-container>
+                    <div class="mb-4 visualization-description" v-html="visualization.description"></div>
+                </outline-container>
                 <visualization-resources :visualization="visualization"></visualization-resources>
                 <visualization-wizard :visualization="visualization" id="visualization_wizard"></visualization-wizard>
             </div>
@@ -117,7 +121,7 @@
                         </button>
                     </div>
                     <h5 class="mb-2">On this page</h5>
-                    <outline :target="content"></outline>
+                    <outline :target="content" depth_max="1"></outline>
                 </div>
             </div>
         </div>

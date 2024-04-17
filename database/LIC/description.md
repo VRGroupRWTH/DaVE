@@ -1,4 +1,3 @@
-<div id="description" outline_label="Description" outline_indent="0" markdown="1">
 ### Description ###
 Line-Integral Convolution is a visualization technique that can be used to highlight the field lines of two- or three-dimensional vector fields. 
 The method calculates the color for a specific point by integrating a noisy scalar field along a curve.
@@ -13,34 +12,32 @@ Based on this dataset, the example uses Line integral convolution to visualize t
 This example nicely illustrates the advantages of this line integral convolution over other visualization technbiques for vector field sucha as, for example, stream lines or glyphs.
 These approach in particular visualize the dataset using lines or arrows which cause visual cluttering if too many of them are use or only give a rough overview of the dataset if not enoguh of them are used.
 This proplem in particular does not aris when using line integration convolution.
-</div>
-<div id="instructons" outline_label="Instructions" outline_indent="0" markdown="1">
+
 ### Instructions ###
 The file archive that is provided for this example contains the script file `lic_script.sh` that when executed visalized a dataset using line-integral convolution.
 The script can be started using the following terminal command
-```
+```bash
 ./lic_script.sh
 ```
 In some cases it is neccessary to first mark the script as executible which can be done by running the following line in the terminal
-```
+```bash
 chmod +x lic_script.sh
 ```
 After a successful execution of the script, the image `lic.png` containing the final visualization of the provided dataset is placed in the folder `output`. 
 
 The example assumes that the dataset owns three scalar field named `vx`, `vy` and `vz`.
 Based on these scalar fields, the velocity field is derived using the following line of the `lic_trace.py` script
-```
+```python
 calculator1.Function = '(iHat*vx + jHat*vy + kHat*vz) * 1e9'
 ```
 When using a custom dataset, it might be neccessary to ether adapt this formula or down right skip this computation entirely if a vector field is already provided by the dataset.
 
 Besides that, the dataset also has to store the scalar field in a spherical coordinate system defined by the axes `latitude (lat)`, `longitude (lon)` and `radius (r)`.
 The order in which these axes are read from the dataset can be controlled using the following line of the `lic_trace.py` script
-```
+```python
 reader.Dimensions = '(lat, r, lon)'
 ```
-</div>
-<div id="limitations" outline_label="Limitations" outline_indent="0" markdown="1">
+
 ### Limitations ###
 Currently the `lic_trace.py` only supports datasets that are stored in the NetCDF (Network Common Data Form) format.
 Datasets that are stored in this particular format can be identified by the file extension `.nc`.
@@ -48,8 +45,6 @@ Other file formats are theoretically possible but would require extensive change
 
 Besides that, there are the following limitations:
 - Artifacts in distributed execution
-</div>
-<div id="references" outline_label="References" outline_indent="0" markdown="1">
+
 ### References ###
 1. [<span id="reference_dataset">2021, "SciVis Contest 2021: Earth's Mantle Convection", https://scivis2021.netlify.app/data/</span>](https://scivis2021.netlify.app/data/)
-</div>

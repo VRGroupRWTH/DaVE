@@ -1,4 +1,15 @@
+@layer website, syntax_highlight;
+
 @import "~bootstrap/scss/bootstrap";
+@import "~highlight.js/styles/xcode.css" layer(syntax_highlight);
+
+@layer website
+{
+    .hljs
+    {
+        background: none;
+    }
+}
 
 .tag-removable-image
 {
@@ -23,18 +34,33 @@
 .outline a.nav-link
 {
     color: black;
+    font-size: 0.8125rem;
     border-left-width: 3px;
     border-left-style: solid;
     border-left-color: var(--bs-gray-300);
+    padding-left: calc(var(--outline_indent) * 15 + 20px);
+    padding-top: 0.375rem;
+    padding-bottom: 0.375rem;
 }
 
 .outline a.nav-link.active
 {
     color: black;
+    font-size: 0.8125rem;
     border-left-width: 3px;
     border-left-style: solid;
     border-left-color: var(--bs-primary);
+    padding-left: calc(var(--outline_indent) * 15 + 20px);
+    padding-top: 0.375rem;
+    padding-bottom: 0.375rem;
     background-color: color-mix(in srgb, var(--bs-primary-bg-subtle) 30%, var(--bs-white));
+}
+
+.outline a[outline_indent="0"].nav-link
+{
+    font-size: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
 .shared-header-search-bar
@@ -274,26 +300,26 @@
     font-weight: 600;
 }
 
-.visualization-description #references a
+.visualization-description #References a
 {
     color: var(--bs-body-color);
     text-decoration: none;
 }
 
-.visualization-description #references ol
+.visualization-description #References ol
 {
     padding-left: 2.5rem;
     margin-bottom: -0.75rem;
     counter-reset: reference;
 }
 
-.visualization-description #references ol li
+.visualization-description #References ol li
 {
     margin-bottom: 0.75rem;
     counter-increment: reference;
 }
 
-.visualization-description #references ol li::marker
+.visualization-description #References ol li::marker
 {
     content: "[" counter(reference) "] ";
     font-weight: 600;
