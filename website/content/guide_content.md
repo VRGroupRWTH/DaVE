@@ -6,12 +6,12 @@ DaVE is an explorable visualization database providing detailed visualization ex
 #### Preliminaries ####
 If you plan to execute any of the examples provided in DaVE, you either need a recent Docker or Singularity/Apptainer version installed on the machine you plan to run on. Further, you need to be able to execute shell scripts.
 - Information on Docker can be found here [https://docs.docker.com/get-started/overview/](https://docs.docker.com/get-started/overview/)
-- Information on Apptainer can be found here [https://apptainer.org/docs/user/latest/](https://apptainer.org/docs/user/latest/) and its compatability with singularity is described here [https://apptainer.org/docs/user/main/singularity_compatibility.html](https://apptainer.org/docs/user/main/singularity_compatibility.html)
+- Information on Apptainer can be found here [https://apptainer.org/docs/user/latest/](https://apptainer.org/docs/user/latest/) and its compatibility with singularity is described here [https://apptainer.org/docs/user/main/singularity_compatibility.html](https://apptainer.org/docs/user/main/singularity_compatibility.html)
 
 #### Finding Examples ####
 The browser offers a gallery view of all the examples available in DaVE. Each thumbnail was produced by the underlying example. You can filter the examples by entering search terms in the search mask or by specifying [tags](#tags). Tags can also be selected by clicking the tag annotation below the title of each example. Additionally, you can filter by the date when the example was added.
 
-When clicking on one of the examples in the gallery view, you are redirected to a page containing more information on that example. If available, additional images can be cycled through at the top and an interactive preview of the visualizaiton can be explored.
+When clicking on one of the examples in the gallery view, you are redirected to a page containing more information on that example. If available, additional images can be cycled through at the top and an interactive preview of the visualization can be explored.
 Below are descriptions of the visualization methods and its application with references for further reading.
 
 ##### Tags #####
@@ -36,9 +36,9 @@ In order to execute each of the examples yourself, DaVE provides instructions fo
 To download an example ready for execution click on the download button in the top left corner. In order to prepare the example for your purpose you need to select the data, the environment and container technology to use. If in doubt, leave the default values and select the locally installed container platform. After selecting the options the [template](#templates) .zip file will be prepared. Everything you need to do afterwards is described in the instructions of that example. Generally, this boils down to extracting the .zip and executing the shell script inside.
 
 ##### Templates #####
-A template combines all neccessary resources for a visualization technique that are needed to render an image for a given dataset.
+A template combines all necessary resources for a visualization technique that are needed to render an image for a given dataset.
 If required, the template also contains or downloads a preview dataset with which the technique can be tested.
-The shell script that is always included in the template zip file of the template controlls and automates the execution of the vizualization technique.
+The shell script that is always included in the template zip file of the template controls and automates the execution of the visualization technique.
 When running the script, it loads a docker container, depending on the configuration of the template ether with docker or singularity.
 
 <div class="d-flex justify-content-center">
@@ -57,10 +57,10 @@ Currently the script as well as the containers only run under linux based operat
 ## DaVE's Architecture ##
 
 #### Database ####
-The database of DaVE contains a selection of commonly used visualization techniques and provides documentation and addtional resources for them. Each entry comes with an easy-to-use, easy-to-extend example that can be downloaded and executed on your local hardware or on HPC clusters with slurm and MPI, provided slurm and singularity/apptainer (or docker) are available.
+The database of DaVE contains a selection of commonly used visualization techniques and provides documentation and additional resources for them. Each entry comes with an easy-to-use, easy-to-extend example that can be downloaded and executed on your local hardware or on HPC clusters with slurm and MPI, provided slurm and singularity/apptainer (or docker) are available.
 
 ##### Database Structure #####
-DaVE's database is a simple file hierarchy, where each entry is represented by a directory. Each example contains further subdirectories. The _images_ folder stores all images to show in the gallery view and the example page. The _scene_ folder contains information for the interactive preview that some examples provide. The _resources_ directory contains all necessary files for executing this example. In general, this entails a shell script for execution and in the case of [ParaView](https://www.paraview.org/) visualizations, a Python trace file. The description markdown file contains all the text describing the visualization, its appllication, providing additional references and instructions for executing and adapting the example. The [visualization.yaml](#visualization-metadata) contains all the information about the tags, which container image to use, which images to show etc..
+DaVE's database is a simple file hierarchy, where each entry is represented by a directory. Each example contains further subdirectories. The _images_ folder stores all images to show in the gallery view and the example page. The _scene_ folder contains information for the interactive preview that some examples provide. The _resources_ directory contains all necessary files for executing this example. In general, this entails a shell script for execution and in the case of [ParaView](https://www.paraview.org/) visualizations, a Python trace file. The description markdown file contains all the text describing the visualization, its application, providing additional references and instructions for executing and adapting the example. The [visualization.yaml](#visualization-metadata) contains all the information about the tags, which container image to use, which images to show etc..
 
 ```
 database/
@@ -95,7 +95,7 @@ tags:
   abbreviation: "Abbreviation of tag name"
 ```
 
-Next, paths for images and the interactive scene are given. Mutliple images can be listed here, but only the first is shown as thumbnail. The scene can be ommited if no interactive preview is available.
+Next, paths for images and the interactive scene are given. Multiple images can be listed here, but only the first is shown as thumbnail. The scene can be omitted if no interactive preview is available.
 
 ```yaml
 images:
@@ -160,7 +160,7 @@ datasets:
 ##### Execution Script #####
 Each visualization comes with an execution script that uses the information from the yaml meta data file and the information given in the template wizard when downloading an example to execute.
 For this, variables are inserted into the script after configuration. 
-These are used to check for the existence of the data set, determining additional execution commmands and executing inside the specified container.
+These are used to check for the existence of the data set, determining additional execution commands and executing inside the specified container.
 
 ```bash
 #!/bin/bash
@@ -207,7 +207,7 @@ fi;
 
 #### Containers ####
 
-DaVE tries to be compatbile with many different container images. Any Docker container can theoretically be used. Singularity/Apptainer is used to convert Docker images into Singularity images. Singularity/Apptainer is often used in HPC environments where users have less permissions.
+DaVE tries to be compatible with many different container images. Any Docker container can theoretically be used. Singularity/Apptainer is used to convert Docker images into Singularity images. Singularity/Apptainer is often used in HPC environments where users have less permissions.
 Each example references a Docker image with which it can be executed. Additionally, it also provides the build recipe for the image - a dockerfile. 
 This can be used to extend existing images for new examples, but is not needed for executing the example.
 
@@ -222,7 +222,7 @@ Changing examples or creating your own in DaVE can be done at varying levels of 
 
 If you find an example fitting your visualization needs but want to use your own data, you can simply change the path to the data in the execution script. Afterwards it might be necessary to change some things in the visualization. In the case of visualizations with ParaView, you can edit the accompanying trace file. Lines where changes are potentially needed are marked with a comment containing ```# OWN_DATA``` and a short description of what needs to be adapted.
 
-For example, you download the volume rendering example but want to use on of the time steps of the viscous fingers data set from the SciVisContest 2016. You download the data set, place it in the data directory of the example and configured the correct file name in the template wizard or change it direcetly inside the execution script. The necessary changes to the trace file are exemplified below.
+For example, you download the volume rendering example but want to use on of the time steps of the viscous fingers data set from the SciVisContest 2016. You download the data set, place it in the data directory of the example and configured the correct file name in the template wizard or change it directly inside the execution script. The necessary changes to the trace file are exemplified below.
 
 ```python
 # create a new 'XML Image Data Reader'
@@ -257,7 +257,7 @@ If you want to turn this visualization with your data into an entry for DaVE, yo
   - potentially some tags
   - url for the dataset 
 
-Although this example should work now, the dscription.md should also be adapted to decribe your use case with a detailed description, limitations and references for the dataset.
+Although this example should work now, the description.md should also be adapted to describe your use case with a detailed description, limitations and references for the dataset.
 
 With everything set, you can do a pull request for your example to [DaVE](https://github.com/Jens-Koenen/DaVE).
 
@@ -289,7 +289,7 @@ display.SetRepresentationType('Volume')
 [...]
 ```
 
-Alternatively, you can create a completely new trace with [ParaView](https://docs.paraview.org/en/latest/Tutorials/ClassroomTutorials/pythonAndBatchPvpythonAndPvbatch.html#python-batch-pvpython-and-pvbatch) and use it for your exmaple.
+Alternatively, you can create a completely new trace with [ParaView](https://docs.paraview.org/en/latest/Tutorials/ClassroomTutorials/pythonAndBatchPvpythonAndPvbatch.html#python-batch-pvpython-and-pvbatch) and use it for your example.
 
 Contributing a derived visualization to DaVE's repository is similarly to [using your own data](#using-custom-data). When creating a completely new entry, either take a similar example and build from there or you consult the sections on the [database structure](#database-structure) and [visualization](#visualizations) for creating all necessary files.
 
