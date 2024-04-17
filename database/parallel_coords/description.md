@@ -16,23 +16,23 @@ The script can be started using the following terminal command
 ```bash
 ./parallel_coordinates_script.sh
 ```
-In some cases it is neccessary to first mark the script as executible which can be done by running the following line in the terminal
+In some cases it is necessary to first mark the script as executable which can be done by running the following line in the terminal
 ```bash
 chmod +x parallel_coordinates_script.sh
 ```
 After a successful execution of the script, the image `parallel_coordinates.png` containing the final visualization of the provided dataset is placed in the folder `output`. 
 
-What makes the example difficult to apply on custome dataset is the fact that changing the number of sclar field requires wider changes to the example.
+What makes the example difficult to apply on custom dataset is the fact that changing the number of scalar field requires wider changes to the example.
 This is due to the fact that the example not only creates a parallel coordinate plot but also provides a heatmap for each scalar field.
 Changing the number of scalar fields therefore means that either heatmaps have to be removed or added.
-When using the example on a custome dataset, all scalar fields that should be included in the parallel coordinate plot need to be listed with thier name in the following array of the `parallel_coordinates_trace.py` script
+When using the example on a custom dataset, all scalar fields that should be included in the parallel coordinate plot need to be listed with their name in the following array of the `parallel_coordinates_trace.py` script
 ```python
 extractSubset1Display.SeriesVisibility = ['temperature', 
                                           'temperature anomaly', 
                                           'thermal conductivity', 
                                           'thermal expansivity']
 ```
-Besides that, it might be also neccessary to change the already existing four heatmaps so that they used the correct fields as well.
+Besides that, it might be also necessary to change the already existing four heatmaps so that they used the correct fields as well.
 The lines of the `parallel_coordinates_trace.py` that describe a heatmap are always arranged in a block as shown in the following
 ```python
 # ----------------------------------------------------------------
@@ -47,9 +47,9 @@ thermalexpansivityTF2D = pvs.GetTransferFunction2D('thermalexpansivity')
 thermalexpansivityLUTColorBar.ScalarBarLength = 0.8530125523012553
 thermalexpansivityLUTColorBar.Visibility = 1
 ```
-In order to change the field that is used by a heatmap, it is neccessay to modify the lines of a block that are marked with the comment `OWN_DATA: change field name` such that they contain the name of the desired filed.
+In order to change the field that is used by a heatmap, it is necessary to modify the lines of a block that are marked with the comment `OWN_DATA: change field name` such that they contain the name of the desired filed.
 However, if fewer or even no heatmaps are needed, they can be easily removed by cutting out their blocks from the `parallel_coordinates_trace.py` script.
-Adding more heatmaps on the other hand if even more complicated as they need to be integrate into the layout of the final image.
+Adding more heatmaps on the other hand if even more complicated as they need to be integrated into the layout of the final image.
 For more information on that, see the documentation of the ParaView Python API [2](#reference_python_api).
 
 Finally, the example also assumes that input dataset stores its fields in a spherical coordinate system with the axes `latitude (lat)`, `longitude (lon)` and `radius (r)`.

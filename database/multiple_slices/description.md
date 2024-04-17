@@ -5,11 +5,11 @@ Although the users can choose the orientation and location of the planes arbitra
 However, slices have the disadvantage that they only provide a limited insight into the dataset.
 Since they only show a two-dimensional subset of the dataset, three-dimensional structures and the relations between them can not that easily be explored.
 
-Based on an medical use case, this example shows the use of multple slices that are aligned to the primary axis of the dataset.
-In comparison to other examples that only create a screenshot, this exmaple produces a Chinema database file which can be interactiveley explored using tools such as Cinema:View [1](#reference_cinema_view).
+Based on a medical use case, this example shows the use of multiple slices that are aligned to the primary axis of the dataset.
+In comparison to other examples that only create a screenshot, this example produces a Chinema database file which can be interactively explored using tools such as Cinema:View [1](#reference_cinema_view).
 When loading the database using Cinema:View, the user can select the slices that are shown using slides.
-In addtion ot showing the slices of the primary axis in isolation, the tool also provides a visualization that shows all three slices at once.
-The dataset that was chosen for this example represents the x-ray scan of a patient's foot as an scalar field which captures the densities of bones and tissues within the foot [2](#reference_dataset).
+In addition to showing the slices of the primary axis in isolation, the tool also provides a visualization that shows all three slices at once.
+The dataset that was chosen for this example represents the x-ray scan of a patient's foot as a scalar field which captures the densities of bones and tissues within the foot [2](#reference_dataset).
 
 ### Instructions ###
 The file archive that comes with this example when downloading it, contains the script file `multiple_slice_script` that when executed creates the Chinema database for the provided dataset.
@@ -17,14 +17,14 @@ The script can be started using the following terminal command
 ```bash
 ./multiple_slice_script.sh
 ```
-In some cases it is neccessary to first mark the script as executible which can be done by running the following line in the terminal
+In some cases it is necessary to first mark the script as executable which can be done by running the following line in the terminal
 ```bash
 chmod +x multiple_slice_script.sh
 ```
 After a successful execution of the script, the Chinema database file `multiple_slice.cdb` containing the slices is placed in the folder `output`. 
 
 In case the example is used together with a custom dataset, the lines of the script `multiple_slice_trace.py` that are marked with the key word `OWN_DATA` need to be changed.
-These lines, as for example the line shown below, need to be changed so that they match with the name of the attribut of the dataset that should be used for the visualization.
+These lines, as for example the line shown below, need to be changed so that they match with the name of the attribute of the dataset that should be used for the visualization.
 ```python
 reader.PointArrayStatus = ['Scalars_']
 ```
