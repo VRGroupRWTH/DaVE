@@ -252,8 +252,7 @@ fi;
 
 #### Containers ####
 
-DaVE tries to be compatbile with many different container images. Any Docker container can theoretically be used. Singularity/Apptainer is used to convert Docker images into Singularity images
-that require less permissions. Singularity/Apptainer is often used in HPC environments where users have no root access.
+DaVE tries to be compatbile with many different container images. Any Docker container can theoretically be used. Singularity/Apptainer is used to convert Docker images into Singularity images. Singularity/Apptainer is often used in HPC environments where users have less permissions.
 Each example references a Docker image with which it can be executed. Additionally, it also provides the build recipe for the image - a dockerfile. 
 This can be used to extend existing images for new examples, but is not needed for executing the example.
 
@@ -272,18 +271,9 @@ Changing examples or creating your own in DaVE can be done at varying levels of 
 
 #### Using Custom Data ####
 
-If you find an example fitting your visualization needs but want to use your own data. You can simply copy the example folder, do some renaming and change the data set to your own. Renaming has to be done in the 
-	visualization.yaml
-		- name
-		- date
-		- potentially some tags (tags need a type)
-		- rename the script and potentially trace file
-		- change their names in the .yaml
-		- change the url(s) in dataset and the description
-	Although this example should work now, the dscription.md should be adapted to decribe your use case with the correct name for the script.
-	Additional changes to the visualization trace for ParaView examples might be necessary. Lines where changes are potentially needed are marked with a comment containing ```# OWN_DATA``` and a short description of what needs to be adapted.
-	
-For example, you download the volume rendering example but want to use on of the time steps of the viscous fingers data set from the SciVisContest 2016. You download the data set, place it in the data directory of the example and configured the correct file name in the template wizard.
+If you find an example fitting your visualization needs but want to use your own data, you can simply change the path to the data in the execution script. Afterwards it might be necessary to change some things in the visualization. In the case of visualizations with ParaView, you can edit the accompanying trace file. Lines where changes are potentially needed are marked with a comment containing ```# OWN_DATA``` and a short description of what needs to be adapted.
+
+For example, you download the volume rendering example but want to use on of the time steps of the viscous fingers data set from the SciVisContest 2016. You download the data set, place it in the data directory of the example and configured the correct file name in the template wizard or change it direcetly inside the execution script. The necessary changes to the trace file are exemplified below.
 
 
 ```python
@@ -312,13 +302,23 @@ reader = pvs.XMLImageDataReader(registrationName='reader', FileName=[filepath])
 +pvs.ColorBy(ctBonesvtiDisplay, ('POINTS', 'concentration'))
 ```
 
+If you want to turn this visualization with your data into an entry for DaVE, you need to copy the example folder from which your example derives, do some renaming and change the data set to your own. You have to rename the following in the visualization.yaml:
+
+  - name
+  - date
+  - potentially some tags
+  - url for the dataset 
+
+Although this example should work now, the dscription.md should also be adapted to decribe your use case with a detailed description, limitations and references for the dataset.
+
+With everything set, you can do a pull request for your example to [DaVE](https://github.com/Jens-Koenen/DaVE).
+
 </div>
 <div id="changingvis" outline_label="Changing Existing Visualizations" outline_indent="1" markdown="1">
 
 #### Changing Existing Visualizations ####
 
-If you want to adapt the visualization itself, you can change the visualization trace itself, at least for the ParaView examples. For example you can add a filter extracting a subset of your data to the pipeline. 
-
+If you want to adapt the visualization itself, you can change the visualization trace itself, at least for the ParaView examples. Let us exemplify this by adding a filter that extracts a subset of your data to the pipeline. 
 
 Using the example of the volume rendering pipeline again, we add a subset extraction filter to the pipeline.
 
@@ -341,7 +341,9 @@ display.SetRepresentationType('Volume')
 [...]
 ```
 
-Alternatively, you can create a completely new trace with [ParaView](https://docs.paraview.org/en/latest/Tutorials/ClassroomTutorials/pythonAndBatchPvpythonAndPvbatch.html#python-batch-pvpython-and-pvbatch) and use it for the exmaple.
+Alternatively, you can create a completely new trace with [ParaView](https://docs.paraview.org/en/latest/Tutorials/ClassroomTutorials/pythonAndBatchPvpythonAndPvbatch.html#python-batch-pvpython-and-pvbatch) and use it for your exmaple.
+
+Contributing a derived visualization to DaVE's repository is similarly to [using your own data](#using-custom-data). When creating a completely new entry, either take a similar example and build from there or you consult the sections on the [database structure](#database-structure) and [visualization](#visualizations) for creating all necessary files.
 
 </div>
 <div id="changingenv" outline_label="Changing Containerized Environment" outline_indent="1" markdown="1">
@@ -375,11 +377,13 @@ and then build the container with
 docker buildx build -t <your/container/name> -f Dockerfile --target build .
 ```
 
+Changes to the container can be done in addition to changes in data and/or visualization. When using a new container only the uri in the visualization.yaml has to be changed and the new Dockerfile should be added as a resource in the respective directory. Ideally those changes are combined such that the newly added capabilities in your container are used by the visualization.
+
 </div>
 <div id="customenv" outline_label="Using Custom Environment" outline_indent="1" markdown="1">
 
 #### Using a Custom Environment ####
 
-If none of the above works for you or you already have a working docker container and just want to make your use case available, you can provide your own docker container in the .yaml.
+If none of the above works for you or you already have a working docker container and just want to make your use case available, you can provide your own docker container in the visualization.yaml.
 
 </div>
