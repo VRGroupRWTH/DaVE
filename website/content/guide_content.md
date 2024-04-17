@@ -236,7 +236,7 @@ reader.PointArrayStatus = ['Scalars_']
 pvs.ColorBy(ctBonesvtiDisplay, ('POINTS', 'Scalars_'))
 ```
 
-The two important changes are the field name of the data set. The viscous finger data set has a field called "concentration" instead of 
+The two important changes are the field name of the data set. The viscous finger data set has a field called "concentration" instead of "Scalars_".
 
 ```diff
 # create a new 'XML Image Data Reader'
