@@ -1,6 +1,6 @@
 
 <p align=center>
-  <img src="logo.svg" width="60%">
+  <img src="/website/public/images/logo.svg" width="60%">
 </p>
 
 Welcome to DaVE - the Database of Visualization Examples.

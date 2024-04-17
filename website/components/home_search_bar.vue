@@ -152,27 +152,28 @@
 
 <template>
     <div class="d-flex justify-content-center">
-        <div class="position-relative w-100" style="max-width: 700px">
-            <div class="form-control shadow-sm w-100" :style="'border-bottom-right-radius: 0px; border-top-right-radius: 0px; border-color: var(--bs-border-color-translucent); ' + search_bar_style">
+        <div class="position-relative w-100" style="max-width: 550px">
+            <div class="form-control shadow w-100" :style="'border-bottom-right-radius: 0px; border-top-right-radius: 0px; border-color: color-mix(in srgb, var(--bs-border-color-translucent) 85%, var(--bs-black)); ' + search_bar_style">
                 <div class="d-flex" style="height: 28px">                     
+                    <img src="../assets/icons/search.svg" width="16px" class="ms-1 me-2">
                     <Tag v-for="tag of tags" :tag="tag" class="me-1" @on_tag_click="on_search_bar_tag_remove"></Tag>
                     <input class="flex-fill" style="border: none; outline: none;" size="1" v-model="query" type="text" placeholder="Visualization" @keydown.delete="on_search_bar_query_delete" @keydown.enter="on_search_bar_search_internal" @keydown.escape="on_search_bar_query_escape">
                 </div>
             </div>
-            <ul :class="'dropdown-menu shadow-sm position-absolute top-100 w-100 ' + search_dropdown_class" style="inset: 0px 0px auto 0px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-top-width: 0px;">
+            <ul :class="'dropdown-menu shadow position-absolute top-100 w-100 ' + search_dropdown_class" style="inset: 0px 0px auto 0px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-top-width: 0px; border-color: color-mix(in srgb, var(--bs-border-color-translucent) 85%, var(--bs-black));">
                 <li v-for="query of query_suggestions">
                     <button class="dropdown-item" type="button" @click="on_search_bar_query_suggestion_select(query)"> 
                         {{query}} 
                     </button>
                 </li>
                 <li v-if="query_suggestions.length > 0 && tag_suggestions.length > 0">
-                    <hr class="dropdown-divider">
+                    <hr class="dropdown-divider" style="border-color: color-mix(in srgb, var(--bs-border-color-translucent) 85%, var(--bs-black));">
                 </li>
                 <li class="d-flex" style="padding-left: 12px; padding-right: 12px;">
                     <Tag v-for="tag of tag_suggestions" :tag="tag" class="me-1" @on_tag_click="on_search_bar_tag_suggestion_select"></Tag>
                 </li>
             </ul>
         </div>
-        <button class="btn btn-primary shadow-sm" style="border-bottom-left-radius: 0px; border-top-left-radius: 0px;" type="button" @click="on_search_bar_search_internal">Search</button>
+        <button class="btn btn-primary shadow" style="border-bottom-left-radius: 0px; border-top-left-radius: 0px;" type="button" @click="on_search_bar_search_internal">Search</button>
     </div>
 </template>
