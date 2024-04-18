@@ -14,6 +14,8 @@ tags:
 
 images:
   - "images/glyphs.png"
+  - "images/glyphs_angle.png"
+  - "images/glyphs_cone.png"
 
 scene: "scene/index.json"
 

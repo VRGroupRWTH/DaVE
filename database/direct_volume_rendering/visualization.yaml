@@ -11,6 +11,8 @@ tags:
 
 images:
   - "images/volumerender.png"
+  - "images/volumerender_close_up.png"
+  - "images/volumerender_low_threshold.png"
 
 scene: "scene/index.json"
 

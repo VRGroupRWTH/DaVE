@@ -13,6 +13,7 @@ tags:
 
 images:
   - "images/isocontour.png"
+  - "images/isocontour_low_threshold.png"
 
 scene: "scene/index.json"
 
