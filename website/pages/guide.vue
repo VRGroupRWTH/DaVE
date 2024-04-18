@@ -37,7 +37,7 @@
     <main>
         <div class="container d-flex">
             <div ref="content" class="guide-content me-lg-4 flex-fill" style="min-width: 0px;">
-                <h1 class="display-2 ps-2 py-5 mb-4 fw-semibold">Guide</h1>
+                <h1 class="display-1 ps-2 py-5 mb-4 fw-semibold">Guide</h1>
                 <OutlineContainer>
                     <GuideContent></GuideContent>
                 </OutlineContainer>

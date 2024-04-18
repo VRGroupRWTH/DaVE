@@ -57,7 +57,7 @@
         <div class="home-background-image" style="height: 80vh; min-height: 600px;">
             <div class="d-flex flex-column align-items-center justify-content-center w-100 h-100" style="padding-top: 50px; padding-bottom: 150px;">
                 <div class="d-flex justify-content-center align-items-center w-100 p-3" style="min-height: 0px; padding-top: 0px !important; padding-bottom: 150px !important;">
-                    <img src="/public/images/logo.svg" style="width: 100%; height: 100%; max-width: 750px">
+                    <img src="/images/logo.svg" style="width: 100%; height: 100%; max-width: 750px">
                 </div>
                 <HomeSearchBar class="container-sm" @on_search_bar_search="on_search_bar_search"></HomeSearchBar>
             </div>
@@ -142,22 +142,22 @@
                                 <div class="row row-cols-2 g-5">
                                     <div class="col">
                                         <a class="d-flex align-items-center justify-content-center" href="https://www.nhr-verein.de/">
-                                            <img  src="/public/images/nhr_4_cse.svg" style="width: 100%; height: 80px; max-width: 180px; object-fit: contain;">
+                                            <img  src="/images/nhr_4_cse.svg" style="width: 100%; height: 80px; max-width: 180px; object-fit: contain;">
                                         </a>
                                     </div>
                                     <div class="col">
                                         <a class="d-flex align-items-center justify-content-center" href="https://nhrsw.de/">
-                                            <img src="/public/images/nhr_sued_west.png" style="width: 100%; height: 80px; max-width: 200px; object-fit: contain;">
+                                            <img src="/images/nhr_sued_west.png" style="width: 100%; height: 80px; max-width: 200px; object-fit: contain;">
                                         </a>
                                     </div>
                                     <div class="col">
                                         <a class="d-flex align-items-center justify-content-center" href="https://rptu.de/">
-                                            <img src="/public/images/tu_kaiserslautern.svg" style="width: 100%; height: 80px; max-width: 200px; object-fit: contain;">
+                                            <img src="/images/tu_kaiserslautern.svg" style="width: 100%; height: 80px; max-width: 200px; object-fit: contain;">
                                         </a>
                                     </div>
                                     <div class="col">
                                         <a class="d-flex align-items-center justify-content-center" style="height: 80px;" href="https://www.itc.rwth-aachen.de">
-                                            <img src="/public/images/rwth_aachen.png" style="width: 100%; height: 80px; max-width: 200px; object-fit: contain;">
+                                            <img src="/images/rwth_aachen.png" style="width: 100%; height: 80px; max-width: 200px; object-fit: contain;">
                                         </a>
                                     </div>  
                                 </div>  
