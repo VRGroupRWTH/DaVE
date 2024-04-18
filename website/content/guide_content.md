@@ -9,11 +9,11 @@ Moved this to the about page.
 
 #### Preliminaries ####
 If you plan to execute any of the examples provided in DaVE, you either need a recent Docker or Singularity/Apptainer version installed on the machine you plan to run on. Further, you need to be able to execute shell scripts.
-- Information on Docker can be found here [https://docs.docker.com/get-started/overview/](https://docs.docker.com/get-started/overview/)
-- Information on Apptainer can be found here [https://apptainer.org/docs/user/latest/](https://apptainer.org/docs/user/latest/) and its compatibility with singularity is described here [https://apptainer.org/docs/user/main/singularity_compatibility.html](https://apptainer.org/docs/user/main/singularity_compatibility.html)
+- Information on Docker can be found [here](https://docs.docker.com/get-started/overview/)
+- Information on Apptainer can be found [here](https://apptainer.org/docs/user/latest/) and its compatibility with singularity is described [here](https://apptainer.org/docs/user/main/singularity_compatibility.html)
 
 #### Finding Examples ####
-The browser offers a gallery view of all the examples available in DaVE. Each thumbnail was produced by the underlying example. You can filter the examples by entering search terms in the search mask or by specifying [tags](#tags). Tags can also be selected by clicking the tag annotation below the title of each example. Additionally, you can filter by the date when the example was added.
+The browser offers a gallery view of all the examples available in DaVE. Each thumbnail was produced by the underlying example. You can filter the examples by entering search terms in the search mask or by specifying [tags](#Tags). Tags can also be selected by clicking the tag annotation below the title of each example. Additionally, you can filter by the date when the example was added.
 
 When clicking on one of the examples in the gallery view, you are redirected to a page containing more information on that example. If available, additional images can be cycled through at the top and an interactive preview of the visualization can be explored.
 Below are descriptions of the visualization methods and its application with references for further reading.
@@ -29,7 +29,7 @@ To make the search function of DaVE more specific, every technique in the databa
     </figure>
 </div>
 
-For example, a technique with the tag <span class="mx-1 badge text-primary-emphasis bg-primary-subtle border-primary-subtle px-2 py-1">Scalar</span> would be suitable for datasets consisting of real-valued samples, e.g. a dataset describing the temperature within a room.
+For example, a technique with the tag `Scalar` would be suitable for datasets consisting of real-valued samples, e.g. a dataset describing the temperature within a room.
 The tags that are used throughout the database are divided into two groups.
 Blue tags are used to identify **technical properties** such as the domain for which a visualization can be used or whether the technique can be used for time-dependent datasets.
 On the other hand, green tags are used to identify the **scientific domain** for which a technique is particularly suitable or where the data of the example visualization came from.
@@ -37,7 +37,7 @@ On the other hand, green tags are used to identify the **scientific domain** for
 #### Executing Examples ####
 In order to execute each of the examples yourself, DaVE provides instructions for this purpose with example specific descriptions of optional changes if you wish to customize it.
 
-To download an example ready for execution click on the download button in the top left corner. In order to prepare the example for your purpose you need to select the data, the environment and container technology to use. If in doubt, leave the default values and select the locally installed container platform. After selecting the options the [template](#templates) .zip file will be prepared. Everything you need to do afterwards is described in the instructions of that example. Generally, this boils down to extracting the .zip and executing the shell script inside.
+To download an example ready for execution click on the download button in the top left corner. In order to prepare the example for your purpose you need to select the data, the environment and container technology to use. If in doubt, leave the default values and select the locally installed container platform. After selecting the options the [template](#Templates) .zip file will be prepared. Everything you need to do afterwards is described in the instructions of that example. Generally, this boils down to extracting the .zip and executing the shell script inside.
 
 ##### Templates #####
 A template combines all necessary resources for a visualization technique that are needed to render an image for a given dataset.
@@ -64,7 +64,7 @@ Currently the script as well as the containers only run under linux based operat
 The database of DaVE contains a selection of commonly used visualization techniques and provides documentation and additional resources for them. Each entry comes with an easy-to-use, easy-to-extend example that can be downloaded and executed on your local hardware or on HPC clusters with slurm and MPI, provided slurm and singularity/apptainer (or docker) are available.
 
 ##### Database Structure #####
-DaVE's database is a simple file hierarchy, where each entry is represented by a directory. Each example contains further subdirectories. The _images_ folder stores all images to show in the gallery view and the example page. The _scene_ folder contains information for the interactive preview that some examples provide. The _resources_ directory contains all necessary files for executing this example. In general, this entails a shell script for execution and in the case of [ParaView](https://www.paraview.org/) visualizations, a Python trace file. The description markdown file contains all the text describing the visualization, its application, providing additional references and instructions for executing and adapting the example. The [visualization.yaml](#visualization-metadata) contains all the information about the tags, which container image to use, which images to show etc..
+DaVE's database is a simple file hierarchy, where each entry is represented by a directory. Each example contains further subdirectories. The _images_ folder stores all images to show in the gallery view and the example page. The _scene_ folder contains information for the interactive preview that some examples provide. The _resources_ directory contains all necessary files for executing this example. In general, this entails a shell script for execution and in the case of [ParaView](https://www.paraview.org/) visualizations, a Python trace file. The description markdown file contains all the text describing the visualization, its application, providing additional references and instructions for executing and adapting the example. The [visualization.yaml](#Visualization_Metadata) contains all the information about the tags, which container image to use, which images to show etc.
 
 ```
 database/
@@ -88,7 +88,7 @@ name: "<Name of the example>"
 date: 1900-01-01
 ```
 
-These are followed by the [tags](#tags), which have a name, a type (technique | domain) and an abbreviation if they are long.
+These are followed by the [tags](#Tags), which have a name, a type (technique | domain) and an abbreviation if they are long.
 
 ```yaml
 tags:
@@ -265,9 +265,6 @@ Although this example should work now, the description.md should also be adapted
 
 With everything set, you can do a pull request for your example to [DaVE](https://github.com/Jens-Koenen/DaVE).
 
-</div>
-<div id="changingvis" outline_label="Changing Existing Visualizations" outline_indent="1" markdown="1">
-
 #### Changing Existing Visualizations ####
 
 If you want to adapt the visualization itself, you can change the visualization trace itself, at least for the ParaView examples. Let us exemplify this by adding a filter that extracts a subset of your data to the pipeline. 
@@ -295,7 +292,7 @@ display.SetRepresentationType('Volume')
 
 Alternatively, you can create a completely new trace with [ParaView](https://docs.paraview.org/en/latest/Tutorials/ClassroomTutorials/pythonAndBatchPvpythonAndPvbatch.html#python-batch-pvpython-and-pvbatch) and use it for your example.
 
-Contributing a derived visualization to DaVE's repository is similarly to [using your own data](#using-custom-data). When creating a completely new entry, either take a similar example and build from there or you consult the sections on the [database structure](#database-structure) and [visualization](#visualizations) for creating all necessary files.
+Contributing a derived visualization to DaVE's repository is similarly to [using your own data](#Using_Custom_Data). When creating a completely new entry, either take a similar example and build from there or you consult the sections on the [database structure](#Database_Structure) and [visualization](#Visualizations) for creating all necessary files.
 
 #### Changing the Containerized Environment ####
 If you find that you need an additional package not available in the provided container image, you can check whether this package is available in spack.
@@ -327,11 +324,5 @@ docker buildx build -t <your/container/name> -f Dockerfile --target build .
 
 Changes to the container can be done in addition to changes in data and/or visualization. When using a new container only the uri in the visualization.yaml has to be changed and the new Dockerfile should be added as a resource in the respective directory. Ideally those changes are combined such that the newly added capabilities in your container are used by the visualization.
 
-</div>
-<div id="customenv" outline_label="Using Custom Environment" outline_indent="1" markdown="1">
-
 #### Using a Custom Environment ####
-
 If none of the above works for you or you already have a working docker container and just want to make your use case available, you can provide your own docker container in the visualization.yaml.
-
-</div>

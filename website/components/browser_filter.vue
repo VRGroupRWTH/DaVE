@@ -23,12 +23,12 @@
         <div id="browser_filter_collapse" class="collapse show px-4">
             <ul class="list-unstyled mt-2">
                 <li>
-                    <label class="form-label" for="browser_filter_date">Date</label>
-                    <browser-filter-date id="browser_filter_date" :browser_filters="browser_filters"></browser-filter-date>
-                </li>
-                <li>
                     <label class="form-label" for="browser_filter_tag">Tags</label>
                     <browser-filter-tag id="browser_filter_tag" :browser_filters="browser_filters"></browser-filter-tag>
+                </li>
+                <li>
+                    <label class="form-label" for="browser_filter_date">Date</label>
+                    <browser-filter-date id="browser_filter_date" :browser_filters="browser_filters"></browser-filter-date>
                 </li>
             </ul>
         </div>

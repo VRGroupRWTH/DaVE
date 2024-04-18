@@ -54,7 +54,7 @@
 
 <template>
     <main>
-        <div class="home-background-image" style="height: 95vh; min-height: 600px;">
+        <div class="home-background-image" style="height: 80vh; min-height: 600px;">
             <div class="d-flex flex-column align-items-center justify-content-center w-100 h-100" style="padding-top: 50px; padding-bottom: 150px;">
                 <div class="d-flex justify-content-center align-items-center w-100 p-3" style="min-height: 0px; padding-top: 0px !important; padding-bottom: 150px !important;">
                     <img src="/public/images/logo.svg" style="width: 100%; height: 100%; max-width: 750px">
@@ -74,8 +74,8 @@
                                 Whether you're exploring cutting-edge visualizations for data or seeking practical solutions to enhance your simulations, DaVE seeks to find helpful resources for you.
                             </p>
                             <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center flex-column">
-                                <a href="https://github.com/Jens-Koenen/DaVE" class="mb-2">
-                                    <img  src="../assets/icons/github.svg" width="64px">
+                                <a href="https://github.com/Jens-Koenen/DaVE" class="mb-2" target="_blank">
+                                    <img src="../assets/icons/github.svg" width="64px">
                                 </a>
                                 <p style="font-size: 1.125rem;">
                                     Check it out on GitHub
@@ -84,7 +84,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row g-3 g-md-5 mb-3 mb-md-5">
+                <!-- mb-3 mb-md-5 -->
+                <div class="row g-3 g-md-5">
                     <div class="col-12 col-xl-4">
                         <div class="card shadow-sm rounded-3 h-100">
                             <div class="card-body" style="padding: 2rem;">
@@ -128,7 +129,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card shadow-sm rounded-3">
+                <!--<div class="card shadow-sm rounded-3">
                     <div class="card-body card-padding">
                         <div class="row row-cols-1 row-cols-lg-2 g-5 align-items-center">
                             <div class="col">
@@ -163,7 +164,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
     </main>
