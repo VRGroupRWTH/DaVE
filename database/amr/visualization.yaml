@@ -6,6 +6,8 @@ tags:
     type: "dataset"
   - name: "3D"
     type: "dataset"
+  - name: "Heatmap"
+    type: "technique"
   - name: "Computational Fluid Dynamics"
     type: "domain"
     abbreviation: "CFD"

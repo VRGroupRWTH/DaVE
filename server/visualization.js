@@ -91,12 +91,12 @@ export class Visualization
         this.#datasets = [];
         this.#scene = "";
 
-        if("tags" in visualization)
+        if("tags" in visualization && visualization.tags != null)
         {
             this.#tags = Tag.import(visualization.tags);
         }
 
-        if("images" in visualization)
+        if("images" in visualization && visualization.images != null)
         {
             this.#images = visualization.images;
 
@@ -106,7 +106,7 @@ export class Visualization
             }
         }
 
-        if("resources" in visualization)
+        if("resources" in visualization && visualization.resources != null)
         {
             this.#resources = visualization.resources;
 
@@ -119,7 +119,7 @@ export class Visualization
             }
         }
 
-        if("templates" in visualization)
+        if("templates" in visualization && visualization.templates != null)
         {
             this.#templates = visualization.templates;
 
@@ -135,7 +135,7 @@ export class Visualization
             }
         }
 
-        if("datasets" in visualization)
+        if("datasets" in visualization && visualization.datasets != null)
         {
             this.#datasets = visualization.datasets;
 
