@@ -18,6 +18,8 @@ const syntax_highlight_config =
 };
 
 const markdown_converter = new showdown.Converter(syntax_highlight_config);
+markdown_converter.setOption("noHeaderId", "true");
+
 const markdown_options = 
 {
     mode: "vue",

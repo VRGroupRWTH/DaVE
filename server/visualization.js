@@ -185,6 +185,8 @@ export class Visualization
         };
 
         let converter = new showdown.Converter(syntax_highlight_config);
+        converter.setOption("noHeaderId", "true");
+
         this.#description = converter.makeHtml(description_file);
 
         return true;

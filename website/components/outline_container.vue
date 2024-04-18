@@ -71,6 +71,11 @@
 
                     const child = base.children[0];
 
+                    if("outline_label" in child.attributes)
+                    {
+                        break;
+                    }
+
                     if(is_heading(child.tagName))
                     {
                         break;

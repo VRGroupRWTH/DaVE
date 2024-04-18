@@ -66,7 +66,7 @@ The database of DaVE contains a selection of commonly used visualization techniq
 ##### Database Structure #####
 DaVE's database is a simple file hierarchy, where each entry is represented by a directory. Each example contains further subdirectories. The _images_ folder stores all images to show in the gallery view and the example page. The _scene_ folder contains information for the interactive preview that some examples provide. The _resources_ directory contains all necessary files for executing this example. In general, this entails a shell script for execution and in the case of [ParaView](https://www.paraview.org/) visualizations, a Python trace file. The description markdown file contains all the text describing the visualization, its application, providing additional references and instructions for executing and adapting the example. The [visualization.yaml](#Visualization_Metadata) contains all the information about the tags, which container image to use, which images to show etc.
 
-```
+```text
 database/
 ├─ example/
 │  ├─ images/
