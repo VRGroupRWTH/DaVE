@@ -67,7 +67,7 @@
 
 <template>
     <div class="card h-100" style="cursor: pointer;" @click="on_browser_item_click_internal">
-        <img :src="browser_item.images[0]" class="card-img-top m-3 mb-0" style="height: 150px; object-fit: contain;">
+        <img :src="browser_item.images[0]" class="card-img-top p-3 pb-0" style="height: 200px; object-fit: contain;">
         <div class="card-body">
             <h5 class="card-title">{{ browser_item.name }}</h5>
             <div class="d-flex flex-wrap" style="margin: -0.125rem">

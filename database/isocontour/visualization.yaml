@@ -3,11 +3,11 @@ date: 2023-11-29
 
 tags:
   - name: "Scalar"
-    type: "technique"
+    type: "dataset"
   - name: "2D"
-    type: "technique"
+    type: "dataset"
   - name: "3D"
-    type: "technique"
+    type: "dataset"
   - name: "Medicine"
     type: "domain"
 
