@@ -54,10 +54,10 @@
 
 <template>
     <main>
-        <div class="home-background-image" style="height: 95vh; min-height: 500px;">
-            <div class="d-flex flex-column align-items-center justify-content-center w-100 h-100" style="padding-top: 100px; padding-bottom: 200px;">
-                <div class="d-flex justify-content-center align-items-center w-100 p-3" style="padding-bottom: 100px !important;">
-                    <img src="/public/images/logo.svg" width="100%" style="max-width: 750px">
+        <div class="home-background-image" style="height: 95vh; min-height: 600px;">
+            <div class="d-flex flex-column align-items-center justify-content-center w-100 h-100" style="padding-top: 50px; padding-bottom: 150px;">
+                <div class="d-flex justify-content-center align-items-center w-100 p-3" style="min-height: 0px; padding-top: 0px !important; padding-bottom: 150px !important;">
+                    <img src="/public/images/logo.svg" style="width: 100%; height: 100%; max-width: 750px">
                 </div>
                 <HomeSearchBar class="container-sm" @on_search_bar_search="on_search_bar_search"></HomeSearchBar>
             </div>
@@ -67,11 +67,21 @@
                 <div class="card text-bg-dark shadow-sm rounded-3 mb-3 mb-md-5">
                     <div class="card-body card-padding">
                         <h1 class="card-title display-5 fw-semibold mb-4">What is DaVE?</h1>
-                        <p class="card-text col-lg-8" style="font-size: 1.125rem;">                                                                
-                            DaVE serves as a centralized repository where users can find and discover visualization examples tailored to their specific needs through a simple search.
-                            Our database is designed to be user-friendly, offering seamless integration into existing workflows using adaptable containers.
-                            Whether you're exploring cutting-edge visualizations for data or seeking practical solutions to enhance your simulations, DaVE seeks to find helpful resources for you.
-                        </p>
+                        <div class="row g-5">
+                            <p class="card-text col-12 col-lg-8" style="font-size: 1.125rem;">                                                                
+                                DaVE serves as a centralized repository where users can find and discover visualization examples tailored to their specific needs through a simple search.
+                                Our database is designed to be user-friendly, offering seamless integration into existing workflows using adaptable containers.
+                                Whether you're exploring cutting-edge visualizations for data or seeking practical solutions to enhance your simulations, DaVE seeks to find helpful resources for you.
+                            </p>
+                            <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center flex-column">
+                                <a href="https://github.com/Jens-Koenen/DaVE" class="mb-2">
+                                    <img  src="../assets/icons/github.svg" width="64px">
+                                </a>
+                                <p style="font-size: 1.125rem;">
+                                    Check it out on GitHub
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row g-3 g-md-5 mb-3 mb-md-5">
