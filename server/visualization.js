@@ -8,6 +8,7 @@ export class Visualization
 {
     #name
     #date
+    #authors
 
     #tags
     #images
@@ -23,6 +24,7 @@ export class Visualization
     {
         this.#name = "";
         this.#date = Date.now();
+        this.#authors = [];
 
         this.#tags = [];
         this.#images = [];
@@ -84,12 +86,18 @@ export class Visualization
 
         this.#name = visualization.name;
         this.#date = visualization.date;
+        this.#authors = [];
         this.#tags = [];
         this.#images = [];
         this.#resources = [];
         this.#templates = [];
         this.#datasets = [];
         this.#scene = "";
+
+        if("authors" in visualization && visualization.authors != null)
+        {
+            this.#authors = visualization.authors;
+        }
 
         if("tags" in visualization && visualization.tags != null)
         {
@@ -197,6 +205,7 @@ export class Visualization
         return {
             name: this.#name,
             date: this.#date,
+            authors: this.#authors,
             tags: Tag.export(this.#tags),
             images: this.#images,
             resources: this.#resources,
@@ -215,6 +224,11 @@ export class Visualization
     get_date()
     {
         return this.#date;
+    }
+
+    get_authors()
+    {
+        return this.#authors;
     }
 
     get_tags()

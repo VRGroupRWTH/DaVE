@@ -1,6 +1,10 @@
 name: "Adaptive Mesh Refinement"
 date: 2024-03-27
 
+authors:
+  - name: "DaVE Team"
+    link: "https://github.com/Jens-Koenen/DaVE"
+
 tags:
   - name: "2D"
     type: "dataset"
