@@ -138,7 +138,8 @@
                 date_max: "01 Feb 1900",
                 date_begin: "01 Jan 1900",
                 date_end: "01 Feb 1900",
-                tags: []
+                tags: [],
+                authors: []
             });
 
             watch([browser_query, browser_sorting, browser_filters], async (old_state, new_state) =>

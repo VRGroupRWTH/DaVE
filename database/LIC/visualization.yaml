@@ -1,6 +1,10 @@
 name: "Line-Integral Convolution (LIC)"
 date: 2023-02-01
 
+authors:
+  - name: "DaVE Team"
+    link: "https://github.com/Jens-Koenen/DaVE"
+
 tags:
   - name: "Vector"
     type: "dataset"

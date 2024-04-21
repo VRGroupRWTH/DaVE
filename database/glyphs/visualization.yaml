@@ -1,6 +1,10 @@
 name: "Glyphs"
 date: 2023-11-29
 
+authors:
+  - name: "DaVE Team"
+    link: "https://github.com/Jens-Koenen/DaVE"
+
 tags:
   - name: "Vector"
     type: "dataset"

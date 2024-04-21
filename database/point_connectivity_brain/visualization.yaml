@@ -1,6 +1,10 @@
 name: "Point Connectivity Brain"
 date: 2024-04-18
 
+authors:
+  - name: "DaVE Team"
+    link: "https://github.com/Jens-Koenen/DaVE"
+
 tags:
   - name: "3D"
     type: "dataset"

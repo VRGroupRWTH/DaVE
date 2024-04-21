@@ -1,6 +1,10 @@
 name: "Volume Statistics"
 date: 2024-03-13
 
+authors:
+  - name: "DaVE Team"
+    link: "https://github.com/Jens-Koenen/DaVE"
+
 tags:
   - name: "Scalar"
     type: "dataset"

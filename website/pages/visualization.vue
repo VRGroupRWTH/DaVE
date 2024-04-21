@@ -99,12 +99,15 @@
                 <visualization-images :visualization="visualization" class="mt-4 mb-2 w-100" style="height: 350px"></visualization-images>
                 <visualization-preview :visualization="visualization" class="mb-4"></visualization-preview>
                 <div class="mb-4">
-                    <h1 class="mb-2" style="font-size: 3rem">{{ visualization.name }}</h1>
-                    <div class="d-flex mb-3">
-                        <tag v-for="tag in visualization.tags" :tag="tag" class="me-1" @on_tag_click="on_visualization_tag_click"></tag>
+                    <h1 class="mb-0" style="font-size: 3rem">{{ visualization.name }}</h1>
+                    <div class="mb-2 ms-1 fw-semibold">
+                        <template v-for="(author, index) in visualization.authors">
+                            <a :href="author.link" style="text-decoration: none; color: var(--bs-body-color)">{{ author.name }}</a>
+                            <span v-if="index + 1 < visualization.authors.length" class="me-2">,</span>
+                        </template>
                     </div>
-                    <div class="d-flex fw-semibold">
-                        <span class="me-2">Authors: </span><span v-for="author in visualization.authors">{{ author.name }}</span>
+                    <div class="d-flex ms-1">
+                        <tag v-for="tag in visualization.tags" :tag="tag" class="me-1" @on_tag_click="on_visualization_tag_click"></tag>
                     </div>
                 </div>
                 <outline-container>

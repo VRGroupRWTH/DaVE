@@ -19,6 +19,7 @@ export class Backend
         app.post("/api/fetch_visualization", async (request, response) => this.#on_fetch_visualization_request(request, response));
         app.post("/api/search_visualizations", async (request, response) => this.#on_search_visualizations_request(request, response));
         app.post("/api/search_property", async (request, response) => this.#on_search_property_request(request, response));
+        app.post("/api/search_author", async (request, response) => this.#on_search_author_request(request, response))
         app.get("/api/create_script", async (request, response) => this.#on_create_script(request, response));
     }
 
@@ -154,6 +155,11 @@ export class Backend
         response.send(result);
     }
 
+    async #on_search_author_request(request, response)
+    {
+
+    }
+    
     async #on_create_script(request, response)
     {
         const required_parameters = 
