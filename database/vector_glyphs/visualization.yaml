@@ -1,0 +1,61 @@
+name: "Glyphs"
+date: 2023-11-29
+
+tags:
+  - name: "Vector"
+    type: "technique"
+  - name: "2D"
+    type: "technique"
+  - name: "3D"
+    type: "technique"
+  - name: "Computational Fluid Dynamics"
+    type: "domain"
+    abbreviation: "CFD"
+
+images:
+  - "images/glyphs.png"
+  - "images/glyphs_angle.png"
+  - "images/glyphs_cone.png"
+
+scene: "scene/index.json"
+
+resources:
+  - name: "glyphs_trace.py"
+    type: "Script"
+    date: 2024-01-08
+    path: "resources/glyphs_trace.py"
+  - name: "jet.vti"
+    type: "Dataset"
+    date: 2024-01-08
+    path: "resources/jet.vti"
+  - name: "ParaView 5.11.1"
+    type: "Docker Image"
+    date: 2024-01-09
+    url: "https://github.com/orgs/scivislab/packages/container/paraview/165958085?tag=5.11.1"
+  - name: "ParaView 5.11.1"
+    type: "Dockerfile"
+    date: 2024-01-09
+    path: "resources/Dockerfile"
+
+templates:
+  - techniques:
+      - "docker"
+      - "singularity"
+    commands:
+      - type: "local"
+        run: "pvbatch glyphs_trace.py"
+      - type: "mpi"
+        run: "pvbatch glyphs_trace.py"
+      - type: "slurm"
+        run: "pvbatch glyphs_trace.py"
+    trace: "resources/glyphs_trace.py"
+    script: "resources/glyphs_script.sh"
+    container:
+      url: "ghcr.io/scivislab/paraview:5.11.1"
+
+datasets:
+  - name: "Flow Field"
+    identifier: "DATASET_FLOWFIELD"
+    description: "The volumetric dataset for which the image should be created"
+    path: "resources/jet.vti"
+    # url: "https://github.com/topology-tool-kit/ttk-data/raw/1.1.0/jet.vti"

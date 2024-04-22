@@ -1,0 +1,198 @@
+{
+  "version": 1.0,
+  "background": [
+    0.32,
+    0.34,
+    0.43
+  ],
+  "camera": {
+    "focalPoint": [
+      93.3362,
+      73.3245,
+      77.1865
+    ],
+    "position": [
+      230.08,
+      443.374,
+      -143.621
+    ],
+    "viewUp": [
+      0.0120493,
+      0.509084,
+      0.860633
+    ]
+  },
+  "centerOfRotation": [
+    93.3362,
+    73.3245,
+    77.1865
+  ],
+  "scene": [
+    {
+      "name": "brainData_all.vtk",
+      "type": "vtkHttpDataSetReader",
+      "vtkHttpDataSetReader": {
+        "url": "1"
+      },
+      "actor": {
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actorRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "mapper": {
+        "colorByArrayName": "Area",
+        "colorMode": 1,
+        "scalarMode": 3
+      },
+      "property": {
+        "representation": 2,
+        "edgeVisibility": 0,
+        "diffuseColor": [
+          1,
+          1,
+          1
+        ],
+        "pointSize": 2,
+        "opacity": 0.31
+      }
+    },
+    {
+      "name": "Glyph1",
+      "type": "vtkHttpDataSetReader",
+      "vtkHttpDataSetReader": {
+        "url": "2"
+      },
+      "actor": {
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actorRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "mapper": {
+        "colorByArrayName": "Calcium_Target",
+        "colorMode": 1,
+        "scalarMode": 3
+      },
+      "property": {
+        "representation": 2,
+        "edgeVisibility": 0,
+        "diffuseColor": [
+          1,
+          1,
+          1
+        ],
+        "pointSize": 2,
+        "opacity": 1
+      }
+    }
+  ],
+  "lookupTables": {
+    "Area": {
+      "clamping": true,
+      "colorSpace": 3,
+      "hSVWrap": false,
+      "alpha": 1,
+      "vectorComponent": 0,
+      "vectorSize": -1,
+      "vectorMode": 0,
+      "indexedLookup": 0,
+      "nodes": [
+        [
+          0,
+          0.231373,
+          0.298039,
+          0.752941,
+          0.5,
+          0
+        ],
+        [
+          23.5,
+          0.865003,
+          0.865003,
+          0.865003,
+          0.5,
+          0
+        ],
+        [
+          47,
+          0.705882,
+          0.0156863,
+          0.14902,
+          0.5,
+          0
+        ]
+      ]
+    },
+    "Calcium_Target": {
+      "clamping": true,
+      "colorSpace": 3,
+      "hSVWrap": false,
+      "alpha": 1,
+      "vectorComponent": 0,
+      "vectorSize": -1,
+      "vectorMode": 0,
+      "indexedLookup": 0,
+      "nodes": [
+        [
+          0.600002,
+          0.231373,
+          0.298039,
+          0.752941,
+          0.5,
+          0
+        ],
+        [
+          0.850001,
+          0.865003,
+          0.865003,
+          0.865003,
+          0.5,
+          0
+        ],
+        [
+          1.1,
+          0.705882,
+          0.0156863,
+          0.14902,
+          0.5,
+          0
+        ]
+      ]
+    }
+  }
+}

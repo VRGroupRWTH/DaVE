@@ -1,0 +1,98 @@
+{
+  "vtkClass": "vtkPolyData",
+  "points": {
+      "vtkClass": "vtkPoints",
+      "name": "points",
+      "numberOfComponents": 3,
+      "dataType": "Float32Array",
+      "ref": {
+         "encode": "LittleEndian",
+         "basepath": "data",
+         "id": "Float32_150000-26a80ff1590ef8c65cd131430c27c039"
+      },
+      "size": 150000
+    },
+  "lines": {
+      "vtkClass": "vtkCellArray",
+      "name": "lines",
+      "numberOfComponents": 1,
+      "dataType": "Int32Array",
+      "ref": {
+         "encode": "LittleEndian",
+         "basepath": "data",
+         "id": "Int32_4320552-c68054f48eda328bd7bb89d5c9c22280"
+      },
+      "size": 4320552
+    },
+  "pointData": {
+    "vtkClass": "vtkDataSetAttributes",
+    "arrays": [
+      { "data": {
+      "vtkClass": "vtkDataArray",
+      "name": "Calcium_Target",
+      "numberOfComponents": 1,
+      "dataType": "Float32Array",
+      "ref": {
+         "encode": "LittleEndian",
+         "basepath": "data",
+         "id": "Float32_50000-65c0fad6ecb70a32c64906d420b3c3a6"
+      },
+      "size": 50000
+    }},
+      { "data": {
+      "vtkClass": "vtkDataArray",
+      "name": "Area",
+      "numberOfComponents": 1,
+      "dataType": "Float32Array",
+      "ref": {
+         "encode": "LittleEndian",
+         "basepath": "data",
+         "id": "Float32_50000-297ac641adabb0cc30dd2611ea75df18"
+      },
+      "size": 50000
+    }},
+      { "data": {
+      "vtkClass": "vtkDataArray",
+      "name": "vtkOriginalPointIds",
+      "numberOfComponents": 1,
+      "dataType": "Int32Array",
+      "ref": {
+         "encode": "LittleEndian",
+         "basepath": "data",
+         "id": "Int32_50000-2c184805042d810c95a6db632034e6b6"
+      },
+      "size": 50000
+    }}
+    ],
+    "activeTCoords": -1,
+    "activeScalars": 0,
+    "activeNormals": -1,
+    "activeGlobalIds": -1,
+    "activeTensors": -1,
+    "activePedigreeIds": -1,
+    "activeVectors": -1
+  },
+  "cellData": {
+    "vtkClass": "vtkDataSetAttributes",
+    "arrays": [
+      { "data": {
+      "vtkClass": "vtkDataArray",
+      "name": "vtkOriginalCellIds",
+      "numberOfComponents": 1,
+      "dataType": "Int32Array",
+      "ref": {
+         "encode": "LittleEndian",
+         "basepath": "data",
+         "id": "Int32_1440184-84ecb8a4a0fb32f61e965df5b82858d5"
+      },
+      "size": 1440184
+    }}
+    ],
+    "activeTCoords": -1,
+    "activeScalars": -1,
+    "activeNormals": -1,
+    "activeGlobalIds": -1,
+    "activeTensors": -1,
+    "activePedigreeIds": -1,
+    "activeVectors": -1
+  }}

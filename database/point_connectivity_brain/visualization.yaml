@@ -19,6 +19,8 @@ images:
   - "images/point_connectivity_brain.png"
   - "images/point_connectivity_brain_lines.png"
 
+scene: "scene/index.json"
+
 resources:
   - name: "brain_sphere_and_lines.py"
     type: "Script"

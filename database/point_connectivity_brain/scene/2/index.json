@@ -1,0 +1,110 @@
+{
+  "vtkClass": "vtkPolyData",
+  "points": {
+      "vtkClass": "vtkPoints",
+      "name": "points",
+      "numberOfComponents": 3,
+      "dataType": "Float32Array",
+      "ref": {
+         "encode": "LittleEndian",
+         "basepath": "data",
+         "id": "Float32_7500000-c7b88b2d38931886aabf09690877144e"
+      },
+      "size": 7500000
+    },
+  "polys": {
+      "vtkClass": "vtkCellArray",
+      "name": "polys",
+      "numberOfComponents": 1,
+      "dataType": "Int32Array",
+      "ref": {
+         "encode": "LittleEndian",
+         "basepath": "data",
+         "id": "Int32_19200000-b84e3ddb16260de57f0455a57101b3e9"
+      },
+      "size": 19200000
+    },
+  "pointData": {
+    "vtkClass": "vtkDataSetAttributes",
+    "arrays": [
+      { "data": {
+      "vtkClass": "vtkDataArray",
+      "name": "Calcium_Target",
+      "numberOfComponents": 1,
+      "dataType": "Float32Array",
+      "ref": {
+         "encode": "LittleEndian",
+         "basepath": "data",
+         "id": "Float32_2500000-84d64e24df88c6a96512b9c937f756b7"
+      },
+      "size": 2500000
+    }},
+      { "data": {
+      "vtkClass": "vtkDataArray",
+      "name": "Area",
+      "numberOfComponents": 1,
+      "dataType": "Float32Array",
+      "ref": {
+         "encode": "LittleEndian",
+         "basepath": "data",
+         "id": "Float32_2500000-2df4cdfa9ec2cf59f89b96d0f3ac69e1"
+      },
+      "size": 2500000
+    }},
+      { "data": {
+      "vtkClass": "vtkDataArray",
+      "name": "Normals",
+      "numberOfComponents": 3,
+      "dataType": "Float32Array",
+      "ref": {
+         "encode": "LittleEndian",
+         "basepath": "data",
+         "id": "Float32_7500000-ad5a5edd6c4ca1f5276ed2d68b22b8a2"
+      },
+      "size": 7500000
+    }},
+      { "data": {
+      "vtkClass": "vtkDataArray",
+      "name": "vtkOriginalPointIds",
+      "numberOfComponents": 1,
+      "dataType": "Int32Array",
+      "ref": {
+         "encode": "LittleEndian",
+         "basepath": "data",
+         "id": "Int32_2500000-24dbfd56ba81a025a4726134710dc59a"
+      },
+      "size": 2500000
+    }}
+    ],
+    "activeTCoords": -1,
+    "activeScalars": 0,
+    "activeNormals": -1,
+    "activeGlobalIds": -1,
+    "activeTensors": -1,
+    "activePedigreeIds": -1,
+    "activeVectors": -1
+  },
+  "cellData": {
+    "vtkClass": "vtkDataSetAttributes",
+    "arrays": [
+      { "data": {
+      "vtkClass": "vtkDataArray",
+      "name": "vtkOriginalCellIds",
+      "numberOfComponents": 1,
+      "dataType": "Int32Array",
+      "ref": {
+         "encode": "LittleEndian",
+         "basepath": "data",
+         "id": "Int32_4800000-9b9ed6cc167990c5d874b2d071cd416d"
+      },
+      "size": 4800000
+    }}
+    ],
+    "activeTCoords": -1,
+    "activeScalars": -1,
+    "activeNormals": -1,
+    "activeGlobalIds": -1,
+    "activeTensors": -1,
+    "activePedigreeIds": -1,
+    "activeVectors": -1
+  }}
