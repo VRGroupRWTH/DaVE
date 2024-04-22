@@ -139,7 +139,13 @@
                 date_begin: "01 Jan 1900",
                 date_end: "01 Feb 1900",
                 tags: [],
-                authors: []
+                authors: [],
+                check_container_docker: false,
+                check_container_singularity: false,
+                check_execution_local: false,
+                check_execution_mpi: false,
+                check_execution_slurm: false,
+                check_other_preview: false
             });
 
             watch([browser_query, browser_sorting, browser_filters], async (old_state, new_state) =>
@@ -159,7 +165,14 @@
                         sorting: browser_sorting.value.type + "_" + browser_sorting.value.direction,
                         filter_date_begin: browser_filters.value.date_begin, 
                         filter_date_end: browser_filters.value.date_end,
-                        filter_tags: browser_filters.value.tags
+                        filter_tags: browser_filters.value.tags,
+                        filter_authors: browser_filters.value.authors,
+                        filter_check_container_docker: browser_filters.value.check_container_docker,
+                        filter_check_container_singularity: browser_filters.value.check_container_singularity,
+                        filter_check_execution_local: browser_filters.value.check_execution_local,
+                        filter_check_execution_mpi: browser_filters.value.check_execution_mpi,
+                        filter_check_execution_slurm: browser_filters.value.check_execution_slurm,
+                        filter_check_other_preview: browser_filters.value.check_other_preview
                     })
                 };
 

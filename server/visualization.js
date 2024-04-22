@@ -216,6 +216,71 @@ export class Visualization
         }
     }
 
+    supports_docker()
+    {
+        for(const template of this.#templates)
+        {
+            if(template.techniques.some(technique => technique == "docker"))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    supports_singularity()
+    {
+        for(const template of this.#templates)
+        {
+            if(template.techniques.some(technique => technique == "singularity"))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    supports_local()
+    {
+        for(const template of this.#templates)
+        {
+            if(template.commands.some(command => command.type == "local"))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    supports_mpi()
+    {
+        for(const template of this.#templates)
+        {
+            if(template.commands.some(command => command.type == "mpi"))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    supports_slurm()
+    {
+        for(const template of this.#templates)
+        {
+            if(template.commands.some(command => command.type == "slurm"))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     get_name()
     {
         return this.#name;

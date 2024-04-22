@@ -55,11 +55,14 @@
 <template>
     <main>
         <div class="home-background-image" style="height: 80vh; min-height: 600px;">
-            <div class="d-flex flex-column align-items-center justify-content-center w-100 h-100" style="padding-top: 50px; padding-bottom: 150px;">
+            <div class="d-flex flex-column align-items-center justify-content-center w-100 h-100" style="padding-top: 50px; padding-bottom: 120px;">
                 <div class="d-flex justify-content-center align-items-center w-100 p-3" style="min-height: 0px; padding-top: 0px !important; padding-bottom: 150px !important;">
                     <img src="/images/logo.svg" style="width: 100%; height: 100%; max-width: 750px">
                 </div>
-                <HomeSearchBar class="container-sm" @on_search_bar_search="on_search_bar_search"></HomeSearchBar>
+                <HomeSearchBar class="container-sm" @on_search_bar_search="on_search_bar_search" style="padding-bottom: 30px;"></HomeSearchBar>
+                <a class="btn btn-primary shadow" href="/browser">
+                    Show all Examples
+                </a>
             </div>
         </div>
         <div class="bg-body-tertiary card-container-padding">

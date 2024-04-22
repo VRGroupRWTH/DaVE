@@ -46,6 +46,13 @@ export class Backend
         let filter_date_begin = null;
         let filter_date_end = null;
         let filter_tags = [];
+        let filter_authors = [];
+        let filter_check_container_docker = false;
+        let filter_check_container_singularity = false;
+        let filter_check_execution_local = false;
+        let filter_check_execution_mpi = false;
+        let filter_check_execution_slurm = false;
+        let filter_check_other_preview = false;
 
         if("sorting" in request.body)
         {
@@ -65,6 +72,41 @@ export class Backend
         if("filter_tags" in request.body)
         {
             filter_tags = Tag.import(request.body.filter_tags);
+        }
+
+        if("filter_authors" in request.body)
+        {
+            filter_authors = request.body.filter_authors;
+        }
+
+        if("filter_check_container_docker" in request.body)
+        {
+            filter_check_container_docker = request.body.filter_check_container_docker;
+        }
+
+        if("filter_check_container_singularity" in request.body)
+        {
+            filter_check_container_singularity = request.body.filter_check_container_singularity;
+        }
+
+        if("filter_check_execution_local" in request.body)
+        {
+            filter_check_execution_local = request.body.filter_check_execution_local;
+        }
+
+        if("filter_check_execution_mpi" in request.body)
+        {
+            filter_check_execution_mpi = request.body.filter_check_execution_mpi;
+        }
+
+        if("filter_check_execution_slurm" in request.body)
+        {
+            filter_check_execution_slurm = request.body.filter_check_execution_slurm;
+        }
+
+        if("filter_check_other_preview" in request.body)
+        {
+            filter_check_other_preview = request.body.filter_check_other_preview;
         }
 
         const visualizations = this.#database.search_visualizations(query, sorting, (visualization) =>
@@ -90,6 +132,62 @@ export class Backend
             for(const filter_tag of filter_tags)
             {
                 if(!visualization.get_tags().some(tag => tag.is_equal(filter_tag)))
+                {
+                    return false;
+                }
+            }
+
+            for(const filter_author of filter_authors)
+            {
+                if(!visualization.get_authors().some(author => author.name == filter_author))
+                {
+                    return false;
+                }
+            }
+
+            if(filter_check_container_docker)
+            {
+                if(!visualization.supports_docker())
+                {
+                    return false;
+                }
+            }
+
+            if(filter_check_container_singularity)
+            {
+                if(!visualization.supports_singularity())
+                {
+                    return false;
+                }
+            }
+
+            if(filter_check_execution_local)
+            {
+                if(!visualization.supports_local())
+                {
+                    return false;
+                }
+            }
+
+            if(filter_check_execution_mpi)
+            {
+                if(!visualization.supports_mpi())
+                {
+                    return false;
+                }
+            }
+
+            if(filter_check_execution_slurm)
+            {
+                if(!visualization.supports_slurm())
+                {
+                    return false;
+                }
+            }
+
+            if(filter_check_other_preview)
+            {
+                if(visualization.get_scene() == null || visualization.get_scene() == "")
                 {
                     return false;
                 }
@@ -157,7 +255,10 @@ export class Backend
 
     async #on_search_author_request(request, response)
     {
+        const query = request.body.query;
 
+        const result = this.#database.search_author(query);
+        response.send(result);
     }
     
     async #on_create_script(request, response)

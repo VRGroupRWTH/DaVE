@@ -40,25 +40,38 @@
                     <label class="form-label" for="browser_filter_container">Container</label>
                     <div id="browser_filter_container">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label" for="defaultCheck1">Docker</label>
+                            <input class="form-check-input" type="checkbox" v-model="browser_filters.check_container_docker" id="browser_filter_container_docker">
+                            <label class="form-check-label" for="browser_filter_container_docker">Docker</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label" for="defaultCheck1">Singularity</label>
+                            <input class="form-check-input" type="checkbox" v-model="browser_filters.check_container_singularity" id="browser_filter_container_singularity">
+                            <label class="form-check-label" for="browser_filter_container_singularity">Singularity</label>
+                        </div>
+                    </div>
+                </li>
+                <li class="mb-2">
+                    <label class="form-label" for="browser_filter_container">Execution</label>
+                    <div id="browser_filter_container">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" v-model="browser_filters.check_execution_local" id="browser_filter_execution_local">
+                            <label class="form-check-label" for="browser_filter_execution_local">Local</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" v-model="browser_filters.check_execution_mpi" id="browser_filter_execution_mpi">
+                            <label class="form-check-label" for="browser_filter_execution_mpi">MPI</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" v-model="browser_filters.check_execution_slurm" id="browser_filter_execution_slurm">
+                            <label class="form-check-label" for="browser_filter_execution_slurm">Slurm</label>
                         </div>
                     </div>
                 </li>
                 <li>
-                    <label class="form-label" for="browser_filter_container">Container</label>
-                    <div id="browser_filter_container">
+                    <label class="form-label" for="browser_filter_other">Other</label>
+                    <div id="browser_filter_other">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label" for="defaultCheck1">Docker</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label" for="defaultCheck1">Singularity</label>
+                            <input class="form-check-input" type="checkbox"  v-model="browser_filters.check_other_preview" id="browser_filter_other_preview">
+                            <label class="form-check-label" for="browser_filter_other_preview">Preview</label>
                         </div>
                     </div>
                 </li>
