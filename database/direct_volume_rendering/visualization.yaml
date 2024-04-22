@@ -1,11 +1,15 @@
 name: "Direct Volume Rendering"
 date: 2023-11-29
 
+authors:
+  - name: "DaVE Team"
+    link: "https://github.com/Jens-Koenen/DaVE"
+
 tags:
   - name: "Scalar"
-    type: "technique"
+    type: "dataset"
   - name: "3D"
-    type: "technique"
+    type: "dataset"
   - name: "Medicine"
     type: "domain"
 

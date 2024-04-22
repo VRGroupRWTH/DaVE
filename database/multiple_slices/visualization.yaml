@@ -1,12 +1,18 @@
 name: "Muliple Slices"
 date: 2023-11-29
 
+authors:
+  - name: "DaVE Team"
+    link: "https://github.com/Jens-Koenen/DaVE"
+
 tags:
   - name: "Scalar"
-    type: "technique"
+    type: "dataset"
   - name: "3D"
-    type: "technique"
+    type: "dataset"
   - name: "Cinema"
+    type: "dataset"
+  - name: "Heatmap"
     type: "technique"
   - name: "Medicine"
     type: "domain"

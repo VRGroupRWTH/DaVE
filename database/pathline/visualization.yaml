@@ -1,12 +1,18 @@
 name: "Pathline"
 date: 2023-11-29
 
+authors:
+  - name: "DaVE Team"
+    link: "https://github.com/Jens-Koenen/DaVE"
+
 tags:
   - name: "Vector"
-    type: "technique"
+    type: "dataset"
   - name: "3D"
-    type: "technique"
+    type: "dataset"
   - name: "Time Dependent"
+    type: "dataset"
+  - name: "Lines"
     type: "technique"
   - name: "Computational Fluid Dynamics"
     type: "domain"

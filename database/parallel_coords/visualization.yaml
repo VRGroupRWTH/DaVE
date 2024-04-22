@@ -1,9 +1,13 @@
 name: "Parallel Coordinates"
 date: 2024-03-13
 
+authors:
+  - name: "DaVE Team"
+    link: "https://github.com/Jens-Koenen/DaVE"
+
 tags:
   - name: "Scalar"
-    type: "technique"
+    type: "dataset"
   - name: "Geology"
     type: "domain"
 

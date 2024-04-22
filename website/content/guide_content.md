@@ -220,7 +220,7 @@ For easier maintainability and extensibility, the provided docker image uses [sp
 Currently, most examples make heavy use of the [ParaView](https://www.paraview.org/) software, which is commonly used for the visualization of scientific datasets. ParaView and its dependencies were installed using spack.
 
 ## Extending DaVE ##
-Changing examples or creating your own in DaVE can be done at varying levels of complexity.
+Changing examples or creating your own in DaVE can be done at varying levels of complexity. Either way an example can be easely created using the [this](/resources/example_template.zip) template.
 
 #### Using Custom Data ####
 

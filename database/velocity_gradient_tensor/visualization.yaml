@@ -1,10 +1,16 @@
 name: "Velocity Gradient Tensor"
 date: 2024-03-27
 
+authors:
+  - name: "DaVE Team"
+    link: "https://github.com/Jens-Koenen/DaVE"
+
 tags:
   - name: "Vector"
-    type: "technique"
+    type: "dataset"
   - name: "Tensor"
+    type: "dataset"
+  - name: "Glyphs"
     type: "technique"
   - name: "Computational Fluid Dynamics"
     type: "domain"

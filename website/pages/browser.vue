@@ -138,7 +138,14 @@
                 date_max: "01 Feb 1900",
                 date_begin: "01 Jan 1900",
                 date_end: "01 Feb 1900",
-                tags: []
+                tags: [],
+                authors: [],
+                check_container_docker: false,
+                check_container_singularity: false,
+                check_execution_local: false,
+                check_execution_mpi: false,
+                check_execution_slurm: false,
+                check_other_preview: false
             });
 
             watch([browser_query, browser_sorting, browser_filters], async (old_state, new_state) =>
@@ -158,7 +165,14 @@
                         sorting: browser_sorting.value.type + "_" + browser_sorting.value.direction,
                         filter_date_begin: browser_filters.value.date_begin, 
                         filter_date_end: browser_filters.value.date_end,
-                        filter_tags: browser_filters.value.tags
+                        filter_tags: browser_filters.value.tags,
+                        filter_authors: browser_filters.value.authors,
+                        filter_check_container_docker: browser_filters.value.check_container_docker,
+                        filter_check_container_singularity: browser_filters.value.check_container_singularity,
+                        filter_check_execution_local: browser_filters.value.check_execution_local,
+                        filter_check_execution_mpi: browser_filters.value.check_execution_mpi,
+                        filter_check_execution_slurm: browser_filters.value.check_execution_slurm,
+                        filter_check_other_preview: browser_filters.value.check_other_preview
                     })
                 };
 
@@ -228,8 +242,8 @@
             <browser-header v-model:browser_query="browser_query" v-model:browser_sorting="browser_sorting"></browser-header>
             <browser-filter class="border-bottom d-lg-none bg-white" v-model:browser_filters="browser_filters"></browser-filter>
     </header>
-    <main>
-        <div class="d-flex bg-body-tertiary">
+    <main class="flex-fill bg-body-tertiary">
+        <div class="d-flex">
             <browser-filter class="sticky-top card m-3 align-self-start flex-shrink-0 d-none d-lg-block" style="width: 300px; top: 82px;" v-model:browser_filters="browser_filters"></browser-filter>
             <div class="flex-fill my-3 me-3 ms-3 ms-lg-0">
                 <div v-if="browser_is_loading" class="d-flex align-items-center justify-content-center" style="height: 300px;">

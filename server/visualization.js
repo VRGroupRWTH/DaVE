@@ -8,6 +8,7 @@ export class Visualization
 {
     #name
     #date
+    #authors
 
     #tags
     #images
@@ -23,6 +24,7 @@ export class Visualization
     {
         this.#name = "";
         this.#date = Date.now();
+        this.#authors = [];
 
         this.#tags = [];
         this.#images = [];
@@ -84,6 +86,7 @@ export class Visualization
 
         this.#name = visualization.name;
         this.#date = visualization.date;
+        this.#authors = [];
         this.#tags = [];
         this.#images = [];
         this.#resources = [];
@@ -91,12 +94,17 @@ export class Visualization
         this.#datasets = [];
         this.#scene = "";
 
-        if("tags" in visualization)
+        if("authors" in visualization && visualization.authors != null)
+        {
+            this.#authors = visualization.authors;
+        }
+
+        if("tags" in visualization && visualization.tags != null)
         {
             this.#tags = Tag.import(visualization.tags);
         }
 
-        if("images" in visualization)
+        if("images" in visualization && visualization.images != null)
         {
             this.#images = visualization.images;
 
@@ -106,7 +114,7 @@ export class Visualization
             }
         }
 
-        if("resources" in visualization)
+        if("resources" in visualization && visualization.resources != null)
         {
             this.#resources = visualization.resources;
 
@@ -119,7 +127,7 @@ export class Visualization
             }
         }
 
-        if("templates" in visualization)
+        if("templates" in visualization && visualization.templates != null)
         {
             this.#templates = visualization.templates;
 
@@ -135,7 +143,7 @@ export class Visualization
             }
         }
 
-        if("datasets" in visualization)
+        if("datasets" in visualization && visualization.datasets != null)
         {
             this.#datasets = visualization.datasets;
 
@@ -197,6 +205,7 @@ export class Visualization
         return {
             name: this.#name,
             date: this.#date,
+            authors: this.#authors,
             tags: Tag.export(this.#tags),
             images: this.#images,
             resources: this.#resources,
@@ -207,6 +216,71 @@ export class Visualization
         }
     }
 
+    supports_docker()
+    {
+        for(const template of this.#templates)
+        {
+            if(template.techniques.some(technique => technique == "docker"))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    supports_singularity()
+    {
+        for(const template of this.#templates)
+        {
+            if(template.techniques.some(technique => technique == "singularity"))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    supports_local()
+    {
+        for(const template of this.#templates)
+        {
+            if(template.commands.some(command => command.type == "local"))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    supports_mpi()
+    {
+        for(const template of this.#templates)
+        {
+            if(template.commands.some(command => command.type == "mpi"))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    supports_slurm()
+    {
+        for(const template of this.#templates)
+        {
+            if(template.commands.some(command => command.type == "slurm"))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     get_name()
     {
         return this.#name;
@@ -215,6 +289,11 @@ export class Visualization
     get_date()
     {
         return this.#date;
+    }
+
+    get_authors()
+    {
+        return this.#authors;
     }
 
     get_tags()

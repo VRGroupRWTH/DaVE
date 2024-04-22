@@ -1,13 +1,20 @@
 name: "Line-Integral Convolution (LIC) of a Jet Flow"
 date: 2023-02-01
 
+authors:
+  - name: "DaVE Team"
+    link: "https://github.com/Jens-Koenen/DaVE"
+
 tags:
   - name: "Vector"
-    type: "technique"
+    type: "dataset"
   - name: "2D"
-    type: "technique"
+    type: "dataset"
   - name: "3D"
+    type: "dataset"
+  - name: "Line-Integral Convolution"
     type: "technique"
+    abbreviation: "LIC"
   - name: "Computational Fluid Dynamics"
     type: "domain"
     abbreviation: "CFD"

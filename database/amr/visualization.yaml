@@ -1,10 +1,16 @@
 name: "Adaptive Mesh Refinement"
 date: 2024-03-27
 
+authors:
+  - name: "DaVE Team"
+    link: "https://github.com/Jens-Koenen/DaVE"
+
 tags:
   - name: "2D"
-    type: "technique"
+    type: "dataset"
   - name: "3D"
+    type: "dataset"
+  - name: "Heatmap"
     type: "technique"
   - name: "Computational Fluid Dynamics"
     type: "domain"

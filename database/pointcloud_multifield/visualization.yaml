@@ -1,16 +1,20 @@
 name: "Point Cloud Multifield"
 date: 2023-02-01
 
+authors:
+  - name: "DaVE Team"
+    link: "https://github.com/Jens-Koenen/DaVE"
+
 tags:
   - name: "Vector"
-    type: "technique"
+    type: "dataset"
   - name: "Scalar"
-    type: "technique"
+    type: "dataset"
   - name: "Multivariate"
-    type: "technique"
-  - name: "2D"
-    type: "technique"
+    type: "dataset"
   - name: "3D"
+    type: "dataset"
+  - name: "Glyphs"
     type: "technique"
   - name: "Computational Fluid Dynamics"
     type: "domain"

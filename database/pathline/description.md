@@ -12,9 +12,9 @@ The computation of pathlines makes only sense if the given dataset is time-depen
 Otherwise they are identical to steamlines.-->
 
 In this example, path lines are demonstrated using a time dependent two-dimensional dataset that models a changing vector field [1](#reference_dataset).
-For the visualization, some seed points are placed on the left side of the dataset which define the starting points of the path.
-Over time, the path mostly grow to the right as the general direction within the dataset points to the right.
-In case the hypothetical particle runs into the more turbulent areas at the edge pf the vector field, the path will also from loops.
+For the visualization, some seed points are placed on the left side of the dataset and define the starting points of the paths.
+Over time, the paths mostly grow to the right as the general direction within the dataset points to the right.
+In case the hypothetical particle runs into the more turbulent areas at the edge of the vector field, the path will also from loops.
 To make the different paths more distinguishable, each is colored using a different color.
 This also highlights a potential disadvantage of this visualization approach, as with increasing number of paths, the resulting image becomes more visually cluttered.
 As a result, it is sometimes difficult to make out the path that a particular particle has taken.

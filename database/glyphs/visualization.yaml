@@ -1,12 +1,18 @@
-name: "Glyphs"
+name: "Vector Glyphs"
 date: 2023-11-29
+
+authors:
+  - name: "DaVE Team"
+    link: "https://github.com/Jens-Koenen/DaVE"
 
 tags:
   - name: "Vector"
-    type: "technique"
+    type: "dataset"
   - name: "2D"
-    type: "technique"
+    type: "dataset"
   - name: "3D"
+    type: "dataset"
+  - name: "Glyphs"
     type: "technique"
   - name: "Computational Fluid Dynamics"
     type: "domain"

@@ -106,7 +106,8 @@
                 <ul class="list-unstyled border rounded overflow-y-scroll" style="height: 150px;">
                     <li v-for="tag of browser_tag_suggestions">
                         <div class="dropdown-item d-flex align-items-center" @click="on_browser_tag_suggestion_select(tag)">
-                            <div v-if="tag.type == 'technique'" class="border rounded bg-primary-subtle border-primary-subtle me-2" style="width: 16px; height: 16px"></div>
+                            <div v-if="tag.type == 'dataset'" class="border rounded bg-primary-subtle border-primary-subtle me-2" style="width: 16px; height: 16px"></div>
+                            <div v-if="tag.type == 'technique'" class="border rounded bg-danger-subtle border-danger-subtle me-2" style="width: 16px; height: 16px"></div>
                             <div v-if="tag.type == 'domain'" class="border rounded bg-success-subtle border-success-subtle me-2" style="width: 16px; height: 16px"></div>
                             <span>{{ tag.name }}</span>
                         </div>

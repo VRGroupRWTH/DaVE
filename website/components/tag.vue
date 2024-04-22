@@ -4,6 +4,7 @@
 
     const tag_types = 
     [
+        "dataset",
         "technique",
         "domain"
     ];
@@ -56,8 +57,11 @@
 
                 switch(props.tag.type)
                 {
-                case "technique":
+                case "dataset":
                     class_list = "text-primary-emphasis bg-primary-subtle border-primary-subtle";
+                    break;
+                case "technique":
+                    class_list = "text-danger-emphasis bg-danger-subtle border-danger-subtle";
                     break;
                 case "domain":
                     class_list = "text-success-emphasis bg-success-subtle border-success-subtle";
@@ -72,8 +76,11 @@
                     {
                         switch(props.tag.type)
                         {
+                        case "dataset":
+                            class_list += " tag-highlight-dataset";
+                            break;
                         case "technique":
-                            class_list += " tag-highlight-technique";
+                            class_list += " tag-highlight-technique"
                             break;
                         case "domain":
                             class_list += " tag-highlight-domain";

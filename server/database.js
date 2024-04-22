@@ -220,6 +220,49 @@ export class Database
         return results;
     }
 
+    search_author(query)
+    {
+        let candidates = [];
+
+        for(const visualization of this.#visualizations)
+        {
+            for(const author of visualization.get_authors())
+            {
+                const candidate = 
+                {
+                    name: author.name,
+                    score: this.#search_score(query, author.name)
+                };
+
+                candidates.push(candidate);
+            }
+        }
+
+        let sorting = Sorting.select(query, "relevance_descending");
+
+        candidates.sort((candidate1, candidate2) =>
+        {
+            return sorting(candidate1, candidate2);
+        });
+
+        let results = [];
+
+        for(const candidate of candidates)
+        {
+            if(candidate.score < DATABASE_SEARCH_THRESHOLD)
+            {
+                continue;
+            }
+
+            if(!results.includes(candidate.name))
+            {
+                results.push(candidate.name);
+            }
+        }
+
+        return results;
+    }
+
     #search_candidate(object, query, query_property, output_properties)
     {
         const exported = object.export();

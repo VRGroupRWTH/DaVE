@@ -34,10 +34,10 @@
             <outline :target="content" depth_max="1"></outline>
         </shared-header>
     </header>
-    <main>
+    <main class="flex-fill">
         <div class="container d-flex">
             <div ref="content" class="guide-content me-lg-4 flex-fill" style="min-width: 0px;">
-                <h1 class="display-2 ps-2 py-5 mb-4 fw-semibold">Guide</h1>
+                <h1 class="display-1 ps-2 py-5 mb-4 fw-semibold">Guide</h1>
                 <OutlineContainer>
                     <GuideContent></GuideContent>
                 </OutlineContainer>
@@ -50,7 +50,7 @@
             </div>
         </div>
     </main>
-    <footer class="bg-body-tertiary">
-        <shared-footer class="container mt-4"></shared-footer>
+    <footer class="bg-body-tertiary mt-4">
+        <shared-footer class="container"></shared-footer>
     </footer>
 </template>
