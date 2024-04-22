@@ -24,15 +24,16 @@ To make the search function of DaVE more specific, every technique in the databa
 
 <div class="d-flex justify-content-center">
     <figure class="figure">
-        <img class="figure-img img-flud" src="/images/dave_guide_tags.svg" style="width: 100%; max-width: 400px;">
-        <figcaption class="figure-caption">Tags used by DaVE to further describe visualizations.</figcaption>
+        <img class="figure-img img-flud" src="/images/dave_guide_tags.svg" style="width: 100%; max-width: 800px;">
+        <figcaption class="figure-caption text-center">Tags used by DaVE to further describe visualizations.</figcaption>
     </figure>
 </div>
 
-For example, a technique with the tag `Scalar` would be suitable for datasets consisting of real-valued samples, e.g. a dataset describing the temperature within a room.
-The tags that are used throughout the database are divided into two groups.
-Blue tags are used to identify **technical properties** such as the domain for which a visualization can be used or whether the technique can be used for time-dependent datasets.
-On the other hand, green tags are used to identify the **scientific domain** for which a technique is particularly suitable or where the data of the example visualization came from.
+For example, a technique with the tag *Scalar* would be suitable for datasets consisting of real-valued samples, e.g. a dataset describing the temperature within a room.
+The tags that are used throughout the database are divided into three groups.
+Blue tags are used to identify **dataset properties** such as if the visualization is commonly used with three-dimensional dataset, scalar dataset or if the technique can be used for time-dependent datasets.
+Red tags are used to identify **technique properies** such as if the technique uses lines or glyphs to illustrate the dataset.
+Green tags are used to identify the **scientific domain** for which a technique is particularly suitable or where the data of the example visualization came from.
 
 #### Executing Examples ####
 In order to execute each of the examples yourself, DaVE provides instructions for this purpose with example specific descriptions of optional changes if you wish to customize it.
@@ -47,8 +48,8 @@ When running the script, it loads a docker container, depending on the configura
 
 <div class="d-flex justify-content-center">
     <figure class="figure">
-        <img class="figure-img img-flud" src="/images/dave_guide_template.svg"style="width: 100%; max-width: 400px;">
-        <figcaption class="figure-caption">Tags used by DaVE to further describe visualizations.</figcaption>
+        <img class="figure-img img-flud" src="/images/dave_guide_template.svg" style="width: 100%; max-width: 400px;">
+        <figcaption class="figure-caption text-center">Pipeline used by a template.</figcaption>
     </figure>
 </div>
 
