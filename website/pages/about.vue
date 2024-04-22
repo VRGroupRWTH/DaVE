@@ -34,7 +34,7 @@
             <Outline :target="content" depth_max="1"></Outline>
         </GlobalHeader>
     </header>
-    <main>
+    <main class="flex-fill">
         <div class="container d-flex">
             <div ref="content" class="about-content me-lg-4 flex-fill" style="min-width: 0px;">
                 <h1 class="display-1 ps-2 py-5 mb-4 fw-semibold">About</h1>
@@ -50,7 +50,7 @@
             </div>
         </div>
     </main>
-    <footer class="bg-body-tertiary">
-        <GlobalFooter class="container mt-4"></GlobalFooter>
+    <footer class="bg-body-tertiary mt-4">
+        <GlobalFooter class="container"></GlobalFooter>
     </footer>
 </template>

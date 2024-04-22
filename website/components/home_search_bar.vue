@@ -157,7 +157,7 @@
                 <div class="d-flex" style="height: 28px">                     
                     <img src="../assets/icons/search.svg" width="16px" class="ms-1 me-2">
                     <Tag v-for="tag of tags" :tag="tag" class="me-1" @on_tag_click="on_search_bar_tag_remove"></Tag>
-                    <input class="flex-fill" style="border: none; outline: none;" size="1" v-model="query" type="text" placeholder="Example" @keydown.delete="on_search_bar_query_delete" @keydown.enter="on_search_bar_search_internal" @keydown.escape="on_search_bar_query_escape">
+                    <input class="flex-fill" style="border: none; outline: none;" size="1" v-model="query" type="text" placeholder="Describe your data" @keydown.delete="on_search_bar_query_delete" @keydown.enter="on_search_bar_search_internal" @keydown.escape="on_search_bar_query_escape">
                 </div>
             </div>
             <ul :class="'dropdown-menu shadow position-absolute top-100 w-100 ' + search_dropdown_class" style="inset: 0px 0px auto 0px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-top-width: 0px; border-color: color-mix(in srgb, var(--bs-border-color-translucent) 85%, var(--bs-black));">

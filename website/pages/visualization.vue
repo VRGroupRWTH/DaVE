@@ -93,7 +93,7 @@
             <outline :target="content" depth_max="1"></outline>
         </shared-header>
     </header>
-    <main>
+    <main class="flex-fill">
         <div class="container d-flex">
             <div ref="content" class="me-lg-4 flex-fill" style="min-width: 0px;">
                 <visualization-images :visualization="visualization" class="mt-4 mb-2 w-100" style="height: 350px"></visualization-images>
@@ -133,7 +133,7 @@
             </div>
         </div>
     </main>
-    <footer class="bg-body-tertiary">
-        <shared-footer class="container mt-4"></shared-footer>
+    <footer class="bg-body-tertiary mt-4">
+        <shared-footer class="container"></shared-footer>
     </footer>
 </template>
