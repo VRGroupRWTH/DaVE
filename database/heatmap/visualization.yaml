@@ -19,6 +19,8 @@ tags:
 
 images:
   - "images/heatmap.png"
+  - "images/heatmap_core.png"
+  - "images/heatmap_slice.png"
 
 scene: "scene/index.json"
 

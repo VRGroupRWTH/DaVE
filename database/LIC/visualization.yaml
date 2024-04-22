@@ -23,6 +23,7 @@ tags:
 
 images:
   - "images/lic.png"
+  - "images/lic_slice.png"
 
 resources:
   - name: "lic_trace.py"
