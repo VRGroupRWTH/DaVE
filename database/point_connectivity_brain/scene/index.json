@@ -1,9 +1,9 @@
 {
   "version": 1.0,
   "background": [
-    0.32,
-    0.34,
-    0.43
+    1.0,
+    1.0,
+    1.0
   ],
   "camera": {
     "focalPoint": [
