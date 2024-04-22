@@ -30,5 +30,23 @@ resources:
     path: "resources/brainData_all.vtk"
 
 templates:
+  - techniques:
+      - "docker"
+      - "singularity"
+    commands:
+      - type: "local"
+        run: "pvbatch brain_sphere_and_lines.py"
+      - type: "mpi"
+        run: "pvbatch brain_sphere_and_lines.py"
+      - type: "slurm"
+        run: "pvbatch brain_sphere_and_lines.py"
+    trace: "resources/brain_sphere_and_lines.py"
+    script: "resources/point_connectivity_brain_script.sh"
+    container:
+      url: "ghcr.io/scivislab/paraview:5.11.1"
 
 datasets:
+  - name: "brain connectivity data"
+    identifier: "DATASET_BRAIN"
+    description: ""
+    path: "resources/brainData_all.vtk"
