@@ -1,9 +1,6 @@
-FROM node:alpine
+FROM node:20.10
+COPY . /app
 
-RUN apk update && \
-    apk upgrade && \
-    apk add git
-
-RUN npm update -g npm
-
-EXPOSE 8080
+WORKDIR /app
+RUN npm install
+CMD npm run prod
