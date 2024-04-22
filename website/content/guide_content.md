@@ -296,9 +296,9 @@ Contributing a derived visualization to DaVE's repository is similarly to [using
 
 #### Changing the Containerized Environment ####
 If you find that you need an additional package not available in the provided container image, you can check whether this package is available in spack.
-If so, you can add it to the build configuration in the Dockerfile provided with each example. Then build the docker container. For errors during the build process consult the [spack documentation](https://spack.readthedocs.io/en/latest/).
+If so, you can add it to the build configuration in the Dockerfile provided with each example. Then build the docker container. For errors during the build process consult the [spack documentation](https://spack.readthedocs.io/en/latest/). In the example below, the ffmpeg package is added to the spack configuration.
 
-```Dockerfile
+```diff
 [...]
 
 # What we want to install and how we want to install it
@@ -306,7 +306,8 @@ If so, you can add it to the build configuration in the Dockerfile provided with
 RUN mkdir /opt/spack-environment \
 &&  (echo spack: \
 &&   echo '  # add package specs to the `specs` list' \
-&&   echo '  specs: [paraview+mpi+osmesa+python~qt ^mesa+osmesa+llvm ^llvm~clang~lld~gold ^openmpi+legacylaunchers+pmi+thread_multiple fabrics=ucx schedulers=slurm]' \
+-&&   echo '  specs: [paraview+mpi+osmesa+python~qt ^mesa+osmesa+llvm ^llvm~clang~lld~gold ^openmpi+legacylaunchers+pmi+thread_multiple fabrics=ucx schedulers=slurm]' \
++&&   echo '  specs: [ffmpeg, paraview+mpi+osmesa+python~qt ^mesa+osmesa+llvm ^llvm~clang~lld~gold ^openmpi+legacylaunchers+pmi+thread_multiple fabrics=ucx schedulers=slurm]' \
 &&   echo '  view: /opt/views/view' \
 &&   echo '  concretizer:' \
 &&   echo '    unify: true' \
@@ -316,7 +317,7 @@ RUN mkdir /opt/spack-environment \
 [...]
 ```
 
-and then build the container with 
+After the desired changes build the container with 
 
 ```
 docker buildx build -t <your/container/name> -f Dockerfile --target build .

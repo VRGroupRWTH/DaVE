@@ -12,6 +12,7 @@ tags:
 
 images:
   - "images/amr.png"
+  - "images/amr2.png"
 
 resources:
   - name: "amr_trace.py"
