@@ -5,7 +5,7 @@ Over time the salt dissolves into the water and forms regions with high salt con
 Along with a field describing the salt concentration distribution within the cylinder, the dataset stores a velocity field that describes the water movement inside the container.
 The example shows the concentration filed using glyphs shaped like spheres where the velocity of the water is illustrated by arrow glyphs.
 To get a better understanding of the speed with which the water moves, the length of the arrows as well as their color are changed depending on the magnitude of the velocity field.
-Wit increasing velocity magnitude the arrows get longer and the color of the arrows turns form dark red to yellow.
+With increasing velocity magnitude the arrows get longer and the color of the arrows turns form dark red to yellow.
 Similarly, the spheres are scaled and colored based on the concentration field.
 As the concentration increases the spheres become larger, and their color turns from bright green to blue.
 
