@@ -1,0 +1,116 @@
+{
+  "version": 1.0,
+  "background": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "camera": {
+    "focalPoint": [
+      14.4514,
+      15.7869,
+      17.9706
+    ],
+    "position": [
+      -62.2737,
+      84.3259,
+      -70.0898
+    ],
+    "viewUp": [
+      0.310319,
+      0.862097,
+      0.400612
+    ]
+  },
+  "centerOfRotation": [
+    14.4514,
+    15.7869,
+    17.9706
+  ],
+  "scene": [
+    {
+      "name": "TensorGlyph1",
+      "type": "vtkHttpDataSetReader",
+      "vtkHttpDataSetReader": {
+        "url": "1"
+      },
+      "actor": {
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actorRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "mapper": {
+        "colorByArrayName": "MaxEigenvalue",
+        "colorMode": 1,
+        "scalarMode": 3
+      },
+      "property": {
+        "representation": 2,
+        "edgeVisibility": 0,
+        "diffuseColor": [
+          1,
+          1,
+          1
+        ],
+        "pointSize": 2,
+        "opacity": 1
+      }
+    }
+  ],
+  "lookupTables": {
+    "MaxEigenvalue": {
+      "clamping": true,
+      "colorSpace": 3,
+      "hSVWrap": false,
+      "alpha": 1,
+      "vectorComponent": 0,
+      "vectorSize": -1,
+      "vectorMode": 0,
+      "indexedLookup": 0,
+      "nodes": [
+        [
+          -1.97318,
+          0.231373,
+          0.298039,
+          0.752941,
+          0.5,
+          0
+        ],
+        [
+          0.0134119,
+          0.865003,
+          0.865003,
+          0.865003,
+          0.5,
+          0
+        ],
+        [
+          2,
+          0.705882,
+          0.0156863,
+          0.14902,
+          0.5,
+          0
+        ]
+      ]
+    }
+  }
+}

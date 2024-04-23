@@ -1,0 +1,36 @@
+name: "Stress Tensor Glyphs of Molecular Dynamics"
+date: 2023-11-29
+
+authors:
+  - name: "DaVE Team"
+    link: "https://github.com/Jens-Koenen/DaVE"
+
+tags:
+  - name: "Tensor"
+    type: "dataset"
+  - name: "3D"
+    type: "dataset"
+  - name: "Glyphs"
+    type: "technique"
+  - name: "Material Modelling"
+    type: "domain"
+
+images:
+  - "images/tensor_glyphs.png"
+  - "images/tensor_glyphs_close.png"
+
+scene: "scene/index.json"
+
+resources:
+  - name: "tensor_glyphs_trace.py"
+    type: "Script"
+    date: 2024-04-23
+    path: "resources/tensor_glyphs_trace.py"
+  - name: "atoms.vtk"
+    type: "Dataset"
+    date: 2024-04-23
+    path: "resources/atoms.vti"
+  - name: "lammps2vtk.m"
+    type: "MATLAB Script"
+    date: 2024-04-23
+    path: "resources/lammps2vtk.m"
