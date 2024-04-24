@@ -34,3 +34,25 @@ resources:
     type: "MATLAB Script"
     date: 2024-04-23
     path: "resources/lammps2vtk.m"
+
+templates:
+  - techniques:
+      - "docker"
+      - "singularity"
+    commands:
+      - type: "local"
+        run: "pvbatch tensor_glyphs_trace.py"
+      - type: "mpi"
+        run: "pvbatch tensor_glyphs_trace.py"
+      - type: "slurm"
+        run: "pvbatch tensor_glyphs_trace.py"
+    trace: "resources/tensor_glyphs_trace.py"
+    script: "resources/tensor_glyphs_script.sh"
+    container:
+      url: "ghcr.io/scivislab/paraview:5.11.1"
+
+datasets:
+  - name: "Stress Tensor Image File"
+    identifier: "DATASET_TENSOR"
+    description: "The volumetric dataset for which the image should be created"
+    path: "resources/atoms.vtk"

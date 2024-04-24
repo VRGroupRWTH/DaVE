@@ -16,13 +16,13 @@ The example was created using standard parameters within the LAMMPS Molecular Dy
 The data within the simulation's dump file is converted to vtk using the `lammps2vtk.m` file provided in the resources.
 The symmetric stress tensor is decomposed into the orthogonal eigenvector basis and corresponding eigenvalues and mapped onto shape and rotation of an ellipsoid glyph.
 The color additionally encodes the maximum eigenvalue of the tensor.
-Alternative tensor glyph representations are also available but are not included in ParaView ([2](#superquadric), [3](#general)).
+Alternative tensor glyph representations are also available but are not included in ParaView ([2](#superquadrics), [3](#general)).
 
 ### Limitations ###
 The `lammps2vtk.m` file currently assumes position and tensor files to be written into the specific dump file with certain conventions, e.g., the 6 components of the symmetric tensor instead of all 9 components defined by the 3 x 3 matrix.
 
 ### References ###
-1. [<span id="lammps">A. P. Thompson et al., 2022,"LAMMPS - a flexible simulation tool for particle-based materials modeling at the atomic, meso, and continuum scales", Computer Physics Communications, doi: https://doi.org/10.1016/j.cpc.2021.108171</span>(https://doi.org/10.1016/j.cpc.2021.108171)
+1. [<span id="lammps">A. P. Thompson et al., 2022,"LAMMPS - a flexible simulation tool for particle-based materials modeling at the atomic, meso, and continuum scales", Computer Physics Communications, doi: https://doi.org/10.1016/j.cpc.2021.108171</span>](https://doi.org/10.1016/j.cpc.2021.108171)
 
 2. [<span id="superquadrics">Gordon Kindlmann, 2004, "Superquadric Tensor Glyphs", The Eurographics Association, doi: https://diglib.eg.org/handle/10.2312/VisSym.VisSym04.147-154</span>](https://diglib.eg.org/handle/10.2312/VisSym.VisSym04.147-154)
 
