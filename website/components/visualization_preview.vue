@@ -8,6 +8,7 @@
     import vtkFullScreenRenderWindow from "@kitware/vtk.js/Rendering/Misc/FullScreenRenderWindow";
     import vtkRenderer from "@kitware/vtk.js/Rendering/Core/Renderer";
     import vtkHttpSceneLoader from "@kitware/vtk.js/IO/Core/HttpSceneLoader";
+    import vtkScalarBarActor from '@kitware/vtk.js/Rendering/Core/ScalarBarActor';
     
     export default
     {
@@ -91,6 +92,92 @@
                         container: visualization_preview_container.value,
                         rootContainer: visualization_preview_modal.value
                     });
+
+                    for(const actor of visualization_preview_renderer.value.getActors())
+                    {
+                        const mapper = actor.getMapper();
+
+                        if(mapper.getColorByArrayName() == "")
+                        {
+                            continue;
+                        }
+
+                        const axis_style = 
+                        {
+                            fontColor: "black",
+                            fontFamily: "Segoe UI",
+                            fontSize: "16",
+                            fontStyle: "600"
+                        };
+
+                        const tick_style = 
+                        {
+                            fontColor: "black",
+                            fontFamily: "Segoe UI",
+                            fontSize: "16",
+                            fontStyle: "500"
+                        };
+
+                        const bar_layout = (helper) =>
+                        {
+                            // we don't do a linear scale, the proportions for
+                            // a 700 pixel window differ from a 1400
+                            const lastSize = helper.getLastSize();
+                            const yAxisAdjust = (lastSize[1] / 700) ** 0.8;
+                            const tickTextStyle = helper.getTickTextStyle();
+
+                            // rebuild the text atlas
+                            const textSizes = helper.updateTextureAtlas();
+
+                            // now compute the boxSize and pixel offsets, different algorithm
+                            // for horizonal versus vertical
+                            helper.setTopTitle(false);
+
+                            const boxSize = helper.getBoxSizeByReference();
+
+                            // if vertical
+                            if (helper.getLastAspectRatio() > 1.0)
+                            {
+                                helper.setAxisTitlePixelOffset(0.2 * tickTextStyle.fontSize);
+                                helper.setTickLabelPixelOffset(0.3 * tickTextStyle.fontSize);
+                                
+                                boxSize[0] = (2.0 * (textSizes.titleHeight + helper.getAxisTitlePixelOffset() + textSizes.tickWidth + helper.getTickLabelPixelOffset() + 0.8 * tickTextStyle.fontSize)) / lastSize[0];
+                                helper.setBoxPosition([0.99 - boxSize[0], -0.875/*-0.92*/]);
+
+                                boxSize[1] = 1.75;//Math.max(1.2, Math.min(1.84 / yAxisAdjust, 1.84));
+                            }
+                            
+                            else
+                            {
+                                // horizontal
+                                helper.setAxisTitlePixelOffset(1.2 * tickTextStyle.fontSize);
+                                helper.setTickLabelPixelOffset(0.1 * tickTextStyle.fontSize);
+
+                                // total offset from top of bar (includes ticks)
+                                const titleHeight = (2.0 * (0.8 * tickTextStyle.fontSize + textSizes.titleHeight + helper.getAxisTitlePixelOffset())) / lastSize[1];
+                                const tickWidth = (2.0 * textSizes.tickWidth) / lastSize[0];
+                                boxSize[0] = Math.min(1.9, Math.max(1.4, 1.4 * tickWidth * (helper.getTicks().length + 3)));
+                                boxSize[1] = titleHeight;
+                                helper.setBoxPosition([-0.5 * boxSize[0], -0.97]);
+                            }
+
+                            // recomute bar segments based on positioning
+                            helper.recomputeBarSegments(textSizes);
+                        };
+
+                        let bar = vtkScalarBarActor.newInstance();
+                        bar.setScalarsToColors(mapper.getLookupTable());
+                        bar.setAxisLabel(mapper.getColorByArrayName());
+                        bar.setAxisTextStyle(axis_style);
+                        bar.setTickTextStyle(tick_style);
+                        bar.setDrawNanAnnotation(false);
+                        bar.setAutoLayout(bar_layout);
+                        bar.setVisibility(true);
+
+                        visualization_preview_renderer.value.addActor(bar);
+
+                        break;
+                    }
 
                     visualization_preview_renderer.value.resetCamera();
 
