@@ -127,6 +127,21 @@
                             </div>
                         </button>
                     </div>
+                    <h5 class="mb-2">Repository</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="/anonymity" class="d-flex align-items-end text-body" style="text-decoration: none;">
+                                <img src="/assets/icons/caret_right_fill.svg" width="20px">
+                                <span class="ms-1">Create a suggestion</span>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="/anonymity" class="d-flex align-items-end text-body" style="text-decoration: none;">
+                                <img src="/assets/icons/caret_right_fill.svg" width="20px">
+                                <span class="ms-1">Show in repository</span>
+                            </a>
+                        </li>
+                    </ul>
                     <h5 class="mb-2">On this page</h5>
                     <outline :target="content" depth_max="1"></outline>
                 </div>

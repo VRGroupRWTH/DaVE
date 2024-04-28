@@ -162,7 +162,7 @@
             </div>
             <ul :class="'dropdown-menu shadow position-absolute top-100 w-100 ' + search_dropdown_class" style="inset: 0px 0px auto 0px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-top-width: 0px; border-color: color-mix(in srgb, var(--bs-border-color-translucent) 85%, var(--bs-black));">
                 <li v-for="query of query_suggestions">
-                    <button class="dropdown-item" type="button" @click="on_search_bar_query_suggestion_select(query)"> 
+                    <button class="dropdown-item text-truncate" type="button" @click="on_search_bar_query_suggestion_select(query)"> 
                         {{query}} 
                     </button>
                 </li>
