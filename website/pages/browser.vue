@@ -185,7 +185,8 @@
                     {
                         name: visualization.name,
                         tags: visualization.tags,
-                        images: visualization.images
+                        images: visualization.images,
+                        has_preview: (visualization.scene != null && visualization.scene != "")
                     };
 
                     browser_items.value.push(browser_item);

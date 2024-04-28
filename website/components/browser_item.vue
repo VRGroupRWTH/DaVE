@@ -67,7 +67,10 @@
 
 <template>
     <div class="card h-100" style="cursor: pointer;" @click="on_browser_item_click_internal">
-        <img :src="browser_item.images[0]" class="card-img-top p-3 pb-0" style="height: 200px; object-fit: contain;">
+        <div style="position: relative; height: 200px;">
+            <img v-if="browser_item.has_preview" src="/assets/icons/box.svg" style="background-color: white; position: absolute; top: 14px; right: 14px;">
+            <img :src="browser_item.images[0]" class="card-img-top p-3 pb-0 h-100" style="object-fit: contain;">
+        </div>
         <div class="card-body">
             <h5 class="card-title">{{ browser_item.name }}</h5>
             <div class="d-flex flex-wrap" style="margin: -0.125rem">
