@@ -3,7 +3,7 @@ Streamlines are commonly used for the visualization of steady flows or the visua
 They are quite similar to pathlines in that they also use lines to visualize a vector field, but there is a distinct difference between those techniques.
 In comparison to path lines, streamlines visualize a vector field for an isolated point in time and therefore allow for a more direct insight into how the vector field changes over time.
 From a technical point of view, streamlines are computed similarly to pathlines only that they use the same vector field for each time step of the integration process with which the paths of the hypothetical points are calculated.
-More information on the definition of the lines and pathlines in general can be found in the <a href="/visualization?name=Pathline">Pathline</a> example.
+More information on the definition of the lines and pathlines in general can be found in the <a href="/visualization?name=Pathlines of Fluid Flow">Pathline</a> example.
 
 In this example a mechanical simulation of a jet engine's exhaust flow is illustrated using streamlines.
 The dataset created by the simulation contains the velocity for an isolated point in time [1](#reference_dataset).

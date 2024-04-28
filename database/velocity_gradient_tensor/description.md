@@ -4,7 +4,7 @@ Due to that they are mostly visualized by deriving certain properties from them 
 Second order tensors describing a mapping from vector to vector on the other hand are often visualized by showing their effect on three-dimensional objects.
 The linear mapping that this class of tensors describes can be interpreted as a geometrical transformation that can be used to modify the shape of an object.
 Applying such a tensor, for example, to a unit sphere creates an ellipsoid whose shape makes certain properties of the tensor, such as the eigenvectors and eigenvalues, visible.
-The resulting visualization is similar to a glyph based visualization as demonstrated in the <a href="/visualization?name=Glyphs">Glyphs</a> example.
+The resulting visualization is similar to a glyph based visualization as demonstrated in <a href="/visualization?name=Vector Glyphs of Fluid Flow">this</a> example.
 
 Based on a dataset coming from a mechanical simulation, this example visualizes a given tensor field by showing the affect of the tensors on unit spheres.
 The example derives the tensor field form a dataset that captures the exhaust flow of a running jet engine [1](#reference_dataset).

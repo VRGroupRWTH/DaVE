@@ -5,7 +5,7 @@ Areas of high velocity, such as the center of the exhaust flow, are colored in y
 The resulting image shows that the exhaust stream starts on the left side and slowly decays towards the right.
 With increasing distance to the jet engine, the stream gets slower and becomes turbulent.
 
-For more information on Line-Integral Convolution in general, see the <a href="/visualization?name=Line-Integral Convolution (LIC)">Line-Integral Convolution (LIC)</a> example.
+For more information on Line-Integral Convolution in general, see the <a href="/visualization?name=Line-Integral Convolution (LIC) of Earth Mantel Convection">this</a> example.
 
 ### Instructions ###
 The file archive that is provided for this example contains the script file `lic_jet_script.sh` that when executed visualized a dataset using line-integral convolution.
