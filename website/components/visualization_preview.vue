@@ -120,48 +120,82 @@
 
                         const bar_layout = (helper) =>
                         {
-                            // we don't do a linear scale, the proportions for
-                            // a 700 pixel window differ from a 1400
+                            const textSizes = helper.updateTextureAtlas();                      
                             const lastSize = helper.getLastSize();
-                            const yAxisAdjust = (lastSize[1] / 700) ** 0.8;
-                            const tickTextStyle = helper.getTickTextStyle();
+                            const container_width = lastSize[0];
+                            const container_height = lastSize[1];
 
-                            // rebuild the text atlas
-                            const textSizes = helper.updateTextureAtlas();
+                            helper.getBarActor().setVisibility(true);
+                            helper.getTmActor().setVisibility(true);
 
-                            // now compute the boxSize and pixel offsets, different algorithm
-                            // for horizonal versus vertical
-                            helper.setTopTitle(false);
-
-                            const boxSize = helper.getBoxSizeByReference();
-
-                            // if vertical
                             if (helper.getLastAspectRatio() > 1.0)
                             {
-                                helper.setAxisTitlePixelOffset(0.2 * tickTextStyle.fontSize);
-                                helper.setTickLabelPixelOffset(0.3 * tickTextStyle.fontSize);
-                                
-                                boxSize[0] = (2.0 * (textSizes.titleHeight + helper.getAxisTitlePixelOffset() + textSizes.tickWidth + helper.getTickLabelPixelOffset() + 0.8 * tickTextStyle.fontSize)) / lastSize[0];
-                                helper.setBoxPosition([0.99 - boxSize[0], -0.875/*-0.92*/]);
+                                const bar_size = 16;
+                                const bar_min_height = 100;
+                                const bar_margin_top = 48;
+                                const bar_margin_bottom = 48;
+                                const bar_margin_right = 8;
+                                const tick_margin = 4;
+                                const title_margin = 8;
 
-                                boxSize[1] = 1.75;//Math.max(1.2, Math.min(1.84 / yAxisAdjust, 1.84));
+                                let box_width = textSizes.titleHeight + textSizes.tickWidth + title_margin + tick_margin + bar_size;
+                                let box_height = container_height - bar_margin_top - bar_margin_bottom;
+
+                                if(box_height < bar_min_height)
+                                {
+                                    helper.getBarActor().setVisibility(false);
+                                    helper.getTmActor().setVisibility(false);
+
+                                    return;
+                                }
+
+                                let box_left =  container_width - box_width - bar_margin_right;
+                                let box_bottom = bar_margin_bottom;
+
+                                let box_size = helper.getBoxSizeByReference();
+                                box_size[0] = (box_width / container_width) * 2.0;
+                                box_size[1] = (box_height / container_height) * 2.0;
+
+                                let box_position = [0, 0];
+                                box_position[0] = (box_left / container_width) * 2.0 - 1.0;
+                                box_position[1] = (box_bottom / container_height) * 2.0 - 1.0;
+                                helper.setBoxPosition(box_position);
+
+                                helper.setAxisTitlePixelOffset(title_margin);
+                                helper.setTickLabelPixelOffset(tick_margin);
                             }
                             
                             else
                             {
-                                // horizontal
-                                helper.setAxisTitlePixelOffset(1.2 * tickTextStyle.fontSize);
-                                helper.setTickLabelPixelOffset(0.1 * tickTextStyle.fontSize);
+                                const bar_size = 16;
+                                const bar_margin_left = 48;
+                                const bar_margin_right = 48;
+                                const bar_margin_bottom = 8;
+                                const tick_margin = 4;
+                                const title_margin = 4;
 
-                                // total offset from top of bar (includes ticks)
-                                const titleHeight = (2.0 * (0.8 * tickTextStyle.fontSize + textSizes.titleHeight + helper.getAxisTitlePixelOffset())) / lastSize[1];
-                                const tickWidth = (2.0 * textSizes.tickWidth) / lastSize[0];
-                                boxSize[0] = Math.min(1.9, Math.max(1.4, 1.4 * tickWidth * (helper.getTicks().length + 3)));
-                                boxSize[1] = titleHeight;
-                                helper.setBoxPosition([-0.5 * boxSize[0], -0.97]);
+                                let box_width = container_width - bar_margin_left - bar_margin_right;
+                                let box_height = textSizes.titleHeight + textSizes.tickHeight + title_margin + tick_margin + bar_size;
+
+                                let box_left = bar_margin_left;
+                                let box_bottom = bar_margin_bottom;
+
+                                let box_size = helper.getBoxSizeByReference();
+                                box_size[0] = (box_width / container_width) * 2.0;
+                                box_size[1] = (box_height / container_height) * 2.0;
+
+                                let box_position = [0, 0];
+                                box_position[0] = (box_left / container_width) * 2.0 - 1.0;
+                                box_position[1] = (box_bottom / container_height) * 2.0 - 1.0;
+                                helper.setBoxPosition(box_position);
+
+                                const title_offset = tick_margin + textSizes.tickHeight + title_margin;
+
+                                helper.setAxisTitlePixelOffset(title_offset);
+                                helper.setTickLabelPixelOffset(tick_margin);
                             }
 
-                            // recomute bar segments based on positioning
+                            helper.setTopTitle(false);
                             helper.recomputeBarSegments(textSizes);
                         };
 
