@@ -264,7 +264,7 @@ If you want to turn this visualization with your data into an entry for DaVE, yo
 
 Although this example should work now, the description.md should also be adapted to describe your use case with a detailed description, limitations and references for the dataset.
 
-With everything set, you can do a pull request for your example to [DaVE](https://github.com/Jens-Koenen/DaVE).
+With everything set, you can do a pull request for your example to [DaVE](/anonymity).
 
 #### Changing Existing Visualizations ####
 

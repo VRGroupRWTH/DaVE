@@ -78,7 +78,7 @@
                             Whether you're exploring cutting-edge visualizations for data or seeking practical solutions to enhance your simulations, DaVE seeks to find helpful resources for you.
                         </p>
                         <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center flex-column">
-                            <a href="https://github.com/Jens-Koenen/DaVE" class="mb-2" target="_blank">
+                            <a href="/anonymity" class="mb-2" target="_blank">
                                 <img src="../assets/icons/github.svg" width="64px">
                             </a>
                             <p style="font-size: 1.125rem;">

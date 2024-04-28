@@ -37,6 +37,9 @@
         case "/visualization":
             import("./pages/visualization.vue").then((page) => setup(page));
             break;
+        case "/anonymity":
+            import("./pages/anonymity.vue").then((page) => setup(page));
+            break;
         default:
             import("./pages/error.vue").then((page) => setup(page));
             break;
