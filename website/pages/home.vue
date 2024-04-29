@@ -88,8 +88,7 @@
                     </div>
                 </div>
             </div>
-            <!--mb-3 mb-md-5-->
-            <div class="row g-3 g-md-5">
+            <div class="row g-3 g-md-5 mb-3 mb-md-5">
                 <div class="col-12 col-xl-4">
                     <div class="card shadow-sm rounded-3 h-100">
                         <div class="card-body" style="padding: 2rem;">
@@ -133,7 +132,7 @@
                     </div>
                 </div>
             </div>
-            <!--<div class="card shadow-sm rounded-3">
+            <div class="card shadow-sm rounded-3 mb-3 mb-md-5">
                 <div class="card-body card-padding">
                     <div class="row row-cols-1 row-cols-lg-2 g-5 align-items-center">
                         <div class="col">
@@ -168,7 +167,35 @@
                         </div>
                     </div>
                 </div>
-            </div>-->
+            </div>
+            <div class="card shadow-sm rounded-3">
+                <div class="card-body card-padding">
+                    <div class="row  align-items-center g-5">
+                        <div class="col">
+                            <div class="d-flex flex-column align-items-center">
+                                <div class="mb-5">
+                                    <h3 class="fw-semibold">Examples</h3>
+                                </div>
+                                <div class="mb-5">
+                                    <h3 class="fw-semibold">Images</h3>
+                                </div>
+                                <div class="">
+                                    <h3 class="fw-semibold">Resources</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <h1 class="card-title display-5 fw-semibold mb-4">Become a Contributor</h1>
+                            <p class="card-text" style="font-size: 1.125rem;">
+                                Help us grow DaVE by becoming a contributor.
+                                Anyone can become a contributor, no matter how experienced you are in making visualizations.
+                                Creating your own example is just as easy as adding a folder to the database.
+                            </p>
+                            <a class="btn btn-primary" href="/guide_extend_dave">Read more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
     <footer>

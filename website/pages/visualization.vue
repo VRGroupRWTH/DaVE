@@ -113,15 +113,17 @@
                 <outline-container>
                     <div class="mb-4 visualization-description" v-html="visualization.description"></div>
                 </outline-container>
-                <visualization-resources :visualization="visualization"></visualization-resources>
-                <div class="d-flex justify-content-center mt-2 text-secondary">
-                    If you have any suggestions, you can creation an issue in the repository using this <a class="ms-1" href="/anonymity">link.</a>
+                <visualization-resources class="mb-4" :visualization="visualization"></visualization-resources>
+                <div class="d-flex justify-content-center">
+                    <span class="text-secondary">
+                        If you have any suggestions, you can creation an issue in the repository using this <a href="/anonymity">link.</a>
+                    </span>
                 </div>
                 <visualization-wizard :visualization="visualization" id="visualization_wizard"></visualization-wizard>
             </div>
             <div class="flex-shrink-0 d-none d-lg-block" style="width: 250px;">
                 <div class="sticky-top" style="top: 100px; z-index: 0;">
-                    <h5 class="mb-2">Example</h5>
+                    <!--<h5 class="mb-2">Example</h5>
                     <div class="d-flex justify-content-center mb-3 py-4 alert alert-light">
                         <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#visualization_wizard">
                             <div class="d-flex align-items-center">
@@ -129,7 +131,7 @@
                                 <img class="ms-2" src="../assets/icons/download.svg">
                             </div>
                         </button>
-                    </div>
+                    </div>-->
                     <h5 class="mb-2">On this page</h5>
                     <outline :target="content" depth_max="1"></outline>
                 </div>

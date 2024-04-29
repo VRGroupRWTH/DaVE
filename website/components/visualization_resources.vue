@@ -31,6 +31,9 @@
             <button class="btn btn-primary me-2">Download All</button>
             <button class="btn btn-primary">Customize Container</button>
         </div>
+        <div class="alert alert-success">
+            <button class="btn btn-outline-success">Customize</button>
+        </div>
         <div class="alert alert-light">
             <table class="table align-middle visualization-resources-table ">
                 <thead>
@@ -47,7 +50,7 @@
                         <td class="d-none d-sm-table-cell">{{ resource.type }}</td>
                         <td class="d-none d-md-table-cell">{{ convert_date(resource.date) }}</td>
                         <td v-if="'path' in resource">
-                            <a class="btn btn-primary float-end me-3 p-0 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px" :href="resource.path" download>
+                            <a class="btn btn-outline-primary float-end me-3 p-0 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px" :href="resource.path" download>
                                 <img src="../assets/icons/download.svg"/>
                             </a>
                         </td>

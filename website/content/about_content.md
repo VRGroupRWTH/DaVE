@@ -9,7 +9,7 @@ Our database is designed to be user-friendly, offering seamless integration into
 Whether you're exploring cutting-edge visualizations for data or seeking practical solutions to enhance your simulations, DaVE seeks to find helpful resources for you.
 
 And the best part: DaVE is designed to keep growing!
-Everybody can join our mission and [add more examples and resources](/guide#Extending_DaVE).
+Everybody can join our mission and [add more examples and resources](/guide_extend_dave).
 
 <!--
 ## Contact ##
