@@ -62,7 +62,15 @@
                 <div class="navbar-nav align-items-center">
                     <a class="navbar-brand" href="/"><img src="../assets/icons/dave_logo_dark.svg" width="40px"></a>
                     <a class="nav-link d-none d-xl-block active" href="/browser">Browser</a>
-                    <a class="nav-link d-none d-xl-block" href="/guide">Guide</a>
+                    <div class="dropdown d-none d-xl-block">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Guide</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/guide">Overview</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/guide_use_dave">How to use DaVE?</a></li>
+                            <li><a class="dropdown-item" href="/guide_extend_dave">Extending DaVE</a></li>
+                        </ul>
+                    </div>
                     <a class="nav-link d-none d-xl-block" href="/about">About</a>
                 </div>
             </div>

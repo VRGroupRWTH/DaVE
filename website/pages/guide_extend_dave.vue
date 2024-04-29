@@ -1,6 +1,6 @@
 <script>
     import { ref } from "vue";
-    import { VueComponent as GuideContent } from "../content/guide_content.md";
+    import { VueComponent as GuideExtendDaveContent } from "../content/guide_extend_dave_content.md";
     import GlobalHeader from "../components/global_header.vue";
     import GlobalFooter from "../components/global_footer.vue";
     import Outline from "../components/outline.vue";
@@ -10,7 +10,7 @@
     {
         components:
         {
-            GuideContent,
+            GuideExtendDaveContent,
             "shared-header": GlobalHeader,
             "shared-footer": GlobalFooter,
             Outline,
@@ -37,9 +37,9 @@
     <main class="flex-fill">
         <div class="container d-flex">
             <div ref="content" class="me-lg-4 flex-fill" style="min-width: 0px;">
-                <h1 class="display-1 ps-2 py-5 mb-4 fw-semibold">Guide</h1>
+                <h1 class="display-1 ps-2 py-5 mb-4 fw-semibold">Extending DaVE</h1>
                 <OutlineContainer class="guide-content">
-                    <GuideContent></GuideContent>
+                    <GuideExtendDaveContent></GuideExtendDaveContent>
                 </OutlineContainer>
             </div>
             <div class="flex-shrink-0 d-none d-lg-block" style="width: 250px;">

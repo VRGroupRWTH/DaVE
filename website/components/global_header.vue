@@ -45,7 +45,17 @@
         <div class="container-lg d-flex align-items-center justify-content-between">
             <div class="navbar-nav align-items-center">
                 <a class="navbar-brand" href="/"><img src="../assets/icons/dave_logo_dark.svg" width="40px"></a>
-                <a v-for="item of header_links" class="nav-link" :class="is_active_link(item.link) ? 'active' : ''" :href="item.link">{{ item.label }}</a>
+                <a class="nav-link" :class="is_active_link('/browser') ? 'active' : ''" href="/browser">Browser</a>
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle" :class="(is_active_link('/guide') || is_active_link('/guide_use_dave') || is_active_link('/guide_extend_dave')) ? 'active' : ''" data-bs-toggle="dropdown">Guide</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/guide">Overview</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/guide_use_dave">How to use DaVE?</a></li>
+                        <li><a class="dropdown-item" href="/guide_extend_dave">Extending DaVE</a></li>
+                    </ul>
+                </div>
+                <a class="nav-link" :class="is_active_link('/about') ? 'active' : ''" href="/about">About</a>
             </div>
             <div>
                 <input class="form-control shared-header-search-bar d-none d-lg-block" style="width: 250px;" type="text" placeholder="Search" v-model="header_search_query" @keydown.enter="on_shared_header_search">
