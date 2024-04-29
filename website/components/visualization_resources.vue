@@ -27,40 +27,38 @@
 <template>
     <div id="Resources" outline_label="Resources" outline_indent="0" style="scroll-margin-top: 80px;">
         <h3>Resources</h3>
-        <div class="alert alert-light mb-0 row">
-            <div class="col-10">
-                <table class="table align-middle visualization-resources-table ">
-                    <thead>
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col" class="d-none d-sm-table-cell">Type</th>
-                            <th scope="col" class="d-none d-md-table-cell">Date</th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="resource of visualization.resources">
-                            <td scope="row">{{ resource.name }}</td>
-                            <td class="d-none d-sm-table-cell">{{ resource.type }}</td>
-                            <td class="d-none d-md-table-cell">{{ convert_date(resource.date) }}</td>
-                            <td v-if="'path' in resource">
-                                <a class="btn btn-primary float-end me-3 p-0 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px" :href="resource.path" download>
-                                    <img src="../assets/icons/download.svg"/>
-                                </a>
-                            </td>
-                            <td v-else-if="'url' in resource">
-                                <a class="btn btn-primary float-end me-3 p-0 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px" :href="resource.url">
-                                    <img src="../assets/icons/link_45deg.svg"/>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-2">
-                <button class="btn btn-primary">Download All</button>
-                <button class="btn btn-primary">Costumize</button>
-            </div>
+        <div class="d-flex justify-content-end mb-2">
+            <button class="btn btn-primary me-2">Download All</button>
+            <button class="btn btn-primary">Customize Container</button>
+        </div>
+        <div class="alert alert-light">
+            <table class="table align-middle visualization-resources-table ">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Type</th>
+                        <th scope="col" class="d-none d-md-table-cell">Date</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="resource of visualization.resources">
+                        <td scope="row">{{ resource.name }}</td>
+                        <td class="d-none d-sm-table-cell">{{ resource.type }}</td>
+                        <td class="d-none d-md-table-cell">{{ convert_date(resource.date) }}</td>
+                        <td v-if="'path' in resource">
+                            <a class="btn btn-primary float-end me-3 p-0 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px" :href="resource.path" download>
+                                <img src="../assets/icons/download.svg"/>
+                            </a>
+                        </td>
+                        <td v-else-if="'url' in resource">
+                            <a class="btn btn-primary float-end me-3 p-0 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px" :href="resource.url">
+                                <img src="../assets/icons/link_45deg.svg"/>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </template>

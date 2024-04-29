@@ -267,6 +267,15 @@
     transition: max-width 0.05s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !important;
 }
 
+.visualization-description h1,
+.visualization-description h2,
+.visualization-description h3,
+.visualization-description h4,
+.visualization-description h5
+{
+    margin-top: 30px;
+}
+
 .visualization-description pre
 {
     padding: 0.75rem 1.25rem;
@@ -337,9 +346,19 @@
     scroll-margin-top: 80px;
 }
 
-.visualization-resources-table th, td
+.visualization-resources-table th,
+.visualization-resources-table td
 {
     background-color: rgb(252, 252, 253) !important;
+}
+
+.guide-content h1,
+.guide-content h2,
+.guide-content h3,
+.guide-content h4,
+.guide-content h5
+{
+    margin-top: 30px;
 }
 
 .guide-content div
@@ -359,6 +378,15 @@
     background-color: var(--bs-tertiary-bg);
     border-width: 1px;
     border-radius: var(--bs-border-radius);
+}
+
+.about-content h1,
+.about-content h2,
+.about-content h3,
+.about-content h4,
+.about-content h5
+{
+    margin-top: 30px;
 }
 
 .about-content div
