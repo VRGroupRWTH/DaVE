@@ -93,8 +93,35 @@
                         rootContainer: visualization_preview_modal.value
                     });
 
+                    let bar = null;
+
+                    for(const volume of visualization_preview_renderer.value.getVolumes())
+                    {
+                        if(bar != null)
+                        {
+                            break;
+                        }
+
+                        const input_arrays = volume.getMapper().getInputConnection().filter.getArrays();
+                        let title = "Unkown";
+
+                        if(input_arrays.length > 0)
+                        {
+                            title = input_arrays[0].name;
+                        }
+
+                        bar = vtkScalarBarActor.newInstance();
+                        bar.setScalarsToColors(volume.getProperty().getRGBTransferFunction());
+                        bar.setAxisLabel(title);
+                    }
+
                     for(const actor of visualization_preview_renderer.value.getActors())
                     {
+                        if(bar != null)
+                        {
+                            break;
+                        }
+
                         const mapper = actor.getMapper();
 
                         if(mapper.getColorByArrayName() == "")
@@ -102,6 +129,13 @@
                             continue;
                         }
 
+                        bar = vtkScalarBarActor.newInstance();
+                        bar.setScalarsToColors(mapper.getLookupTable());
+                        bar.setAxisLabel(mapper.getColorByArrayName());
+                    }
+
+                    if(bar != null)
+                    {
                         const axis_style = 
                         {
                             fontColor: "black",
@@ -199,9 +233,6 @@
                             helper.recomputeBarSegments(textSizes);
                         };
 
-                        let bar = vtkScalarBarActor.newInstance();
-                        bar.setScalarsToColors(mapper.getLookupTable());
-                        bar.setAxisLabel(mapper.getColorByArrayName());
                         bar.setAxisTextStyle(axis_style);
                         bar.setTickTextStyle(tick_style);
                         bar.setDrawNanAnnotation(false);
@@ -209,8 +240,6 @@
                         bar.setVisibility(true);
 
                         visualization_preview_renderer.value.addActor(bar);
-
-                        break;
                     }
 
                     visualization_preview_renderer.value.resetCamera();
