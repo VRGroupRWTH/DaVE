@@ -123,7 +123,7 @@
             </div>
             <div class="flex-shrink-0 d-none d-lg-block" style="width: 250px;">
                 <div class="sticky-top" style="top: 100px; z-index: 0;">
-                    <!--<h5 class="mb-2">Example</h5>
+                    <h5 class="mb-2">Example</h5>
                     <div class="d-flex justify-content-center mb-3 py-4 alert alert-light">
                         <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#visualization_wizard">
                             <div class="d-flex align-items-center">
@@ -131,7 +131,7 @@
                                 <img class="ms-2" src="../assets/icons/download.svg">
                             </div>
                         </button>
-                    </div>-->
+                    </div>
                     <h5 class="mb-2">On this page</h5>
                     <outline :target="content" depth_max="1"></outline>
                 </div>
