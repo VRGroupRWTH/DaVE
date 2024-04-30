@@ -37,7 +37,7 @@
     <main class="flex-fill">
         <div class="container d-flex">
             <div ref="content" class="me-lg-4 flex-fill" style="min-width: 0px;">
-                <h1 class="display-1 ps-2 py-5 mb-4 fw-semibold">How to use DaVE?</h1>
+                <h1 class="display-1 ps-2 py-5 mb-4 fw-semibold" style="font-size: min(5rem, max(1.625rem + 4.5vw, 3.5rem));">How to use DaVE?</h1>
                 <OutlineContainer class="guide-content">
                     <GuideUseDaveContent></GuideUseDaveContent>
                 </OutlineContainer>
