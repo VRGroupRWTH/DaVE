@@ -19,7 +19,9 @@ tags:
     abbreviation: "CFD"
 
 images:
-  - "images/pathline.gif"
+  - "images/pathline.webp"
+  - "images/pathline_step_85.png"
+  - "images/pathline_step_149.png"
 
 resources:
   - name: "pathline_trace.py"

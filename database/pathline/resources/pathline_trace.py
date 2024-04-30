@@ -91,6 +91,15 @@ pvs.LoadPalette('WhiteBackground')
 animationScene1 = pvs.GetAnimationScene()
 animationScene1.UpdateAnimationUsingDataTimeSteps()
 
+# get 2D transfer function for 'Vorticity'
+vorticityTF2D = GetTransferFunction2D('Vorticity')
+
+# get color transfer function/color map for 'Vorticity'
+vorticityLUT = GetColorTransferFunction('Vorticity')
+vorticityLUT.TransferFunction2D = vorticityTF2D
+vorticityLUT.RGBPoints = [-550, 0.231373, 0.298039, 0.752941, -7.13165283203125, 0.865003, 0.865003, 0.865003, 550, 0.705882, 0.0156863, 0.14902]
+vorticityLUT.ScalarRangeInitialized = 1.0
+
 renderView1 = pvs.GetActiveViewOrCreate('RenderView')
 renderView1.OrientationAxesVisibility = 0
 renderView1.CameraPosition = [0.5, 1.0, 2.5]                        # OWN_DATA: depending on the data another camera view is needed
@@ -101,13 +110,25 @@ renderView1.CameraParallelScale = 1.2182888727290784
 temporalParticlesToPathlines1Display_1 = pvs.Show(pvs.OutputPort(temporalParticlesToPathlines1, 0), renderView1, 'GeometryRepresentation')
 temporalParticlesToPathlines1Display_1.RenderLinesAsTubes = 1
 temporalParticlesToPathlines1Display_1.LineWidth = 2.0
+temporalParticlesToPathlines1Display.ColorArrayName = ['POINTS', 'Vorticity']
+temporalParticlesToPathlines1Display.LookupTable = vorticityLUT
+temporalParticlesToPathlines1Display.SetScalarBarVisibility(renderView1, True)
+
+# get color legend/bar for vorticityLUT in view renderView1
+vorticityLUTColorBar = GetScalarBar(vorticityLUT, renderView1)
+vorticityLUTColorBar.Orientation = 'Horizontal'
+vorticityLUTColorBar.WindowLocation = 'Any Location'
+vorticityLUTColorBar.Position = [0.02019230769230771, 0.835244755244755]
+vorticityLUTColorBar.Title = 'Vorticity'
+vorticityLUTColorBar.ComponentTitle = ''
+vorticityLUTColorBar.ScalarBarLength = 0.9357692307692308
+vorticityLUTColorBar.Visibility = 1
 
 # pvs.ResetCamera(renderView1)                                      # OWN_DATA: if the original view does not fit ResetCamera can be used to focus on the visible data
 
 # save animation
 pvs.SaveAnimation('./output/pathline.png', renderView1, ImageResolution=[1920, 1080],
     FontScaling='Do not scale fonts',
-    OverrideColorPalette='',
     StereoMode='No change',
     TransparentBackground=0,
     FrameRate=10)
