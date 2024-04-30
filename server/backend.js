@@ -22,7 +22,7 @@ export class Backend
         app.post("/api/search_property", async (request, response) => this.#on_search_property_request(request, response));
         app.post("/api/search_author", async (request, response) => this.#on_search_author_request(request, response))
         app.get("/api/create_script", async (request, response) => this.#on_create_script(request, response));
-        app.get("/api/download_resources", async (request, response) => this.#on_download_resources(request, response));
+        //app.get("/api/download_resources", async (request, response) => this.#on_download_resources(request, response));
     }
 
     async #on_fetch_visualization_request(request, response)
