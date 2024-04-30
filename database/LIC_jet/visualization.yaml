@@ -21,6 +21,7 @@ tags:
 
 images:
   - "images/lic.png"
+  - "images/lic_close.png"
 
 resources:
   - name: "lic_jet_trace.py"
