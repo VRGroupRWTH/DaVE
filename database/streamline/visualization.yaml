@@ -18,6 +18,7 @@ tags:
 
 images:
   - "images/streamline.png"
+  - "images/streamline_closeup.png"
 
 scene: "scene/index.json"
 

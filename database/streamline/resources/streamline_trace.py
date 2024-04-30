@@ -88,13 +88,14 @@ streamTracerWithCustomSource1Display.LineWidth = 2.0
 
 imageFileLUT = pvs.GetColorTransferFunction('ImageFile')                # OWN_DATA: every field has a name in a .vti file. Replace 'Scalars_' by the corresponding name
 imageFileLUTColorBar = pvs.GetScalarBar(imageFileLUT, renderView1)
-imageFileLUTColorBar.Title = 'Velocity'                                 # OWN_DATA: change the name of the color bar accoridng to what value is visualized
+imageFileLUTColorBar.Title = 'Velocity'                                 # OWN_DATA: change the name of the color bar according to what value is visualized
 imageFileLUTColorBar.WindowLocation = 'Any Location'
 imageFileLUTColorBar.Position = [0.9, 0.1]
 imageFileLUTColorBar.ScalarBarLength = 0.8
 imageFileLUTColorBar.ScalarBarThickness = 4
 imageFileLUTColorBar.TitleFontSize = 16
 imageFileLUTColorBar.LabelFontSize = 12
+imageFileLUTColorBar.Visibility = 1
 
 # pvs.ResetCamera(renderView1)                                          # OWN_DATA: if the original view does not fit, ResetCamera can be used to focus on the visible data
 
