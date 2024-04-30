@@ -114,7 +114,7 @@
                     <div class="mb-4 visualization-description" v-html="visualization.description"></div>
                 </outline-container>
                 <visualization-resources class="mb-4" :visualization="visualization"></visualization-resources>
-                <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-center px-3">
                     <span class="text-secondary">
                         If you have any suggestions, you can creation an issue in the repository using this <a href="/anonymity">link.</a>
                     </span>

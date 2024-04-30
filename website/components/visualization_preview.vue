@@ -265,8 +265,9 @@
 
 <template>
     <div v-bind="$attrs">
-        <div v-if="visualization_preview_valid" class="alert alert-success d-flex justify-content-between align-items-center py-2">
-            <div>Interactive preview available!</div>
+        <div v-if="visualization_preview_valid" class="alert alert-success d-flex justify-content-between align-items-center" style="padding-top: 10px; padding-bottom: 10px">
+            <img class="me-2"src="/assets/icons/3d_view.svg" width="30px">
+            <div class="flex-fill">Preview available!</div>
             <button class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#visualization_preview_modal">Show</button>
         </div>
     </div>
