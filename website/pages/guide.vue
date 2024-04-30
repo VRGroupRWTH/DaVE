@@ -1,6 +1,5 @@
 <script>
     import { ref } from "vue";
-    import { VueComponent as GuideContent } from "../content/guide_content.md";
     import GlobalHeader from "../components/global_header.vue";
     import GlobalFooter from "../components/global_footer.vue";
     import Outline from "../components/outline.vue";
@@ -10,7 +9,6 @@
     {
         components:
         {
-            GuideContent,
             "shared-header": GlobalHeader,
             "shared-footer": GlobalFooter,
             Outline,
@@ -38,9 +36,34 @@
         <div class="container d-flex">
             <div ref="content" class="me-lg-4 flex-fill" style="min-width: 0px;">
                 <h1 class="display-1 ps-2 py-5 mb-4 fw-semibold">Guide</h1>
-                <OutlineContainer class="guide-content">
-                    <GuideContent></GuideContent>
-                </OutlineContainer>
+                <div class="card mb-4 shadow-sm title-underline" style="overflow: clip" outline_label="How to use DaVE?" outline_indent="0" id="How_to_use_DaVE">
+                    <div class="row g-0">
+                        <div class="col-md-3 d-flex align-items-center justify-content-center p-3 bg-body-tertiary">
+                            <img src="/images/guide_how_to_extend_dave.svg" class="img-fluid rounded-start" alt="">
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card-body">
+                                <h4 class="card-title fw-semibold">How to use DaVE?</h4>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                <a href="/guide_use_dave" class="stretched-link"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-4 shadow-sm title-underline" style="overflow: clip" outline_label="Extending DaVE" outline_indent="0" id="Extending_DaVE">
+                    <div class="row g-0">
+                        <div class="col-md-3 d-flex align-items-center justify-content-center p-3 bg-body-tertiary">
+                            <img src="/images/guide_how_to_extend_dave.svg" class="img-fluid rounded-start" alt="">
+                        </div>
+                        <div class="col-md-9">
+                        <div class="card-body">
+                            <h4 class="card-title fw-semibold">Extending DaVE</h4>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <a href="/guide_extend_dave" class="stretched-link"></a>
+                        </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="flex-shrink-0 d-none d-lg-block" style="width: 250px;">
                 <div class="sticky-top" style="top: 100px; z-index: 0;">
@@ -54,3 +77,11 @@
         <shared-footer class="container"></shared-footer>
     </footer>
 </template>
+
+<style scoped>
+    .title-underline:hover h4
+    {
+        text-decoration: underline;
+        text-decoration-thickness: 2px; 
+    }
+</style>

@@ -194,7 +194,7 @@
                             <h1 class="card-title display-5 fw-semibold mb-4">Become a Contributor</h1>
                             <p class="card-text" style="font-size: 1.125rem;">
                                 Join us in growing DaVE by becoming a contributor!
-                                You can become a contributor no matter how experienced you are in making visualizations.
+                                You can contribute no matter how experienced you are in making visualizations.
                                 It's as easy as adding a folder to the database to create your own example.
                             </p>
                             <a class="btn btn-primary float-end float-sm-none" href="/guide_extend_dave">Read more</a>
