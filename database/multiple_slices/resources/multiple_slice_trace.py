@@ -32,7 +32,7 @@ colorBarLabelFontSize = 8
 colorBarThickness = 16
 colorBarPosition = [0.9, 0.3]
 colorBarLength = 0.8
-colorBarTitle = "Scalars"
+colorBarTitle = "density"
 
 # create a new 'Text'
 text1 = pvs.Text(registrationName='Text1')
