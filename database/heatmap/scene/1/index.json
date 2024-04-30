@@ -29,7 +29,7 @@
     "arrays": [
       { "data": {
       "vtkClass": "vtkDataArray",
-      "name": "temperature",
+      "name": "Temperature",
       "numberOfComponents": 1,
       "dataType": "Float32Array",
       "ref": {

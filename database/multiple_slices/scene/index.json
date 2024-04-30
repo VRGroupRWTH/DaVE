@@ -58,7 +58,7 @@
         1
       ],
       "mapper": {
-        "colorByArrayName": "Scalars_",
+        "colorByArrayName": "Density",
         "colorMode": 1,
         "scalarMode": 3
       },
@@ -104,7 +104,7 @@
         1
       ],
       "mapper": {
-        "colorByArrayName": "Scalars_",
+        "colorByArrayName": "Density",
         "colorMode": 1,
         "scalarMode": 3
       },
@@ -150,7 +150,7 @@
         1
       ],
       "mapper": {
-        "colorByArrayName": "Scalars_",
+        "colorByArrayName": "Density",
         "colorMode": 1,
         "scalarMode": 3
       },
@@ -214,7 +214,7 @@
     }
   ],
   "lookupTables": {
-    "Scalars_": {
+    "Density": {
       "clamping": true,
       "colorSpace": 3,
       "hSVWrap": false,

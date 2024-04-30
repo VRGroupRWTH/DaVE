@@ -58,7 +58,7 @@
         1
       ],
       "mapper": {
-        "colorByArrayName": "temperature",
+        "colorByArrayName": "Temperature",
         "colorMode": 1,
         "scalarMode": 4
       },
@@ -104,7 +104,7 @@
         1
       ],
       "mapper": {
-        "colorByArrayName": "temperature",
+        "colorByArrayName": "Temperature",
         "colorMode": 1,
         "scalarMode": 4
       },
@@ -122,7 +122,7 @@
     }
   ],
   "lookupTables": {
-    "temperature": {
+    "Temperature": {
       "clamping": true,
       "colorSpace": 0,
       "hSVWrap": false,

@@ -29,7 +29,7 @@
     "arrays": [
       { "data": {
       "vtkClass": "vtkDataArray",
-      "name": "ImageFile",
+      "name": "Velocity Component",
       "numberOfComponents": 3,
       "dataType": "Float32Array",
       "ref": {

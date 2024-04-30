@@ -104,7 +104,7 @@
         1
       ],
       "mapper": {
-        "colorByArrayName": "velocity magnitude",
+        "colorByArrayName": "Velocity Magnitude",
         "colorMode": 1,
         "scalarMode": 3
       },
@@ -122,7 +122,7 @@
     }
   ],
   "lookupTables": {
-    "velocity magnitude": {
+    "Velocity Magnitude": {
       "clamping": true,
       "colorSpace": 3,
       "hSVWrap": false,

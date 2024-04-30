@@ -58,7 +58,7 @@
         1
       ],
       "mapper": {
-        "colorByArrayName": "MaxEigenvalue",
+        "colorByArrayName": "Max Eigenvalue",
         "colorMode": 1,
         "scalarMode": 3
       },
@@ -76,7 +76,7 @@
     }
   ],
   "lookupTables": {
-    "MaxEigenvalue": {
+    "Max Eigenvalue": {
       "clamping": true,
       "colorSpace": 3,
       "hSVWrap": false,
