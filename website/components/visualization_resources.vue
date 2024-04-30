@@ -128,7 +128,7 @@
         <h3>Resources</h3>
         <div class="alert alert-success d-flex align-items-center px-4" style="padding-top: 12px; padding-bottom: 12px"><!--Remove this if no container is available-->
             <img class="me-2"src="/assets/icons/box_seam_fill.svg" width="24px">
-            <div class="flex-fill">Container avaliable!</div>
+            <div class="flex-fill">Container available!</div>
             <button class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#visualization_wizard">Customize</button>
         </div>
         <div class="alert alert-light">
