@@ -1,3 +1,4 @@
+import { request } from "https";
 import { Database, Sorting } from "./database.js"
 import { Tag } from "./tag.js"
 import adm_zip from "adm-zip";
@@ -21,6 +22,7 @@ export class Backend
         app.post("/api/search_property", async (request, response) => this.#on_search_property_request(request, response));
         app.post("/api/search_author", async (request, response) => this.#on_search_author_request(request, response))
         app.get("/api/create_script", async (request, response) => this.#on_create_script(request, response));
+        app.get("/api/download_resources", async (request, response) => this.#on_download_resources(request, response));
     }
 
     async #on_fetch_visualization_request(request, response)
@@ -347,6 +349,72 @@ export class Backend
             if(file.path.endsWith(".zip"))
             {
                 let entry = archive.getEntry(file.path);
+                entry.header.method = 0; // Store uncompressed since data is already compressed
+            }
+        }
+
+        response.send(archive.toBuffer());
+    }
+
+    async #on_download_resources(request, response)
+    {
+        if(!("visualization" in request.query))
+        {
+            response.sendStatus(400);
+
+            return;
+        }
+        
+        const visualization = this.#database.get_visualization(request.query.visualization);
+
+        if(visualization == null)
+        {
+            response.sendStatus(404);
+
+            return;
+        }
+
+        if(!("resources" in request.query))
+        {
+            response.sendStatus(400);
+
+            return;
+        }
+
+        const resources = visualization.get_resources();
+        const resource_indices = request.query.resources.split("+");
+        let archive = new adm_zip();
+
+        for(const resource_index of resource_indices)
+        {
+            if(resource_index >= resources.length)
+            {
+                response.sendStatus(400);
+
+                return;
+            }
+
+            const resource = resources[resource_index];
+            const file_name = resource.name;
+            let file_buffer = []
+
+            if("path" in resource)
+            {
+                file_buffer = fs.readFileSync(resource.path);
+            }
+
+            else
+            {
+                response.sendStatus(500);
+
+                return;
+            }
+
+            archive.addFile(file_name, file_buffer);
+
+            if(file_name.endsWith(".zip"))
+            {
+                let entry = archive.getEntry(file_name);
                 entry.header.method = 0; // Store uncompressed since data is already compressed
             }
         }
