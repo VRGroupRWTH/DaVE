@@ -41,7 +41,7 @@
                         <th scope="col">Name</th>
                         <th scope="col" class="d-none d-sm-table-cell">Type</th>
                         <th scope="col" class="d-none d-md-table-cell">Date</th>
-                        <th scope="col"></th>
+                        <th scope="col"><button class="btn btn-primary">Download All</button></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,7 +50,7 @@
                         <td class="d-none d-sm-table-cell">{{ resource.type }}</td>
                         <td class="d-none d-md-table-cell">{{ convert_date(resource.date) }}</td>
                         <td v-if="'path' in resource">
-                            <a class="btn btn-outline-primary float-end me-3 p-0 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px" :href="resource.path" download>
+                            <a class="btn btn-primary float-end me-3 p-0 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px" :href="resource.path" download>
                                 <img src="../assets/icons/download.svg"/>
                             </a>
                         </td>
