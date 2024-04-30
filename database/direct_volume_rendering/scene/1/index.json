@@ -9,7 +9,7 @@
     "arrays": [
       { "data": {
       "vtkClass": "vtkDataArray",
-      "name": "Scalars_",
+      "name": "Density",
       "numberOfComponents": 1,
       "dataType": "Float64Array",
       "ref": {

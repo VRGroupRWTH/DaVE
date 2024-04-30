@@ -60,4 +60,4 @@ datasets:
   - name: "flow field"
     identifier: "FLOWFIELD"
     description: "A flow field of a simulated jet."
-    path: ../glyphs/resources/jet.vti
+    path: ../vector_glyphs/resources/jet.vti

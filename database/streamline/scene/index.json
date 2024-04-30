@@ -104,7 +104,7 @@
         1
       ],
       "mapper": {
-        "colorByArrayName": "ImageFile",
+        "colorByArrayName": "Velocity Component",
         "colorMode": 1,
         "scalarMode": 3
       },
@@ -122,7 +122,7 @@
     }
   ],
   "lookupTables": {
-    "ImageFile": {
+    "Velocity Component": {
       "clamping": true,
       "colorSpace": 3,
       "hSVWrap": false,
