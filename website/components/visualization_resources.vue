@@ -37,7 +37,6 @@
                 <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#visualization_wizard">
                     <div class="d-flex align-items-center">
                         <div>Download</div>
-                        
                     </div>
                 </button>
             </div>
