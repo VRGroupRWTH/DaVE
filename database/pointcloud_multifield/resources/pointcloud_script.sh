@@ -41,8 +41,7 @@ fi;
 
 if command -v ffmpeg &> /dev/null
 then
-    ffmpeg -hide_banner -loglevel error -y -framerate 10 -i output/pointcloud.%04d.png output/pointcloud.avi # for high res video
-    ffmpeg -hide_banner -loglevel error -y -framerate 10 -i output/pointcloud.%04d.png -filter_complex "fps=10,scale=480:-1:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=32[p];[s1][p]paletteuse=dither=bayer" output/pointcloud.gif # for low res website video
+    ffmpeg -hide_banner -loglevel error -y -framerate 10 -i output/pointcloud.%04d.png output/pointcloud.webp
 else
     echo "ffmpeg not found - animation from images could not be generated"
 fi
