@@ -132,42 +132,6 @@
                     </div>
                 </div>
             </div>
-            <!--<div class="card shadow-sm rounded-3 mb-3 mb-md-5">
-                <div class="card-body card-padding">
-                    <div class="row row-cols-1 row-cols-lg-2 g-5 align-items-center">
-                        <div class="col">
-                            <h1 class="card-title mb-4 display-5 fw-semibold">Who build it?</h1>
-                            <p class="card-text" style="font-size: 1.125rem;">
-                                DaVE is a collaboration between the RPTU Kaiserslautern and the RWTH Aachen and was founded thorugh a NHR future project.
-                            </p>
-                        </div>
-                        <div class="col">
-                            <div class="row row-cols-2 g-5">
-                                <div class="col">
-                                    <a class="d-flex align-items-center justify-content-center" href="https://www.nhr-verein.de/">
-                                        <img  src="/images/nhr_4_cse.svg" style="width: 100%; height: 80px; max-width: 180px; object-fit: contain;">
-                                    </a>
-                                </div>
-                                <div class="col">
-                                    <a class="d-flex align-items-center justify-content-center" href="https://nhrsw.de/">
-                                        <img src="/images/nhr_sued_west.png" style="width: 100%; height: 80px; max-width: 200px; object-fit: contain;">
-                                    </a>
-                                </div>
-                                <div class="col">
-                                    <a class="d-flex align-items-center justify-content-center" href="https://rptu.de/">
-                                        <img src="/images/tu_kaiserslautern.svg" style="width: 100%; height: 80px; max-width: 200px; object-fit: contain;">
-                                    </a>
-                                </div>
-                                <div class="col">
-                                    <a class="d-flex align-items-center justify-content-center" style="height: 80px;" href="https://www.itc.rwth-aachen.de">
-                                        <img src="/images/rwth_aachen.png" style="width: 100%; height: 80px; max-width: 200px; object-fit: contain;">
-                                    </a>
-                                </div>  
-                            </div>  
-                        </div>
-                    </div>
-                </div>
-            </div>-->
             <div class="card shadow-sm rounded-3">
                 <div class="card-body card-padding">
                     <div class="row align-items-center g-1 g-sm-5">
