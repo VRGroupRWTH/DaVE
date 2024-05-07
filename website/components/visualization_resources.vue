@@ -6,7 +6,7 @@
         props: ["visualization", "visualization_wizard"],
         setup(props)
         {
-            /*let select_all_box = ref(null);
+            let select_all_box = ref(null);
             let selected_items = ref([]);
             let selected_items_link = computed(() =>
             {
@@ -29,7 +29,7 @@
             function is_downloadable(resource)
             {
                 return !("url" in resource); //Not optimal!!!
-            }*/
+            }
 
             function convert_date(date_string)
             {
@@ -44,7 +44,7 @@
                 return date.toLocaleDateString(undefined, date_options);
             }
 
-            /*function on_item_select(event, index)
+            function on_item_select(event, index)
             {
                 if(event.target.checked)
                 {
@@ -108,16 +108,16 @@
                         }
                     }
                 }        
-            }*/
+            }
 
             return {
-                //select_all_box,
-                //selected_items,
-                //selected_items_link,
+                select_all_box,
+                selected_items,
+                selected_items_link,
                 convert_date,
-                //is_downloadable,
-                //on_item_select,
-                //on_item_select_all
+                is_downloadable,
+                on_item_select,
+                on_item_select_all
             }
         }
     };
@@ -126,46 +126,7 @@
 <template>
     <div id="Resources" outline_label="Resources" outline_indent="0" style="scroll-margin-top: 80px;">
         <h3>Resources</h3>
-        <div class="alert alert-success d-flex align-items-center px-4" style="padding-top: 12px; padding-bottom: 12px">
-            <img class="me-2"src="/assets/icons/box_seam_fill.svg" width="24px">
-            <div class="flex-fill">Container available!</div>
-            <button class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#visualization_wizard">Customize</button>
-        </div>
-        <div class="alert alert-light">
-            <table class="table align-middle visualization-resources-table ">
-                <thead>
-                    <tr>
-                        <th scope="col"></th>
-                        <th scope="col">Name</th>
-                        <th scope="col" class="d-none d-sm-table-cell">Type</th>
-                        <th scope="col" class="d-none d-md-table-cell">Date</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="resource of visualization.resources">
-                        <td scope="row"></td>
-                        <td scope="row">{{ resource.name }}</td>
-                        <td class="d-none d-sm-table-cell">{{ resource.type }}</td>
-                        <td class="d-none d-md-table-cell">{{ convert_date(resource.date) }}</td>
-                        <td v-if="'path' in resource">
-                            <a class="btn btn-primary float-end me-3 p-0 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px" :href="resource.path" download>
-                                <img src="../assets/icons/download.svg"/>
-                            </a>
-                        </td>
-                        <td v-else-if="'url' in resource">
-                            <a class="btn btn-primary float-end me-3 p-0 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px" :href="resource.url">
-                                <img src="../assets/icons/link_45deg.svg"/>
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <!--<div id="Resources" outline_label="Resources" outline_indent="0" style="scroll-margin-top: 80px;">
-        <h3>Resources</h3>
-        <div class="alert alert-success d-flex align-items-center px-4" style="padding-top: 12px; padding-bottom: 12px">
+        <div v-if="visualization.templates.length > 0" class="alert alert-success d-flex align-items-center px-4" style="padding-top: 12px; padding-bottom: 12px">
             <img class="me-2"src="/assets/icons/box_seam_fill.svg" width="24px">
             <div class="flex-fill">Container available!</div>
             <button class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#visualization_wizard">Customize</button>
@@ -202,5 +163,5 @@
                 <a class="btn btn-primary" type="button" :class="selected_items.length == 0 ? 'disabled' : ''" download="files.zip" :href="selected_items_link">Download Selected</a>
             </div>
         </div>
-    </div>-->
+    </div>
 </template>

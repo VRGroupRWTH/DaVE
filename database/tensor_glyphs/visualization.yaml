@@ -29,7 +29,7 @@ resources:
   - name: "atoms.vtk"
     type: "Dataset"
     date: 2024-04-23
-    path: "resources/atoms.vti"
+    path: "resources/atoms.vtk"
   - name: "lammps2vtk.m"
     type: "MATLAB Script"
     date: 2024-04-23
