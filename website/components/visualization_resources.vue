@@ -126,7 +126,7 @@
 <template>
     <div id="Resources" outline_label="Resources" outline_indent="0" style="scroll-margin-top: 80px;">
         <h3>Resources</h3>
-        <div class="alert alert-success d-flex align-items-center px-4" style="padding-top: 12px; padding-bottom: 12px"><!--Remove this if no container is available-->
+        <div v-if="visualization.templates.length > 0" class="alert alert-success d-flex align-items-center px-4" style="padding-top: 12px; padding-bottom: 12px">
             <img class="me-2"src="/assets/icons/box_seam_fill.svg" width="24px">
             <div class="flex-fill">Container available!</div>
             <button class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#visualization_wizard">Customize</button>
@@ -149,15 +149,9 @@
                         <td class="d-none d-sm-table-cell">{{ resource.type }}</td>
                         <td class="d-none d-md-table-cell">{{ convert_date(resource.date) }}</td>
                         <td v-if="'path' in resource">
-                            <!--<a class="btn btn-primary float-end me-1 p-0 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px" :href="resource.path" download>
-                                <img src="../assets/icons/download.svg"/>
-                            </a>-->
                             <a class="btn btn-outline-secondary float-end" style="width: 100px" :href="resource.path" download>Download</a>
                         </td>
                         <td v-else-if="'url' in resource">
-                            <!--<a class="btn btn-primary float-end me-1 p-0 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px" :href="resource.url">
-                                <img src="../assets/icons/link_45deg.svg"/>
-                            </a>-->
                             <a class="btn btn-outline-secondary float-end" style="width: 100px" :href="resource.url">Link</a>
                         </td>
                     </tr>

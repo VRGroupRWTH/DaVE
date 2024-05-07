@@ -31,7 +31,7 @@ resources:
   - name: "jet.vti"
     type: "Dataset"
     date: 2024-01-09
-    path: ../glyphs/resources/jet.vti
+    path: ../vector_glyphs/resources/jet.vti
   - name: "ParaView 5.11.1"
     type: "Docker Image"
     date: 2024-01-09

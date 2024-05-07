@@ -1,4 +1,3 @@
-import { request } from "https";
 import { Database, Sorting } from "./database.js"
 import { Tag } from "./tag.js"
 import adm_zip from "adm-zip";
@@ -335,10 +334,33 @@ export class Backend
             "EXEC_TYPE='" + command.type + "'"
         ];
 
-        this.#build_container_file(files, constants, template.container);
-        this.#build_dataset_files(files, constants, request.query, visualization);
-        this.#build_trace_file(files, constants, template.trace);
-        this.#build_script_file(files, constants, template.script);
+        if(!this.#build_container_file(files, constants, template.container))
+        {
+            response.sendStatus(500);
+
+            return;
+        }
+
+        if(!this.#build_dataset_files(files, constants, request.query, visualization))
+        {
+            response.sendStatus(500);
+
+            return;
+        }
+
+        if(!this.#build_trace_file(files, constants, template.trace))
+        {
+            response.sendStatus(500);
+
+            return;
+        }
+
+        if(!this.#build_script_file(files, constants, template.script))
+        {
+            response.sendStatus(500);
+
+            return;
+        }
 
         let archive = new adm_zip();
 
@@ -400,7 +422,18 @@ export class Backend
 
             if("path" in resource)
             {
-                file_buffer = fs.readFileSync(resource.path);
+                try
+                {
+                    file_buffer = fs.readFileSync(resource.path);
+                }
+                
+                catch(error)
+                {
+                    console.log("Can't download resource '" + resource.path + "' !");
+                    response.sendStatus(500);
+
+                    return;
+                }
             }
 
             else
@@ -429,13 +462,23 @@ export class Backend
             const constant = "CONTAINER_URL='" + this.#get_file_name(container.path) + "'";
             constants.push(constant);
 
-            const file = 
+            try
             {
-                path: this.#get_file_name(container.path),
-                buffer: fs.readFileSync(container.path)
-            };
+                const file = 
+                {
+                    path: this.#get_file_name(container.path),
+                    buffer: fs.readFileSync(container.path)
+                };
+    
+                files.push(file);
+            }
 
-            files.push(file);
+            catch(error)
+            {
+                console.log("Can't pack container '" + container.path + "' !");
+
+                return false;
+            }
         }
 
         else if("url" in container)
@@ -443,6 +486,8 @@ export class Backend
             const constant = "CONTAINER_URL='" + container.url + "'";
             constants.push(constant)
         }
+
+        return true;
     }
 
     #build_dataset_files(files, constants, query, visualization)
@@ -472,15 +517,39 @@ export class Backend
                     const constant = dataset.identifier.toUpperCase() + "_PATH='data/" + this.#get_file_name(dataset.path) + "'";
                     constants.push(constant);
 
-                    for(const file_name of this.#get_matching_files(dataset.path))
-                    {
-                        const file = 
-                        {
-                            path: "data/" + this.#get_file_name(file_name),
-                            buffer: fs.readFileSync(file_name)
-                        };
+                    let file_names = [];
 
-                        files.push(file);
+                    try
+                    {
+                        file_names = this.#get_matching_files(dataset.path);
+                    }
+
+                    catch(error)
+                    {
+                        console.log("Can't enumerate datasets '" + dataset.path + "' !");
+
+                        return false;
+                    }
+
+                    for(const file_name of file_names)
+                    {
+                        try
+                        {
+                            const file = 
+                            {
+                                path: "data/" + this.#get_file_name(file_name),
+                                buffer: fs.readFileSync(file_name)
+                            };
+
+                            files.push(file);
+                        }
+
+                        catch(error)
+                        {
+                            console.log("Can't pack dataset '" + file_name + "' !");
+            
+                            return false;
+                        }
                     }
                 }
                 
@@ -491,6 +560,8 @@ export class Backend
                 }
             }
         }
+
+        return true;
     }
 
     #build_trace_file(files, constants, trace)
@@ -498,18 +569,43 @@ export class Backend
         const constant = "TRACE='" + this.#get_file_name(trace) + "'";
         constants.push(constant);
 
-        const file = 
+        try
         {
-            path: this.#get_file_name(trace),
-            buffer: fs.readFileSync(trace)
-        };
+            const file = 
+            {
+                path: this.#get_file_name(trace),
+                buffer: fs.readFileSync(trace)
+            };
+    
+            files.push(file);
+        }
 
-        files.push(file);
+        catch(error)
+        {
+            console.log("Can't pack trace file '" + trace + "' !");
+
+            return false;
+        }
+
+        return true;
     }
 
     #build_script_file(files, constants, script)
     {
-        const script_file = fs.readFileSync(script).toString();
+        let script_file = "";
+        
+        try
+        {
+            script_file = fs.readFileSync(script).toString();
+        }
+
+        catch(error)
+        {
+            console.log("Can't pack script file '" + script + "' !");
+
+            return false;
+        }
+
         const script_lines = script_file.split("\n");
         let script_compiled = script_lines[0] + "\n";
 
@@ -535,6 +631,8 @@ export class Backend
         };
 
         files.push(file);
+
+        return true;
     }
 
     #get_matching_files(query)
