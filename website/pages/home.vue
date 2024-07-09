@@ -132,11 +132,14 @@
                     </div>
                 </div>
             </div>
-            <div class="card shadow-sm rounded-3">
+            <div class="card shadow-sm rounded-3 mb-3 mb-md-5">
                 <div class="card-body card-padding">
                     <div class="row align-items-center g-1 g-sm-5">
                         <div class="col-12 col-lg-5 d-flex justify-content-center">
                             <img src="/images/home_contribution.svg" class="flex-fill p-4 p-lg-0 " style="max-width: 450px">
+                            <!--<video src="/videos/home_contribution.mp4" class="flex-fill rounded" style="max-width: 450px" controls>
+                                <img src="/images/home_contribution.svg" class="w-100 h-100">
+                            </video>-->
                         </div>
                         <!--<div class="col-5">
                             <div class="d-flex flex-column align-items-center">
@@ -162,6 +165,42 @@
                                 It's as easy as adding a folder to the database to create your own example.
                             </p>
                             <a class="btn btn-primary float-end float-sm-none" href="/guide_extend_dave">Read more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card shadow-sm rounded-3">
+                <div class="card-body card-padding">
+                    <div class="row row-cols-1 row-cols-lg-2 g-5 align-items-center">
+                        <div class="col">
+                            <h1 class="card-title mb-4 display-5 fw-semibold">Who build it?</h1>
+                            <p class="card-text" style="font-size: 1.125rem;">
+                                DaVE is a collaboration between the RPTU Kaiserslautern and the RWTH Aachen and was founded thorugh a NHR future project.
+                            </p>
+                        </div>
+                        <div class="col">
+                            <div class="row row-cols-2 g-5">
+                                <div class="col">
+                                    <a class="d-flex align-items-center justify-content-center" href="https://www.nhr-verein.de/">
+                                        <img  src="/images/home_nhr_4_cse.svg" style="width: 100%; height: 80px; max-width: 180px; object-fit: contain;">
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a class="d-flex align-items-center justify-content-center" href="https://nhrsw.de/">
+                                        <img src="/images/home_nhr_sued_west.png" style="width: 100%; height: 80px; max-width: 200px; object-fit: contain;">
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a class="d-flex align-items-center justify-content-center" href="https://rptu.de/">
+                                        <img src="/images/home_tu_kaiserslautern.svg" style="width: 100%; height: 80px; max-width: 200px; object-fit: contain;">
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a class="d-flex align-items-center justify-content-center" style="height: 80px;" href="https://www.itc.rwth-aachen.de">
+                                        <img src="/images/home_rwth_aachen.png" style="width: 100%; height: 80px; max-width: 200px; object-fit: contain;">
+                                    </a>
+                                </div>  
+                            </div>  
                         </div>
                     </div>
                 </div>

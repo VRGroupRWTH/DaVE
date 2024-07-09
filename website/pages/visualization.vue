@@ -80,7 +80,7 @@
 <template>
     <header class="sticky-top">
         <shared-header>
-            <h5 class="mt-3 mb-2">Example</h5>
+            <!--<h5 class="mt-3 mb-2">Example</h5>
             <div class="d-flex justify-content-center mb-3 py-4 alert alert-light">
                 <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#visualization_wizard">
                     <div class="d-flex align-items-center">
@@ -88,8 +88,8 @@
                         <img class="ms-2" src="../assets/icons/download.svg">
                     </div>
                 </button>
-            </div>
-            <h5 class="mb-2">On this page</h5>
+            </div>-->
+            <h5 class="mt-3 mb-2">On this page</h5>
             <outline :target="content" depth_max="1"></outline>
         </shared-header>
     </header>

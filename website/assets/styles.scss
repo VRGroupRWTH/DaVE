@@ -92,7 +92,7 @@
 
 .home-background-image
 {
-    background-image: url("/images/home_background.png"); 
+    background-image: linear-gradient(#ffffff00 0%, #ffffff00 90%, rgb(248, 249, 250) 100%), url("/images/home_background.png"); 
     background-size: cover; 
     background-position-x: center; 
     background-position-y: bottom;

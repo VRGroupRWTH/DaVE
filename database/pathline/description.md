@@ -52,3 +52,6 @@ Also, the example has only been tested with apptainer version `1.2.5-1.el8` and 
 
 Besides that, there are additionally the following limitations:
 - Pathlines using multiple MPI ranks are currently not always correctly connected in ParaView.
+
+### References ###
+1. [<span id="reference_dataset">Christoph Garth, March 9, 2020, "Simulation of a jet flow", IEEE Dataport, doi: https://dx.doi.org/10.21227/qjxp-kc31.</span>](https://dx.doi.org/10.21227/qjxp-kc31)
