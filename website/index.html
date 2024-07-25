@@ -43,8 +43,11 @@
         case "/visualization":
             import("./pages/visualization.vue").then((page) => setup(page));
             break;
-        case "/anonymity":
-            import("./pages/anonymity.vue").then((page) => setup(page));
+        case "/imprint":
+            import("./pages/imprint.vue").then((page) => setup(page));
+            break;
+        case "/privacy_policy":
+            import("./pages/privacy_policy.vue").then((page) => setup(page));
             break;
         default:
             import("./pages/error.vue").then((page) => setup(page));

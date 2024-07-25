@@ -115,10 +115,10 @@
     {
         components:
         {
-            "browser-header": BrowserHeader,
-            "browser-filter": BrowserFilter,
-            "browser-item": BrowserItem,
-            "shared-footer": GlobalFooter
+            BrowserHeader,
+            BrowserFilter,
+            BrowserItem,
+            GlobalFooter
         },
         setup()
         {
@@ -240,12 +240,12 @@
 
 <template>
     <header class="sticky-top">
-            <browser-header v-model:browser_query="browser_query" v-model:browser_sorting="browser_sorting"></browser-header>
-            <browser-filter class="border-bottom d-lg-none bg-white" v-model:browser_filters="browser_filters"></browser-filter>
+            <BrowserHeader v-model:browser_query="browser_query" v-model:browser_sorting="browser_sorting"></BrowserHeader>
+            <BrowserFilter class="border-bottom d-lg-none bg-white" v-model:browser_filters="browser_filters"></BrowserFilter>
     </header>
     <main class="flex-fill bg-body-tertiary">
         <div class="d-flex">
-            <browser-filter class="sticky-top card m-3 align-self-start flex-shrink-0 d-none d-lg-block" style="width: 300px; top: 82px;" v-model:browser_filters="browser_filters"></browser-filter>
+            <BrowserFilter class="sticky-top card m-3 align-self-start flex-shrink-0 d-none d-lg-block" style="width: 300px; top: 82px;" v-model:browser_filters="browser_filters" browser_filters_show></BrowserFilter>
             <div class="flex-fill my-3 me-3 ms-3 ms-lg-0">
                 <div v-if="browser_is_loading" class="d-flex align-items-center justify-content-center" style="height: 300px;">
                     <div class="spinner-border text-body-tertiary" role="status"></div>
@@ -253,7 +253,7 @@
                 </div>
                 <div v-else-if="browser_items.length > 0" class="row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-xxl-3 g-3">
                     <div v-for="item of browser_items" class="col">
-                        <browser-item :browser_item="item" :browser_filters="browser_filters" @on_browser_item_click="on_browser_item_click(item)" @on_browser_item_tag_click="on_browser_item_tag_click"></browser-item>
+                        <BrowserItem :browser_item="item" :browser_filters="browser_filters" @on_browser_item_click="on_browser_item_click(item)" @on_browser_item_tag_click="on_browser_item_tag_click"></BrowserItem>
                     </div>
                 </div>
                 <div v-else class="d-flex align-items-center justify-content-center" style="height: 300px;">
@@ -264,6 +264,6 @@
         </div>
     </main>
     <footer>
-        <shared-footer class="container-fluid px-4"></shared-footer>
+        <GlobalFooter class="container-fluid px-3"></GlobalFooter>
     </footer>
 </template>

@@ -105,8 +105,8 @@
         <div class="card-body">
             <h5 class="card-title">{{ browser_item.name }}</h5>
             <div class="d-flex flex-wrap" style="margin: -0.125rem">
-                <tag v-for="tag of browser_item_filter_tags" :tag="tag" style="margin: 0.125rem" is_highlighted="true" @on_tag_click="on_browser_item_tag_click_internal"></tag>
-                <tag v-for="tag of browser_item_tags" :tag="tag" style="margin: 0.125rem" @on_tag_click="on_browser_item_tag_click_internal"></tag>
+                <Tag v-for="tag of browser_item_filter_tags" :tag="tag" style="margin: 0.125rem" is_highlighted="true" @on_tag_click="on_browser_item_tag_click_internal"></Tag>
+                <Tag v-for="tag of browser_item_tags" :tag="tag" style="margin: 0.125rem" @on_tag_click="on_browser_item_tag_click_internal"></Tag>
             </div>
         </div>
     </div>

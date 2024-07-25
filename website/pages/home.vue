@@ -57,7 +57,8 @@
         <div class="home-background-image" style="height: 80vh; min-height: 600px;">
             <div class="d-flex flex-column align-items-center justify-content-center w-100 h-100" style="padding-top: 50px; padding-bottom: 120px;">
                 <div class="d-flex justify-content-center align-items-center w-100 p-3" style="min-height: 0px; padding-top: 0px !important; padding-bottom: 150px !important;">
-                    <img src="/images/logo.svg" style="width: 100%; height: 100%; max-width: 750px">
+                    <img src="/images/home_logo.svg" class="d-none d-sm-block" style="width: 100%; max-width: 750px">
+                    <img src="/images/home_logo_small.svg" class="d-sm-none" style="width: 100%; max-width: 300px">
                 </div>
                 <HomeSearchBar class="container-sm" @on_search_bar_search="on_search_bar_search" style="padding-bottom: 30px;"></HomeSearchBar>
                 <a class="btn btn-primary shadow" href="/browser">
@@ -78,7 +79,7 @@
                             Whether you're exploring cutting-edge visualizations for data or seeking practical solutions to enhance your simulations, DaVE seeks to find helpful resources for you.
                         </p>
                         <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center flex-column">
-                            <a href="/anonymity" class="mb-2" target="_blank">
+                            <a href="https://github.com/VRGroupRWTH/DaVE" class="mb-2" target="_blank">
                                 <img src="../assets/icons/github.svg" width="64px">
                             </a>
                             <p style="font-size: 1.125rem;">
@@ -137,26 +138,7 @@
                     <div class="row align-items-center g-1 g-sm-5">
                         <div class="col-12 col-lg-5 d-flex justify-content-center">
                             <img src="/images/home_contribution.svg" class="flex-fill p-4 p-lg-0 " style="max-width: 450px">
-                            <!--<video src="/videos/home_contribution.mp4" class="flex-fill rounded" style="max-width: 450px" controls>
-                                <img src="/images/home_contribution.svg" class="w-100 h-100">
-                            </video>-->
                         </div>
-                        <!--<div class="col-5">
-                            <div class="d-flex flex-column align-items-center">
-                                <div class="mb-2 d-flex align-items-center flex-column" style="padding-right: 250px;">
-                                    <h3 class="fw-semibold display-5">17</h3>
-                                    <h4 class="fw-semibold">Examples</h4>
-                                </div>
-                                <div class="mb-2  d-flex align-items-center flex-column" style="padding-left: 200px;">
-                                    <h3 class="fw-semibold display-5">24</h3>
-                                    <h4 class="fw-semibold">Images</h4>
-                                </div>
-                                <div class=" d-flex align-items-center flex-column"  style="padding-right: 100px;">
-                                    <h3 class="fw-semibold display-5">52</h3>
-                                    <h4 class="fw-semibold">Resources</h4>
-                                </div>
-                            </div>
-                        </div>-->
                         <div class="col-12 col-lg-7">
                             <h1 class="card-title display-5 fw-semibold mb-4">Become a Contributor</h1>
                             <p class="card-text" style="font-size: 1.125rem;">
@@ -173,7 +155,7 @@
                 <div class="card-body card-padding">
                     <div class="row row-cols-1 row-cols-lg-2 g-5 align-items-center">
                         <div class="col">
-                            <h1 class="card-title mb-4 display-5 fw-semibold">Who build it?</h1>
+                            <h1 class="card-title mb-4 display-5 fw-semibold">Who built it?</h1>
                             <p class="card-text" style="font-size: 1.125rem;">
                                 DaVE is a collaboration between the RPTU Kaiserslautern and the RWTH Aachen and was founded thorugh a NHR future project.
                             </p>

@@ -3,7 +3,7 @@
 
     export default
     {
-        props: ["visualization", "visualization_wizard"],
+        props: ["visualization"],
         setup(props)
         {
             let select_all_box = ref(null);
@@ -124,44 +124,36 @@
 </script>
 
 <template>
-    <div id="Resources" outline_label="Resources" outline_indent="0" style="scroll-margin-top: 80px;">
-        <h3>Resources</h3>
-        <div v-if="visualization.templates.length > 0" class="alert alert-success d-flex align-items-center px-4" style="padding-top: 12px; padding-bottom: 12px">
-            <img class="me-2"src="/assets/icons/box_seam_fill.svg" width="24px">
-            <div class="flex-fill">Container available!</div>
-            <button class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#visualization_wizard">Customize</button>
-        </div>
-        <div class="alert alert-light">
-            <table class="table align-middle visualization-resources-table ">
-                <thead>
-                    <tr>
-                        <th scope="col" style="width: 0px"><input ref="select_all_box" class="form-check-input" type="checkbox" @click="on_item_select_all()"></th>
-                        <th scope="col">Name</th>
-                        <th scope="col" class="d-none d-sm-table-cell">Type</th>
-                        <th scope="col" class="d-none d-md-table-cell">Date</th>
-                        <th scope="col" style="width: 0px"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(resource, index) of visualization.resources">
-                        <td scope="row"><input class="form-check-input" type="checkbox" :checked="selected_items.some(item => item == index)" @click="event => on_item_select(event, index)" :disabled="!is_downloadable(resource)"></td>
-                        <td scope="row">{{ resource.name }}</td>
-                        <td class="d-none d-sm-table-cell">{{ resource.type }}</td>
-                        <td class="d-none d-md-table-cell">{{ convert_date(resource.date) }}</td>
-                        <td v-if="'path' in resource">
-                            <a class="btn btn-outline-secondary float-end" style="width: 100px" :href="resource.path" download>Download</a>
-                        </td>
-                        <td v-else-if="'url' in resource">
-                            <a class="btn btn-outline-secondary float-end" style="width: 100px" :href="resource.url">Link</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="d-flex justify-content-between align-items-center pe-2 ps-2">
-                <div v-if="selected_items.length == 0" class="fw-semibold text-body">No Files selected</div>
-                <div v-else class="fw-semibold text-body">{{ selected_items.length }} Files selected</div>
-                <a class="btn btn-primary" type="button" :class="selected_items.length == 0 ? 'disabled' : ''" download="files.zip" :href="selected_items_link">Download Selected</a>
-            </div>
+    <div class="alert alert-light">
+        <table class="table align-middle visualization-resources-table ">
+            <thead>
+                <tr>
+                    <th scope="col" style="width: 0px"><input ref="select_all_box" class="form-check-input" type="checkbox" @click="on_item_select_all()"></th>
+                    <th scope="col">Name</th>
+                    <th scope="col" class="d-none d-sm-table-cell">Type</th>
+                    <th scope="col" class="d-none d-md-table-cell">Date</th>
+                    <th scope="col" style="width: 0px"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(resource, index) of visualization.resources">
+                    <td scope="row"><input class="form-check-input" type="checkbox" :checked="selected_items.some(item => item == index)" @click="event => on_item_select(event, index)" :disabled="!is_downloadable(resource)"></td>
+                    <td scope="row">{{ resource.name }}</td>
+                    <td class="d-none d-sm-table-cell">{{ resource.type }}</td>
+                    <td class="d-none d-md-table-cell">{{ convert_date(resource.date) }}</td>
+                    <td v-if="'path' in resource">
+                        <a class="btn btn-outline-secondary float-end" style="width: 100px" :href="resource.path" download>Download</a>
+                    </td>
+                    <td v-else-if="'url' in resource">
+                        <a class="btn btn-outline-secondary float-end" style="width: 100px" :href="resource.url">Link</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-between align-items-center pe-2 ps-2">
+            <div v-if="selected_items.length == 0" class="fw-semibold text-body">No Files selected</div>
+            <div v-else class="fw-semibold text-body">{{ selected_items.length }} Files selected</div>
+            <a class="btn btn-primary" type="button" :class="selected_items.length == 0 ? 'disabled' : ''" download="files.zip" :href="selected_items_link">Download Selected</a>
         </div>
     </div>
 </template>

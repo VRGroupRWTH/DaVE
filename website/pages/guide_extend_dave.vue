@@ -11,8 +11,8 @@
         components:
         {
             GuideExtendDaveContent,
-            "shared-header": GlobalHeader,
-            "shared-footer": GlobalFooter,
+            GlobalHeader,
+            GlobalFooter,
             Outline,
             OutlineContainer
         },
@@ -29,10 +29,10 @@
 
 <template>
     <header class="sticky-top">
-        <shared-header>
+        <GlobalHeader>
             <h5 class="pt-3 pb-1">On this page</h5>
             <outline :target="content" depth_max="1"></outline>
-        </shared-header>
+        </GlobalHeader>
     </header>
     <main class="flex-fill">
         <div class="container d-flex">
@@ -51,6 +51,6 @@
         </div>
     </main>
     <footer class="bg-body-tertiary mt-4">
-        <shared-footer class="container"></shared-footer>
+        <GlobalFooter class="container"></GlobalFooter>
     </footer>
 </template>

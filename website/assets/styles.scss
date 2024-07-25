@@ -83,7 +83,7 @@
     --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1.0%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important
 }
 
-.shared-footer-legal > *
+.shared-footer-legal *
 {
     font-size: 13px !important;
     color: var(--bs-gray-600) !important;
@@ -96,21 +96,6 @@
     background-size: cover; 
     background-position-x: center; 
     background-position-y: bottom;
-}
-
-.home-logo-large
-{
-    font-size: 50px;
-}
-
-.home-logo-small
-{
-    font-size: 40px;
-}
-
-.home-logo-blue
-{
-    color: #176fc1;
 }
 
 .browser-header-search-bar
@@ -395,6 +380,39 @@
 }
 
 .about-content p
+{
+    text-align: justify;
+}
+
+.privacy-policy-content h1,
+.privacy-policy-content h2,
+.privacy-policy-content h3,
+.privacy-policy-content h4,
+.privacy-policy-content h5
+{
+    margin-top: 30px;
+}
+
+.privacy-policy-content div
+{
+    scroll-margin-top: 80px;
+}
+
+.privacy-policy-content p
+{
+    text-align: justify;
+}
+
+.imprint-content h1,
+.imprint-content h2,
+.imprint-content h3,
+.imprint-content h4,
+.imprint-content h5
+{
+    margin-top: 30px;
+}
+
+.imprint-content p
 {
     text-align: justify;
 }

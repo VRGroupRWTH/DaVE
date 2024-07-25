@@ -7,7 +7,7 @@
         emits: ["update:config"],
         setup(props, context)
         {
-            function on_wizard_question_check(event, option)
+            function on_question_check(event, option)
             {
                 if(event.target.checked)
                 {
@@ -18,7 +18,7 @@
                 }
             }
 
-            function on_wizard_setting_change(event, setting)
+            function on_setting_change(event, setting)
             {
                 let config = props.config;
                 config[setting.name] = event.target.value;
@@ -27,8 +27,8 @@
             }
 
             return {
-                on_wizard_question_check,
-                on_wizard_setting_change
+                on_question_check,
+                on_setting_change
             }
         }
     };
@@ -37,14 +37,14 @@
 <template>
     <div v-for="option of options">
         <div class="form-check">
-            <input :id="'wizard_question_' + option.name" class="form-check-input" type="radio" :name="'wizard_question_check_' + name" :checked="config[name] == option.name" @input="on_wizard_question_check($event, option)">
-            <label :for="'wizard_question_' + option.name" class="form-check-label fw-semibold">{{ option.title }}</label>
+            <input :id="'question_' + option.name" class="form-check-input" type="radio" :name="'question_check_' + name" :checked="config[name] == option.name" @input="on_wizard_question_check($event, option)">
+            <label :for="'question_' + option.name" class="form-check-label fw-semibold">{{ option.title }}</label>
         </div>
         <div style="margin-left: 24px">
             <p>{{ option.description }}</p>
             <template v-for="setting of option.settings">
-                <label :for="'wizard_question_setting_' + setting.name" class="form-label">{{ setting.title }}</label>
-                <input :id="'wizard_question_setting_' + setting.name" class="form-control" type="text" :disabled="config[name] != option.name" :value="config[setting.name]" @change="on_wizard_setting_change($event, setting)">
+                <label :for="'question_setting_' + setting.name" class="form-label">{{ setting.title }}</label>
+                <input :id="'question_setting_' + setting.name" class="form-control" type="text" :disabled="config[name] != option.name" :value="config[setting.name]" @change="on_wizard_setting_change($event, setting)">
                 <div class="form-text">{{ setting.description }}</div>
             </template>
         </div>

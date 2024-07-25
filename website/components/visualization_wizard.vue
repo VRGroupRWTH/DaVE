@@ -8,9 +8,9 @@
     {
         components:
         {
-            "wizard-question-dataset": VisualizationQuestionDataset,
-            "wizard-question-technique": VisualizationQuestionTechnique,
-            "wizard-question-command": VisualizationQuestionCommand,
+            VisualizationQuestionDataset,
+            VisualizationQuestionTechnique,
+            VisualizationQuestionCommand,
         },
         props: ["visualization"],
         setup(props)
@@ -24,9 +24,9 @@
             ]);
             let visualization_wizard_questions = ref(
             [
-                "wizard-question-dataset",
-                "wizard-question-technique",
-                "wizard-question-command"
+                "VisualizationQuestionDataset",
+                "VisualizationQuestionTechnique",
+                "VisualizationQuestionCommand"
             ]);
 
             let visualization_wizard_config = ref(
@@ -150,20 +150,27 @@
 </script>
 
 <template>
-    <div class="modal fade" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header text-bg-dark" data-bs-theme="dark">
-                    <h5 class="modal-title text-bg-dark">{{ visualization_wizard_question_titles[visualization_wizard_question_index] }}</h5>
-                    <button class="btn-close" type="button" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <component :is="visualization_wizard_questions[visualization_wizard_question_index]" :visualization="visualization" v-model:config="visualization_wizard_config"></component>
-                </div>
-                <div class="modal-footer border-0">
-                    <button v-if="visualization_wizard_question_index > 0" class="btn btn-primary" type="button" @click="on_visualization_wizard_question_back">Back</button>
-                    <button v-if="visualization_wizard_question_index < visualization_wizard_questions.length - 1" class="btn btn-primary ms-auto" type="button" @click="on_visualization_wizard_question_next">Next</button>
-                    <a v-else class="btn btn-primary ms-auto" :href="visualization_wizard_link" download="render_script.zip">Download</a>
+    <div>
+        <div v-if="visualization.templates.length > 0" class="alert alert-success d-flex align-items-center px-4" style="padding-top: 12px; padding-bottom: 12px">
+            <img class="me-2"src="/assets/icons/box_seam_fill.svg" width="24px">
+            <div class="flex-fill">Container available!</div>
+            <button class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#visualization_wizard">Customize</button>
+        </div>
+        <div id="visualization_wizard" class="modal fade" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header text-bg-dark" data-bs-theme="dark">
+                        <h5 class="modal-title text-bg-dark">{{ visualization_wizard_question_titles[visualization_wizard_question_index] }}</h5>
+                        <button class="btn-close" type="button" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <component :is="visualization_wizard_questions[visualization_wizard_question_index]" :visualization="visualization" v-model:config="visualization_wizard_config"></component>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button v-if="visualization_wizard_question_index > 0" class="btn btn-primary" type="button" @click="on_visualization_wizard_question_back">Back</button>
+                        <button v-if="visualization_wizard_question_index < visualization_wizard_questions.length - 1" class="btn btn-primary ms-auto" type="button" @click="on_visualization_wizard_question_next">Next</button>
+                        <a v-else class="btn btn-primary ms-auto" :href="visualization_wizard_link" download="render_script.zip">Download</a>
+                    </div>
                 </div>
             </div>
         </div>

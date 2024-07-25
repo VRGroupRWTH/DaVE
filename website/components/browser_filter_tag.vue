@@ -89,19 +89,13 @@
 <template>
     <div class="border rounded d-flex align-items-center">
         <div class="flex-fill d-flex flex-wrap m-1">
-            <tag v-for="tag of browser_filters.tags" :tag="tag" is_removable="true" class="m-1" @on_tag_remove="on_browser_tag_remove"></tag>
+            <Tag v-for="tag of browser_filters.tags" :tag="tag" is_removable="true" class="m-1" @on_tag_remove="on_browser_tag_remove"></Tag>
         </div>
         <div class="dropdown dropend-md align-self-end m-2">
             <button class="btn btn-primary d-flex align-items-center justify-content-center p-0" style="width: 28px; height: 28px;" input="button" data-bs-toggle="dropdown" @click="on_browser_tag_suggestion_open">
                 <img src="../assets/icons/plus.svg" width="20px">
             </button>
             <div class="dropdown-menu p-3">
-                <!--<div class="input-group mb-3" style="min-width: 200px;">
-                    <span class="input-group-text p-2">
-                        <img src="../assets/icons/search.svg">
-                    </span>
-                    <input class="form-control form-control-sm" type="text" placeholder="Search" v-model="browser_tag_suggestion_query">
-                </div>-->
                 <input class="form-control mb-3 browser-filter-tag-search-bar" style="min-width: 200px;" type="text" placeholder="Search" v-model="browser_tag_suggestion_query">
                 <ul class="list-unstyled border rounded overflow-y-scroll" style="height: 150px;">
                     <li v-for="tag of browser_tag_suggestions">

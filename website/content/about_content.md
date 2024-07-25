@@ -11,13 +11,5 @@ Whether you're exploring cutting-edge visualizations for data or seeking practic
 And the best part: DaVE is designed to keep growing!
 Everybody can join our mission and [add more examples and resources](/guide_extend_dave).
 
-<!--
-## Contact ##
-TODO
-
-## Privacy Policy ##
-TODO
-
-## Imprint ##
-TODO
--->
+## DaVE Team ##
+If you have a general question about DaVE or if you have a problem or just found a bug on the website, please contact one of the following members of the DaVE team:

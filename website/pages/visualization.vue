@@ -14,15 +14,15 @@
     {
         components:
         {
-            "visualization-images" : VisualizationImages,
-            "visualization-preview": VisualizationPreview,
-            "visualization-resources": VisualizationResources,
-            "visualization-wizard": VisualizationWizard,
-            "shared-header": GlobalHeader,
-            "shared-footer": GlobalFooter,
-            "outline": Outline,
-            "outline-container": OutlineContainer,
-            "tag": Tag
+            VisualizationImages,
+            VisualizationPreview,
+            VisualizationResources,
+            VisualizationWizard,
+            GlobalHeader,
+            GlobalFooter,
+            Outline,
+            OutlineContainer,
+            Tag
         },
         setup()
         {
@@ -79,25 +79,16 @@
 
 <template>
     <header class="sticky-top">
-        <shared-header>
-            <!--<h5 class="mt-3 mb-2">Example</h5>
-            <div class="d-flex justify-content-center mb-3 py-4 alert alert-light">
-                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#visualization_wizard">
-                    <div class="d-flex align-items-center">
-                        <div>Download</div>
-                        <img class="ms-2" src="../assets/icons/download.svg">
-                    </div>
-                </button>
-            </div>-->
+        <GlobalHeader>
             <h5 class="mt-3 mb-2">On this page</h5>
-            <outline :target="content" depth_max="1"></outline>
-        </shared-header>
+            <Outline :target="content" depth_max="1"></Outline>
+        </GlobalHeader>
     </header>
     <main class="flex-fill">
         <div class="container d-flex">
             <div ref="content" class="me-lg-4 flex-fill" style="min-width: 0px;">
-                <visualization-images :visualization="visualization" class="mt-4 mb-2 w-100" style="height: 350px"></visualization-images>
-                <visualization-preview :visualization="visualization" class="mb-4"></visualization-preview>
+                <VisualizationImages :visualization="visualization" class="mt-4 mb-2 w-100" style="height: 350px"></VisualizationImages>
+                <VisualizationPreview :visualization="visualization" class="mb-4"></VisualizationPreview>
                 <div class="mb-4">
                     <h1 class="mb-0" style="font-size: 3rem">{{ visualization.name }}</h1>
                     <div class="mb-2 ms-1 fw-semibold">
@@ -107,38 +98,32 @@
                         </template>
                     </div>
                     <div class="d-flex ms-1">
-                        <tag v-for="tag in visualization.tags" :tag="tag" class="me-1" @on_tag_click="on_visualization_tag_click"></tag>
+                        <Tag v-for="tag in visualization.tags" :tag="tag" class="me-1" @on_tag_click="on_visualization_tag_click"></Tag>
                     </div>
                 </div>
-                <outline-container>
+                <OutlineContainer>
                     <div class="mb-4 visualization-description" v-html="visualization.description"></div>
-                </outline-container>
-                <visualization-resources class="mb-4" :visualization="visualization" :visualization_wizard="visualization_wizard"></visualization-resources>
+                </OutlineContainer>
+                <div id="Resources" outline_label="Resources" outline_indent="0" class="mb-4" style="scroll-margin-top: 80px;">
+                    <h3>Resources</h3>
+                    <VisualizationWizard :visualization="visualization"></VisualizationWizard>
+                    <VisualizationResources :visualization="visualization"></VisualizationResources>
+                </div>
                 <div class="d-flex justify-content-center px-3">
-                    <span class="text-secondary">
-                        If you have any suggestions, you can create an issue in the repository using this <a href="/anonymity">link.</a>
+                    <span class="text-secondary text-center">
+                        If you have any suggestions, you can create an issue in the repository using this <a href="https://github.com/VRGroupRWTH/DaVE">link.</a>
                     </span>
                 </div>
-                <visualization-wizard :visualization="visualization" id="visualization_wizard"></visualization-wizard>
             </div>
             <div class="flex-shrink-0 d-none d-lg-block" style="width: 250px;">
                 <div class="sticky-top" style="top: 100px; z-index: 0;">
-                    <!--<h5 class="mb-2">Example</h5>
-                    <div class="d-flex justify-content-center mb-3 py-4 alert alert-light">
-                        <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#visualization_wizard">
-                            <div class="d-flex align-items-center">
-                                <div>Download</div>
-                                <img class="ms-2" src="../assets/icons/download.svg">
-                            </div>
-                        </button>
-                    </div>-->
                     <h5 class="mb-2">On this page</h5>
-                    <outline :target="content" depth_max="1"></outline>
+                    <Outline :target="content" depth_max="1"></Outline>
                 </div>
             </div>
         </div>
     </main>
     <footer class="bg-body-tertiary mt-4">
-        <shared-footer class="container"></shared-footer>
+        <GlobalFooter class="container"></GlobalFooter>
     </footer>
 </template>

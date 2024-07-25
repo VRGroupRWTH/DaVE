@@ -6,13 +6,13 @@
     {
         components: 
         {
-            "wizard-question": VisualizationQuestion
+            VisualizationQuestion
         },
         props: ["visualization", "config"],
         emits: ["update:config"],
         setup(props)
         {
-            let wizard_question_technique_options = computed(() =>
+            let technique_options = computed(() =>
             {
                 const option_docker = 
                 {
@@ -57,12 +57,12 @@
             });
 
             return {
-                wizard_question_technique_options
+                technique_options
             }
         }
     };
 </script>
 
 <template>
-    <wizard-question name="technique" :options="wizard_question_technique_options" :config="config"></wizard-question>
+    <VisualizationQuestion name="technique" :options="technique_options" :config="config"></VisualizationQuestion>
 </template>

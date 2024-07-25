@@ -6,13 +6,13 @@
     {
         components:
         {
-            "wizard-question": VisualizationQuestion
+            VisualizationQuestion
         },
         props: ["visualization", "config"],
         emits: ["update:config"],
         setup(props)
         {
-            let wizard_question_dataset_options = computed(() =>
+            let dataset_options = computed(() =>
             {
                 let dataset_settings = [];
                 let dataset_preview_availiable = true;
@@ -61,12 +61,12 @@
             });
 
             return {
-                wizard_question_dataset_options
+                dataset_options
             };
         }
     };
 </script>
 
 <template>
-    <wizard-question name="dataset" :options="wizard_question_dataset_options" :config="config"></wizard-question>
+    <VisualizationQuestion name="dataset" :options="dataset_options" :config="config"></VisualizationQuestion>
 </template>

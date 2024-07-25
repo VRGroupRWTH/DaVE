@@ -11,7 +11,11 @@
             BrowserFilterTag,
             BrowserFilterAuthor
         },
-        props: ["browser_filters"],
+        props: 
+        { 
+            browser_filters : Object, 
+            browser_filters_show : Boolean
+        },
         emits: ["update:browser_filters"]
     };
 </script>
@@ -22,19 +26,19 @@
             <img src="../assets/icons/caret_down_fill.svg" width="20px">
             <div class="ms-1">Filters</div>
         </button>
-        <div id="browser_filter_collapse" class="collapse show px-4">
+        <div id="browser_filter_collapse" class="collapse px-4" :class="browser_filters_show ? 'show' : ''">
             <ul class="list-unstyled mt-2">
                 <li class="mb-2">
                     <label class="form-label" for="browser_filter_tag">Tags</label>
-                    <browser-filter-tag id="browser_filter_tag" :browser_filters="browser_filters"></browser-filter-tag>
+                    <BrowserFilterTag id="browser_filter_tag" :browser_filters="browser_filters"></BrowserFilterTag>
                 </li>
                 <li class="mb-2">
                     <label class="form-label" for="browser_filter_author">Authors</label>
-                    <browser-filter-author id="browser_filter_author" :browser_filters="browser_filters"></browser-filter-author>
+                    <BrowserFilterAuthor id="browser_filter_author" :browser_filters="browser_filters"></BrowserFilterAuthor>
                 </li>
                 <li class="mb-2">
                     <label class="form-label" for="browser_filter_date">Date</label>
-                    <browser-filter-date id="browser_filter_date" :browser_filters="browser_filters"></browser-filter-date>
+                    <BrowserFilterDate id="browser_filter_date" :browser_filters="browser_filters"></BrowserFilterDate>
                 </li>
                 <li class="mb-2">
                     <label class="form-label" for="browser_filter_container">Container</label>

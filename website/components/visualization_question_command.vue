@@ -6,13 +6,13 @@
     {
         components: 
         {
-            "wizard-question": VisualizationQuestion
+            VisualizationQuestion
         },
         props: ["visualization", "config"],
         emits: ["update:config"],
         setup(props)
         {
-            let wizard_question_command_options = computed(() =>
+            let command_options = computed(() =>
             {
                 const option_local = 
                 {
@@ -70,12 +70,12 @@
             });
 
             return {
-                wizard_question_command_options
+                command_options
             }
         }
     };
 </script>
 
 <template>
-    <wizard-question name="command" :options="wizard_question_command_options" :config="config"></wizard-question>
+    <VisualizationQuestion name="command" :options="command_options" :config="config"></VisualizationQuestion>
 </template>
