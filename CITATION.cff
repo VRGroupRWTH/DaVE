@@ -29,6 +29,3 @@ preferred-citation:
   collection-type: proceedings
   publisher:
     name: "IEEE Computer Society"
-  conference:
-    name: "IEEE Visualization Conference (VIS)"
-    address: "St. Pete Beach, Florida, USA"
