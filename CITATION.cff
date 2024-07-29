@@ -14,6 +14,7 @@ version: 1.0.0
 url: "https://dave-vis.com/"
 preferred-citation:
   type: conference-paper
+  abbreviation: "DaVE2024"
   title: "DaVE - A Curated Database of Visualization Examples"
   authors:
   - family-names: "Koenen"
