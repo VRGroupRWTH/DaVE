@@ -79,7 +79,7 @@
                             Whether you're exploring cutting-edge visualizations for data or seeking practical solutions to enhance your simulations, DaVE seeks to find helpful resources for you.
                         </p>
                         <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center flex-column">
-                            <a href="https://github.com/VRGroupRWTH/DaVE" class="mb-2" target="_blank">
+                            <a href="https://github.com/VRGroupRWTH/DaVE" class="mb-2">
                                 <img src="../assets/icons/github.svg" width="64px">
                             </a>
                             <p style="font-size: 1.125rem;">
@@ -163,7 +163,7 @@
                         <div class="col">
                             <div class="row row-cols-2 g-5">
                                 <div class="col">
-                                    <a class="d-flex align-items-center justify-content-center" href="https://www.nhr-verein.de/">
+                                    <a class="d-flex align-items-center justify-content-center" href="https://www.nhr4ces.de/">
                                         <img  src="/images/home_nhr_4_cse.svg" style="width: 100%; height: 80px; max-width: 180px; object-fit: contain;">
                                     </a>
                                 </div>

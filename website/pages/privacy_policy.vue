@@ -30,7 +30,7 @@
     <header class="sticky-top">
         <GlobalHeader>
             <h5 class="pt-3 pb-1">On this page</h5>
-            <Outline :target="content" depth_max="1"></Outline>
+            <Outline :target="content" depth_max="0"></Outline>
         </GlobalHeader>
     </header>
     <main class="flex-fill">

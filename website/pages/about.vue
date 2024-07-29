@@ -39,7 +39,7 @@
     <header class="sticky-top">
         <GlobalHeader>
             <h5 class="pt-3 pb-1">On this page</h5>
-            <Outline :target="content" depth_max="1"></Outline>
+            <Outline :target="content" depth_max="0"></Outline>
         </GlobalHeader>
     </header>
     <main class="flex-fill">
@@ -69,7 +69,7 @@
             <div class="flex-shrink-0 d-none d-lg-block" style="width: 250px;">
                 <div class="sticky-top" style="top: 100px; z-index: 0;">
                     <h5 class="about-content pt-3 pb-1">On this page</h5>
-                    <Outline :target="content" depth_max="1"></Outline>
+                    <Outline :target="content" depth_max="0"></Outline>
                 </div>
             </div>
         </div>

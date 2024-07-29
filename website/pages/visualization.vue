@@ -111,7 +111,7 @@
                 </div>
                 <div class="d-flex justify-content-center px-3">
                     <span class="text-secondary text-center">
-                        If you have any suggestions, you can create an issue in the repository using this <a href="https://github.com/VRGroupRWTH/DaVE">link.</a>
+                        If you have any suggestions, you can create an issue in the repository using this <a :href="'https://github.com/VRGroupRWTH/DaVE/issues/new?title=' + visualization.name + '&body=Please describe your issue or feature as detailed as possible and change the name of the issue accordingly. If you want, you can also assign labels to our issue.'">link.</a>
                     </span>
                 </div>
             </div>

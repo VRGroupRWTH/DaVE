@@ -19,6 +19,41 @@
             app.mount('#app');
         }
 
+        function link()
+        {
+            const elements = document.getElementsByTagName("a");
+
+            for(let element of elements)
+            {
+                if(!element.hasAttribute("href"))
+                {
+                    continue;
+                }
+
+                const link = element.getAttribute("href");
+
+                if(link.match("^(?:[a-z+]+:)?//"))
+                {
+                    element.setAttribute("target", "_blank");
+                }
+
+                else
+                {
+                    element.removeAttribute("target");
+                }
+            }
+        }
+
+        const link_mutation_options = 
+        {
+            subtree: true,
+            childList: true,
+            attributeFilter: ["href"]
+        };
+
+        let link_mutation_observer = new MutationObserver(records => link())
+        link_mutation_observer.observe(document.getElementById("app"), link_mutation_options);
+
         switch(window.location.pathname)
         {
         case "/":

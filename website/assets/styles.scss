@@ -384,6 +384,15 @@
     text-align: justify;
 }
 
+.about-content pre
+{
+    padding: 0.75rem 1.25rem;
+    border: solid var(--bs-border-color);
+    background-color: var(--bs-tertiary-bg);
+    border-width: 1px;
+    border-radius: var(--bs-border-radius);
+}
+
 .privacy-policy-content h1,
 .privacy-policy-content h2,
 .privacy-policy-content h3,

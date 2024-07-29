@@ -1,0 +1,8 @@
+@inproceedings{DaVE2024,
+  title        = {DaVE - A Curated Database of Visualization Examples},
+  author       = {Koenen, Jens and Petersen, Marvin and Garth, Christoph and Gerrits, Tim},
+  year         = {2024},
+  booktitle    = {2024 IEEE Visualization and Visual Analytics (VIS)},
+  publisher    = {IEEE Computer Society},
+  address      = {Los Alamitos, CA, USA},
+}
