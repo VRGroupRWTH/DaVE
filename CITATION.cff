@@ -13,7 +13,7 @@ title: "DaVE - A Curated Database of Visualization Examples"
 version: 1.0.0
 url: "https://dave-vis.com/"
 preferred-citation:
-  type: inproceedings
+  type: conference-paper
   title: "DaVE - A Curated Database of Visualization Examples"
   authors:
   - family-names: "Koenen"
