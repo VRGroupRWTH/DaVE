@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Koenen"
+  given-names: "Jens"
+- family-names: "Petersen"
+  given-names: "Marvin"
+- family-names: "Garth"
+  given-names: "Christoph"
+- family-names: "Gerrits"
+  given-names: "Tim"
+title: "DaVE - A Curated Database of Visualization Examples"
+version: 1.0.0
+url: "https://dave-vis.com/"
+preferred-citation:
+  type: inproceedings
+  title: "DaVE - A Curated Database of Visualization Examples"
+  authors:
+  - family-names: "Koenen"
+    given-names: "Jens"
+  - family-names: "Petersen"
+    given-names: "Marvin"
+  - family-names: "Garth"
+    given-names: "Christoph"
+  - family-names: "Gerrits"
+    given-names: "Tim"
+  year: 2024
+  booktitle: "2024 IEEE Visualization and Visual Analytics (VIS)"
+  publisher: "IEEE Computer Society"
+  address: "Los Alamitos, CA, USA"
