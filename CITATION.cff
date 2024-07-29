@@ -25,7 +25,7 @@ preferred-citation:
   - family-names: "Gerrits"
     given-names: "Tim"
   year: 2024
-  conference: "2024 IEEE Visualization and Visual Analytics (VIS)"
+  collection-title: "2024 IEEE Visualization and Visual Analytics (VIS)"
   publisher:
     name: "IEEE Computer Society"
     address: "Los Alamitos, CA, USA"
