@@ -34,7 +34,7 @@ We will then review what you have done before we accept the pull request and mak
 It is important to keep in mind that DaVE is a database for examples, descriptions and source code and **not** for datasets.
 Therefore, please try to keep your examples as small as possible by, for example not directly including datasets in your examples.
 Instead, use publicly available datasets, for example hosted on [Zenodo](https://zenodo.org/) or [IEEE DataPort](https://ieee-dataport.org), and include them using an `url`.
-Merge requests larger than 100 MB will be declined to limit the size of the repository.
+Pull requests larger than 100 MB will be declined to limit the size of the repository.
 
 ## Development ###
 After cloning or downloading the repository, open the cloned directory in Visual Studio Code with the Dev Containers extension installed.
