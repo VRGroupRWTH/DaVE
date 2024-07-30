@@ -26,7 +26,7 @@ The fork that GitHub will then create for you is a repository that belongs only 
 Every change that you want to make has to be applied first to your fork repository before it can be integrated into the original DaVE repository.
 
 As with any other repository, create a local copy of the fork repository by cloning it, and then make changes to this local copy of the repository.
-If you are finished and satisfied with your changes, create a commit and push your modification to the `main` branch of your fork repository.
+If you are finished and satisfied with your changes, create a commit and push your modifications to the `main` branch of your fork repository.
 After that, you need to again navigate to the DaVE repository on GitHub where you then have to create a pull request for your changes.
 Select the main branch of the original DaVE repository as well as your fork repository, and briefly describe the changes you made.
 We will then review what you have done before we accept the pull request and make your changes official.
