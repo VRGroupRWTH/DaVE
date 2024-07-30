@@ -16,7 +16,7 @@ Whether you're exploring cutting-edge visualizations for data or seeking practic
 And the best part: DaVE is designed to keep growing!
 Everybody can join our mission and add more examples and resources.
 
-## Contribution ##
+## Contribution Process ##
 If you would like to contribute, for example by adding an example to the database, you need a GitHub account and a basic understanding of `git`.
 In case you haven't worked with `git` before or just need a refresher, watch one of the many beginner guides on the internet to get a rough understanding of how `git` works.
 
