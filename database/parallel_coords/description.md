@@ -1,4 +1,4 @@
-### Description ###
+## Description ##
 Parallel Coordinates is a visualization technique with which several scalar properties over the same spatial domain can be visualized and set in relation.
 The coordinate system that is used in this visualization consists of multiple axes, one for each property being visualized.
 These axes are often placed vertically side by side, hence the name parallel coordinates.
@@ -10,7 +10,7 @@ The dataset that was taken for this example was created by simulating the convec
 Besides the `temperature`, the dataset also captures the properties `temperature anomality`, `thermal conductivity` and `thermal expansivity`, which are visualized using a parallel coordinate plot.
 Additionally, the example also shows these attributes in isolation using multiple heatmaps.
 
-### Instructions ###
+## Instructions ##
 The file archive that comes with this example contains the script file `volumerender_script` that when executed creates a parallel coordinate plot for the provided dataset.
 The script can be started using the following terminal command
 ```bash
@@ -58,11 +58,11 @@ The order in which these axes are read from the dataset can be controlled using 
 reader.Dimensions = '(lat, r, lon)'
 ```
 
-### Limitations ###
+## Limitations ##
 Currently the `parallel_coordinates_trace.py` only supports datasets that are stored in the NetCDF (Network Common Data Form) format.
 Datasets that are stored in this particular format can be identified by the file extension `.nc`.
 Other file formats are theoretically possible but would require extensive changes to the `parallel_coordinates_trace.py` file as the reader used by the script would need to be replaced.
 
-### References ###
+## References ##
 1. [<span id="reference_dataset">2021, "SciVis Contest 2021: Earth's Mantle Convection", https://scivis2021.netlify.app/data/</span>](https://scivis2021.netlify.app/data/)
 2. [<span id="reference_python_api">Kitware, Inc. , March 26, 2024, "ParaView’s Python documentation!", https://kitware.github.io/paraview-docs/v5.10.1/python/index.html.</span>](https://kitware.github.io/paraview-docs/v5.10.1/python/index.html)

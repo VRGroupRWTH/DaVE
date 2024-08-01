@@ -1,4 +1,4 @@
-### Description ###
+## Description ##
 This example illustrates a multivariate visualization using glyphs.
 The dataset that is attached to this example was created by simulating a cylinder filled with pure water where the top of the cylinder is covered by an inexhaustible layer of salt.
 Over time the salt dissolves into the water and forms regions with high salt concentration also known as viscous fingers.
@@ -9,7 +9,7 @@ With increasing velocity magnitude the arrows get longer and the color of the ar
 Similarly, the spheres are scaled and colored based on the concentration field.
 As the concentration increases the spheres become larger, and their color turns from bright green to blue.
 
-### Instructions ###
+## Instructions ##
 The file archive that is provided for this example contains the script file `pointcloud_script.sh` that when executed visualized a tensor field using ellipsoidal glyphs.
 The script can be started using the following terminal command
 ```bash
@@ -52,11 +52,11 @@ cylinder1.Center = [0.0, 0.0, 5.0]
 But there are other shapes that can be used as well to frame the dataset such as `pvs.Cylinder`, `pvs.Box` or `pvs.Sphere`.
 For more information on how to configure these shapes, see the ParaView Python documentation [2](#reference_python_api).
 
-### Limitations ###
+## Limitations ##
 Currently this example only accepts datasets in the `.vtu` file format as other formats would require major changes to the loading process.
 Besides that there are the following known issues:
 - Artifacts on the cylinder in distributed execution.
 
-### References ###
+## References ##
 1. [<span id="reference_dataset">2016, "SciVis Contest 2016: Simulation of viscous fingers", https://cloud.sdsc.edu/v1/AUTH_sciviscontest/2016/README.html</span>](https://cloud.sdsc.edu/v1/AUTH_sciviscontest/2016/README.html)
 2. [<span id="reference_python_api">Kitware, Inc. , March 26, 2024, "ParaView’s Python documentation!", https://kitware.github.io/paraview-docs/v5.10.1/python/index.html.</span>](https://kitware.github.io/paraview-docs/v5.10.1/python/index.html)

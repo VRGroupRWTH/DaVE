@@ -1,4 +1,4 @@
-### Description ###
+## Description ##
 Streamlines are commonly used for the visualization of steady flows or the visualization of flow states at specific points in time.
 They are quite similar to pathlines in that they also use lines to visualize a vector field, but there is a distinct difference between those techniques.
 In comparison to path lines, streamlines visualize a vector field for an isolated point in time and therefore allow for a more direct insight into how the vector field changes over time.
@@ -12,7 +12,7 @@ Line segments that pass through an area of high velocity are colored red and blu
 As it can be clearly seen, the exhaust stream of the jet engine is quite concentrated and therefore a lot of lines passing from left to right stay in the middle of the simulation domain.
 Only a few lines diverge from the cluster in the middle and from loops in the more turbulent outer parts of the exhaust stream.
 
-### Instructions ###
+## Instructions ##
 The file archive that comes with this example contains the script file `streamline_script.sh` that when executed visualizes the provided vector field using streamlines.
 The script can be started using the following terminal command
 ```bash
@@ -36,9 +36,9 @@ The number of lines that are spawned can be controlled using the following line 
 maskPoints1.MaximumNumberofPoints = 100
 ```
 
-### Limitations ###
+## Limitations ##
 Currently this example only supports dataset that are stored in the `.vti` file format.
 Other file formats are theoretically possible but would require wider changes to the script `streamline_trace.py` as a different file reader would be required.
 
-### References ###
+## References ##
 1. [<span id="reference_dataset">Christoph Garth, March 9, 2020, "Simulation of a jet flow", IEEE Dataport, doi: https://dx.doi.org/10.21227/qjxp-kc31.</span>](https://dx.doi.org/10.21227/qjxp-kc31)

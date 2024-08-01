@@ -36,7 +36,7 @@ Therefore, please try to keep your examples as small as possible by, for example
 Instead, use publicly available datasets, for example hosted on [Zenodo](https://zenodo.org/), and include them using an `url`.
 Pull requests larger than 100 MB will be declined to limit the size of the repository.
 
-## Development ###
+## Development ##
 After cloning or downloading the repository, open the cloned directory in Visual Studio Code with the Dev Containers extension installed.
 Before using the Dev Container extension, it is necessary to install Docker.
 More information on that can be found on the extension page in VS Code.

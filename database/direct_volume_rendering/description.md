@@ -1,4 +1,4 @@
-### Description ###
+## Description ##
 Direct volume rendering is one of the most commonly used methods for the visualization of three-dimensional scalar datasets.
 Especially in the medical field, direct volume rendering is widely used for the visualization of CT or MRI scans of patients.
 But there are other research areas where direct volume rendering is also used, such as the field of energy conversion, where it is used for the visualization of gasses in a simulated combustion process.
@@ -13,7 +13,7 @@ This makes it then easier to identify different structures in the volume, as for
 Besides that, it is also possible to control the opacity of structures based on the values of the scalar field which makes it possible to cut away structures that are not of interset.
 In this example, dense structures such as the bones were set to fully opaque while the tissue of the foot was made semi-transparent.
 
-### Instructions ###
+## Instructions ##
 The file archive that comes with this example when downloading it, contains the script file `volumerender_script` that when executed visualizes the provided dataset using direct volume rendering.
 The script can be started using the following terminal command
 ```bash
@@ -32,9 +32,9 @@ reader.PointArrayStatus = ['Scalars_']
 ```
 By default, the script uses the attribute with the name `Scalars_` for the visualization.
 
-### Limitations ###
+## Limitations ##
 Currently the example only supports datasets in the `.vti` file format.
 Other dataset format are possible but would require extensive changes to the `volumerender_trace.py` script file as the reader used by it would need to be changed.
 
-### References ###
+## References ##
 1. [<span id="reference_dataset">Philips Research, "Rotational C-arm x-ray scan of a human foot", Hamburg, Germany, https://github.com/topology-tool-kit/ttk-data/blob/dev/ctBones.vti.</span>](https://github.com/topology-tool-kit/ttk-data/blob/dev/ctBones.vti)

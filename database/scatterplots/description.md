@@ -1,4 +1,4 @@
-### Description ###
+## Description ##
 A popular way to get a quick overview over a set of variables of an experiment and find possible correlations between them is by plotting them in several scatter plots.
 These scatter plots are often arranged in a matrix where each row and column is dedicated to a single experiment variable.
 Each cell of the matrix then contains the scatter plot that compares the variable of the column with the variable of the row.
@@ -12,7 +12,7 @@ For the visualization, the example takes only a slice of the three-dimensional s
 The sample point of the dataset that lie in the slice are then plotted in several scatter plots that juxtapose the variables `spin transition-induced density anomaly`, `temperature`, `temperature anomaly`, `thermal conductivity` and `thermal expansivity`.
 In addition to that, the example also shows the variables in isolation using several heatmaps placed left to the grid of scatter plots.
 
-### Instructions ###
+## Instructions ##
 The file archive that comes with this example contains the script file `scatterplots_script.sh` that when executed creates a matrix of scatter plots for the provided dataset.
 The script can be started using the following terminal command
 ```bash
@@ -50,10 +50,10 @@ The order in which these axes are read from the dataset can be controlled using 
 reader.Dimensions = '(lat, r, lon)'
 ```
 
-### Limitations ###
+## Limitations ##
 Currently the `scatterplots_trace.py` only supports datasets that are stored in the NetCDF (Network Common Data Form) format.
 Datasets that are stored in this particular format can be identified by the file extension `.nc`.
 Other file formats are theoretically possible but would require extensive changes to the `scatterplots_trace.py` file as the reader used by the script would need to be replaced.
 
-### References ###
+## References ##
 1. [<span id="reference_dataset">2021, "SciVis Contest 2021: Earth's Mantle Convection", https://scivis2021.netlify.app/data/</span>](https://scivis2021.netlify.app/data/)

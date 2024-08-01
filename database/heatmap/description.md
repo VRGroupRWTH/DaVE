@@ -1,4 +1,4 @@
-### Description ###
+## Description ##
 Heatmaps are a widely used visualization method with which mostly two-dimensional scalar datasets can be easily explored.
 The creation of heatmaps is simple as the scalar values of the dataset are simply mapped to color values.
 The mapping of the scalar dataset values to the color values can be defined using different methods, but most commonly they are defined based on a user defined look up table, which makes a given dataset value to a specific color.
@@ -11,7 +11,7 @@ With in creasing distance to the earths center, the temperature decreases and th
 At some points of the mantel, there are yellow regions of hot material reaching from the inner to the outer mantel.
 These areas are caused by the convection and are most likely mantle plume.
 
-### Instructions ###
+## Instructions ##
 After downloading, the example can be executed by running the script `heatmap_script.sh` using the following terminal command
 ```bash
 ./heatmap_script.sh
@@ -48,10 +48,10 @@ Four consecutive values of the array define a key point of the loop up table.
 The first value controls the dataset value that the key point will affect, while the remaining three values define the color of the key point.
 More precisely, the color is specified in the RGB color space, where the value of each color component must lie in the interval from `0.0` to `1.0`.
 
-### Limitations ###
+## Limitations ##
 Currently the `heatmap_trace.py` only supports datasets that are stored in the NetCDF (Network Common Data Form) format.
 Datasets that are stored in this particular format can be identified by the file extension `.nc`.
 Other file formats are theoretically possible but would require extensive changes to the `heatmap_trace.py` file as the reader used by the script would need to be replaced.
 
-### References ###
+## References ##
 1. [<span id="reference_dataset">2021, "SciVis Contest 2021: Earth's Mantle Convection", https://scivis2021.netlify.app/data/</span>](https://scivis2021.netlify.app/data/)

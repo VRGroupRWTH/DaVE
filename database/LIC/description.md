@@ -1,4 +1,4 @@
-### Description ###
+## Description ##
 Line-Integral Convolution is a visualization technique that can be used to highlight the field lines of two- or three-dimensional vector fields. 
 The method calculates the color for a specific point by integrating a noisy scalar field along a curve.
 This curve starts at the point where the color is to be calculated and follows the vector field for a user-defined length.
@@ -13,7 +13,7 @@ This example nicely illustrates the advantages of this line integral convolution
 These approach in particular visualize the dataset using lines or arrows which cause visual cluttering if too many of them are use or only give a rough overview of the dataset if not enough of them are used.
 This problem in particular does not arise when using line integration convolution.
 
-### Instructions ###
+## Instructions ##
 The file archive that is provided for this example contains the script file `lic_script.sh` that when executed visualized a dataset using line-integral convolution.
 The script can be started using the following terminal command
 ```bash
@@ -38,7 +38,7 @@ The order in which these axes are read from the dataset can be controlled using 
 reader.Dimensions = '(lat, r, lon)'
 ```
 
-### Limitations ###
+## Limitations ##
 Currently the `lic_trace.py` only supports datasets that are stored in the NetCDF (Network Common Data Form) format.
 Datasets that are stored in this particular format can be identified by the file extension `.nc`.
 Other file formats are theoretically possible but would require extensive changes to the `lic_trace.py` file as the reader used by the script would need to be replaced.
@@ -46,5 +46,5 @@ Other file formats are theoretically possible but would require extensive change
 Besides that, there are the following limitations:
 - Artifacts in distributed execution
 
-### References ###
+## References ##
 1. [<span id="reference_dataset">2021, "SciVis Contest 2021: Earth's Mantle Convection", https://scivis2021.netlify.app/data/</span>](https://scivis2021.netlify.app/data/)

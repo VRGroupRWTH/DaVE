@@ -1,4 +1,4 @@
-### Description ###
+## Description ##
 Visualization techniques commonly used for two-dimensional datasets can be applied to slices of three-dimensional datasets as well.
 The content of a slice is usually defined by a plane that cuts through the domain of the three-dimensional dataset.
 Although the users can choose the orientation and location of the planes arbitrarily, they are often aligned with one of the three primary axes of the dataset to extract the coordinate surface at a specific location.
@@ -11,7 +11,7 @@ When loading the database using Cinema:View, the user can select the slices that
 In addition to showing the slices of the primary axis in isolation, the tool also provides a visualization that shows all three slices at once.
 The dataset that was chosen for this example represents the x-ray scan of a patient's foot as a scalar field which captures the densities of bones and tissues within the foot [2](#reference_dataset).
 
-### Instructions ###
+## Instructions ##
 The file archive that comes with this example when downloading it, contains the script file `multiple_slice_script` that when executed creates the Chinema database for the provided dataset.
 The script can be started using the following terminal command
 ```bash
@@ -33,10 +33,10 @@ By default, the script uses the attribute with the name `Scalars_` for the visua
 <!--One of the tools with which the resulting Chinema database can be shown is the tool Cinema:View which needs to be downloaded seperatly [1](#reference_cinema_view).
 After downloading the Github repository as an zip-File, -->
 
-### Limitations ###
+## Limitations ##
 Currently the example only supports datasets in the `.vti` file format.
 Other dataset format are possible but would require extensive changes to the `multiple_slice_trace.py` script file as the reader used by it would need to be changed.
 
-### References ###
+## References ##
 1. [<span id="reference_cinema_view">"Cinema:View: A simple viewer that displays a single or multiple Cinema databases.", https://github.com/cinemascience/cinema_view</span>](https://github.com/cinemascience/cinema_view)
 2. [<span id="reference_dataset">Philips Research, "Rotational C-arm x-ray scan of a human foot", Hamburg, Germany, https://github.com/topology-tool-kit/ttk-data/blob/dev/ctBones.vti.</span>](https://github.com/topology-tool-kit/ttk-data/blob/dev/ctBones.vti)

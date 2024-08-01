@@ -1,11 +1,11 @@
-### Description ###
+## Description ##
 The extraction of isocontours is a fundamental visualization technique used in many research areas for the exploration of primarily three-dimensional scalar datasets.
 In this example, the extraction of an isocontour is demonstrated for a medical use case in which the x-ray scan of a patients foot needs to be visualized.
 The dataset used in this example contains a dimensional scalar field that captures the density of the tissues and bones within the foot of a patient [1](#reference_dataset).
 The extraction of isocontours is particularly interesting in this use case, as it allows for an isolated view on specific structures within the foot.
 By selecting an appropriate threshold for the extraction, it is for example possible to visualize only the bones in the foot, which enables the diagnosis of potential fractures.
 
-### Instructions ###
+## Instructions ##
 The file archive that is provided for this example contains the shell script `isocontour_script.sh` that creates an isocontour for the input dataset.
 The script can be started by running the following command in the terminal
 ```bash
@@ -32,8 +32,8 @@ This parameter is controlled by the following line of the `isocontour_trace.py` 
 contour1.Isosurfaces = [100.0]
 ```
 
-### Limitations ###
+## Limitations ##
 Currently this example only accepts dataset in the `.vti` file format as other formats would require wider changes to the loading process.
 
-### References ###
+## References ##
 1. [<span id="reference_dataset">Philips Research, "Rotational C-arm x-ray scan of a human foot", Hamburg, Germany, https://github.com/topology-tool-kit/ttk-data/blob/dev/ctBones.vti.</span>](https://github.com/topology-tool-kit/ttk-data/blob/dev/ctBones.vti)

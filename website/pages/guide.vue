@@ -3,7 +3,6 @@
     import GlobalHeader from "../components/global_header.vue";
     import GlobalFooter from "../components/global_footer.vue";
     import Outline from "../components/outline.vue";
-    import OutlineContainer from "../components/outline_container.vue";
 
     export default
     {
@@ -11,8 +10,7 @@
         {
             GlobalHeader,
             GlobalFooter,
-            Outline,
-            OutlineContainer
+            Outline
         },
         setup()
         {
@@ -33,9 +31,15 @@
         </GlobalHeader>
     </header>
     <main class="flex-fill">
+        <div class="headline-background shadow-sm">
+            <div class="container">
+                <div class="headline">
+                    <h1>Guide</h1>
+                </div>
+            </div>
+        </div>
         <div class="container d-flex">
             <div ref="content" class="me-lg-4 flex-fill" style="min-width: 0px;">
-                <h1 class="display-1 ps-2 py-5 mb-4 fw-semibold" style="font-size: min(5rem, max(1.625rem + 4.5vw, 3.5rem));">Guide</h1>
                 <div class="card mb-4 shadow-sm title-underline" style="overflow: clip;" outline_label="How to use DaVE?" outline_indent="0" id="How_to_use_DaVE">
                     <div class="row g-0">
                         <div class="col-md-2 card-border bg-body-tertiary">
@@ -70,8 +74,8 @@
                 </div>
             </div>
             <div class="flex-shrink-0 d-none d-lg-block" style="width: 250px;">
-                <div class="sticky-top" style="top: 100px; z-index: 0;">
-                    <h5 class="guide-content pt-3 pb-1">On this page</h5>
+                <div class="sticky-top" style="top: 128px; z-index: 0;">
+                    <h5 class="guide-content pb-1">On this page</h5>
                     <outline :target="content" depth_max="1"></outline>
                 </div>
             </div>

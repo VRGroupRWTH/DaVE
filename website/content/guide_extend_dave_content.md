@@ -1,9 +1,9 @@
 ## DaVE's Architecture ##
 
-#### Database ####
+### Database ###
 The database of DaVE contains a selection of commonly used visualization techniques and provides documentation and additional resources for them. Each entry comes with an easy-to-use, easy-to-extend example that can be downloaded and executed on your local hardware or on HPC clusters with slurm and MPI, provided slurm and singularity/apptainer (or docker) are available.
 
-##### Database Structure #####
+#### Database Structure ####
 DaVE's database is a simple file hierarchy, where each entry is represented by a directory. Each example contains further subdirectories. The _images_ folder stores all images to show in the gallery view and the example page. The _scene_ folder contains information for the interactive preview that some examples provide. The _resources_ directory contains all necessary files for executing this example. In general, this entails a shell script for execution and in the case of [ParaView](https://www.paraview.org/) visualizations, a Python trace file. The description markdown file contains all the text describing the visualization, its application, providing additional references and instructions for executing and adapting the example. The [visualization.yaml](#Visualization_Metadata) contains all the information about the tags, which container image to use, which images to show etc.
 
 ```text
@@ -16,11 +16,11 @@ database/
 │  ├─ visualization.yaml
 ```
 
-#### Visualizations ####
+### Visualizations ###
 DaVE tries to cover a wide range of visualization methods from different applications.
 Additionally, the provided examples should be executable on a diverse set of computing resources. In order to categorize and organize each of the example visualizations the meta data for each example is stored in a yaml file.
 
-##### Visualization Metadata #####
+#### Visualization Metadata ####
 At the top name and date of creation are given.
 
 ```yaml
@@ -101,7 +101,7 @@ datasets:
     path:
 ```
 
-##### Execution Script #####
+#### Execution Script ####
 Each visualization comes with an execution script that uses the information from the yaml meta data file and the information given in the template wizard when downloading an example to execute.
 For this, variables are inserted into the script after configuration. 
 These are used to check for the existence of the data set, determining additional execution commands and executing inside the specified container.
@@ -149,7 +149,7 @@ if [[ "${CONTAINER_PLATFORM}" == "singularity" ]]; then
 fi;
 ```
 
-#### Containers ####
+### Containers ###
 
 DaVE tries to be compatible with many different container images. Any Docker container can theoretically be used. Singularity/Apptainer is used to convert Docker images into Singularity images. Singularity/Apptainer is often used in HPC environments where users have less permissions.
 Each example references a Docker image with which it can be executed. Additionally, it also provides the build recipe for the image - a dockerfile. 
@@ -162,7 +162,7 @@ Currently, most examples make heavy use of the [ParaView](https://www.paraview.o
 ## Creating Examples ##
 Changing examples or creating your own in DaVE can be done at varying levels of complexity. Either way an example can be easely created using the [this](/resources/example_template.zip) template.
 
-#### Using Custom Data ####
+### Using Custom Data ###
 
 If you find an example fitting your visualization needs but want to use your own data, you can simply change the path to the data in the execution script. Afterwards it might be necessary to change some things in the visualization. In the case of visualizations with ParaView, you can edit the accompanying trace file. Lines where changes are potentially needed are marked with a comment containing ```# OWN_DATA``` and a short description of what needs to be adapted.
 
@@ -205,7 +205,7 @@ Although this example should work now, the description.md should also be adapted
 
 With everything set, you can do a pull request for your example to [DaVE](https://github.com/VRGroupRWTH/DaVE).
 
-#### Changing Existing Visualizations ####
+### Changing Existing Visualizations ###
 
 If you want to adapt the visualization itself, you can change the visualization trace itself, at least for the ParaView examples. Let us exemplify this by adding a filter that extracts a subset of your data to the pipeline. 
 
@@ -234,7 +234,7 @@ Alternatively, you can create a completely new trace with [ParaView](https://doc
 
 Contributing a derived visualization to DaVE's repository is similarly to [using your own data](#Using_Custom_Data). When creating a completely new entry, either take a similar example and build from there or you consult the sections on the [database structure](#Database_Structure) and [visualization](#Visualizations) for creating all necessary files.
 
-#### Changing the Containerized Environment ####
+### Changing the Containerized Environment ###
 If you find that you need an additional package not available in the provided container image, you can check whether this package is available in spack.
 If so, you can add it to the build configuration in the Dockerfile provided with each example. Then build the docker container. For errors during the build process consult the [spack documentation](https://spack.readthedocs.io/en/latest/). In the example below, the ffmpeg package is added to the spack configuration.
 
@@ -265,5 +265,10 @@ docker buildx build -t <your/container/name> -f Dockerfile --target build .
 
 Changes to the container can be done in addition to changes in data and/or visualization. When using a new container only the uri in the visualization.yaml has to be changed and the new Dockerfile should be added as a resource in the respective directory. Ideally those changes are combined such that the newly added capabilities in your container are used by the visualization.
 
-#### Using a Custom Environment ####
+### Using a Custom Environment ###
 If none of the above works for you or you already have a working docker container and just want to make your use case available, you can provide your own docker container in the visualization.yaml.
+
+## Feature Requests ##
+If you have an idea how to improve the DaVE website or any other aspect of DaVE, you are welcome to create a feature request in the DaVE repository on GitHub using this <a href="https://github.com/VRGroupRWTH/DaVE/issues/new?title=Feature Request&body=Please describe the feature that you are requesting as detailed as possible and change the name of the ticket accordingly. If you like, you can also assign labels to your feature request.">link</a>.
+Make sure that you properly describe your idea.
+We will then review your request, give feedback and if possible implement your feature as quickly as possible.

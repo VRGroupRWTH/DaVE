@@ -1,4 +1,4 @@
-### Description ###
+## Description ##
 Visualizing a scalar dataset just by computing an isosurface is often not enough to gain a deep understanding of the data.
 Depending on the use case, there may be research questions that cannot be answered by an isosurface alone and therefore require further evaluation steps.
 Such an evaluation process that needs multiple steps is quite common and subject of this example.
@@ -9,7 +9,7 @@ An isovolume is simply computed by clipping away all cells of the dataset whose 
 After that, the connected areas within the density field are identified by checking which cells of the remaining cells of the dataset are adjacent to each other.
 Finally, the example computes the volume of these mesh pieces and displays the resulting volume distribution in a histogram.
 
-### Instructions ###
+## Instructions ##
 The file archive that comes with this example contains the script file `volume_statistics_script.sh` that when executed performs the volume component evaluation on the provided dataset.
 The script can be started using the following terminal command
 ```bash
@@ -41,10 +41,10 @@ To disable this behavior, removed the following line of the `volume_statistics_t
 ```python
 full_volume_range[1] -= 1
 ```
-### Limitations ###
+## Limitations ##
 Currently this example only accepts dataset in the `.nrrd` file format as other formats would require wider changes to the loading process.
 Besides that, the pipeline contains a programmable filter summing up the volume for each connected component.
 The problem with this particular type of filter is that it does not properly work in the distributed case.
 
-### References ###
+## References ##
 1. [<span id="reference_dataset">Andrew W. Cook, William Cabot and Paul L. Miller, 2004, "A time step of a density field in a simulation of the mixing transition in Rayleigh-Taylor instability.", https://klacansky.com/open-scivis-datasets/miranda/.</span>](https://klacansky.com/open-scivis-datasets/miranda/)

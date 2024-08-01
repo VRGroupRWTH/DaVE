@@ -1,4 +1,4 @@
-### Description ###
+## Description ##
 Datasets that describe a two- or three-dimensional fields often contain just a two- or three-dimensional array which describes the field at a discrete set of sample points.
 These sample points are often distributed in a regular grid over the domain of the field, where the resolution of the grid is controlled by the user during the creation of the dataset.
 Choosing the right resolution is not always easy as a too high resolution would easily lead to an enormously large dataset, while a too low grid resolution would lead to an imprecise representation and a loss of smaller features of the field.
@@ -15,7 +15,7 @@ In the center however, a very spares grid is used as the field is constant in th
 
 As this example can be used with costume datasets, it is a valuable debug tool with which the grid structure of a dataset can be explored, and potential sampling problems can be identified.
 
-### Instructions ###
+## Instructions ##
 Under the files that can be downloaded for this particular example, there is the script file `amr_script.sh` that when executed visualizes the grid structure of the provided dataset. 
 The script can be started using the following terminal command
 ```bash
@@ -27,6 +27,6 @@ chmod +x amr_script.sh
 ```
 After a successful execution of the script, the image `arm.png` containing the final visualization of the provided dataset is placed in the folder `output`. 
 
-### Limitations ###
+## Limitations ##
 Currently the example only accepts dataset in the `.vthb` or `.vth` format.
 Other file formats are theoretically possible but would require extensive changes to the `amr_script.py` script file as the reader used by it would need to be replaced.

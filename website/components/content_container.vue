@@ -1,11 +1,12 @@
 <script>
     import { ref, watch } from "vue";
+    import * as bootstrap from "bootstrap";
 
     export default
     {
         setup()
         {
-            let outline_container = ref(null);
+            let content_container = ref(null);
 
             function is_heading(tag)
             {
@@ -55,12 +56,12 @@
 
             function create_sections()
             {
-                if(outline_container.value == null)
+                if(content_container.value == null)
                 {
                     return;
                 }
 
-                let base = outline_container.value;
+                let base = content_container.value;
 
                 while(true)
                 {
@@ -160,40 +161,139 @@
                 }
             }
 
-            const outline_mutation_options = 
+            function build_clipboard(code)
+            {
+                let clipboard = "";
+
+                for(const node of code.childNodes)
+                {
+                    if(node.nodeType == Node.TEXT_NODE)
+                    {
+                        clipboard += node.nodeValue;
+                    }
+
+                    else
+                    {
+                        clipboard += build_clipboard(node);
+                    }
+                }
+
+                return clipboard;
+            }
+
+            function on_clipboard_click(button, code)
+            {
+                const clipboard = build_clipboard(code);
+                navigator.clipboard.writeText(clipboard);
+
+                const tooltip = new bootstrap.Tooltip(button);
+                tooltip.show();
+
+                button.onclick = () => {};
+                setTimeout(() => on_clipboard_timeout(button, tooltip, code), 2000);
+            }
+
+            function on_clipboard_timeout(button, tooltip, code)
+            {
+                const on_clipboard_dispose = () =>
+                {
+                    tooltip.dispose();
+                    button.onclick = () => on_clipboard_click(button, code);
+                    button.removeEventListener("hidden.bs.tooltip", on_clipboard_dispose);
+                };
+
+                button.addEventListener("hidden.bs.tooltip", on_clipboard_dispose);
+                tooltip.hide();
+            }
+
+            function create_clipboard_buttons()
+            {
+                const elements = content_container.value.getElementsByTagName("pre");
+
+                for(const element of elements)
+                {
+                    const buttons = element.getElementsByTagName("button");
+                    const codes = element.getElementsByTagName("code");
+
+                    if(codes.length <= 0)
+                    {
+                        continue;
+                    }
+
+                    for(const button of buttons)
+                    {
+                        button.remove();
+                    }
+
+                    const button = document.createElement("button");
+                    button.innerHTML = "<img src='/assets/icons/copy_clipboard.svg' style='width: 18px; height: 18px'>";
+                    button.setAttribute("data-bs-title", "Copied!");
+                    button.setAttribute("data-bs-placement", "left");
+                    button.setAttribute("data-bs-trigger", "manual");
+                    button.onclick = () => on_clipboard_click(button, codes[0]);
+                    
+                    element.style.position = "relative";
+                    element.append(button)
+                }
+            }
+
+            function create_anchor_links()
+            {
+                const elements = content_container.value.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+                for(const element of elements)
+                {
+                    const links = element.getElementsByTagName("a");
+                    
+                    for(const link of links)
+                    {
+                        link.remove();
+                    }
+
+                    const link = document.createElement("a");
+                    link.innerHTML = "<img src='/assets/icons/link_45deg.svg' style='width: round(down, 1lh - 4px, 2px); position: absolute; top: 0.25lh;'>";
+                    link.href = "#" + element.parentNode.id;
+
+                    element.append(link);
+                }
+            }
+
+            const content_mutation_options = 
             {
                 subtree: true,
                 childList: true
             };
 
-            let outline_mutation_observer = new MutationObserver(records =>
+            let content_mutation_observer = new MutationObserver(records =>
             {
                 create_sections();
+                create_clipboard_buttons();
+                create_anchor_links();
 
-                outline_mutation_observer.takeRecords();
+                content_mutation_observer.takeRecords();
             });
 
-            watch(outline_container, (old_state, new_state) =>
+            watch(content_container, (old_state, new_state) =>
             {
-                outline_mutation_observer.disconnect();
+                content_mutation_observer.disconnect();
 
-                if(outline_container.value != null)
+                if(content_container.value != null)
                 {
-                    outline_mutation_observer.observe(outline_container.value, outline_mutation_options);
+                    content_mutation_observer.observe(content_container.value, content_mutation_options);
                 }
 
                 create_sections();
             }, { immediate: true });
 
             return {
-                outline_container
+                content_container
             };
         }  
     };
 </script>
 
 <template>
-    <div ref="outline_container">
+    <div ref="content_container">
         <slot></slot>
     </div>
 </template>

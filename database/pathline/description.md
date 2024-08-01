@@ -1,4 +1,4 @@
-### Description ###
+## Description ##
 Pathlines are frequently used in fluid dynamics for the visualization of unsteady flows, such as the flow of gases in a running combustion engine.
 Unsteady flow, also known as transient flow, is characterized by the fact that certain properties affecting the flow are time-dependent.
 For instance, if the velocity field of the flow changes over time, the flow is considered unsteady.
@@ -19,7 +19,7 @@ To make the different paths more distinguishable, each is colored using a differ
 This also highlights a potential disadvantage of this visualization approach, as with increasing number of paths, the resulting image becomes more visually cluttered.
 As a result, it is sometimes difficult to make out the path that a particular particle has taken.
 
-### Instructions ###
+## Instructions ##
 The file archive that comes with this example contains the script file `pathline_script.sh` that when executed creates pathlines for the provided dataset.
 The script can be started using the following terminal command
 ```bash
@@ -46,12 +46,12 @@ This parameter is controlled by the following line of the `volume_statistics_tra
 maskPoints1.MaximumNumberofPoints = 99
 ```
 
-### Limitations ###
+## Limitations ##
 Currently this example only accepts datasets in the `.vti` file format as other formats would require major changes to the loading process.
 Also, the example has only been tested with apptainer version `1.2.5-1.el8` and Docker version `24.0.5, build 24.0.5-0ubuntu1~22.04.1`.
 
 Besides that, there are additionally the following limitations:
 - Pathlines using multiple MPI ranks are currently not always correctly connected in ParaView.
 
-### References ###
+## References ##
 1. [<span id="reference_dataset">Christoph Garth, March 9, 2020, "Simulation of a jet flow", IEEE Dataport, doi: https://dx.doi.org/10.21227/qjxp-kc31.</span>](https://dx.doi.org/10.21227/qjxp-kc31)

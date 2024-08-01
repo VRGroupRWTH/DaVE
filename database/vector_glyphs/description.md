@@ -1,4 +1,4 @@
-### Description ###
+## Description ##
 Perhaps the most common method of visualizing vector fields or fields comprising multiple scalar attributes is by using glyphs.
 In the field of data visualization, glyphs are markers that describe the properties of a given field at a specific location.
 These glyphs are often distributed in a regular grid within the domain of the given input field.
@@ -17,7 +17,7 @@ For the visualization of the vector field, arrow glyphs are used are which align
 The length and the color of the arrows is dependent on the speed of the flow which can be derived from the velocity magnitude.
 With an increasing speed, the arrow becomes longer and the color changes from blue to red.
 
-### Instructions ###
+## Instructions ##
 The visualization template that can be configured and downloaded below contains the shell script `glyphs_script.sh` that when executed visualizes the provided dataset using glyphs.
 The script can be started by running the following command in the terminal
 ```bash
@@ -52,10 +52,10 @@ glyph1Display.ScaleFactor = 0.2231481334194541
 ```
 For further options please look at the documentation of the ParaView Python API [2](#reference_python_api). Otherwise, it is also possible to load the file `glyphs_trace.py` directly into ParaView granting even more options for customizations.
 
-### Limitations ###
+## Limitations ##
 Currently this example only supports dataset that are stored in the `.vti` file format.
 Other file formats are theoretically possible but would require wider changes to the script `glyphs_trace.py` as a different file reader would be required.
 
-### References ###
+## References ##
 1. [<span id="reference_dataset">Christoph Garth, March 9, 2020, "Simulation of a jet flow", IEEE Dataport, doi: https://dx.doi.org/10.21227/qjxp-kc31.</span>](https://dx.doi.org/10.21227/qjxp-kc31)
 2. [<span id="reference_python_api">Kitware, Inc. , March 26, 2024, "ParaView’s Python documentation!", https://kitware.github.io/paraview-docs/v5.10.1/python/index.html.</span>](https://kitware.github.io/paraview-docs/v5.10.1/python/index.html)

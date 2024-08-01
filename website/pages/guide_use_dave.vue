@@ -3,8 +3,8 @@
     import { VueComponent as GuideUseDaveContent } from "../content/guide_use_dave_content.md";
     import GlobalHeader from "../components/global_header.vue";
     import GlobalFooter from "../components/global_footer.vue";
+    import ContentContainer from "../components/content_container.vue";
     import Outline from "../components/outline.vue";
-    import OutlineContainer from "../components/outline_container.vue";
 
     export default
     {
@@ -13,8 +13,8 @@
             GuideUseDaveContent,
             GlobalHeader,
             GlobalFooter,
-            Outline,
-            OutlineContainer
+            ContentContainer,
+            Outline
         },
         setup()
         {
@@ -35,16 +35,22 @@
         </GlobalHeader>
     </header>
     <main class="flex-fill">
+        <div class="headline-background shadow-sm">
+            <div class="container">
+                <div class="headline">
+                    <h1>How to use DaVE?</h1>
+                </div>
+            </div>
+        </div>
         <div class="container d-flex">
             <div ref="content" class="me-lg-4 flex-fill" style="min-width: 0px;">
-                <h1 class="display-1 ps-2 py-5 mb-4 fw-semibold" style="font-size: min(5rem, max(1.625rem + 4.5vw, 3.5rem));">How to use DaVE?</h1>
-                <OutlineContainer class="guide-content">
+                <ContentContainer class="content">
                     <GuideUseDaveContent></GuideUseDaveContent>
-                </OutlineContainer>
+                </ContentContainer>
             </div>
             <div class="flex-shrink-0 d-none d-lg-block" style="width: 250px;">
-                <div class="sticky-top" style="top: 100px; z-index: 0;">
-                    <h5 class="guide-content pt-3 pb-1">On this page</h5>
+                <div class="sticky-top" style="top: 128px; z-index: 0;">
+                    <h5 class="guide-content pb-1">On this page</h5>
                     <outline :target="content" depth_max="1"></outline>
                 </div>
             </div>

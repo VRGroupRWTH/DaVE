@@ -2,14 +2,16 @@
     import { VueComponent as ImprintContent } from "../content/imprint_content.md";
     import GlobalHeader from "../components/global_header.vue"
     import GlobalFooter from "../components/global_footer.vue"
+    import ContentContainer from "../components/content_container.vue";
 
     export default
     {
         components:
         {
+            ImprintContent,
             GlobalHeader,
             GlobalFooter,
-            ImprintContent
+            ContentContainer
         }
     };
 </script>
@@ -18,12 +20,18 @@
         <GlobalHeader></GlobalHeader>
     </header>
     <main class="flex-fill">
+        <div class="headline-background shadow-sm">
+            <div class="container">
+                <div class="headline">
+                    <h1>Imprint</h1>
+                </div>
+            </div>
+        </div>
         <div class="container">
             <div class="col-12 col-lg-10">
-                <h1 class="display-1 fw-semibold ps-2 py-5 mb-4" style="font-size: min(5rem, max(1.625rem + 4.5vw, 3.5rem));">Site Credits</h1>
-                <div class="imprint-content">
+                <ContentContainer class="mt-4 content">
                     <ImprintContent></ImprintContent>
-                </div>
+                </ContentContainer>
             </div>
         </div>
     </main>

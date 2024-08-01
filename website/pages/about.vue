@@ -3,8 +3,8 @@
     import { VueComponent as AboutContent } from "../content/about_content.md";
     import GlobalHeader from "../components/global_header.vue";
     import GlobalFooter from "../components/global_footer.vue";
+    import ContentContainer from "../components/content_container.vue";
     import Outline from "../components/outline.vue";
-    import OutlineContainer from "../components/outline_container.vue";
 
     export default
     {
@@ -13,8 +13,8 @@
             AboutContent,
             GlobalHeader,
             GlobalFooter,
-            Outline,
-            OutlineContainer
+            ContentContainer,
+            Outline
         },
         setup()
         {
@@ -43,12 +43,18 @@
         </GlobalHeader>
     </header>
     <main class="flex-fill">
+        <div class="headline-background shadow-sm">
+            <div class="container">
+                <div class="headline">
+                    <h1>About</h1>
+                </div>
+            </div>
+        </div>
         <div class="container d-flex">
             <div ref="content" class="me-lg-4 flex-fill" style="min-width: 0px;">
-                <h1 class="display-1 ps-2 py-5 mb-4 fw-semibold" style="font-size: min(5rem, max(1.625rem + 4.5vw, 3.5rem));">About</h1>
-                <OutlineContainer class="about-content">
+                <ContentContainer class="content">
                     <AboutContent></AboutContent>
-                </OutlineContainer>
+                </ContentContainer>
                 <div class="px-4 mt-4">
                     <div class="row row-cols-1 row-cols-lg-2">
                         <div class="col" v-for="contact in contacts">
@@ -67,8 +73,8 @@
                 </div>
             </div>
             <div class="flex-shrink-0 d-none d-lg-block" style="width: 250px;">
-                <div class="sticky-top" style="top: 100px; z-index: 0;">
-                    <h5 class="about-content pt-3 pb-1">On this page</h5>
+                <div class="sticky-top" style="top: 128px; z-index: 0;">
+                    <h5 class="about-content pb-1">On this page</h5>
                     <Outline :target="content" depth_max="0"></Outline>
                 </div>
             </div>

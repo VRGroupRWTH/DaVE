@@ -1,4 +1,4 @@
-### Description ###
+## Description ##
 Tensors are used in many research areas such as mechanics of physics, but they are notoriously difficult to visualize as they often require more than three dimensions to be displayed.
 Due to that they are mostly visualized by deriving certain properties from them and then visualizing these properties instead.
 Second order tensors describing a mapping from vector to vector on the other hand are often visualized by showing their effect on three-dimensional objects.
@@ -12,7 +12,7 @@ More precisely, the gradient of the velocity field is computed which is a field 
 After that, the example spawns a set of unit spheres in the domain of the dataset and uses the tensor field to transform the spheres.
 Finally, the example computes the magnitude of the velocity field and uses the resulting scalar field to color the transformed spheres.
 
-### Instructions ###
+## Instructions ##
 The file archive that is provided for this example contains the script file `velocity_gradient_tensor_script.sh` that when executed visualizes a tensor field using ellipsoidal glyphs.
 The script can be started using the following terminal command
 ```bash
@@ -31,9 +31,9 @@ One of the lines need to be modified when changing the name of the field is show
 reader.PointArrayStatus = ['ImageFile']
 ```
 
-### Limitations ###
+## Limitations ##
 Currently this example only supports dataset that are stored in the `.vti` file format.
 Other file formats are theoretically possible but would require wider changes to the script `velocity_gradient_tensor_trace.py` as a different file reader would be required.
 
-### References ###
+## References ##
 1. [<span id="reference_dataset">Christoph Garth, March 9, 2020, "Simulation of a jet flow", IEEE Dataport, doi: https://dx.doi.org/10.21227/qjxp-kc31.</span>](https://dx.doi.org/10.21227/qjxp-kc31)
