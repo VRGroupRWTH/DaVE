@@ -31,11 +31,16 @@
 
                 for(const element of outline_elements.value)
                 {
+                    if(is_hidden(element))
+                    {
+                        continue;
+                    }
+
                     const item = 
                     {
                         label: element.attributes.outline_label.value,
                         link: "#" + element.id,
-                        active: (element.id == outline_element_active.value),
+                        active: is_child_of(outline_element_active.value, element),
                         indent: element.attributes.outline_indent.value
                     }
 
@@ -70,18 +75,53 @@
 
             function is_outline_element(element)
             {
-                if("id" in element && element.id != "" && "outline_label" in element.attributes)
+                if("id" in element && element.id != "" && "outline_label" in element.attributes && "outline_indent" in element.attributes)
                 {
-                    const depth_max = props.depth_max || 1;
-                    let depth = parseInt(element.attributes.outline_indent.value);
-
-                    if(depth <= depth_max)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
 
                 return false;
+            }
+
+            function is_hidden(element)
+            {
+                const depth_max = props.depth_max || 1;
+                const depth = parseInt(element.attributes.outline_indent.value);
+
+                return (depth > depth_max);
+            }
+
+            function is_child_of(child_id, parent)
+            {
+                const parent_depth = parseInt(parent.attributes.outline_indent.value);
+
+                const parent_index = outline_elements.value.findIndex((element) =>
+                {
+                    return element.id == parent.id;
+                });
+
+                const child_index = outline_elements.value.findIndex((element) =>
+                {
+                    return element.id == child_id;
+                });
+
+                if(child_index < parent_index)
+                {
+                    return false;
+                }
+
+                for(let index = parent_index + 1; index <= child_index; index++)
+                {
+                    const element = outline_elements.value[index];
+                    const element_depth = parseInt(element.attributes.outline_indent.value)
+
+                    if(!is_hidden(element) || element_depth <= parent_depth)
+                    {
+                        return false;   
+                    }
+                }
+
+                return true;
             }
 
             function search_elements(element)
@@ -164,7 +204,7 @@
 <template>
     <nav ref="outline_container" class="nav flex-column align-items-stretch outline">
         <template v-for="item of outline_items">
-            <a class="nav-link" :class="item.active ? 'active' : ''" :outline_indent="item.indent" :style="'--outline_indent: ' + item.indent + 'px'" :href="item.link">{{ item.label }}</a>
+            <a class="nav-link rounded-end" :class="item.active ? 'active' : ''" :outline_indent="item.indent" :style="'--outline_indent: ' + item.indent + 'px'" :href="item.link">{{ item.label }}</a>
         </template>
     </nav>
 </template>

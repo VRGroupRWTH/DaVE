@@ -26,7 +26,7 @@
 <template>
     <header class="sticky-top">
         <GlobalHeader>
-            <h5 class="pt-3 pb-1">On this page</h5>
+            <h5 class="outline-headline">On this page</h5>
             <outline :target="content" depth_max="1"></outline>
         </GlobalHeader>
     </header>
@@ -39,7 +39,7 @@
             </div>
         </div>
         <div class="container d-flex">
-            <div ref="content" class="me-lg-4 flex-fill" style="min-width: 0px;">
+            <div ref="content" class="me-lg-5 flex-fill" style="min-width: 0px;">
                 <div class="card mb-4 shadow-sm title-underline" style="overflow: clip;" outline_label="How to use DaVE?" outline_indent="0" id="How_to_use_DaVE">
                     <div class="row g-0">
                         <div class="col-md-2 card-border bg-body-tertiary">
@@ -75,7 +75,7 @@
             </div>
             <div class="flex-shrink-0 d-none d-lg-block" style="width: 250px;">
                 <div class="sticky-top" style="top: 128px; z-index: 0;">
-                    <h5 class="guide-content pb-1">On this page</h5>
+                    <h5 class="outline-headline">On this page</h5>
                     <outline :target="content" depth_max="1"></outline>
                 </div>
             </div>

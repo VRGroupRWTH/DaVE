@@ -44,7 +44,9 @@
     <nav class="navbar navbar-expand bg-dark shadow-sm" data-bs-theme="dark" v-bind="$attrs">
         <div class="container-lg d-flex align-items-center justify-content-between">
             <div class="navbar-nav align-items-center">
-                <a class="navbar-brand" href="/"><img src="../assets/icons/dave_logo_dark.svg" width="40px"></a>
+                <a class="navbar-brand" href="/">
+                    <img src="../assets/icons/dave_logo_dark.svg" width="40px" height="40px">
+                </a>
                 <a class="nav-link" :class="is_active_link('/browser') ? 'active' : ''" href="/browser">Browser</a>
                 <div class="dropdown">
                     <a class="nav-link dropdown-toggle" :class="(is_active_link('/guide') || is_active_link('/guide_use_dave') || is_active_link('/guide_extend_dave')) ? 'active' : ''" data-bs-toggle="dropdown">Guide</a>
@@ -70,7 +72,7 @@
             <input type="text" class="form-control guide-search-bar flex-fill" placeholder="Search" >
             <button type="button" class="btn-close btn-close ms-3" data-bs-dismiss="offcanvas"></button>
         </div>
-        <div class="offcanvas-body pt-0 px-4">
+        <div class="offcanvas-body pt-4 px-4">
             <slot></slot>
         </div>
     </div>

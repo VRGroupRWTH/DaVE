@@ -80,13 +80,13 @@
 <template>
     <header class="sticky-top">
         <GlobalHeader>
-            <h5 class="mt-3 mb-2">On this page</h5>
+            <h5 class="outline-headline">On this page</h5>
             <Outline :target="content" depth_max="1"></Outline>
         </GlobalHeader>
     </header>
     <main class="flex-fill">
         <div class="container d-flex">
-            <div ref="content" class="me-lg-4 flex-fill" style="min-width: 0px;">
+            <div ref="content" class="me-lg-5 flex-fill" style="min-width: 0px;">
                 <VisualizationImages :visualization="visualization" class="mt-4 mb-2 w-100" style="height: 350px"></VisualizationImages>
                 <VisualizationPreview :visualization="visualization" class="mb-4"></VisualizationPreview>
                 <div class="mb-4">
@@ -124,7 +124,7 @@
             </div>
             <div class="flex-shrink-0 d-none d-lg-block" style="width: 250px;">
                 <div class="sticky-top" style="top: 100px; z-index: 0;">
-                    <h5 class="mb-2">On this page</h5>
+                    <h5 class="outline-headline">On this page</h5>
                     <Outline :target="content" depth_max="1"></Outline>
                 </div>
             </div>

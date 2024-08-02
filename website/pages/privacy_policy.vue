@@ -29,7 +29,7 @@
 <template>
     <header class="sticky-top">
         <GlobalHeader>
-            <h5 class="pt-3 pb-1">On this page</h5>
+            <h5 class="outline-headline">On this page</h5>
             <Outline :target="content" depth_max="0"></Outline>
         </GlobalHeader>
     </header>
@@ -43,14 +43,14 @@
             </div>
         </div>
         <div class="container d-flex">
-            <div ref="content" class="me-lg-4 flex-fill" style="min-width: 0px;">
+            <div ref="content" class="me-lg-5 flex-fill" style="min-width: 0px;">
                 <ContentContainer class="content">
                     <PrivacyPolicyContent></PrivacyPolicyContent>
                 </ContentContainer>
             </div>
             <div class="flex-shrink-0 d-none d-lg-block" style="width: 250px;">
                 <div class="sticky-top" style="top: 128px; z-index: 0;">
-                    <h5 class="about-content pb-1">On this page</h5>
+                    <h5 class="outline-headline">On this page</h5>
                     <Outline :target="content" depth_max="0"></Outline>
                 </div>
             </div>
