@@ -90,14 +90,14 @@
                 <VisualizationImages :visualization="visualization" class="mt-4 mb-2 w-100" style="height: 350px"></VisualizationImages>
                 <VisualizationPreview :visualization="visualization" class="mb-4"></VisualizationPreview>
                 <div class="mb-4">
-                    <h1 class="display-5" style="font-weight: 600;">{{ visualization.name }}</h1>
-                    <div class="mb-2 fw-semibold">
+                    <h1 class="mb-0 display-5" style="font-weight: 600;">{{ visualization.name }}</h1>
+                    <div class="mb-2 ms-1 fw-semibold">
                         <template v-for="(author, index) in visualization.authors">
                             <a :href="author.link" style="text-decoration: none; color: var(--bs-body-color)">{{ author.name }}</a>
                             <span v-if="index + 1 < visualization.authors.length" class="me-2">,</span>
                         </template>
                     </div>
-                    <div class="d-flex ">
+                    <div class="d-flex ms-1">
                         <Tag v-for="tag in visualization.tags" :tag="tag" class="me-1" @on_tag_click="on_visualization_tag_click"></Tag>
                     </div>
                 </div>

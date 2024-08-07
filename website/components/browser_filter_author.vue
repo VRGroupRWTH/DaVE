@@ -97,6 +97,7 @@
                 <ul class="list-unstyled border rounded overflow-y-scroll" style="height: 150px;">
                     <li v-for="author of browser_author_suggestions">
                         <div class="dropdown-item d-flex align-items-center" @click="on_browser_author_suggestion_select(author)">
+                            <div class="border rounded bg-secondary-subtle border-secondary-subtle me-2" style="width: 16px; height: 16px"></div>
                             <span>{{ author }}</span>
                         </div>
                     </li>

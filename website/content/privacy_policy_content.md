@@ -64,7 +64,16 @@ The data will be deleted as soon as it is no longer necessary for carrying out t
 ### 5. Possibility of Objection and Remedy ###
 The collection of data for the purpose of providing the website and the storage of data in log files is absolutely necessary for the operation of the website. Consequently, there is no possibility of objection on the part of the user.
 
-## V. Rights of the data subject ##
+## V. YouTube ##
+The DaVE website uses plugins from the Google-operated YouTube site. Operator of the site is YouTube, LLC, 901 Cherry Ave., San Bruno, CA 94066, USA.
+
+When you visit one of our pages equipped with a YouTube plugin, a connection to YouTube's serves is being established. The YouTube server receives information on which of our web pages you have visited.
+
+If you are signed into your YouTube account, you make it possible for YouTube to associate your browsing behavior directly with your personal profile. You can prevent this by logging out of your YouTube account.
+
+For further information on how user data is managed and processed, please refer to YouTube's privacy policy statement: [https://policies.google.com/privacy?hl=en](https://policies.google.com/privacy?hl=en).
+
+## VI. Rights of the data subject ##
 If any of your personal data is being processed, you are considered a data subject according to the GDPR. Thus, you have the following rights vis-a-vis the person responsible:
 
 ### 1. Right to information ###
