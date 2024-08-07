@@ -226,7 +226,7 @@
                     }
 
                     const button = document.createElement("button");
-                    button.innerHTML = "<img src='/assets/icons/copy_clipboard.svg' style='width: 18px; height: 18px'>";
+                    button.innerHTML = "<img src='/images/copy_clipboard.svg' style='width: 18px; height: 18px'>";
                     button.setAttribute("data-bs-title", "Copied!");
                     button.setAttribute("data-bs-placement", "left");
                     button.setAttribute("data-bs-trigger", "manual");
