@@ -251,7 +251,7 @@
                     }
 
                     const link = document.createElement("a");
-                    link.innerHTML = "<img src='/assets/icons/link_45deg.svg' style='width: round(down, 1lh - 4px, 2px); position: absolute; top: 0.25lh;'>";
+                    link.innerHTML = "<img src='/images/link_45deg.svg' style='width: round(down, 1lh - 4px, 2px); position: absolute; top: 0.25lh;'>";
                     link.href = "#" + element.parentNode.id;
 
                     element.append(link);

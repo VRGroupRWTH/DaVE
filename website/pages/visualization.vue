@@ -109,7 +109,7 @@
                         <h2>
                             Resources
                             <a href="#Resources"> 
-                                <img src='/assets/icons/link_45deg.svg' style='width: round(down, 1lh - 4px, 2px); position: absolute; top: 0.25lh;'>
+                                <img src='/images/link_45deg.svg' style='width: round(down, 1lh - 4px, 2px); position: absolute; top: 0.25lh;'>
                             </a>
                         </h2>
                     </div>
