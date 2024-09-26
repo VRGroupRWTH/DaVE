@@ -11,9 +11,9 @@ authors:
 - family-names: "Gerrits"
   given-names: "Tim"
 version: 1.0.0
-url: "https://dave-vis.com/"
+url: https://arxiv.org/abs/2408.03188
 preferred-citation:
-  type: conference-paper
+  type: generic
   title: "DaVE - A Curated Database of Visualization Examples"
   authors:
   - family-names: "Koenen"
@@ -25,7 +25,4 @@ preferred-citation:
   - family-names: "Gerrits"
     given-names: "Tim"
   year: 2024
-  collection-title: "2024 IEEE Visualization and Visual Analytics (VIS)"
-  collection-type: proceedings
-  publisher:
-    name: "IEEE Computer Society"
+  url: https://arxiv.org/abs/2408.03188
