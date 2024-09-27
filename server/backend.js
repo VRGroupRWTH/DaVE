@@ -112,7 +112,7 @@ export class Backend
 
         const visualizations = this.#database.search_visualizations(query, sorting, (visualization) =>
         {
-            const date = new Date(visualization.get_date());
+            const date = visualization.get_date();
 
             if(filter_date_begin != null)
             {

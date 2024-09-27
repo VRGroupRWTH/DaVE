@@ -60,7 +60,7 @@
         <div class="container-fluid px-3 align-items-center" style="display: grid; grid-auto-flow: column; grid-template-columns: 1fr 2fr 1fr">
             <div class="d-flex justify-content-start">
                 <div class="navbar-nav align-items-center">
-                    <a class="navbar-brand" href="/"><img src="../assets/icons/dave_logo_dark.svg" width="40px"></a>
+                    <a class="navbar-brand" href="/"><img src="../assets/icons/dave_logo_dark.svg" width="40px" height="40px"></a>
                     <a class="nav-link d-none d-xl-block active" href="/browser">Browser</a>
                     <div class="dropdown d-none d-xl-block">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Guide</a>

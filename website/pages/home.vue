@@ -67,8 +67,8 @@
         <div class="home-background-image" style="height: 80vh; min-height: 600px;">
             <div class="d-flex flex-column align-items-center justify-content-center w-100 h-100" style="padding-top: 50px; padding-bottom: 120px;">
                 <div class="d-flex justify-content-center align-items-center w-100 p-3" style="min-height: 0px; padding-top: 0px !important; padding-bottom: 150px !important;">
-                    <img src="/images/home_logo.svg" class="d-none d-sm-block" style="width: 100%; max-width: 750px">
-                    <img src="/images/home_logo_small.svg" class="d-sm-none" style="width: 100%; max-width: 300px">
+                    <img src="/images/home_logo.svg" class="d-none d-sm-block" style="width: 100%; max-width: 750px; aspect-ratio: 99.88746 / 18.03710;">
+                    <img src="/images/home_logo_small.svg" class="d-sm-none" style="width: 100%; max-width: 300px; aspect-ratio: 56.93710 / 21.70131;">
                 </div>
                 <HomeSearchBar class="container-sm" @on_search_bar_search="on_search_bar_search" style="padding-bottom: 30px;"></HomeSearchBar>
                 <a class="btn btn-primary shadow" href="/browser">
@@ -92,7 +92,7 @@
                         </div>
                         <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center flex-column">
                             <a href="https://github.com/VRGroupRWTH/DaVE" class="mb-2 pt-lg-4">
-                                <img src="../assets/icons/github.svg" width="72px">
+                                <img src="../assets/icons/github.svg" width="72px" height="72px">
                             </a>
                             <h5>Check it out on GitHub</h5>
                             <!--<p style="font-size: 1.125rem;">

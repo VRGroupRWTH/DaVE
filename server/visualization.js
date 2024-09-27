@@ -85,7 +85,7 @@ export class Visualization
         let visualization = yaml.parse(visualization_file);
 
         this.#name = visualization.name;
-        this.#date = visualization.date;
+        this.#date = new Date(visualization.date);
         this.#authors = [];
         this.#tags = [];
         this.#images = [];
@@ -204,7 +204,7 @@ export class Visualization
     {
         return {
             name: this.#name,
-            date: this.#date,
+            date: this.#date.toString(),
             authors: this.#authors,
             tags: Tag.export(this.#tags),
             images: this.#images,
