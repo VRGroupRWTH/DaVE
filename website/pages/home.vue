@@ -193,7 +193,7 @@
                             <a class="btn btn-primary float-end float-sm-none" href="/guide_extend_dave">Read more</a>
                         </div>
                         <div class="col-12 card-40 d-flex justify-content-center order-0 order-lg-1">
-                            <img src="/images/home_contribution.svg" class="flex-fill p-4 p-lg-0" style="aspect-ratio: 16 / 9;">
+                            <img src="/images/home_contribution.svg" class="flex-fill p-0 p-md-4 p-lg-0" style="aspect-ratio: 16 / 9;">
                         </div>
                     </div>
                 </div>

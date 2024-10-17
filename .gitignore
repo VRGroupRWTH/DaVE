@@ -2,3 +2,5 @@
 .devcontainer
 build
 node_modules
+log.yaml
+log.yaml.backup

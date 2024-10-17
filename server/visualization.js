@@ -6,6 +6,7 @@ import showdown_highlight from "showdown-highlight";
 
 export class Visualization
 {
+    #path
     #name
     #date
     #authors
@@ -22,6 +23,7 @@ export class Visualization
 
     constructor()
     {
+        this.#path = "";
         this.#name = "";
         this.#date = Date.now();
         this.#authors = [];
@@ -84,6 +86,7 @@ export class Visualization
 
         let visualization = yaml.parse(visualization_file);
 
+        this.#path = visualization_path;
         this.#name = visualization.name;
         this.#date = new Date(visualization.date);
         this.#authors = [];
@@ -279,6 +282,11 @@ export class Visualization
         }
 
         return false;
+    }
+
+    get_path()
+    {
+        return this.#path
     }
 
     get_name()

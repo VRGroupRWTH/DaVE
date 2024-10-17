@@ -1,4 +1,5 @@
 import { Database, Sorting } from "./database.js"
+import { log_access, LogCategory } from "./log.js";
 import { Tag } from "./tag.js"
 import adm_zip from "adm-zip";
 import fs from "fs";
@@ -9,12 +10,12 @@ export class Backend
 
     constructor()
     {
-        this.#database = new Database();
+        this.#database = null;
     }
 
-    setup(app, database_path)
+    setup(app, database)
     {
-        this.#database.load(database_path);
+        this.#database = database;
 
         app.post("/api/fetch_visualization", async (request, response) => this.#on_fetch_visualization_request(request, response));
         app.post("/api/search_visualizations", async (request, response) => this.#on_search_visualizations_request(request, response));
@@ -375,6 +376,7 @@ export class Backend
             }
         }
 
+        log_access(LogCategory.Script, "/" + visualization.get_path());
         response.send(archive.toBuffer());
     }
 
@@ -450,6 +452,8 @@ export class Backend
                 let entry = archive.getEntry(file_name);
                 entry.header.method = 0; // Store uncompressed since data is already compressed
             }
+
+            log_access(LogCategory.Resource, "/" + resource.path);
         }
 
         response.send(archive.toBuffer());

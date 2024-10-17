@@ -154,7 +154,7 @@
         <div v-if="visualization.templates.length > 0" class="alert alert-success d-flex align-items-center px-4" style="padding-top: 12px; padding-bottom: 12px">
             <img class="me-2"src="/assets/icons/box_seam_fill.svg" width="24px">
             <div class="flex-fill">Container available!</div>
-            <button class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#visualization_wizard">Customize</button>
+            <button class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#visualization_wizard" @click="on_visualization_wizard_open">Customize</button>
         </div>
         <div id="visualization_wizard" class="modal fade" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
