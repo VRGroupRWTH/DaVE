@@ -33,14 +33,18 @@ Overall, DaVE received positive feedback from the participants.
 
 #### Preliminary BibTeX ####
 ``` tex
-@misc{koenen2024davecurateddatabase,
-      title={DaVE -- A Curated Database of Visualization Examples}, 
-      author={Jens Koenen and Marvin Petersen and Christoph Garth and Tim Gerrits},
-      year={2024},
-      eprint={2408.03188},
-      archivePrefix={arXiv},
-      primaryClass={cs.DC},
-      url={https://arxiv.org/abs/2408.03188}, 
+@inproceedings{dave2024,
+  author={Koenen, Jens and Petersen, Marvin and Garth, Christoph and Gerrits, Tim},
+  booktitle={2024 IEEE Visualization and Visual Analytics (VIS)}, 
+  title={DaVE - A Curated Database of Visualization Examples}, 
+  year={2024},
+  month={Oct},
+  volume={},
+  number={},
+  pages={11-15},
+  keywords={Codes;Visual analytics;High performance computing;Data visualization;Containers;Visual databases;Visualization;Curated Database;High-Performance Computing},
+  doi={10.1109/VIS55277.2024.00010},
+  ISSN={2771-9553}
 }
 ```
 

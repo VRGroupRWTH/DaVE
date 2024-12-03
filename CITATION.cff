@@ -1,28 +1,33 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite it as below."
-title: "DaVE - A Curated Database of Visualization Examples"
+message: If you use this software, please cite the article from preferred-citation.
 authors:
-- family-names: "Koenen"
-  given-names: "Jens"
-- family-names: "Petersen"
-  given-names: "Marvin"
-- family-names: "Garth"
-  given-names: "Christoph"
-- family-names: "Gerrits"
-  given-names: "Tim"
+  - family-names: Koenen
+    given-names: Jens
+  - family-names: Petersen
+    given-names: Marvin
+  - family-names: Garth
+    given-names: Christoph
+  - family-names: Gerrits
+    given-names: Tim
+title: DaVE - A Curated Database of Visualization Examples
 version: 1.0.0
-url: https://arxiv.org/abs/2408.03188
+doi: 10.1109/VIS55277.2024.00010
+date-released: '2024-12-03'
 preferred-citation:
-  type: generic
-  title: "DaVE - A Curated Database of Visualization Examples"
   authors:
-  - family-names: "Koenen"
-    given-names: "Jens"
-  - family-names: "Petersen"
-    given-names: "Marvin"
-  - family-names: "Garth"
-    given-names: "Christoph"
-  - family-names: "Gerrits"
-    given-names: "Tim"
-  year: 2024
-  url: https://arxiv.org/abs/2408.03188
+    - family-names: Koenen
+      given-names: Jens
+    - family-names: Petersen
+      given-names: Marvin
+    - family-names: Garth
+      given-names: Christoph
+    - family-names: Gerrits
+      given-names: Tim
+  title: DaVE - A Curated Database of Visualization Examples
+  doi: 10.1109/VIS55277.2024.00010
+  type: conference-paper
+  pages: 11-15
+  year: '2024'
+  collection-title: 2024 IEEE Visualization and Visual Analytics (VIS)
+  conference: {}
+  publisher: {}
