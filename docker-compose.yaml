@@ -3,7 +3,7 @@ services:
   dave:
     build: .
     ports:
-      - 8080:8080
+      - 7087:8080
     environment:
       - TZ=Europe/Berlin
     restart: always

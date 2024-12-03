@@ -61,4 +61,4 @@ DaVE can be deployed easily with the help of Docker and the provided Dockerfiles
 ```
 docker compose up
 ```
-After building the Dockerfile and starting the web server, the message `Listening on port 8080` should appear in the terminal, and you should be able to access the website by visiting `http://localhost:8080/`.
+After building the Dockerfile and starting the web server, the message `Listening on port 8080` should appear in the terminal, and you should be able to access the website by visiting `http://localhost:7087/`.
