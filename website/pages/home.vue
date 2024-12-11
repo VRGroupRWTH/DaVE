@@ -228,7 +228,7 @@
                         <div class="col">
                             <h1 class="card-title mb-4 display-5 fw-semibold">Who is DaVE?</h1>
                             <p class="card-text mb-4" style="font-size: 1.125rem;">
-                                DaVE is a collaboration between the RPTU Kaiserslautern and the RWTH Aachen and was founded thorugh a NHR future project. However, it can be changed, and extended by the community.
+                                DaVE is a collaboration between the RPTU Kaiserslautern and the RWTH Aachen and was founded through an NHR future project. However, it can be changed, and extended by the community.
                             </p>
                             <a class="btn btn-primary float-end float-sm-start" href="/about">Read more</a>
                         </div>
