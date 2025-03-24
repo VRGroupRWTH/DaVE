@@ -40,7 +40,7 @@
                 {
                     name: "preview",
                     title: "Preview Dataset",
-                    description: "The script for the visualization technique will donwload a small dataset with which the visualization can be directly tested.",
+                    description: "The script for the visualization technique will download a small dataset with which the visualization can be directly tested.",
                     settings: []
                 };
 
