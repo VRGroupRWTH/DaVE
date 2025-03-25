@@ -1,7 +1,8 @@
 import fs from "fs";
 import yaml from "yaml";
+import path from "path";
 
-const LOG_FILE_NAME = "log.yaml";
+const LOG_FILE_NAME = "./log/log.yaml";
 const LOG_PAGES = 
 [
     "/",
@@ -26,6 +27,13 @@ export const LogCategory =
 
 function read_log_file()
 {
+    const directory = path.dirname(LOG_FILE_NAME);
+
+    if(!fs.existsSync(directory))
+    {
+        fs.mkdirSync(directory)
+    }
+
     if(!fs.existsSync(LOG_FILE_NAME))
     {
         return {};
@@ -60,6 +68,13 @@ function read_log_file()
 
 function write_log_file(log)
 {
+    const directory = path.dirname(LOG_FILE_NAME);
+
+    if(!fs.existsSync(directory))
+    {
+        fs.mkdirSync(directory)
+    }
+
     let file = "";
 
     try
