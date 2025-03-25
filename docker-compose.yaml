@@ -2,6 +2,10 @@ version: "3.9"
 services:
   dave:
     build: .
+    image: dave
+    container_name: dave
+    volumes:
+      - /opt/DaVE/log:/app/log
     ports:
       - 7087:8080
     environment:
