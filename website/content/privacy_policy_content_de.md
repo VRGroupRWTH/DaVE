@@ -75,7 +75,7 @@ Wenn Sie eine unserer mit einem YouTube-Plugin ausgestatteten Seiten besuchen, w
 
 Wenn Sie in Ihrem YouTube-Account eingeloggt sind, ermöglichen Sie YouTube, Ihr Surfverhalten direkt Ihrem persönlichen Profil zuzuordnen. Dies können Sie verhindern, indem Sie sich aus Ihrem YouTube-Account ausloggen.
 
-Weitere Informationen zum Umgang mit Nutzerdaten finden Sie in der Datenschutzerklärung von YouTube unter: [https://www.google.de/intl/de/policies/privacy.um](https://www.google.de/intl/de/policies/privacy.um) Text einzugeben.
+Weitere Informationen zum Umgang mit Nutzerdaten finden Sie in der Datenschutzerklärung von YouTube unter: [https://www.google.de/intl/de/policies/privacy.um](https://www.google.de/intl/de/policies/privacy.um).
 
 ## 7. Rechte der betroffenen Person ##
 Werden personenbezogene Daten von dem/der Betroffenen verarbeitet, stehen ihm/ihr folgende Rechte gegenüber dem Verantwortlichen zu. 
