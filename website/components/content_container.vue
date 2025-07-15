@@ -49,9 +49,17 @@
                 return null;
             }
 
-            function get_section_id(heading)
+            function get_section_id(section_ids, heading)
             {
-                return heading.replaceAll(" ", "_").replace(/\W/g, "");
+                let section_id_base = heading.replaceAll(" ", "_").replace(/\W/g, "");
+                let section_id = section_id_base;
+
+                for(let index = 1; section_ids.includes(section_id); index++)
+                {
+                    section_id = section_id_base + "_" + index;
+                }
+
+                return section_id;
             }
 
             function create_sections()
@@ -111,6 +119,7 @@
                 }
 
                 let section = null;
+                let section_ids = [];
                 let section_stack = [];
 
                 for(let child_index = 0; child_index < child_list.length;)
@@ -139,8 +148,11 @@
                         section_stack.push(current_number);
                         const section_indent = section_stack.length - 1;
 
+                        let section_id = get_section_id(section_ids, child.innerHTML);
+                        section_ids.push(section_id);
+
                         section = document.createElement("div");
-                        section.id = get_section_id(child.innerHTML);
+                        section.id = section_id;
                         section.setAttribute("outline_label", child.innerHTML);
                         section.setAttribute("outline_indent", section_indent.toString());
 
