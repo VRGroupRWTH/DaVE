@@ -240,18 +240,18 @@
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header text-bg-dark" data-bs-theme="dark">
-                        <h5>Youtube Video Consent</h5>
+                        <h5>Youtube Video</h5>
                     </div>
                     <div class="modal-body">
-                        <p>The content embedded in this web page will take you to web pages provided by the Google-operated video sharing platform YouTube - YouTube, LLC, 901 Cherry Ave., San Bruno, CA 94066, USA. Invoking this content makes it possible for YouTube to determine your IP address, the language setting of your system, and a number of browser-specific details.</p>
-                        <p>If you are logged in to your YouTube account, you make it possible for YouTube to tie your web browsing behavior directly to your personal profile. You can prevent this by logging out of your YouTube account.</p>
-                        <p>YouTube uses cookies and tracking tools. Information on YouTube's data processing activities and the purpose of these activities is available and can be viewed at <a href="https://policies.google.com/privacy">YouTube</a>.</p>
-                        <p>By clicking the "accept" button, you agree to use the content provided by the platform under the conditions outlined above.</p>
-                        <p>Please note that you give your consent for a one-time use of the web page only. When you visit the page again, you will again be asked for your consent.</p>
+                        <p>Der an dieser Stelle eingebundene Inhalt führt Sie auf Seiten, die von der von Google betriebenen Seite YouTube - YouTube, LLC, 901 Cherry Ave., San Bruno, CA 94066, USA - zur Verfügung gestellt werden. Mit dem Aufruf des Inhalts kann YouTube Ihre IP-Adresse und die Sprache des Systems, sowie verschiedene browserspezifische Angaben ermitteln.</p>
+                        <p>Wenn Sie in Ihrem YouTube-Account eingeloggt sind, ermöglichen Sie YouTube, Ihr Surfverhalten direkt Ihrem persönlichen Profil zuzuordnen. Dies können Sie verhindern, indem Sie sich aus Ihrem YouTube-Account ausloggen.</p>
+                        <p>YouTube verwendet Cookies und Tracking-Tools. Die Datenverarbeitungsvorgänge sowie die Zwecke der Verarbeitung können direkt bei <a href="https://policies.google.com/privacy">YouTube</a> erfragt und eingesehen werden.</p>
+                        <p>Mit dem Klick auf den Button "Consent" willigen Sie ein, die von der Plattform zur Verfügung gestellten Dokumente unter den angegebenen Umständen nutzen zu wollen.</p>
+                        <p>Ihre Zustimmung gilt nur für den einmaligen Aufruf der Seite an dieser Stelle. Bei der nächsten Nutzung werden wir Sie wieder um Ihre Einwilligung bitten. Eine Einwilligung kann somit durch erneutes Laden der Website widerrufen werden.</p>
                     </div>
                     <div class="modal-footer border-0">
                         <button class="btn btn-primary" type="button" data-bs-dismiss="modal">Decline</button>
-                        <button class="btn btn-primary ms-auto" type="button" data-bs-dismiss="modal" @click="on_video_consent_accept">Accept</button>
+                        <button class="btn btn-primary ms-auto" type="button" data-bs-dismiss="modal" @click="on_video_consent_accept">Consent</button>
                     </div>
                 </div>
             </div>

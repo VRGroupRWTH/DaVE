@@ -37,8 +37,8 @@
         <div class="headline-background shadow-sm">
             <div class="container">
                 <div class="headline">
-                    <h1 class="mb-3">Privacy Policy</h1>
-                    <h5 class="ms-1">Data Protection Policy as of February 2019</h5>
+                    <h1 class="mb-3">Datenschutz</h1>
+                    <h5 class="ms-1">Hinweise gem. Art. 13 DS-GVO</h5>
                 </div>
             </div>
         </div>
