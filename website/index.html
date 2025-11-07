@@ -81,8 +81,11 @@
         case "/imprint":
             import("./pages/imprint.vue").then((page) => setup(page));
             break;
-        case "/privacy_policy":
-            import("./pages/privacy_policy.vue").then((page) => setup(page));
+        case "/privacy_policy_de":
+            import("./pages/privacy_policy_de.vue").then((page) => setup(page));
+            break;
+        case "/privacy_policy_en":
+            import("./pages/privacy_policy_en.vue").then((page) => setup(page));
             break;
         default:
             import("./pages/error.vue").then((page) => setup(page));

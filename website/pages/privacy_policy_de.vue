@@ -1,6 +1,6 @@
 <script>
     import { ref } from "vue";
-    import { VueComponent as PrivacyPolicyContent } from "../content/privacy_policy_content.md";
+    import { VueComponent as PrivacyPolicyContentDe } from "../content/privacy_policy_content_de.md";
     import GlobalHeader from "../components/global_header.vue";
     import GlobalFooter from "../components/global_footer.vue";
     import ContentContainer from "../components/content_container.vue";
@@ -10,7 +10,7 @@
     {
         components:
         {
-            PrivacyPolicyContent,
+            PrivacyPolicyContentDe,
             GlobalHeader,
             GlobalFooter,
             ContentContainer,
@@ -20,15 +20,21 @@
         {
             let content = ref(null);
 
+            function on_language_change()
+            {
+                window.location = "/privacy_policy_en";
+            }
+
             return {
-                content
+                content,
+                on_language_change
             }
         }
     };
 </script>
 <template>
     <header class="sticky-top">
-        <GlobalHeader>
+        <GlobalHeader language="En" @on_language_change="on_language_change">
             <h5 class="outline-headline">On this page</h5>
             <Outline :target="content" depth_max="0"></Outline>
         </GlobalHeader>
@@ -45,7 +51,7 @@
         <div class="container d-flex">
             <div ref="content" class="me-lg-5 flex-fill" style="min-width: 0px;">
                 <ContentContainer class="content">
-                    <PrivacyPolicyContent></PrivacyPolicyContent>
+                    <PrivacyPolicyContentDe></PrivacyPolicyContentDe>
                 </ContentContainer>
             </div>
             <div class="flex-shrink-0 d-none d-lg-block" style="width: 250px;">

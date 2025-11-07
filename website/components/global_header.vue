@@ -3,7 +3,9 @@
 
     export default
     {
-        setup()
+        props: ["language"],
+        emits: ["on_language_change"],
+        setup(props, context)
         {
             let header_search_query = ref("");
             let header_links = ref(
@@ -30,11 +32,17 @@
                 window.location = search_url;
             }
 
+            function on_language_change()
+            {
+                context.emit("on_language_change");
+            }
+
             return {
                 header_links,
                 header_search_query,
                 is_active_link,
-                on_shared_header_search
+                on_shared_header_search,
+                on_language_change
             };
         }
     };
@@ -59,7 +67,10 @@
                 </div>
                 <a class="nav-link" :class="is_active_link('/about') ? 'active' : ''" href="/about">About</a>
             </div>
-            <div>
+            <div class="d-flex align-items-center">
+                <button v-if="language" class="btn shared-header-language me-2" style="width: 47px" @click="on_language_change">
+                    {{ language }}
+                </button>
                 <input class="form-control shared-header-search-bar d-none d-lg-block" style="width: 250px;" type="text" placeholder="Search" v-model="header_search_query" @keydown.enter="on_shared_header_search">
                 <button class="navbar-toggler d-flex align-items-center justify-content-between p-2 d-lg-none" style="border-color: #495057 !important; width: 40px; height: 40px;" type="button" data-bs-toggle="offcanvas" data-bs-target="#shared_header_offcanvas">
                     <span class="navbar-toggler-icon shared-header-toggle"></span>

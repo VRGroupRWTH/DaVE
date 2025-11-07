@@ -14,7 +14,8 @@ const LOG_PAGES =
     "/browser",
     "/visualization",
     "/imprint",
-    "/privacy_policy"
+    "/privacy_policy_de",
+    "/privacy_policy_en"
 ];
 
 export const LogCategory =

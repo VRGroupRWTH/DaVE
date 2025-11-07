@@ -24,4 +24,4 @@ Contact: Office of the LuFG Virtual Reality and Immersive Visualization
 Phone: +49 241 80 29233  
 Email: office@vr.rwth-aachen.de  
 
-The web content of the Central University Administration, central administration facilities, group representatives, institutes, chairs, and research areas are coordinated independently under the direction of apppointed web coordinators and webmasters. Information for questions on liability can be found in the [Privacy Policy](/privacy_policy).
+The web content of the Central University Administration, central administration facilities, group representatives, institutes, chairs, and research areas are coordinated independently under the direction of apppointed web coordinators and webmasters. Information for questions on liability can be found in the [Privacy Policy](/privacy_policy_de).
