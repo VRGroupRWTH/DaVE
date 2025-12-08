@@ -13,6 +13,7 @@
         setup()
         {
             const video_consent = ref(false);
+            const video_consent_language = ref("De");
 
             function on_search_bar_search(query, tags)
             {
@@ -53,10 +54,25 @@
                 video_consent.value = true;
             }
 
+            function on_video_consent_language_change()
+            {
+                if(video_consent_language.value == "De")
+                {
+                    video_consent_language.value = "En";
+                }
+
+                else
+                {
+                    video_consent_language.value = "De";
+                }
+            }
+
             return {
                 video_consent,
+                video_consent_language,
                 on_search_bar_search,
-                on_video_consent_accept
+                on_video_consent_accept,
+                on_video_consent_language_change
             }
         }
     };
@@ -240,18 +256,30 @@
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header text-bg-dark" data-bs-theme="dark">
-                        <h5>Youtube Video</h5>
+                        <h5 class="mb-0">Youtube Video</h5>
+                        <button class="btn shared-header-language ms-auto" style="width: 47px" @click="on_video_consent_language_change">
+                            {{ (video_consent_language == "De") ? "En" : "De" }}
+                        </button>
                     </div>
                     <div class="modal-body">
-                        <p>Der an dieser Stelle eingebundene Inhalt führt Sie auf Seiten, die von der von Google betriebenen Seite YouTube - YouTube, LLC, 901 Cherry Ave., San Bruno, CA 94066, USA - zur Verfügung gestellt werden. Mit dem Aufruf des Inhalts kann YouTube Ihre IP-Adresse und die Sprache des Systems, sowie verschiedene browserspezifische Angaben ermitteln.</p>
-                        <p>Wenn Sie in Ihrem YouTube-Account eingeloggt sind, ermöglichen Sie YouTube, Ihr Surfverhalten direkt Ihrem persönlichen Profil zuzuordnen. Dies können Sie verhindern, indem Sie sich aus Ihrem YouTube-Account ausloggen.</p>
-                        <p>YouTube verwendet Cookies und Tracking-Tools. Die Datenverarbeitungsvorgänge sowie die Zwecke der Verarbeitung können direkt bei <a href="https://policies.google.com/privacy">YouTube</a> erfragt und eingesehen werden.</p>
-                        <p>Mit dem Klick auf den Button "Consent" willigen Sie ein, die von der Plattform zur Verfügung gestellten Dokumente unter den angegebenen Umständen nutzen zu wollen.</p>
-                        <p>Ihre Zustimmung gilt nur für den einmaligen Aufruf der Seite an dieser Stelle. Bei der nächsten Nutzung werden wir Sie wieder um Ihre Einwilligung bitten. Eine Einwilligung kann somit durch erneutes Laden der Website widerrufen werden.</p>
+                        <div v-if="video_consent_language == 'De'">
+                            <p>Der an dieser Stelle eingebundene Inhalt führt Sie auf Seiten, die von der von Google betriebenen Seite YouTube - YouTube, LLC, 901 Cherry Ave., San Bruno, CA 94066, USA - zur Verfügung gestellt werden. Mit dem Aufruf des Inhalts kann YouTube Ihre IP-Adresse und die Sprache des Systems, sowie verschiedene browserspezifische Angaben ermitteln.</p>
+                            <p>Wenn Sie in Ihrem YouTube-Account eingeloggt sind, ermöglichen Sie YouTube, Ihr Surfverhalten direkt Ihrem persönlichen Profil zuzuordnen. Dies können Sie verhindern, indem Sie sich aus Ihrem YouTube-Account ausloggen.</p>
+                            <p>YouTube verwendet Cookies und Tracking-Tools. Die Datenverarbeitungsvorgänge sowie die Zwecke der Verarbeitung können direkt bei <a href="https://policies.google.com/privacy">YouTube</a> erfragt und eingesehen werden.</p>
+                            <p>Mit dem Klick auf den Button "Consent" willigen Sie ein, die von der Plattform zur Verfügung gestellten Dokumente unter den angegebenen Umständen nutzen zu wollen.</p>
+                            <p>Ihre Zustimmung gilt nur für den einmaligen Aufruf der Seite an dieser Stelle. Bei der nächsten Nutzung werden wir Sie wieder um Ihre Einwilligung bitten. Eine Einwilligung kann somit durch erneutes Laden der Website widerrufen werden.</p>
+                        </div>
+                        <div v-else>
+                            <p>The content embedded here is provided by YouTube, LLC, 901 Cherry Ave., San Bruno, CA 94066, USA. By accessing this content, YouTube may collect your IP address, system language, and other browser-related information.</p>
+                            <p>If you are logged in to your YouTube account, YouTube may associate your browsing activity directly with your personal profile. You can prevent this by logging out of your YouTube account before loading the video.</p>
+                            <p>YouTube uses cookies and other tracking technologies. Information about the purposes of data processing and your rights can be found in <a href="https://policies.google.com/privacy">YouTube’s Privacy Policy</a>.</p>
+                            <p>By clicking the “Consent” button, you consent to the transfer of your data to YouTube under the conditions described above, including potential transfer to the United States, where data protection standards may differ from those of the European Union.</p>
+                            <p>Your consent applies only to this specific video for the duration of your current visit. If you reload or revisit the page, you will be asked to provide consent again. You can withdraw your consent at any time by reloading the page without activating the video.</p>
+                        </div>
                     </div>
                     <div class="modal-footer border-0">
-                        <button class="btn btn-primary" type="button" data-bs-dismiss="modal">Decline</button>
-                        <button class="btn btn-primary ms-auto" type="button" data-bs-dismiss="modal" @click="on_video_consent_accept">Consent</button>
+                        <button class="btn btn-primary" type="button" data-bs-dismiss="modal">{{(video_consent_language == "De") ? "Ablehnen" : "Decline"}}</button>
+                        <button class="btn btn-primary ms-auto" type="button" data-bs-dismiss="modal" @click="on_video_consent_accept">{{(video_consent_language == "De") ? "Zustimmen" : "Consent"}}</button>
                     </div>
                 </div>
             </div>
